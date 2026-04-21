@@ -1,6 +1,6 @@
 ---
 title: 'How to Build a High-Converting Landing Page in Elementor'
-description: 'A practical guide to creating landing pages that convert visitors into leads and customers. Step-by-step approach using Elementor\'s capabilities.'
+description: "A practical guide to creating landing pages that convert visitors into leads and customers. Step-by-step approach using Elementor's capabilities."
 pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'Carlos Cabrales'

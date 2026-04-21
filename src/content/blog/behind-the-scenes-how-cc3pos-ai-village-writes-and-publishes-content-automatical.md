@@ -1,5 +1,5 @@
 ---
-title: 'Behind the Scenes: How CC3PO\'s AI Village Writes and Publishes Content Automatically'
+title: "Behind the Scenes: How CC3PO's AI Village Writes and Publishes Content Automatically"
 description: 'A transparent look at how I built an AI-powered content system that researches, writes, and publishes without constant manual intervention.'
 pubDate: '2026-04-08'
 category: 'AI & Automation'

@@ -1,6 +1,6 @@
 ---
 title: 'Rank Math Supercharged Content AI: How I Use It'
-description: 'A practical walkthrough of RankMath\'s Content AI features for SEO optimization. Real workflows, not theoretical possibilities.'
+description: "A practical walkthrough of RankMath's Content AI features for SEO optimization. Real workflows, not theoretical possibilities."
 pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'Carlos Cabrales'
