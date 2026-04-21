@@ -1,13 +1,16 @@
 ---
-import { SITE_TITLE } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 interface Props {
 	title: string;
 	description: string;
+	image?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const { title, description } = Astro.props;
+const { title, description, image = 'https://cc3po.com/wp-content/uploads/2025/04/Color-logo-with-background-scaled.png' } = Astro.props;
+
+const ogImageURL = new URL(image, Astro.site);
 ---
 
 <!-- Global Metadata -->
@@ -15,6 +18,7 @@ const { title, description } = Astro.props;
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="alternate" type="application/rss+xml" title="CC3PO Insights" href="/rss.xml" />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Canonical URL -->
@@ -24,20 +28,30 @@ const { title, description } = Astro.props;
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+<meta name="author" content="CC3PO" />
+<meta name="robots" content="index, follow" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
+<meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageURL} />
+<meta property="og:site_name" content="CC3PO Insights" />
+<meta property="og:locale" content="en_US" />
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageURL} />
+<meta name="twitter:creator" content="@cc3po" />
 
-<!-- Fonts -->
+<!-- Fonts with display swap -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<!-- Preload critical assets -->
+<link rel="preload" as="image" href="https://cc3po.com/wp-content/uploads/2025/04/Color-logo-with-background-scaled.png" />
