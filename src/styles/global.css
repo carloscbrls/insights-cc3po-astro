@@ -1,0 +1,65 @@
+/* Global CSS for CC3PO Insights */
+:root {
+	--bg: #0a0a0b;
+	--card: #141418;
+	--text: #fff;
+	--muted: #a1a1aa;
+	--primary: #6b35ff;
+	--accent: #00d2ff;
+	--grad: linear-gradient(135deg, #6b35ff, #00d2ff);
+	--font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-family: var(--font-inter);
+	background: var(--bg);
+	color: var(--text);
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: var(--font-inter);
+	background: var(--bg);
+	color: var(--text);
+	line-height: 1.6;
+}
+
+a {
+	color: var(--primary);
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+a:hover {
+	color: var(--accent);
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--primary);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--accent);
+}

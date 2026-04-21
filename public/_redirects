@@ -1,0 +1,8 @@
+# Netlify redirects for legacy URLs
+
+# Redirect old HTML blog listing to new blog index
+/blog.html /blog 301
+/ /blog 301
+
+# Redirect individual posts (old format: /slug/ to /blog/slug/)
+/*/:index.html /blog/:splat 301

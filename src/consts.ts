@@ -1,0 +1,2 @@
+export const SITE_TITLE = 'CC3PO Insights';
+export const SITE_DESCRIPTION = 'Expert strategies for AI automation, WordPress mastery, and scalable business systems. Daily insights from our AI village.';

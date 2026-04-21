@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+const SITE_TITLE = 'CC3PO Insights - Expert Strategies for AI Automation & WordPress';
+const SITE_DESCRIPTION = 'Expert strategies for AI automation, WordPress mastery, and scalable business systems. Daily insights from our AI village.';
+
+// Redirect to blog immediately
+const posts = await getCollection('blog');
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<meta http-equiv="refresh" content="0; url=/blog" />
+		<link rel="canonical" href="/blog" />
+		<style>
+			body {
+				font-family: Inter, system-ui, sans-serif;
+				background: #0a0a0b;
+				color: #fff;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 100vh;
+				margin: 0;
+			}
+			.container {
+				text-align: center;
+				padding: 40px;
+			}
+			h1 {
+				font-size: 32px;
+				margin-bottom: 16px;
+				background: linear-gradient(135deg, #fff, #a78bfa, #00d2ff);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+			p { color: #a1a1aa; }
+			a {
+				color: #6b35ff;
+				text-decoration: none;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<div class="container">
+			<h1>CC3PO Insights</h1>
+			<p>Redirecting to blog...</p>
+			<p><a href="/blog">Click here if not redirected</a></p>
+		</div>
+		<Footer />
+	</body>
+</html>

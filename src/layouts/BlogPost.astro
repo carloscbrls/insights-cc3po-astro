@@ -1,0 +1,206 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, updatedDate, heroImage, category, author, authorUrl } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="twitter:card" content="summary_large_image" />
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "BlogPosting",
+			headline: title,
+			description: description,
+			author: {
+				"@type": "Person",
+				name: author,
+				url: authorUrl
+			},
+			publisher: {
+				"@type": "Organization",
+				name: "CC3PO",
+				logo: {
+					"@type": "ImageObject",
+					url: "https://cc3po.com/wp-content/uploads/2026/04/c3-logo.png"
+				}
+			},
+			datePublished: pubDate,
+			dateModified: updatedDate || pubDate,
+			articleSection: category
+		})} />
+		<style>
+			:root {
+				--bg: #0a0a0b;
+				--card: #141418;
+				--text: #fff;
+				--muted: #a1a1aa;
+				--primary: #6b35ff;
+				--accent: #00d2ff;
+				--grad: linear-gradient(135deg, #6b35ff, #00d2ff);
+			}
+			* { margin: 0; padding: 0; box-sizing: border-box; }
+			body {
+				font-family: Inter, system-ui, -apple-system, sans-serif;
+				background: var(--bg);
+				color: var(--text);
+				line-height: 1.7;
+			}
+			main {
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 40px 24px;
+			}
+			.back-link {
+				display: inline-block;
+				padding: 10px 18px;
+				background: rgba(255,255,255,.05);
+				border-radius: 8px;
+				color: #a1a1aa;
+				text-decoration: none;
+				margin-bottom: 24px;
+				transition: background 0.2s;
+			}
+			.back-link:hover { background: rgba(255,255,255,.1); }
+			.category-badge {
+				display: inline-block;
+				padding: 5px 12px;
+				background: var(--grad);
+				border-radius: 18px;
+				font-size: 12px;
+				font-weight: 600;
+				color: #fff;
+				margin-bottom: 16px;
+			}
+			.post-title {
+				font-size: clamp(28px, 5vw, 36px);
+				font-weight: 700;
+				margin: 12px 0;
+				line-height: 1.2;
+			}
+			.post-meta {
+				color: #888;
+				font-size: 14px;
+				margin-bottom: 24px;
+			}
+			.post-meta a { color: var(--primary); text-decoration: none; }
+			.hero-image {
+				width: 100%;
+				border-radius: 12px;
+				margin: 24px 0;
+				overflow: hidden;
+			}
+			.hero-image img {
+				width: 100%;
+				height: auto;
+				display: block;
+			}
+			.prose {
+				color: #d4d4d8;
+				font-size: 16px;
+			}
+			.prose p { margin-bottom: 16px; }
+			.prose h2 {
+				font-size: 24px;
+				margin: 32px 0 16px;
+				color: var(--text);
+			}
+			.prose h3 {
+				font-size: 20px;
+				margin: 24px 0 12px;
+				color: var(--text);
+			}
+			.prose a { color: var(--primary); }
+			.prose ul, .prose ol {
+				margin: 16px 0;
+				padding-left: 24px;
+			}
+			.prose li { margin-bottom: 8px; }
+			.prose blockquote {
+				border-left: 3px solid var(--primary);
+				padding-left: 16px;
+				margin: 16px 0;
+				color: var(--muted);
+				font-style: italic;
+			}
+			.prose code {
+				background: rgba(107,53,255,.1);
+				padding: 2px 6px;
+				border-radius: 4px;
+				font-size: 14px;
+			}
+			.prose pre {
+				background: var(--card);
+				padding: 16px;
+				border-radius: 8px;
+				overflow-x: auto;
+				margin: 16px 0;
+			}
+			.cta-section {
+				background: linear-gradient(135deg, rgba(107,53,255,.1), rgba(0,210,255,.1));
+				border-radius: 16px;
+				padding: 32px;
+				text-align: center;
+				margin: 32px 0;
+			}
+			.cta-section h3 { margin-bottom: 12px; }
+			.cta-section p { color: #a1a1aa; margin-bottom: 16px; }
+			.cta-btn {
+				display: inline-block;
+				padding: 12px 28px;
+				background: var(--grad);
+				color: #fff;
+				border-radius: 24px;
+				text-decoration: none;
+				font-weight: 600;
+				transition: transform 0.2s, box-shadow 0.2s;
+			}
+			.cta-btn:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 4px 15px rgba(107,53,255,.4);
+			}
+			@media (max-width: 768px) {
+				main { padding: 20px 16px; }
+				.post-title { font-size: 24px; }
+			}
+		</style>
+	</head>
+
+	<body>
+		<Header />
+		<main>
+			<a href="/blog" class="back-link">← Back to Blog</a>
+			<span class="category-badge">{category}</span>
+			<h1 class="post-title">{title}</h1>
+			<p class="post-meta">
+				By <a href={authorUrl || '#'}>{author}</a> • <FormattedDate date={pubDate} />
+			</p>
+			{heroImage && (
+				<div class="hero-image">
+					<Image width={1020} height={510} src={heroImage} alt={title} />
+				</div>
+			)}
+			<div class="prose">
+				<slot />
+			</div>
+			<div class="cta-section">
+				<h3>Ready to Transform Your Business?</h3>
+				<p>Get expert strategies for AI automation and WordPress.</p>
+				<a href="https://offers.cc3po.com/our-services.html" class="cta-btn">Get Started Today</a>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
