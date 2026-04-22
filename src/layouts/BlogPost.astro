@@ -558,7 +558,11 @@ const relatedPosts = allPosts
 		{heroImage && (
 			<div class="hero-image-wrapper">
 				<div class="hero-image">
-					<Image width={1200} height={630} src={heroImage} alt={title} />
+					{heroImage.startsWith('http') ? (
+						<img src={heroImage} alt={title} width="1200" height="630" loading="lazy" />
+					) : (
+						<Image width={1200} height={630} src={heroImage} alt={title} />
+					)}
 				</div>
 			</div>
 		)}
