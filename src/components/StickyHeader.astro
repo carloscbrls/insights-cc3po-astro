@@ -1,0 +1,55 @@
+---
+import Header from './Header.astro';
+
+interface Props {
+  showSearch?: boolean;
+}
+
+const { showSearch = true } = Astro.props;
+---
+
+<div class="sticky-header-wrapper">
+  <Header />
+  <div class="progress-bar" id="reading-progress"></div>
+</div>
+
+<style>
+  .sticky-header-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+  
+  .progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #6b35ff, #00d2ff);
+    width: 0%;
+    transition: width 0.1s ease-out;
+  }
+</style>
+
+<script>
+  const progressBar = document.getElementById('reading-progress');
+  
+  if (progressBar) {
+    let ticking = false;
+    
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const scrollPercent = Math.min(100, (scrollTop / docHeight) * 100);
+          progressBar.style.width = `${scrollPercent}%`;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
+</script>

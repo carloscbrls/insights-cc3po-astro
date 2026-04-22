@@ -1,0 +1,129 @@
+---
+/**
+ * LazyImage.astro
+ * Deferred loading component for below-fold images
+ * Phase 6 Performance Optimization
+ * 
+ * Uses native lazy loading + Intersection Observer fallback
+ */
+
+import { Image } from 'astro:assets';
+
+interface Props {
+	src: any;
+	alt: string;
+	width: number;
+	height: number;
+	class?: string;
+	placeholder?: 'blur' | 'color' | 'none';
+}
+
+const {
+	src,
+	alt,
+	width,
+	height,
+	class: className = '',
+	placeholder = 'color'
+} = Astro.props;
+---
+
+<div
+	class:list={['lazy-image', className]}
+	data-lazy
+	style={`aspect-ratio: ${width} / ${height};`}
+>
+	<Image
+		src={src}
+		alt={alt}
+		width={width}
+		height={height}
+		loading="lazy"
+		decoding="async"
+		format="webp"
+		class="lazy-image-img"
+	/>
+</div>
+
+<style>
+	.lazy-image {
+		position: relative;
+		overflow: hidden;
+		width: 100%;
+		background: var(--card, #141418);
+		border-radius: 8px;
+	}
+
+	.lazy-image-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		opacity: 0;
+		transition: opacity 0.3s ease-out, transform 0.4s ease-out;
+	}
+
+	/* Show image when loaded */
+	.lazy-image-img[loaded] {
+		opacity: 1;
+	}
+
+	/* Placeholder shimmer effect */
+	.lazy-image::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			90deg,
+			transparent 0%,
+			rgba(255,255,255,0.05) 50%,
+			transparent 100%
+		);
+		animation: shimmer 2s infinite;
+		opacity: 0;
+		transition: opacity 0.3s;
+	}
+
+	.lazy-image:not([data-loaded])::before {
+		opacity: 1;
+	}
+
+	@keyframes shimmer {
+		0% { transform: translateX(-100%); }
+		100% { transform: translateX(100%); }
+	}
+
+	/* Hover effect */
+	.lazy-image:hover .lazy-image-img {
+		transform: scale(1.05);
+	}
+</style>
+
+<script>
+	// Intersection Observer for lazy loading fallback
+	const lazyImages = document.querySelectorAll('[data-lazy]');
+	
+	if ('IntersectionObserver' in window) {
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					const img = entry.target.querySelector('img');
+					if (img && !img.complete) {
+						img.addEventListener('load', () => {
+							img.setAttribute('loaded', '');
+							entry.target.setAttribute('data-loaded', '');
+						});
+					} else if (img && img.complete) {
+						img.setAttribute('loaded', '');
+						entry.target.setAttribute('data-loaded', '');
+					}
+					observer.unobserve(entry.target);
+				}
+			});
+		}, {
+			rootMargin: '50px 0px',
+			threshold: 0.01
+		});
+
+		lazyImages.forEach(img => observer.observe(img));
+	}
+</script>

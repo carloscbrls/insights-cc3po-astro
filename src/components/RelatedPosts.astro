@@ -1,0 +1,230 @@
+---
+/**
+ * RelatedPosts.astro
+ * Algorithm: same category (2x weight), same tags (1x weight)
+ * Display 3-6 posts in grid layout
+ */
+
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+	currentSlug: string;
+	category: string;
+	tags?: string[];
+	limit?: number;
+}
+
+const { currentSlug, category, tags = [], limit = 3 } = Astro.props;
+
+const allPosts = await getCollection('blog');
+
+// Score posts by relevance
+const scoredPosts = allPosts
+	.filter(post => post.id !== currentSlug)
+	.map(post => {
+		let score = 0;
+		// Same category: 2x weight
+		if (post.data.category === category) {
+			score += 2;
+		}
+		// Same tags: 1x weight per matching tag
+		const postTags = post.data.tags || [];
+		tags.forEach(tag => {
+			if (postTags.includes(tag)) {
+				score += 1;
+			}
+		});
+		// Recent posts bonus
+		const daysOld = Math.floor((Date.now() - post.data.pubDate.valueOf()) / (1000 * 60 * 60 * 24));
+		if (daysOld < 30) score += 0.5;
+		if (daysOld < 7) score += 0.5;
+		return { post, score };
+	})
+	.filter(item => item.score > 0)
+	.sort((a, b) => b.score - a.score)
+	.slice(0, limit);
+
+// If not enough scored posts, fill with recent
+const relatedPosts = scoredPosts.length >= limit 
+	? scoredPosts.map(item => item.post)
+	: [
+		...scoredPosts.map(item => item.post),
+		...allPosts
+			.filter(post => post.id !== currentSlug && !scoredPosts.find(item => item.post.id === post.id))
+			.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+			.slice(0, limit - scoredPosts.length)
+	];
+
+if (relatedPosts.length === 0) {
+	return null;
+}
+---
+
+<div class="related-posts">
+	<h3 class="related-title">Related Articles</h3>
+	<div class="related-grid">
+		{relatedPosts.map((post) => (
+			<article class="related-card">
+				<a href={`/blog/${post.id}/`} class="related-link">
+					<div class="related-image-container">
+						{post.data.heroImage && (
+							<Image 
+								class="related-image" 
+								width={400} 
+								height={200} 
+								src={post.data.heroImage} 
+								alt={post.data.title} 
+								loading="lazy"
+							/>
+						)}
+						<span class="related-category">{post.data.category}</span>
+					</div>
+					<div class="related-content">
+						<h4 class="related-card-title">{post.data.title}</h4>
+						<p class="related-excerpt">{post.data.description}</p>
+						<div class="related-meta">
+							<span class="related-date"><FormattedDate date={post.data.pubDate} /></span>
+							<span class="related-arrow">→</span>
+						</div>
+					</div>
+				</a>
+			</article>
+		))}
+	</div>
+</div>
+
+<style>
+	.related-posts {
+		margin: 48px 0;
+	}
+
+	.related-title {
+		font-size: 22px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 24px;
+	}
+
+	.related-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
+	}
+
+	.related-card {
+		background: linear-gradient(145deg, #141418, #0f0f11);
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 14px;
+		overflow: hidden;
+		transition: all 0.3s ease;
+	}
+
+	.related-card:hover {
+		transform: translateY(-4px);
+		border-color: rgba(107, 53, 255, 0.3);
+		box-shadow: 0 12px 30px rgba(107, 53, 255, 0.12);
+	}
+
+	.related-link {
+		text-decoration: none;
+		display: block;
+	}
+
+	.related-image-container {
+		position: relative;
+		height: 140px;
+		overflow: hidden;
+	}
+
+	.related-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.4s ease;
+	}
+
+	.related-card:hover .related-image {
+		transform: scale(1.05);
+	}
+
+	.related-category {
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		background: linear-gradient(135deg, #6b35ff, #00d2ff);
+		padding: 4px 10px;
+		border-radius: 14px;
+		font-size: 10px;
+		font-weight: 600;
+		color: #fff;
+	}
+
+	.related-content {
+		padding: 16px;
+	}
+
+	.related-card-title {
+		font-size: 15px;
+		font-weight: 600;
+		color: #fff;
+		margin-bottom: 8px;
+		line-height: 1.3;
+		transition: color 0.2s;
+	}
+
+	.related-card:hover .related-card-title {
+		color: #00d2ff;
+	}
+
+	.related-excerpt {
+		font-size: 12px;
+		color: #71717a;
+		line-height: 1.5;
+		margin-bottom: 12px;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	.related-meta {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-top: 12px;
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.related-date {
+		font-size: 11px;
+		color: #71717a;
+	}
+
+	.related-arrow {
+		font-size: 14px;
+		color: #6b35ff;
+		transition: transform 0.2s;
+	}
+
+	.related-card:hover .related-arrow {
+		transform: translateX(4px);
+	}
+
+	@media (max-width: 900px) {
+		.related-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 640px) {
+		.related-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.related-image-container {
+			height: 160px;
+		}
+	}
+</style>

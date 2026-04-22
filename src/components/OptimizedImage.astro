@@ -1,0 +1,86 @@
+---
+/**
+ * OptimizedImage.astro
+ * High-performance image component with WebP, srcset, and CLS prevention
+ * Phase 6 Performance Optimization
+ */
+
+import { Image } from 'astro:assets';
+
+interface Props {
+	src: any;
+	alt: string;
+	width: number;
+	height: number;
+	class?: string;
+	loading?: 'lazy' | 'eager';
+	priority?: boolean;
+	sizes?: string;
+}
+
+const {
+	src,
+	alt,
+	width,
+	height,
+	class: className = '',
+	loading = 'lazy',
+	priority = false,
+	sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+} = Astro.props;
+
+// Determine if this should be eagerly loaded (above fold)
+const shouldPreload = priority || loading === 'eager';
+const loadingStrategy = shouldPreload ? 'eager' : 'lazy';
+---
+
+<div class:list={['optimized-image-wrapper', className]} style={`aspect-ratio: ${width} / ${height};`}>
+	<Image
+		src={src}
+		alt={alt}
+		width={width}
+		height={height}
+		loading={loadingStrategy}
+		sizes={sizes}
+		format="webp"
+		class="optimized-image"
+	/>
+</div>
+
+<style>
+	.optimized-image-wrapper {
+		position: relative;
+		overflow: hidden;
+		width: 100%;
+		background: linear-gradient(135deg, rgba(107,53,255,.05), rgba(0,210,255,.05));
+		border-radius: 12px;
+	}
+
+	.optimized-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.optimized-image-wrapper:hover .optimized-image {
+		transform: scale(1.05);
+	}
+
+	/* Reserve space to prevent CLS */
+	.optimized-image-wrapper::before {
+		content: '';
+		display: block;
+		padding-bottom: calc((var(--height, 100%) / var(--width, 100%)) * 100%);
+	}
+
+	/* Fade in effect */
+	@keyframes fadeIn {
+		from { opacity: 0; }
+		to { opacity: 1; }
+	}
+
+	.optimized-image {
+		animation: fadeIn 0.3s ease-out;
+	}
+</style>

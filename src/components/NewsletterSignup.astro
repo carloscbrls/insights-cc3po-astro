@@ -1,0 +1,231 @@
+---
+interface Props {
+  variant?: 'sidebar' | 'inline' | 'compact';
+}
+
+const { variant = 'sidebar' } = Astro.props;
+---
+
+{variant === 'sidebar' && (
+  <div class="newsletter-widget sidebar">
+    <div class="newsletter-icon">📧</div>
+    <h4>Weekly Insights</h4>
+    <p>Get AI automation strategies and WordPress tips delivered to your inbox every week.</p>
+    <form class="newsletter-form" action="/api/subscribe" method="POST">
+      <input type="email" name="email" placeholder="Enter your email" required />
+      <button type="submit">Subscribe</button>
+    </form>
+    <span class="newsletter-microcopy">🔒 No spam. Unsubscribe anytime.</span>
+  </div>
+)}
+
+{variant === 'inline' && (
+  <div class="newsletter-widget inline">
+    <div class="newsletter-content">
+      <h4>Get Weekly Insights Delivered</h4>
+      <p>Join 1,000+ business owners receiving AI automation strategies.</p>
+    </div>
+    <form class="newsletter-form" action="/api/subscribe" method="POST">
+      <input type="email" name="email" placeholder="Enter your email" required />
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+)}
+
+{variant === 'compact' && (
+  <div class="newsletter-widget compact">
+    <h4>Subscribe for Updates</h4>
+    <form class="newsletter-form" action="/api/subscribe" method="POST">
+      <input type="email" name="email" placeholder="Your email" required />
+      <button type="submit">→</button>
+    </form>
+  </div>
+)}
+
+<style>
+  /* Sidebar variant */
+  .newsletter-widget.sidebar {
+    background: linear-gradient(135deg, rgba(107, 53, 255, 0.1), rgba(0, 210, 255, 0.05));
+    border: 1px solid rgba(107, 53, 255, 0.2);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .newsletter-widget.sidebar .newsletter-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .newsletter-widget.sidebar h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .newsletter-widget.sidebar p {
+    font-size: 13px;
+    color: #a1a1aa;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  /* Inline variant */
+  .newsletter-widget.inline {
+    background: linear-gradient(135deg, rgba(107, 53, 255, 0.08), rgba(0, 210, 255, 0.05));
+    border: 1px solid rgba(107, 53, 255, 0.15);
+    border-radius: 20px;
+    padding: 32px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    margin: 40px 0;
+  }
+
+  .newsletter-widget.inline .newsletter-content h4 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .newsletter-widget.inline .newsletter-content p {
+    font-size: 14px;
+    color: #a1a1aa;
+  }
+
+  /* Compact variant */
+  .newsletter-widget.compact {
+    background: linear-gradient(145deg, #141418, #0f0f11);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+
+  .newsletter-widget.compact h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  /* Shared form styles */
+  .newsletter-form {
+    display: flex;
+    gap: 10px;
+  }
+
+  .sidebar .newsletter-form {
+    flex-direction: column;
+  }
+
+  .inline .newsletter-form {
+    min-width: 320px;
+  }
+
+  .compact .newsletter-form {
+    gap: 8px;
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 14px;
+    transition: border-color 0.2s;
+  }
+
+  .newsletter-form input:focus {
+    outline: none;
+    border-color: #6b35ff;
+  }
+
+  .newsletter-form input::placeholder {
+    color: #71717a;
+  }
+
+  .newsletter-form button {
+    padding: 12px 24px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #6b35ff, #00d2ff);
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+  }
+
+  .newsletter-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(107, 53, 255, 0.4);
+  }
+
+  .compact .newsletter-form button {
+    padding: 10px 16px;
+    font-size: 18px;
+  }
+
+  .newsletter-microcopy {
+    display: block;
+    font-size: 11px;
+    color: #71717a;
+    margin-top: 12px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .newsletter-widget.inline {
+      flex-direction: column;
+      text-align: center;
+      padding: 24px;
+      gap: 24px;
+    }
+
+    .newsletter-widget.inline .newsletter-form {
+      min-width: auto;
+      width: 100%;
+      flex-direction: column;
+    }
+  }
+</style>
+
+<script>
+  // Handle form submission
+  document.querySelectorAll('.newsletter-form').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = form.querySelector('input[type="email"]')?.value;
+      
+      if (email) {
+        try {
+          const res = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+          });
+          
+          const data = await res.json();
+          
+          if (data.success) {
+            alert('Thanks for subscribing! Check your email for confirmation.');
+            form.reset();
+          } else {
+            alert(data.error || 'Something went wrong. Please try again.');
+          }
+        } catch (err) {
+          console.error('Newsletter signup error:', err);
+          alert('Error subscribing. Please try again later.');
+        }
+      }
+    });
+  });
+</script>

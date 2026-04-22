@@ -1,0 +1,368 @@
+---
+// Exit Intent Popup for newsletter subscription
+---
+
+<div class="exit-popup-overlay" id="exit-popup-overlay" hidden>
+  <div class="exit-popup">
+    <button class="exit-popup-close" id="exit-popup-close" aria-label="Close popup">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    
+    <div class="exit-popup-content">
+      <div class="exit-popup-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#grad)" stroke-width="2">
+          <defs>
+            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#6b35ff"/>
+              <stop offset="100%" style="stop-color:#00d2ff"/>
+            </linearGradient>
+          </defs>
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+      </div>
+      
+      <h3>Wait! Don't Miss Out</h3>
+      <p>Get weekly AI and automation insights delivered to your inbox. Join 1,000+ business owners.</p>
+      
+      <form class="exit-form" id="exit-form">
+        <input 
+          type="email" 
+          name="email" 
+          placeholder="Enter your email" 
+          required 
+          aria-label="Email address"
+        />
+        <button type="submit" class="exit-submit">
+          <span class="btn-text">Get Free Insights</span>
+          <span class="btn-loading" hidden>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" stroke-dasharray="32" stroke-dashoffset="12">
+                <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/>
+              </circle>
+            </svg>
+          </span>
+        </button>
+      </form>
+      
+      <div class="exit-trust">
+        <span>🔒 Secure • Unsubscribe anytime</span>
+      </div>
+      
+      <div class="exit-success" id="exit-success" hidden>
+        <div class="success-icon">✓</div>
+        <h4>You're In!</h4>
+        <p>Check your inbox for a confirmation. Thank you for subscribing!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .exit-popup-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .exit-popup-overlay[hidden] {
+    display: none;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .exit-popup {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    background: linear-gradient(145deg, #1a1a1f, #141418);
+    border: 1px solid rgba(107,53,255,0.3);
+    border-radius: 24px;
+    padding: 48px 32px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(107,53,255,0.3);
+    animation: scaleIn 0.3s ease-out;
+    margin: 16px;
+  }
+  
+  @keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  
+  .exit-popup-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.05);
+    border: none;
+    border-radius: 50%;
+    color: var(--muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+  }
+  
+  .exit-popup-close:hover {
+    background: rgba(255,255,255,0.1);
+    color: var(--text);
+  }
+  
+  .exit-popup-icon {
+    margin-bottom: 20px;
+  }
+  
+  .exit-popup-content h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #fff, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .exit-popup-content p {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+  
+  .exit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .exit-form input {
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    color: var(--text);
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  
+  .exit-form input:focus {
+    border-color: var(--primary);
+    background: rgba(107,53,255,0.1);
+  }
+  
+  .exit-form input::placeholder {
+    color: var(--muted);
+  }
+  
+  .exit-submit {
+    width: 100%;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #6b35ff, #00d2ff);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .exit-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(107,53,255,0.5);
+  }
+  
+  .exit-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .exit-trust {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  
+  .exit-success {
+    padding: 20px 0;
+  }
+  
+  .success-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6b35ff, #00d2ff);
+    color: #fff;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+  }
+  
+  .exit-success h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  
+  .exit-success p {
+    font-size: 14px;
+  }
+  
+  @media (max-width: 480px) {
+    .exit-popup {
+      padding: 32px 24px;
+    }
+    
+    .exit-popup-content h3 {
+      font-size: 20px;
+    }
+  }
+</style>
+
+<script>
+  const overlay = document.getElementById('exit-popup-overlay');
+  const closeBtn = document.getElementById('exit-popup-close');
+  const form = document.getElementById('exit-form') as HTMLFormElement;
+  const successDiv = document.getElementById('exit-success');
+  
+  // Track if popup was shown
+  let popupShown = false;
+  const POPUP_KEY = 'exit-popup-shown';
+  const POPUP_EXPIRY_DAYS = 7;
+  
+  // Check if popup was recently shown
+  function wasRecentlyShown(): boolean {
+    const lastShown = localStorage.getItem(POPUP_KEY);
+    if (!lastShown) return false;
+    
+    const daysSinceShown = (Date.now() - parseInt(lastShown)) / (1000 * 60 * 60 * 24);
+    return daysSinceShown < POPUP_EXPIRY_DAYS;
+  }
+  
+  // Exit intent detection (desktop only)
+  if (!wasRecentlyShown()) {
+    document.addEventListener('mouseout', (e) => {
+      if (popupShown) return;
+      
+      // Check if mouse left from top
+      if (e.clientY <= 0 && !overlay?.hidden) {
+        showPopup();
+      }
+    });
+    
+    // Also show on scroll depth (mobile fallback)
+    let scrollDepth = 0;
+    window.addEventListener('scroll', () => {
+      const newDepth = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      
+      // Show at 50% scroll depth if not shown yet
+      if (newDepth > 0.5 && scrollDepth <= 0.5 && !popupShown && !wasRecentlyShown()) {
+        showPopup();
+      }
+      
+      scrollDepth = newDepth;
+    });
+  }
+  
+  function showPopup() {
+    if (popupShown || !overlay) return;
+    
+    popupShown = true;
+    overlay.hidden = false;
+    localStorage.setItem(POPUP_KEY, Date.now().toString());
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function hidePopup() {
+    if (!overlay) return;
+    
+    overlay.hidden = true;
+    document.body.style.overflow = '';
+  }
+  
+  closeBtn?.addEventListener('click', hidePopup);
+  
+  overlay?.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      hidePopup();
+    }
+  });
+  
+  // Handle form submission
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const submitBtn = form.querySelector('.exit-submit') as HTMLButtonElement;
+    const btnText = form.querySelector('.btn-text') as HTMLSpanElement;
+    const btnLoading = form.querySelector('.btn-loading') as HTMLSpanElement;
+    
+    // Show loading
+    submitBtn.disabled = true;
+    btnText.hidden = true;
+    btnLoading.hidden = false;
+    
+    const formData = new FormData(form);
+    const email = formData.get('email');
+    
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      
+      const data = await res.json();
+      
+      if (data.success) {
+        form.hidden = true;
+        successDiv.hidden = false;
+        
+        // Auto-close after success
+        setTimeout(() => {
+          hidePopup();
+        }, 3000);
+      } else {
+        alert(data.error || 'Error subscribing');
+        submitBtn.disabled = false;
+        btnText.hidden = false;
+        btnLoading.hidden = true;
+      }
+    } catch (err) {
+      alert('Error: ' + err);
+      submitBtn.disabled = false;
+      btnText.hidden = false;
+      btnLoading.hidden = true;
+    }
+  });
+  
+  // Escape key to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay && !overlay.hidden) {
+      hidePopup();
+    }
+  });
+</script>

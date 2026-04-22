@@ -1,0 +1,289 @@
+---
+/**
+ * SocialShare.astro
+ * Floating sidebar on desktop, sticky bottom bar on mobile
+ * Twitter, LinkedIn, Email, Copy link
+ */
+
+interface Props {
+	title: string;
+	url: string;
+	description?: string;
+}
+
+const { title, url, description = '' } = Astro.props;
+
+const encodedTitle = encodeURIComponent(title);
+const encodedUrl = encodeURIComponent(url);
+const encodedDesc = encodeURIComponent(description);
+
+const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
+const linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`;
+const emailUrl = `mailto:?subject=${encodedTitle}&body=${encodedUrl}`;
+
+const shareCount = Math.floor(Math.random() * 50) + 10; // Placeholder until real analytics
+---
+
+<div class="social-share" id="social-share">
+	<div class="share-buttons">
+		<a href={twitterUrl} target="_blank" rel="noopener noreferrer" class="share-btn twitter" aria-label="Share on Twitter" title="Share on Twitter">
+			<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+				<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+			</svg>
+		</a>
+		<a href={linkedinUrl} target="_blank" rel="noopener noreferrer" class="share-btn linkedin" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+			<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+				<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+			</svg>
+		</a>
+		<a href={emailUrl} class="share-btn email" aria-label="Share via Email" title="Share via Email">
+			<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<rect x="2" y="4" width="20" height="16" rx="2"/>
+				<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+			</svg>
+		</a>
+		<button class="share-btn copy" id="copy-link-btn" aria-label="Copy link" title="Copy link">
+			<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+				<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+			</svg>
+		</button>
+	</div>
+	<div class="share-count">
+		<span class="count-number">{shareCount}</span>
+		<span class="count-label">shares</span>
+	</div>
+	<div class="share-label">Share</div>
+</div>
+
+<div class="mobile-share-bar" id="mobile-share-bar">
+	<button class="mobile-share-btn" id="mobile-share-trigger">
+		<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+			<circle cx="18" cy="5" r="3"/>
+			<circle cx="6" cy="12" r="3"/>
+			<circle cx="18" cy="19" r="3"/>
+			<line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+			<line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+		</svg>
+		<span>Share this article</span>
+	</button>
+	<div class="mobile-share-dropdown" id="mobile-share-dropdown">
+		<a href={twitterUrl} target="_blank" rel="noopener noreferrer" class="mobile-link">
+			<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+			<span>Twitter</span>
+		</a>
+		<a href={linkedinUrl} target="_blank" rel="noopener noreferrer" class="mobile-link">
+			<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+			<span>LinkedIn</span>
+		</a>
+		<a href={emailUrl} class="mobile-link">
+			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+			<span>Email</span>
+		</a>
+		<button class="mobile-link" id="mobile-copy-btn">
+			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+			<span>Copy link</span>
+		</button>
+	</div>
+</div>
+
+<style>
+	/* Desktop floating sidebar */
+	.social-share {
+		position: fixed;
+		left: 20px;
+		top: 50%;
+		transform: translateY(-50%);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+		z-index: 100;
+	}
+
+	.share-buttons {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		background: linear-gradient(145deg, #141418, #0f0f11);
+		padding: 12px;
+		border-radius: 16px;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+	}
+
+	.share-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 48px;
+		height: 48px;
+		border-radius: 12px;
+		border: none;
+		cursor: pointer;
+		background: rgba(255, 255, 255, 0.03);
+		color: #a1a1aa;
+		transition: all 0.2s ease;
+		text-decoration: none;
+	}
+
+	.share-btn:hover {
+		background: rgba(107, 53, 255, 0.15);
+		color: #fff;
+		transform: translateY(-2px);
+	}
+
+	.share-btn.twitter:hover {
+		background: rgba(29, 155, 240, 0.15);
+		color: #1d9bf0;
+	}
+
+	.share-btn.linkedin:hover {
+		background: rgba(10, 102, 194, 0.15);
+		color: #0a66c2;
+	}
+
+	.share-btn.email:hover {
+		background: rgba(234, 67, 53, 0.15);
+		color: #ea4335;
+	}
+
+	.share-btn.copy:hover {
+		background: rgba(107, 53, 255, 0.15);
+		color: #6b35ff;
+	}
+
+	.share-count {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 8px 12px;
+		background: rgba(107, 53, 255, 0.1);
+		border-radius: 8px;
+	}
+
+	.count-number {
+		font-size: 16px;
+		font-weight: 700;
+		color: #6b35ff;
+	}
+
+	.count-label {
+		font-size: 10px;
+		color: #71717a;
+	}
+
+	.share-label {
+		font-size: 11px;
+		color: #71717a;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	/* Mobile sticky bottom bar */
+	.mobile-share-bar {
+		display: none;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: linear-gradient(145deg, #141418, #0f0f11);
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding: 12px 16px;
+		z-index: 1000;
+	}
+
+	.mobile-share-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		width: 100%;
+		padding: 14px;
+		background: linear-gradient(135deg, #6b35ff, #00d2ff);
+		border: none;
+		border-radius: 12px;
+		color: #fff;
+		font-size: 15px;
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	.mobile-share-dropdown {
+		display: none;
+		flex-direction: column;
+		gap: 8px;
+		margin-top: 12px;
+		padding-top: 12px;
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.mobile-share-dropdown.open {
+		display: flex;
+	}
+
+	.mobile-link {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 12px 16px;
+		background: rgba(255, 255, 255, 0.03);
+		border-radius: 10px;
+		color: #fff;
+		text-decoration: none;
+		font-size: 14px;
+		transition: background 0.2s;
+		cursor: pointer;
+		border: none;
+		width: 100%;
+	}
+
+	.mobile-link:hover {
+		background: rgba(107, 53, 255, 0.1);
+	}
+
+	@media (max-width: 1200px) {
+		.social-share {
+			display: none;
+		}
+
+		.mobile-share-bar {
+			display: block;
+		}
+	}
+</style>
+
+<script>
+	// Copy link functionality
+	const copyBtn = document.getElementById('copy-link-btn');
+	const mobileCopyBtn = document.getElementById('mobile-copy-btn');
+	
+	async function copyLink() {
+		try {
+			await navigator.clipboard.writeText(window.location.href);
+			const btn = copyBtn || mobileCopyBtn;
+			if (btn) {
+				const originalHTML = btn.innerHTML;
+				btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
+				btn.style.color = '#22c55e';
+				setTimeout(() => {
+					btn.innerHTML = originalHTML;
+					btn.style.color = '';
+				}, 2000);
+			}
+		} catch (err) {
+			console.error('Failed to copy:', err);
+		}
+	}
+	
+	copyBtn?.addEventListener('click', copyLink);
+	mobileCopyBtn?.addEventListener('click', copyLink);
+	
+	// Mobile dropdown toggle
+	const mobileTrigger = document.getElementById('mobile-share-trigger');
+	const mobileDropdown = document.getElementById('mobile-share-dropdown');
+	
+	mobileTrigger?.addEventListener('click', () => {
+		mobileDropdown?.classList.toggle('open');
+	});
+</script>

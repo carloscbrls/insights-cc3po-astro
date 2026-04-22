@@ -1,14 +1,28 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & { id?: string };
 
-const { title, description, pubDate, updatedDate, heroImage, category, author, authorUrl } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, category, author, authorUrl, id } = Astro.props;
+
+// Calculate reading time
+const content = await Astro.slots.render('default');
+const wordCount = content?.split(/\s+/).length || 0;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
+// Get related posts (same category)
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter(post => post.data.category === category && post.id !== id)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
 <!doctype html>
@@ -51,156 +65,617 @@ const { title, description, pubDate, updatedDate, heroImage, category, author, a
 				--accent: #00d2ff;
 				--grad: linear-gradient(135deg, #6b35ff, #00d2ff);
 			}
+
 			* { margin: 0; padding: 0; box-sizing: border-box; }
+
 			body {
 				font-family: Inter, system-ui, -apple-system, sans-serif;
 				background: var(--bg);
 				color: var(--text);
 				line-height: 1.7;
 			}
-			main {
-				max-width: 720px;
+
+			/* Progress Bar */
+			.progress-bar {
+				position: fixed;
+				top: 0;
+				left: 0;
+				height: 3px;
+				background: linear-gradient(90deg, #6b35ff, #00d2ff);
+				z-index: 1001;
+				transition: width 0.1s;
+			}
+
+			/* Article Header */
+			.article-header {
+				text-align: center;
+				padding: 120px 24px 40px;
+				max-width: 800px;
 				margin: 0 auto;
-				padding: 40px 24px;
 			}
-			.back-link {
-				display: inline-block;
-				padding: 10px 18px;
-				background: rgba(255,255,255,.05);
-				border-radius: 8px;
-				color: #a1a1aa;
-				text-decoration: none;
-				margin-bottom: 24px;
-				transition: background 0.2s;
-			}
-			.back-link:hover { background: rgba(255,255,255,.1); }
+
 			.category-badge {
 				display: inline-block;
-				padding: 5px 12px;
 				background: var(--grad);
-				border-radius: 18px;
+				padding: 6px 16px;
+				border-radius: 20px;
 				font-size: 12px;
 				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
 				color: #fff;
-				margin-bottom: 16px;
+				margin-bottom: 20px;
 			}
-			.post-title {
-				font-size: clamp(28px, 5vw, 36px);
-				font-weight: 700;
-				margin: 12px 0;
-				line-height: 1.2;
+
+			.article-title {
+				font-size: clamp(32px, 5vw, 48px);
+				font-weight: 800;
+				line-height: 1.15;
+				margin-bottom: 20px;
+				background: linear-gradient(135deg, #fff, #e4e4e7);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
 			}
-			.post-meta {
-				color: #888;
-				font-size: 14px;
+
+			.article-excerpt {
+				font-size: 18px;
+				color: #a1a1aa;
+				line-height: 1.6;
 				margin-bottom: 24px;
 			}
-			.post-meta a { color: var(--primary); text-decoration: none; }
+
+			/* Author Block */
+			.author-block {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 16px;
+				padding: 20px;
+				background: linear-gradient(145deg, #141418, #0f0f11);
+				border: 1px solid rgba(255,255,255,.06);
+				border-radius: 16px;
+				margin: 0 auto 40px;
+				max-width: fit-content;
+			}
+
+			.author-avatar {
+				width: 48px;
+				height: 48px;
+				border-radius: 50%;
+				background: var(--grad);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 20px;
+				font-weight: 700;
+				color: #fff;
+			}
+
+			.author-info {
+				text-align: left;
+			}
+
+			.author-name {
+				font-size: 15px;
+				font-weight: 600;
+				color: #fff;
+			}
+
+			.author-title {
+				font-size: 13px;
+				color: #71717a;
+			}
+
+			.article-meta {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 16px;
+				flex-wrap: wrap;
+				color: #71717a;
+				font-size: 14px;
+			}
+
+			.meta-divider {
+				width: 4px;
+				height: 4px;
+				border-radius: 50%;
+				background: #52525b;
+			}
+
+			/* Hero Image */
+			.hero-image-wrapper {
+				max-width: 1200px;
+				margin: 0 auto 60px;
+				padding: 0 24px;
+			}
+
 			.hero-image {
 				width: 100%;
-				border-radius: 12px;
-				margin: 24px 0;
+				border-radius: 20px;
 				overflow: hidden;
 			}
+
 			.hero-image img {
 				width: 100%;
 				height: auto;
 				display: block;
 			}
+
+			/* Article Content */
+			.article-container {
+				display: flex;
+				gap: 60px;
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 24px 80px;
+			}
+
+			.article-content {
+				flex: 1;
+				max-width: 720px;
+			}
+
+			/* Social Share Sidebar */
+			.social-sidebar {
+				position: sticky;
+				top: 120px;
+				width: 60px;
+				height: fit-content;
+			}
+
+			.social-share {
+				display: flex;
+				flex-direction: column;
+				gap: 12px;
+			}
+
+			.social-btn {
+				width: 44px;
+				height: 44px;
+				border-radius: 12px;
+				background: linear-gradient(145deg, #141418, #0f0f11);
+				border: 1px solid rgba(255,255,255,.06);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #a1a1aa;
+				cursor: pointer;
+				transition: all 0.2s;
+			}
+
+			.social-btn:hover {
+				background: rgba(107,53,255,.1);
+				border-color: rgba(107,53,255,.3);
+				color: #6b35ff;
+				transform: translateY(-2px);
+			}
+
+			/* Prose Styles */
 			.prose {
 				color: #d4d4d8;
-				font-size: 16px;
+				font-size: 17px;
+				line-height: 1.8;
 			}
-			.prose p { margin-bottom: 16px; }
+
+			.prose p {
+				margin-bottom: 24px;
+			}
+
 			.prose h2 {
-				font-size: 24px;
-				margin: 32px 0 16px;
-				color: var(--text);
+				font-size: 28px;
+				font-weight: 700;
+				color: #fff;
+				margin: 48px 0 20px;
+				padding-bottom: 12px;
+				border-bottom: 1px solid rgba(255,255,255,.06);
 			}
+
 			.prose h3 {
-				font-size: 20px;
-				margin: 24px 0 12px;
-				color: var(--text);
+				font-size: 22px;
+				font-weight: 600;
+				color: #fff;
+				margin: 36px 0 16px;
 			}
-			.prose a { color: var(--primary); }
+
+			.prose a {
+				color: #00d2ff;
+				text-decoration: none;
+				border-bottom: 1px solid rgba(0,210,255,.3);
+				transition: border-color 0.2s;
+			}
+
+			.prose a:hover {
+				border-color: #00d2ff;
+			}
+
 			.prose ul, .prose ol {
-				margin: 16px 0;
-				padding-left: 24px;
+				margin: 20px 0;
+				padding-left: 28px;
 			}
-			.prose li { margin-bottom: 8px; }
+
+			.prose li {
+				margin-bottom: 12px;
+			}
+
 			.prose blockquote {
-				border-left: 3px solid var(--primary);
-				padding-left: 16px;
-				margin: 16px 0;
-				color: var(--muted);
+				border-left: 4px solid var(--primary);
+				padding: 20px 24px;
+				margin: 28px 0;
+				background: linear-gradient(135deg, rgba(107,53,255,.05), rgba(0,210,255,.05));
+				border-radius: 0 12px 12px 0;
 				font-style: italic;
 			}
+
+			.prose blockquote p {
+				margin: 0;
+				color: #a1a1aa;
+			}
+
 			.prose code {
 				background: rgba(107,53,255,.1);
-				padding: 2px 6px;
-				border-radius: 4px;
-				font-size: 14px;
+				padding: 3px 8px;
+				border-radius: 6px;
+				font-size: 15px;
+				color: #00d2ff;
 			}
+
 			.prose pre {
-				background: var(--card);
-				padding: 16px;
-				border-radius: 8px;
+				background: #141418;
+				padding: 20px;
+				border-radius: 12px;
 				overflow-x: auto;
-				margin: 16px 0;
+				margin: 24px 0;
+				border: 1px solid rgba(255,255,255,.06);
 			}
-			.cta-section {
-				background: linear-gradient(135deg, rgba(107,53,255,.1), rgba(0,210,255,.1));
-				border-radius: 16px;
+
+			.prose pre code {
+				background: none;
+				padding: 0;
+				color: #d4d4d8;
+			}
+
+			.prose img {
+				width: 100%;
+				border-radius: 12px;
+				margin: 24px 0;
+			}
+
+			/* Author Bio Footer */
+			.author-bio-footer {
+				margin: 60px 0 40px;
 				padding: 32px;
-				text-align: center;
-				margin: 32px 0;
+				background: linear-gradient(145deg, #141418, #0f0f11);
+				border: 1px solid rgba(107,53,255,.15);
+				border-radius: 20px;
 			}
-			.cta-section h3 { margin-bottom: 12px; }
-			.cta-section p { color: #a1a1aa; margin-bottom: 16px; }
-			.cta-btn {
-				display: inline-block;
-				padding: 12px 28px;
+
+			.author-bio-content {
+				display: flex;
+				gap: 20px;
+				align-items: flex-start;
+			}
+
+			.author-bio-avatar {
+				width: 72px;
+				height: 72px;
+				border-radius: 50%;
 				background: var(--grad);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 28px;
+				font-weight: 700;
 				color: #fff;
-				border-radius: 24px;
+				flex-shrink: 0;
+			}
+
+			.author-bio-text h4 {
+				font-size: 18px;
+				font-weight: 700;
+				margin-bottom: 8px;
+			}
+
+			.author-bio-text p {
+				font-size: 15px;
+				color: #a1a1aa;
+				line-height: 1.6;
+				margin-bottom: 16px;
+			}
+
+			.author-links {
+				display: flex;
+				gap: 16px;
+			}
+
+			.author-links a {
+				color: #6b35ff;
 				text-decoration: none;
+				font-size: 14px;
+				font-weight: 500;
+			}
+
+			.author-links a:hover {
+				color: #00d2ff;
+			}
+
+			/* Related Posts */
+			.related-posts {
+				margin-top: 60px;
+				padding-top: 40px;
+				border-top: 1px solid rgba(255,255,255,.06);
+			}
+
+			.related-posts h3 {
+				font-size: 20px;
+				font-weight: 700;
+				margin-bottom: 24px;
+				display: flex;
+				align-items: center;
+				gap: 12px;
+			}
+
+			.related-posts h3::after {
+				content: '';
+				flex: 1;
+				height: 1px;
+				background: linear-gradient(90deg, rgba(107,53,255,.3), transparent);
+			}
+
+			.related-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 20px;
+			}
+
+			.related-card {
+				background: linear-gradient(145deg, #141418, #0f0f11);
+				border: 1px solid rgba(255,255,255,.06);
+				border-radius: 14px;
+				overflow: hidden;
+				transition: all 0.3s;
+			}
+
+			.related-card:hover {
+				border-color: rgba(107,53,255,.3);
+				transform: translateY(-4px);
+			}
+
+			.related-card a {
+				text-decoration: none;
+				display: block;
+				padding: 20px;
+			}
+
+			.related-card span {
+				font-size: 12px;
+				color: #6b35ff;
 				font-weight: 600;
-				transition: transform 0.2s, box-shadow 0.2s;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
 			}
-			.cta-btn:hover {
-				transform: translateY(-2px);
-				box-shadow: 0 4px 15px rgba(107,53,255,.4);
+
+			.related-card h4 {
+				font-size: 15px;
+				font-weight: 600;
+				color: #fff;
+				margin-top: 8px;
+				line-height: 1.4;
 			}
+
+			/* Back Link */
+			.back-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 12px 20px;
+				background: rgba(255,255,255,.05);
+				border: 1px solid rgba(255,255,255,.08);
+				border-radius: 12px;
+				color: #a1a1aa;
+				text-decoration: none;
+				font-size: 14px;
+				font-weight: 500;
+				margin-bottom: 24px;
+				transition: all 0.2s;
+			}
+
+			.back-link:hover {
+				background: rgba(107,53,255,.1);
+				border-color: rgba(107,53,255,.3);
+				color: #fff;
+			}
+
+			/* Responsive */
+			@media (max-width: 1024px) {
+				.social-sidebar {
+					display: none;
+				}
+			}
+
 			@media (max-width: 768px) {
-				main { padding: 20px 16px; }
-				.post-title { font-size: 24px; }
+				.article-header {
+					padding: 100px 16px 32px;
+				}
+
+				.author-block {
+					flex-direction: column;
+					text-align: center;
+					padding: 16px;
+				}
+
+				.article-meta {
+					flex-direction: column;
+					gap: 8px;
+				}
+
+				.meta-divider {
+					display: none;
+				}
+
+				.author-info {
+					text-align: center;
+				}
+
+				.article-container {
+					padding: 0 16px 60px;
+				}
+
+				.prose {
+					font-size: 16px;
+				}
+
+				.author-bio-content {
+					flex-direction: column;
+					align-items: center;
+					text-align: center;
+				}
+
+				.related-grid {
+					grid-template-columns: 1fr;
+				}
 			}
 		</style>
 	</head>
 
 	<body>
+		<div class="progress-bar" id="progressBar"></div>
 		<Header />
-		<main>
-			<a href="/blog" class="back-link">← Back to Blog</a>
+
+		<header class="article-header">
 			<span class="category-badge">{category}</span>
-			<h1 class="post-title">{title}</h1>
-			<p class="post-meta">
-				By <a href={authorUrl || '#'}>{author}</a> • <FormattedDate date={pubDate} />
-			</p>
-			{heroImage && (
-				<div class="hero-image">
-					<Image width={1020} height={510} src={heroImage} alt={title} />
+			<h1 class="article-title">{title}</h1>
+			<p class="article-excerpt">{description}</p>
+
+			<div class="author-block">
+				<div class="author-avatar">{author?.charAt(0) || 'C'}</div>
+				<div class="author-info">
+					<div class="author-name">{author}</div>
+					<div class="author-title">IT Consultant & AI Systems Architect</div>
 				</div>
-			)}
-			<div class="prose">
-				<slot />
 			</div>
-			<div class="cta-section">
-				<h3>Ready to Transform Your Business?</h3>
-				<p>Get expert strategies for AI automation and WordPress.</p>
-				<a href="https://offers.cc3po.com/our-services.html" class="cta-btn">Get Started Today</a>
+
+			<div class="article-meta">
+				<FormattedDate date={pubDate} />
+				<div class="meta-divider"></div>
+				<span>{readingTime} min read</span>
+				<div class="meta-divider"></div>
+				<span>CC3PO Insights</span>
 			</div>
-		</main>
+		</header>
+
+		{heroImage && (
+			<div class="hero-image-wrapper">
+				<div class="hero-image">
+					<Image width={1200} height={630} src={heroImage} alt={title} />
+				</div>
+			</div>
+		)}
+
+		<div class="article-container">
+			<!-- Social Share Sidebar -->
+			<aside class="social-sidebar">
+				<div class="social-share">
+					<a 
+						href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(Astro.url)}`}
+						target="_blank"
+						class="social-btn"
+						aria-label="Share on Twitter"
+					>
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+						</svg>
+					</a>
+					<a 
+						href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(Astro.url)}&title=${encodeURIComponent(title)}`}
+						target="_blank"
+						class="social-btn"
+						aria-label="Share on LinkedIn"
+					>
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+							<rect x="2" y="9" width="4" height="12"></rect>
+							<circle cx="4" cy="4" r="2"></circle>
+						</svg>
+					</a>
+					<a 
+						href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(Astro.url)}`}
+						target="_blank"
+						class="social-btn"
+						aria-label="Share on Facebook"
+					>
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+						</svg>
+					</a>
+					<a 
+						href={`mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(`Check out this article: ${Astro.url}`)}`}
+						class="social-btn"
+						aria-label="Share via Email"
+					>
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+							<polyline points="22,6 12,13 2,6"></polyline>
+						</svg>
+					</a>
+				</div>
+			</aside>
+
+			<article class="article-content">
+				<a href="/blog" class="back-link">← Back to Blog</a>
+
+				<div class="prose">
+					<slot />
+				</div>
+
+				<!-- Author Bio Footer -->
+				<div class="author-bio-footer">
+					<div class="author-bio-content">
+						<div class="author-bio-avatar">{author?.charAt(0) || 'C'}</div>
+						<div class="author-bio-text">
+							<h4>About {author}</h4>
+							<p>IT Consultant and AI Systems Architect with 15+ years of experience helping businesses automate their workflows, optimize their WordPress sites, and leverage AI for growth. Building the future of work, one system at a time.</p>
+							<div class="author-links">
+								<a href={authorUrl} target="_blank">LinkedIn →</a>
+								<a href="https://cc3po.com" target="_blank">Website →</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Newsletter Signup -->
+				<NewsletterSignup variant="inline" />
+
+				<!-- Related Posts -->
+				{relatedPosts.length > 0 && (
+					<div class="related-posts">
+						<h3>Related Articles</h3>
+						<div class="related-grid">
+							{relatedPosts.map(post => (
+								<article class="related-card">
+									<a href={`/blog/${post.id}/`}>
+										<span>{post.data.category}</span>
+										<h4>{post.data.title}</h4>
+									</a>
+								</article>
+							))}
+						</div>
+					</div>
+				)}
+			</article>
+		</div>
+
 		<Footer />
+
+		<script>
+			// Progress bar
+			window.addEventListener('scroll', () => {
+				const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+				const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+				const scrolled = (winScroll / height) * 100;
+				document.getElementById('progressBar').style.width = scrolled + '%';
+			});
+		</script>
 	</body>
 </html>

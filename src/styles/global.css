@@ -1,4 +1,4 @@
-/* Global CSS for CC3PO Insights */
+/* Global CSS for CC3PO Insights - Phase 6 Optimized */
 :root {
 	--bg: #0a0a0b;
 	--card: #141418;
@@ -7,13 +7,58 @@
 	--primary: #6b35ff;
 	--accent: #00d2ff;
 	--grad: linear-gradient(135deg, #6b35ff, #00d2ff);
-	--font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+	--font-inter: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Phase 6: Font display swap for faster rendering */
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_0EWmM.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hjp-Ek-_0EWmM.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYAZ9hjp-Ek-_0EWmM.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuFuYAZ9hjp-Ek-_0EWmM.woff2') format('woff2');
+}
+
+/* Critical CSS reset */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
 }
 
 * {
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
 }
 
 html {
@@ -21,6 +66,10 @@ html {
 	background: var(--bg);
 	color: var(--text);
 	scroll-behavior: smooth;
+	/* Phase 6: Prevent layout shift */
+	text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -28,21 +77,35 @@ body {
 	background: var(--bg);
 	color: var(--text);
 	line-height: 1.6;
+	/* Phase 6: Smooth text rendering */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 a {
 	color: var(--primary);
 	text-decoration: none;
-	transition: color 0.2s;
+	transition: color 0.2s ease-out;
 }
 
 a:hover {
 	color: var(--accent);
 }
 
-img {
+/* Phase 6: Image optimization defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
 	max-width: 100%;
 	height: auto;
+}
+
+/* Phase 6: Reserve space for images to prevent CLS */
+img {
+	background: linear-gradient(135deg, rgba(107,53,255,.05), rgba(0,210,255,.05));
 }
 
 /* Scrollbar styling */
@@ -62,4 +125,22 @@ img {
 
 ::-webkit-scrollbar-thumb:hover {
 	background: var(--accent);
+}
+
+/* Phase 6: Focus styles for accessibility */
+:focus-visible {
+	outline: 2px solid var(--primary);
+	outline-offset: 2px;
+}
+
+/* Phase 6: Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
 }

@@ -1,0 +1,44 @@
+---
+/**
+ * ProgressBar.astro
+ * Reading progress indicator for blog posts
+ * Phase 6 Performance Optimization - UX Enhancement
+ */
+---
+
+<div id="reading-progress" class="reading-progress" aria-hidden="true"></div>
+
+<style>
+	.reading-progress {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 0;
+		height: 3px;
+		background: linear-gradient(90deg, #6b35ff, #00d2ff);
+		z-index: 9999;
+		transition: width 0.1s linear;
+	}
+</style>
+
+<script>
+	// Reading progress indicator
+	document.addEventListener('DOMContentLoaded', () => {
+		const progressBar = document.getElementById('reading-progress');
+		
+		if (!progressBar) return;
+		
+		const updateProgress = () => {
+			const scrollTop = window.scrollY || document.documentElement.scrollTop;
+			const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+			const scrollPercent = (scrollTop / scrollHeight) * 100;
+			progressBar.style.width = `${Math.min(scrollPercent, 100)}%`;
+		};
+		
+		// Use passive listener for better scroll performance
+		window.addEventListener('scroll', updateProgress, { passive: true });
+		
+		// Initial update
+		updateProgress();
+	});
+</script>

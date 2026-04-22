@@ -1,0 +1,289 @@
+---
+interface Props {
+  postSlug: string;
+  postTitle: string;
+}
+
+const { postSlug, postTitle } = Astro.props;
+---
+
+<section class="comments-section" id="comments">
+  <h3>Discussion</h3>
+  
+  <form class="comment-form" id="comment-form" data-slug={postSlug}>
+    <div class="form-row">
+      <input type="text" name="name" placeholder="Your name" required aria-label="Your name" />
+      <input type="email" name="email" placeholder="Your email" required aria-label="Your email" />
+    </div>
+    <textarea name="comment" placeholder="Share your thoughts..." rows="4" required aria-label="Comment"></textarea>
+    <div class="form-footer">
+      <span class="form-note">Comments are moderated before publishing.</span>
+      <button type="submit" class="submit-btn">
+        <span class="btn-text">Post Comment</span>
+        <span class="btn-loading" hidden>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" stroke-dasharray="32" stroke-dashoffset="12">
+              <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </form>
+  
+  <div class="comments-list" id="comments-list">
+    <div class="comments-placeholder">
+      <p>Be the first to share your thoughts on this article!</p>
+    </div>
+  </div>
+  
+  <div class="comments-pagination" id="comments-pagination" hidden>
+    <button type="button" class="load-more-btn">Load More Comments</button>
+  </div>
+</section>
+
+<style>
+  .comments-section {
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  
+  .comments-section h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text);
+  }
+  
+  .comment-form {
+    background: linear-gradient(145deg, #141418, #0f0f11);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .comment-form input,
+  .comment-form textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  
+  .comment-form input:focus,
+  .comment-form textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(107,53,255,0.05);
+  }
+  
+  .comment-form input::placeholder,
+  .comment-form textarea::placeholder {
+    color: var(--muted);
+  }
+  
+  .comment-form textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .form-note {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, #6b35ff, #00d2ff);
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(107,53,255,0.4);
+  }
+  
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .btn-loading svg {
+    animation: spin 1s linear infinite;
+  }
+  
+  .comments-placeholder {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--muted);
+  }
+  
+  .comment-item {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+  
+  .comment-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6b35ff, #00d2ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  
+  .comment-body {
+    flex: 1;
+  }
+  
+  .comment-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .comment-author {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 14px;
+  }
+  
+  .comment-date {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  
+  .comment-content {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .load-more-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    color: var(--muted);
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .load-more-btn:hover {
+    background: rgba(255,255,255,0.08);
+    color: var(--text);
+  }
+  
+  @media (max-width: 640px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+    
+    .form-footer {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .submit-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('comment-form') as HTMLFormElement;
+  const commentsList = document.getElementById('comments-list');
+  
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const submitBtn = form.querySelector('.submit-btn') as HTMLButtonElement;
+    const btnText = form.querySelector('.btn-text') as HTMLSpanElement;
+    const btnLoading = form.querySelector('.btn-loading') as HTMLSpanElement;
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    btnText.hidden = true;
+    btnLoading.hidden = false;
+    
+    const formData = new FormData(form);
+    const data = {
+      slug: form.dataset.slug,
+      name: formData.get('name'),
+      email: formData.get('email'),
+      comment: formData.get('comment')
+    };
+    
+    try {
+      const res = await fetch('/api/comments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      
+      const result = await res.json();
+      
+      if (result.success) {
+        form.reset();
+        alert('Thank you! Your comment is pending moderation.');
+      } else {
+        alert(result.error || 'Error submitting comment');
+      }
+    } catch (err) {
+      alert('Error: ' + err);
+    } finally {
+      submitBtn.disabled = false;
+      btnText.hidden = false;
+      btnLoading.hidden = true;
+    }
+  });
+</script>

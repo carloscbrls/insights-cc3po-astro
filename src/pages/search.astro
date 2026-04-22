@@ -1,0 +1,336 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+const SITE_TITLE = 'Search - CC3PO Insights';
+const SITE_DESCRIPTION = 'Search articles on AI automation, WordPress, and business growth strategies.';
+
+const posts = await getCollection('blog');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <meta property="og:title" content={SITE_TITLE} />
+    <meta property="og:description" content={SITE_DESCRIPTION} />
+    <meta property="og:type" content="website" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg: #0a0a0b;
+        --card: #141418;
+        --text: #fff;
+        --muted: #a1a1aa;
+        --primary: #6b35ff;
+        --accent: #00d2ff;
+        --grad: linear-gradient(135deg, #6b35ff, #00d2ff);
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: Inter, system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+      .search-page {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 120px 24px 60px;
+      }
+      .search-header {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+      .search-header h1 {
+        font-size: clamp(32px, 5vw, 48px);
+        font-weight: 800;
+        background: linear-gradient(135deg, #fff, #a78bfa, #00d2ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 16px;
+      }
+      .search-header p {
+        color: var(--muted);
+        font-size: 16px;
+      }
+      .search-container {
+        background: linear-gradient(145deg, #141418, #0f0f11);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 20px;
+        padding: 24px;
+      }
+      .search-input-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 14px;
+        margin-bottom: 16px;
+        transition: border-color 0.2s;
+      }
+      .search-input-wrapper:focus-within {
+        border-color: var(--primary);
+      }
+      .search-input-wrapper svg {
+        color: var(--muted);
+        flex-shrink: 0;
+      }
+      .search-input-wrapper input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        font-size: 16px;
+        color: var(--text);
+        outline: none;
+      }
+      .search-input-wrapper input::placeholder {
+        color: var(--muted);
+      }
+      .search-filters {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+      .filter-btn {
+        padding: 6px 14px;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 16px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: background 0.2s, border-color 0.2s, color 0.2s;
+      }
+      .filter-btn:hover {
+        background: rgba(255,255,255,0.08);
+      }
+      .filter-btn.active {
+        background: linear-gradient(135deg, #6b35ff, #00d2ff);
+        border-color: transparent;
+        color: #fff;
+      }
+      .results-count {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 16px;
+        padding-left: 4px;
+      }
+      .results-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .result-item {
+        display: block;
+        padding: 16px;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.04);
+        border-radius: 12px;
+        text-decoration: none;
+        transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      }
+      .result-item:hover {
+        background: rgba(107,53,255,0.05);
+        border-color: rgba(107,53,255,0.2);
+        transform: translateX(4px);
+      }
+      .result-category {
+        display: inline-block;
+        padding: 3px 10px;
+        background: linear-gradient(135deg, rgba(107,53,255,0.3), rgba(0,210,255,0.3));
+        border-radius: 12px;
+        font-size: 10px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+      .result-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+      .result-title mark {
+        background: rgba(107,53,255,0.3);
+        color: var(--accent);
+        padding: 0 2px;
+        border-radius: 2px;
+      }
+      .result-excerpt {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+        margin-bottom: 8px;
+      }
+      .result-meta {
+        display: flex;
+        gap: 12px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .no-results {
+        text-align: center;
+        padding: 48px 24px;
+        color: var(--muted);
+      }
+      .no-results-icon {
+        font-size: 48px;
+        margin-bottom: 16px;
+      }
+      @media (max-width: 640px) {
+        .search-page {
+          padding: 100px 16px 40px;
+        }
+        .search-container {
+          padding: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main class="search-page">
+      <header class="search-header">
+        <h1>Search Articles</h1>
+        <p>Find insights on AI, automation, WordPress, and business growth</p>
+      </header>
+      
+      <div class="search-container">
+        <div class="search-input-wrapper">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input 
+            type="search" 
+            id="search-input" 
+            placeholder="Search articles..." 
+            autocomplete="off"
+            autofocus
+          />
+        </div>
+        
+        <div class="search-filters" id="search-filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="wordpress">WordPress</button>
+          <button class="filter-btn" data-filter="automation">Automation</button>
+          <button class="filter-btn" data-filter="ai-tools">AI Tools</button>
+          <button class="filter-btn" data-filter="business">Business</button>
+          <button class="filter-btn" data-filter="tutorials">Tutorials</button>
+        </div>
+        
+        <div class="results-count" id="results-count"></div>
+        <div class="results-list" id="results-list">
+          <div class="no-results">
+            <div class="no-results-icon">🔍</div>
+            <p>Type to search articles</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<script define:vars={{ posts }}>
+  // Embed search index for static page
+  const searchIndex = posts.map(post => ({
+    id: post.id,
+    title: post.data.title,
+    description: post.data.description,
+    category: post.data.category,
+    date: post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
+    url: `/blog/${post.id}/`
+  }));
+  
+  const searchInput = document.getElementById('search-input');
+  const resultsList = document.getElementById('results-list');
+  const resultsCount = document.getElementById('results-count');
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  
+  let currentFilter = 'all';
+  
+  // Category filters
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = btn.getAttribute('data-filter') || 'all';
+      if (searchInput) {
+        performSearch(searchInput.value);
+      }
+    });
+  });
+  
+  // Search input
+  searchInput?.addEventListener('input', (e) => {
+    performSearch((e.target as HTMLInputElement).value);
+  });
+  
+  function performSearch(query: string) {
+    const lowerQuery = query.toLowerCase().trim();
+    
+    // Filter by category and query
+    let results = searchIndex.filter(post => {
+      const matchesFilter = currentFilter === 'all' || 
+                          post.category.toLowerCase().replace(/\s+/g, '-') === currentFilter;
+      
+      if (!lowerQuery) return matchesFilter;
+      
+      const matchesQuery = post.title.toLowerCase().includes(lowerQuery) ||
+                          post.description.toLowerCase().includes(lowerQuery);
+      
+      return matchesFilter && matchesQuery;
+    });
+    
+    // Update results count
+    if (resultsCount) {
+      resultsCount.textContent = results.length > 0 
+        ? `${results.length} result${results.length === 1 ? '' : 's'} found`
+        : '';
+    }
+    
+    if (results.length === 0) {
+      resultsList.innerHTML = `
+        <div class="no-results">
+          <div class="no-results-icon">🔍</div>
+          <p>${lowerQuery ? `No results for "${lowerQuery}"` : 'No articles in this category'}</p>
+        </div>
+      `;
+      return;
+    }
+    
+    resultsList.innerHTML = results.slice(0, 20).map(post => `
+      <a href="${post.url}" class="result-item">
+        <span class="result-category">${post.category}</span>
+        <h3 class="result-title">${highlightMatch(post.title, lowerQuery)}</h3>
+        <p class="result-excerpt">${post.description}</p>
+        <div class="result-meta">
+          <span>${post.date}</span>
+        </div>
+      </a>
+    `).join('');
+  }
+  
+  function highlightMatch(text: string, query: string): string {
+    if (!query) return text;
+    const regex = new RegExp(`(${escapeRegex(query)})`, 'gi');
+    return text.replace(regex, '<mark>$1</mark>');
+  }
+  
+  function escapeRegex(str: string): string {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+  
+  // Initial render
+  performSearch('');
+</script>

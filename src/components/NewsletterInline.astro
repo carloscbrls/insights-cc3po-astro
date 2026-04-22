@@ -1,0 +1,310 @@
+---
+// Inline newsletter signup component
+interface Props {
+  title?: string;
+  description?: string;
+  variant?: 'light' | 'dark';
+}
+
+const { 
+  title = "Get Weekly Insights",
+  description = "Join 1,000+ business owners receiving our latest AI and automation strategies.",
+  variant = 'dark'
+} = Astro.props;
+---
+
+<div class:list={['newsletter-inline', variant]}>
+  <div class="newsletter-content">
+    <div class="newsletter-icon">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+    </div>
+    <h3>{title}</h3>
+    <p>{description}</p>
+  </div>
+  
+  <form class="newsletter-form" data-variant={variant}>
+    <div class="input-group">
+      <input 
+        type="email" 
+        name="email" 
+        placeholder="Enter your email" 
+        required
+        aria-label="Email address"
+      />
+      <button type="submit" class="submit-btn">
+        <span class="btn-text">Subscribe</span>
+        <span class="btn-loading" hidden>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" stroke-dasharray="32" stroke-dashoffset="12">
+              <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+        </span>
+      </button>
+    </div>
+    <p class="form-note">🔒 Secure • Unsubscribe anytime</p>
+  </form>
+  
+  <div class="newsletter-success" hidden>
+    <div class="success-icon">✓</div>
+    <h4>You're Subscribed!</h4>
+    <p>Check your inbox for confirmation.</p>
+  </div>
+</div>
+
+<style>
+  .newsletter-inline {
+    border-radius: 20px;
+    padding: 32px;
+    text-align: center;
+  }
+  
+  .newsletter-inline.dark {
+    background: linear-gradient(145deg, #1a1a1f, #141418);
+    border: 1px solid rgba(107,53,255,0.2);
+  }
+  
+  .newsletter-inline.light {
+    background: linear-gradient(145deg, #f5f5f7, #e8e8ea);
+    border: 1px solid rgba(107,53,255,0.15);
+  }
+  
+  .newsletter-content {
+    margin-bottom: 24px;
+  }
+  
+  .newsletter-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(107,53,255,0.2), rgba(0,210,255,0.2));
+    margin-bottom: 16px;
+    color: var(--primary);
+  }
+  
+  .dark .newsletter-icon {
+    background: linear-gradient(135deg, rgba(107,53,255,0.3), rgba(0,210,255,0.3));
+  }
+  
+  .light .newsletter-icon {
+    background: linear-gradient(135deg, rgba(107,53,255,0.15), rgba(0,210,255,0.15));
+    color: var(--primary);
+  }
+  
+  .newsletter-content h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  
+  .dark .newsletter-content h3 {
+    color: var(--text);
+  }
+  
+  .light .newsletter-content h3 {
+    color: #1a1a1a;
+  }
+  
+  .newsletter-content p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .dark .newsletter-content p {
+    color: var(--muted);
+  }
+  
+  .light .newsletter-content p {
+    color: #666;
+  }
+  
+  .newsletter-form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  
+  .newsletter-form input {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .dark .newsletter-form input {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--text);
+  }
+  
+  .light .newsletter-form input {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.1);
+    color: #1a1a1a;
+  }
+  
+  .newsletter-form input:focus {
+    border-color: var(--primary);
+  }
+  
+  .newsletter-form input::placeholder {
+    color: var(--muted);
+  }
+  
+  .light .newsletter-form input::placeholder {
+    color: #888;
+  }
+  
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #6b35ff, #00d2ff);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(107,53,255,0.4);
+  }
+  
+  .submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .form-note {
+    font-size: 11px;
+    color: var(--muted);
+  }
+  
+  .light .form-note {
+    color: #888;
+  }
+  
+  .newsletter-success {
+    padding: 16px 0;
+  }
+  
+  .success-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6b35ff, #00d2ff);
+    color: #fff;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+  }
+  
+  .newsletter-success h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  
+  .dark .newsletter-success h4 {
+    color: var(--text);
+  }
+  
+  .light .newsletter-success h4 {
+    color: #1a1a1a;
+  }
+  
+  .newsletter-success p {
+    font-size: 14px;
+  }
+  
+  .dark .newsletter-success p {
+    color: var(--muted);
+  }
+  
+  .light .newsletter-success p {
+    color: #666;
+  }
+  
+  @media (max-width: 480px) {
+    .newsletter-inline {
+      padding: 24px 20px;
+    }
+    
+    .input-group {
+      flex-direction: column;
+    }
+    
+    .submit-btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.newsletter-form').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formEl = form as HTMLFormElement;
+      const parent = formEl.closest('.newsletter-inline');
+      const input = formEl.querySelector('input[type=email]') as HTMLInputElement;
+      const submitBtn = formEl.querySelector('.submit-btn') as HTMLButtonElement;
+      const btnText = formEl.querySelector('.btn-text') as HTMLSpanElement;
+      const btnLoading = formEl.querySelector('.btn-loading') as HTMLSpanElement;
+      const successDiv = parent?.querySelector('.newsletter-success') as HTMLElement;
+      
+      // Show loading
+      submitBtn.disabled = true;
+      btnText.hidden = true;
+      btnLoading.hidden = false;
+      
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: input.value })
+        });
+        
+        const data = await res.json();
+        
+        if (data.success) {
+          formEl.hidden = true;
+          if (successDiv) successDiv.hidden = false;
+        } else {
+          alert(data.error || 'Error subscribing');
+          submitBtn.disabled = false;
+          btnText.hidden = false;
+          btnLoading.hidden = true;
+        }
+      } catch (err) {
+        alert('Error: ' + err);
+        submitBtn.disabled = false;
+        btnText.hidden = false;
+        btnLoading.hidden = true;
+      }
+    });
+  });
+</script>

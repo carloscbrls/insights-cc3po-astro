@@ -1,4 +1,6 @@
 ---
+import SearchWidget from './SearchWidget.astro';
+
 const navLinks = [
 	{ href: 'https://cc3po.com', label: 'Home' },
 	{ href: 'https://offers.cc3po.com/our-services.html', label: 'Services' },
@@ -40,6 +42,11 @@ const navLinks = [
 		height: 45px;
 		width: auto;
 	}
+	.nav-center {
+		display: flex;
+		align-items: center;
+		gap: 24px;
+	}
 	nav ul {
 		display: flex;
 		gap: 28px;
@@ -57,6 +64,11 @@ const navLinks = [
 	nav ul a.active {
 		color: #00d2ff;
 	}
+	.nav-right {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+	}
 	.nav-subscribe {
 		background: linear-gradient(135deg, #6b35ff, #00d2ff);
 		padding: 10px 20px;
@@ -65,7 +77,6 @@ const navLinks = [
 		font-size: 13px;
 		font-weight: 600;
 		text-decoration: none;
-		margin-left: auto;
 		transition: transform 0.2s, box-shadow 0.2s;
 	}
 	.nav-subscribe:hover {
@@ -111,6 +122,23 @@ const navLinks = [
 		font-size: 16px;
 		text-decoration: none;
 	}
+	.mobile-search {
+		padding: 12px 0;
+	}
+	@media (max-width: 960px) {
+		nav ul.nav-links {
+			display: none;
+		}
+		.nav-toggle {
+			display: flex;
+		}
+		.search-container {
+			display: none;
+		}
+		.mobile-menu .search-container {
+			display: block;
+		}
+	}
 	@media (max-width: 768px) {
 		nav .nav-links {
 			display: none;
@@ -124,18 +152,23 @@ const navLinks = [
 <nav>
 	<div class="inner">
 		<a href="https://cc3po.com" class="logo">
-		<img src="http://cc3po.com/wp-content/uploads/2025/04/Color-logo-with-background-scaled.png" alt="CC3PO" style="height: 45px; width: auto;" />
-	</a>
-		<ul class="nav-links">
-			{navLinks.map(link => (
-				<li>
-					<a href={link.href} class:list={[Astro.url.pathname.startsWith(link.href) && 'active']}>
-						{link.label}
-					</a>
-				</li>
-			))}
-		</ul>
-		<a href="/blog#newsletter-section" class="nav-subscribe">Subscribe</a>
+			<img src="http://cc3po.com/wp-content/uploads/2025/04/Color-logo-with-background-scaled.png" alt="CC3PO" style="height: 45px; width: auto;" />
+		</a>
+		<div class="nav-center">
+			<ul class="nav-links">
+				{navLinks.map(link => (
+					<li>
+						<a href={link.href} class:list={[Astro.url.pathname.startsWith(link.href) && 'active']}>
+							{link.label}
+						</a>
+					</li>
+				))}
+			</ul>
+		</div>
+		<div class="nav-right">
+			<SearchWidget />
+			<a href="/blog#newsletter-section" class="nav-subscribe">Subscribe</a>
+		</div>
 	</div>
 	<div class="nav-toggle" id="nav-toggle">
 		<span></span>
@@ -144,9 +177,13 @@ const navLinks = [
 	</div>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
+	<div class="mobile-search">
+		<SearchWidget />
+	</div>
 	{navLinks.map(link => (
 		<a href={link.href}>{link.label}</a>
 	))}
+	<a href="/blog#newsletter-section" class="nav-subscribe" style="text-align: center; margin-top: 12px;">Subscribe</a>
 </div>
 
 <script>

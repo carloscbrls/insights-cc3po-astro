@@ -11,6 +11,23 @@ export default defineConfig({
 	build: {
 		inlineStylesheets: 'auto'
 	},
+	// Phase 6: Image optimization settings
+	image: {
+		// Use Sharp for optimization
+		service: {
+			entrypoint: 'astro/assets/services/sharp',
+		},
+		// Default to WebP with fallbacks
+		domains: ['cc3po.com'],
+		// Remote pattern for external images
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'cc3po.com',
+			},
+		],
+	},
+	// Phase 6: Font optimization
 	fonts: [
 		{
 			provider: fontProviders.google(),
@@ -28,4 +45,25 @@ export default defineConfig({
 			},
 		},
 	],
+	// Phase 6: Performance optimizations
+	vite: {
+		build: {
+			// Minify CSS/JS
+			minify: 'esbuild',
+			cssMinify: true,
+			// Target modern browsers for smaller bundles
+			target: 'es2022',
+			// Enable CSS code splitting
+			cssCodeSplit: true,
+			// Rollup options for chunk optimization
+			rollupOptions: {
+				output: {
+					// Separate vendor chunks
+					manualChunks: {
+						'vendor': ['astro'],
+					},
+				},
+			},
+		},
+	},
 });
