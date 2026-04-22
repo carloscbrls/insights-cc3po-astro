@@ -76,7 +76,7 @@ const { featuredPost, latestPosts } = Astro.props;
     </div>
     <form class="newsletter-form" action="/api/subscribe" method="POST">
       <input type="email" name="email" placeholder="Enter your email" required />
-      <button type="submit">Subscribe</button>
+      <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
     </form>
   </div>
 </section>

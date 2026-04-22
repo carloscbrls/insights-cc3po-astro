@@ -13,7 +13,7 @@ const { variant = 'sidebar' } = Astro.props;
     <p>Get AI automation strategies and WordPress tips delivered to your inbox every week.</p>
     <form class="newsletter-form" action="/api/subscribe" method="POST">
       <input type="email" name="email" placeholder="Enter your email" required />
-      <button type="submit">Subscribe</button>
+      <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
     </form>
     <span class="newsletter-microcopy">🔒 No spam. Unsubscribe anytime.</span>
   </div>
@@ -27,7 +27,7 @@ const { variant = 'sidebar' } = Astro.props;
     </div>
     <form class="newsletter-form" action="/api/subscribe" method="POST">
       <input type="email" name="email" placeholder="Enter your email" required />
-      <button type="submit">Subscribe</button>
+      <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
     </form>
   </div>
 )}
@@ -37,7 +37,7 @@ const { variant = 'sidebar' } = Astro.props;
     <h4>Subscribe for Updates</h4>
     <form class="newsletter-form" action="/api/subscribe" method="POST">
       <input type="email" name="email" placeholder="Your email" required />
-      <button type="submit">→</button>
+      <button type="submit" aria-label="Subscribe">→</button>
     </form>
   </div>
 )}
