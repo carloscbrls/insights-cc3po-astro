@@ -7,15 +7,13 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
+import BackToTop from '../components/BackToTop.astro';
+import CommentsSection from '../components/CommentsSection.astro';
+import ExitIntentPopup from '../components/ExitIntentPopup.astro';
 
 type Props = CollectionEntry<'blog'>['data'] & { id?: string };
 
 const { title, description, pubDate, updatedDate, heroImage, category, author, authorUrl, id } = Astro.props;
-
-// Calculate reading time
-const content = await Astro.slots.render('default');
-const wordCount = content?.split(/\s+/).length || 0;
-const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
 // Get related posts (same category)
 const allPosts = await getCollection('blog');
@@ -73,17 +71,6 @@ const relatedPosts = allPosts
 				background: var(--bg);
 				color: var(--text);
 				line-height: 1.7;
-			}
-
-			/* Progress Bar */
-			.progress-bar {
-				position: fixed;
-				top: 0;
-				left: 0;
-				height: 3px;
-				background: linear-gradient(90deg, #6b35ff, #00d2ff);
-				z-index: 1001;
-				transition: width 0.1s;
 			}
 
 			/* Article Header */
@@ -540,7 +527,8 @@ const relatedPosts = allPosts
 	</head>
 
 	<body>
-		<div class="progress-bar" id="progressBar"></div>
+		<BackToTop />
+		<ExitIntentPopup />
 		<Header />
 
 		<header class="article-header">
@@ -558,8 +546,6 @@ const relatedPosts = allPosts
 
 			<div class="article-meta">
 				<FormattedDate date={pubDate} />
-				<div class="meta-divider"></div>
-				<span>{readingTime} min read</span>
 				<div class="meta-divider"></div>
 				<span>CC3PO Insights</span>
 			</div>
@@ -663,19 +649,12 @@ const relatedPosts = allPosts
 						</div>
 					</div>
 				)}
+
+				<!-- Comments Section -->
+				<CommentsSection postSlug={id || ''} postTitle={title} />
 			</article>
 		</div>
 
 		<Footer />
-
-		<script>
-			// Progress bar
-			window.addEventListener('scroll', () => {
-				const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-				const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-				const scrolled = (winScroll / height) * 100;
-				document.getElementById('progressBar').style.width = scrolled + '%';
-			});
-		</script>
 	</body>
 </html>

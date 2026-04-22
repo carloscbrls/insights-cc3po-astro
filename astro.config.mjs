@@ -19,11 +19,23 @@ export default defineConfig({
 		},
 		// Default to WebP with fallbacks
 		domains: ['cc3po.com'],
-		// Remote pattern for external images
+		// Remote patterns for external images
 		remotePatterns: [
 			{
 				protocol: 'https',
 				hostname: 'cc3po.com',
+			},
+			{
+				protocol: 'https',
+				hostname: 'images.unsplash.com',
+			},
+			{
+				protocol: 'https',
+				hostname: '*.unsplash.com',
+			},
+			{
+				protocol: 'https',
+				hostname: 'plus.unsplash.com',
 			},
 		],
 	},

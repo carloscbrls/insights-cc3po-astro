@@ -133,6 +133,70 @@ img {
 	outline-offset: 2px;
 }
 
+/* Phase 3 UX Features */
+
+/* Search highlight */
+mark {
+  background: rgba(107,53,255,0.3);
+  color: var(--accent);
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+/* Mobile hamburger animation */
+.nav-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Category dropdown styles */
+.category-dropdown {
+  position: relative;
+}
+
+.category-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  background: #141418;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  z-index: 100;
+}
+
+.category-dropdown:hover .category-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.category-dropdown-menu a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--muted);
+  transition: background 0.2s, color 0.2s;
+}
+
+.category-dropdown-menu a:hover {
+  background: rgba(107,53,255,0.1);
+  color: var(--text);
+}
+
 /* Phase 6: Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
 	*,
