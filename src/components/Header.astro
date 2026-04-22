@@ -5,6 +5,7 @@ const navLinks = [
 	{ href: 'https://cc3po.com', label: 'Home' },
 	{ href: 'https://offers.cc3po.com/our-services.html', label: 'Services' },
 	{ href: '/blog', label: 'Blog' },
+	{ href: 'https://docs.cc3po.com', label: 'Docs' },
 	{ href: 'https://insights.cc3po.com/lead-magnets.html', label: 'Resources' },
 	{ href: 'https://audit.cc3po.com/', label: 'Free Audit' },
 ];
@@ -46,11 +47,15 @@ const navLinks = [
 		display: flex;
 		align-items: center;
 		gap: 24px;
+		flex: 1;
+		justify-content: flex-start;
 	}
 	nav ul {
 		display: flex;
-		gap: 28px;
+		gap: 20px;
 		list-style: none;
+		margin: 0;
+		padding: 0;
 	}
 	nav ul a {
 		color: #a1a1aa;
@@ -67,7 +72,12 @@ const navLinks = [
 	.nav-right {
 		display: flex;
 		align-items: center;
-		gap: 16px;
+		gap: 12px;
+		margin-left: auto;
+	}
+	.search-trigger {
+		padding: 6px 12px;
+		font-size: 12px;
 	}
 	.nav-subscribe {
 		background: linear-gradient(135deg, #6b35ff, #00d2ff);
