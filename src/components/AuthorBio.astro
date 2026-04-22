@@ -16,12 +16,12 @@ interface Props {
 }
 
 const {
-	name,
-	bio = 'IT consultant and automation specialist helping businesses leverage AI and modern technology to scale efficiently.',
-	avatar = 'https://cc3po.com/wp-content/uploads/2026/04/c3-logo.png',
+	name = 'Carlos Cabrales',
+	bio = 'IT Consultant and AI Systems Architect with 15+ years of experience. Former Tesla AI team member who helped train Autopilot. Now helping small businesses leverage AI and automation to scale efficiently.',
+	avatar = 'https://cc3po.com/wp-content/uploads/2025/04/carlos-cabrales-iii-scaled.jpg',
 	twitter,
-	linkedin,
-	url
+	linkedin = 'https://www.linkedin.com/in/carloscabrales',
+	url = 'https://cc3po.com'
 } = Astro.props;
 
 const initials = name.split(' ').map(n => n[0]).join('').slice(0, 2);
