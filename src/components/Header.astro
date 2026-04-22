@@ -96,16 +96,34 @@ const navLinks = [
 	.nav-toggle {
 		display: none;
 		flex-direction: column;
-		gap: 5px;
+		justify-content: space-between;
+		width: 28px;
+		height: 20px;
 		cursor: pointer;
-		padding: 10px;
+		padding: 4px;
 		margin-left: auto;
+		background: transparent;
+		border: none;
 	}
+	
 	.nav-toggle span {
-		width: 24px;
+		display: block;
+		width: 100%;
 		height: 2px;
 		background: #fff;
-		transition: all 0.3s;
+		transition: all 0.3s ease;
+		transform-origin: center;
+	}
+	
+	/* Hamburger → X animation */
+	.nav-toggle.active span:nth-child(1) {
+		transform: translateY(9px) rotate(45deg);
+	}
+	.nav-toggle.active span:nth-child(2) {
+		opacity: 0;
+	}
+	.nav-toggle.active span:nth-child(3) {
+		transform: translateY(-9px) rotate(-45deg);
 	}
 	.mobile-menu {
 		display: none;
@@ -196,7 +214,11 @@ const navLinks = [
 </div>
 
 <script>
-	document.getElementById('nav-toggle')?.addEventListener('click', () => {
-		document.getElementById('mobile-menu')?.classList.toggle('active');
+	const toggle = document.getElementById('nav-toggle');
+	const mobileMenu = document.getElementById('mobile-menu');
+	
+	toggle?.addEventListener('click', () => {
+		toggle.classList.toggle('active');
+		mobileMenu?.classList.toggle('active');
 	});
 </script>
