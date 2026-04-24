@@ -18,11 +18,96 @@ const currentYear = new Date().getFullYear();
 	footer a:hover {
 		text-decoration: underline;
 	}
+	.cta-section {
+		background: linear-gradient(135deg, rgba(107, 53, 255, 0.1), rgba(0, 210, 255, 0.1));
+		border-top: 1px solid rgba(107, 53, 255, 0.2);
+		padding: 48px 24px;
+		text-align: center;
+	}
+	.cta-section h3 {
+		color: #fafafa;
+		font-size: 24px;
+		margin-bottom: 12px;
+	}
+	.cta-section p {
+		color: #a1a1aa;
+		font-size: 16px;
+		margin-bottom: 24px;
+		max-width: 500px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.cta-buttons {
+		display: flex;
+		gap: 16px;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+	.cta-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 12px 24px;
+		border-radius: 8px;
+		font-weight: 600;
+		font-size: 14px;
+		text-decoration: none;
+		transition: all 0.2s;
+	}
+	.cta-btn-primary {
+		background: linear-gradient(135deg, #6b35ff, #7c44ff);
+		color: white;
+	}
+	.cta-btn-primary:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 8px 25px rgba(107, 53, 255, 0.3);
+	}
+	.cta-btn-secondary {
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		color: #fafafa;
+	}
+	.cta-btn-secondary:hover {
+		background: rgba(255, 255, 255, 0.1);
+	}
+	.footer-links {
+		margin-top: 16px;
+		display: flex;
+		gap: 24px;
+		justify-content: center;
+		flex-wrap: wrap;
+		font-size: 14px;
+	}
+	.footer-links a {
+		color: #a1a1aa;
+	}
+	.footer-links a:hover {
+		color: #6b35ff;
+	}
 </style>
+
+<div class="cta-section">
+	<h3>Ready to Level Up Your Business?</h3>
+	<p>Get expert WordPress support, AI automation, and HIPAA-compliant solutions for your business.</p>
+	<div class="cta-buttons">
+		<a href="https://offers.cc3po.com" class="cta-btn cta-btn-primary">
+			View Services →
+		</a>
+		<a href="https://cc3po.com/contact/" class="cta-btn cta-btn-secondary">
+			Contact Us
+		</a>
+	</div>
+</div>
 
 <footer>
 	<p>Made with 💜 by the CC3PO Village | © {currentYear} <a href="https://cc3po.com/">CC3PO Insights</a></p>
 	<p style="margin-top: 8px; font-size: 12px;">
 		<a href="/terms">Terms of Service</a> · <a href="/privacy">Privacy Policy</a> · <a href="/disclaimer">Disclaimer</a>
 	</p>
+	<div class="footer-links">
+		<a href="https://cc3po.com">Main Site</a>
+		<a href="https://offers.cc3po.com">Services</a>
+		<a href="https://docs.cc3po.com">Docs</a>
+		<a href="https://centralvalleylocals.com">Directory</a>
+	</div>
 </footer>
