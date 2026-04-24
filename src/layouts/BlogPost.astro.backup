@@ -212,7 +212,7 @@ const relatedPosts = allPosts
 				height: fit-content;
 			}
 
-			.social-shade {
+			.social-share {
 				display: flex;
 				flex-direction: column;
 				gap: 12px;
@@ -496,7 +496,7 @@ const relatedPosts = allPosts
 					padding: 16px;
 				}
 
-				.author-meta {
+				.article-meta {
 					flex-direction: column;
 					gap: 8px;
 				}
@@ -541,7 +541,7 @@ const relatedPosts = allPosts
 			<p class="article-excerpt">{description}</p>
 
 			<div class="author-block">
-				<div class="author-avatar"><img src="http://cc3po.com/wp-content/uploads/2026/04/1770779342548.png" alt={author || 'Carlos Cabrales'} style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" /></div>
+				<div class="author-avatar"><img src="https://cc3po.com/wp-content/uploads/2025/04/carlos-cabrales-iii-scaled.jpg" alt={author || 'Carlos Cabrales'} style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" /></div>
 				<div class="author-info">
 					<div class="author-name">{author}</div>
 					<div class="author-title">IT Consultant & AI Systems Architect</div>
@@ -588,7 +588,7 @@ const relatedPosts = allPosts
 						aria-label="Share on LinkedIn"
 					>
 						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+							<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
 							<rect x="2" y="9" width="4" height="12"></rect>
 							<circle cx="4" cy="4" r="2"></circle>
 						</svg>
@@ -627,7 +627,7 @@ const relatedPosts = allPosts
 				<div class="author-bio-footer">
 					<div class="author-bio-content">
 						<div class="author-bio-avatar">
-							<img src="http://cc3po.com/wp-content/uploads/2026/04/1770779342548.png" alt={author || 'Carlos Cabrales'} style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" />
+							<img src="https://cc3po.com/wp-content/uploads/2025/04/carlos-cabrales-iii-scaled.jpg" alt={author || 'Carlos Cabrales'} style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" />
 						</div>
 						<div class="author-bio-text">
 							<h4>About {author || 'Carlos Cabrales'}</h4>
