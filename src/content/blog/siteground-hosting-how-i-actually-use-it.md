@@ -5,7 +5,7 @@ pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
-heroImage: 'https://images.unsplash.com/photo-1465189684280-9893a95a3f84?w=1200&q=80'
+heroImage: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80'
 ---
 
 # SiteGround Hosting: How I Actually Use It
