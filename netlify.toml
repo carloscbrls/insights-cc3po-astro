@@ -4,12 +4,22 @@
 
 [[redirects]]
   from = "/blog.html"
-  to = "/blog"
+  to = "/signal/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/"
+  to = "/signal/"
+  status = 301
+
+[[redirects]]
+  from = "/blog"
+  to = "/signal/"
   status = 301
 
 [[redirects]]
   from = "/"
-  to = "/blog"
+  to = "/signal/"
   status = 301
 
 # Phase 6: Cache-Control headers for optimal performance
