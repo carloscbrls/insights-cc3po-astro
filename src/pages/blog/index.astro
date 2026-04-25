@@ -9,8 +9,8 @@ import CategoryNav from '../../components/CategoryNav.astro';
 import Sidebar from '../../components/Sidebar.astro';
 import NewsletterSignup from '../../components/NewsletterSignup.astro';
 
-const SITE_TITLE = 'CC3PO Insights - Expert Strategies for AI Automation & WordPress';
-const SITE_DESCRIPTION = 'Expert strategies for AI automation, WordPress mastery, and scalable business systems. Daily insights from our AI village.';
+const SITE_TITLE = 'Signal — CC3PO Insights | AI Automation & WordPress Intelligence';
+const SITE_DESCRIPTION = 'Intelligence from the AI village — strategies, systems, and signals worth acting on. Daily insights for growing your business.';
 
 // Get all posts sorted by date
 const posts = (await getCollection('blog')).sort(
@@ -197,7 +197,7 @@ const categories = [...new Set(posts.map(post => post.data.category).filter(Bool
     <div class="stats-bar">
       <div class="stat-item">
         <div class="stat-number">{posts.length}</div>
-        <div class="stat-label">Articles Published</div>
+        <div class="stat-label">Signals</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">{categories.length}</div>
@@ -205,7 +205,7 @@ const categories = [...new Set(posts.map(post => post.data.category).filter(Bool
       </div>
       <div class="stat-item">
         <div class="stat-number">Weekly</div>
-        <div class="stat-label">New Content</div>
+        <div class="stat-label">New Signals</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">100%</div>
@@ -220,7 +220,7 @@ const categories = [...new Set(posts.map(post => post.data.category).filter(Bool
     <div class="main-container">
       <div class="content-area">
         <div class="section-header">
-          <h2>All Articles</h2>
+          <h2>All Signals</h2>
         </div>
         <div class="posts-grid">
           {remainingPosts.map((post) => (

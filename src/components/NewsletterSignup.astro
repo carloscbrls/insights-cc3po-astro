@@ -9,9 +9,9 @@ const { variant = 'sidebar' } = Astro.props;
 {variant === 'sidebar' && (
   <div class="newsletter-widget sidebar">
     <div class="newsletter-icon">📧</div>
-    <h4>Weekly Insights</h4>
+    <h4>Catch the Signal</h4>
     <p>Get AI automation strategies and WordPress tips delivered to your inbox every week.</p>
-    <form class="newsletter-form" action="/api/subscribe" method="POST">
+    <form class="newsletter-form" action="https://formspree.io/f/xwvaydvn" method="POST">
       <input type="email" name="email" placeholder="Enter your email" required />
       <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
     </form>
@@ -22,10 +22,10 @@ const { variant = 'sidebar' } = Astro.props;
 {variant === 'inline' && (
   <div class="newsletter-widget inline">
     <div class="newsletter-content">
-      <h4>Get Weekly Insights Delivered</h4>
-      <p>Join 1,000+ business owners receiving AI automation strategies.</p>
+      <h4>Catch the Signal</h4>
+      <p>Join 1,000+ business owners catching signals that matter.</p>
     </div>
-    <form class="newsletter-form" action="/api/subscribe" method="POST">
+    <form class="newsletter-form" action="https://formspree.io/f/xwvaydvn" method="POST">
       <input type="email" name="email" placeholder="Enter your email" required />
       <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
     </form>
@@ -35,7 +35,7 @@ const { variant = 'sidebar' } = Astro.props;
 {variant === 'compact' && (
   <div class="newsletter-widget compact">
     <h4>Subscribe for Updates</h4>
-    <form class="newsletter-form" action="/api/subscribe" method="POST">
+    <form class="newsletter-form" action="https://formspree.io/f/xwvaydvn" method="POST">
       <input type="email" name="email" placeholder="Your email" required />
       <button type="submit" aria-label="Subscribe">→</button>
     </form>

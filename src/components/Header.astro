@@ -4,7 +4,7 @@ import SearchWidget from './SearchWidget.astro';
 const navLinks = [
 	{ href: 'https://cc3po.com', label: 'Home' },
 	{ href: 'https://offers.cc3po.com/our-services.html', label: 'Services' },
-	{ href: '/blog', label: 'Blog' },
+	{ href: '/blog', label: 'Signal' },
 	{ href: 'https://docs.cc3po.com', label: 'Docs' },
 	{ href: 'https://insights.cc3po.com/lead-magnets.html', label: 'Resources' },
 	{ href: 'https://audit.cc3po.com/', label: 'Free Audit' },
@@ -17,9 +17,10 @@ const navLinks = [
 		top: 0;
 		left: 0;
 		right: 0;
-		height: 70px;
-		background: rgba(10, 10, 11, 0.9);
+		height: 60px;
+		background: rgba(10, 10, 11, 0.95);
 		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
 		display: flex;
 		align-items: center;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -28,7 +29,7 @@ const navLinks = [
 	nav .inner {
 		max-width: 1280px;
 		margin: 0 auto;
-		padding: 0 24px;
+		padding: 0 20px;
 		width: 100%;
 		display: flex;
 		justify-content: space-between;
@@ -38,10 +39,13 @@ const navLinks = [
 		display: flex;
 		align-items: center;
 		text-decoration: none;
+		flex-shrink: 0;
 	}
 	nav .logo img {
-		height: 45px;
+		height: 36px;
 		width: auto;
+		max-width: 140px;
+		object-fit: contain;
 	}
 	.nav-center {
 		display: flex;
@@ -50,44 +54,46 @@ const navLinks = [
 		flex: 1;
 		justify-content: flex-start;
 	}
-	nav ul {
+	nav ul.nav-links {
 		display: flex;
 		gap: 20px;
 		list-style: none;
 		margin: 0;
 		padding: 0;
 	}
-	nav ul a {
+	nav ul.nav-links a {
 		color: #a1a1aa;
 		font-size: 14px;
 		text-decoration: none;
 		transition: color 0.2s;
+		white-space: nowrap;
 	}
-	nav ul a:hover {
+	nav ul.nav-links a:hover {
 		color: #fff;
 	}
-	nav ul a.active {
+	nav ul.nav-links a.active {
 		color: #00d2ff;
 	}
 	.nav-right {
 		display: flex;
 		align-items: center;
-		gap: 12px;
+		gap: 10px;
 		margin-left: auto;
 	}
 	.search-trigger {
-		padding: 6px 12px;
+		padding: 6px 10px;
 		font-size: 12px;
 	}
 	.nav-subscribe {
 		background: linear-gradient(135deg, #6b35ff, #00d2ff);
-		padding: 10px 20px;
+		padding: 8px 18px;
 		border-radius: 25px;
 		color: #fff;
 		font-size: 13px;
 		font-weight: 600;
 		text-decoration: none;
 		transition: transform 0.2s, box-shadow 0.2s;
+		white-space: nowrap;
 	}
 	.nav-subscribe:hover {
 		transform: translateY(-2px);
@@ -97,15 +103,15 @@ const navLinks = [
 		display: none;
 		flex-direction: column;
 		justify-content: space-between;
-		width: 28px;
-		height: 20px;
+		width: 24px;
+		height: 16px;
 		cursor: pointer;
-		padding: 4px;
-		margin-left: auto;
 		background: transparent;
 		border: none;
+		padding: 0;
+		margin-left: 12px;
+		flex-shrink: 0;
 	}
-	
 	.nav-toggle span {
 		display: block;
 		width: 100%;
@@ -113,47 +119,58 @@ const navLinks = [
 		background: #fff;
 		transition: all 0.3s ease;
 		transform-origin: center;
+		border-radius: 1px;
 	}
-	
 	/* Hamburger → X animation */
 	.nav-toggle.active span:nth-child(1) {
-		transform: translateY(9px) rotate(45deg);
+		transform: translateY(7px) rotate(45deg);
 	}
 	.nav-toggle.active span:nth-child(2) {
 		opacity: 0;
 	}
 	.nav-toggle.active span:nth-child(3) {
-		transform: translateY(-9px) rotate(-45deg);
+		transform: translateY(-7px) rotate(-45deg);
 	}
 	.mobile-menu {
 		display: none;
 		position: fixed;
-		top: 70px;
+		top: 60px;
 		left: 0;
 		right: 0;
+		bottom: 0;
 		background: rgba(10, 10, 11, 0.98);
-		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
 		padding: 20px;
 		flex-direction: column;
 		gap: 0;
 		z-index: 999;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
 	}
 	.mobile-menu.active {
 		display: flex;
 	}
 	.mobile-menu a {
 		display: block;
-		padding: 14px 0;
+		padding: 16px 0;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 		color: #a1a1aa;
-		font-size: 16px;
+		font-size: 17px;
 		text-decoration: none;
 	}
-	.mobile-search {
-		padding: 12px 0;
+	.mobile-menu a:hover {
+		color: #fff;
 	}
-	@media (max-width: 960px) {
+	.mobile-search {
+		padding: 12px 0 8px;
+	}
+
+	@media (max-width: 900px) {
 		nav ul.nav-links {
+			display: none;
+		}
+		.nav-center {
 			display: none;
 		}
 		.nav-toggle {
@@ -166,12 +183,29 @@ const navLinks = [
 			display: block;
 		}
 	}
+
 	@media (max-width: 768px) {
-		nav .nav-links {
+		nav {
+			height: 56px;
+		}
+		nav .inner {
+			padding: 0 16px;
+		}
+		nav .logo img {
+			height: 30px;
+			max-width: 110px;
+		}
+		.nav-right .nav-subscribe {
+			display: none;
+		}
+		.nav-right .search-trigger {
 			display: none;
 		}
 		.nav-toggle {
 			display: flex;
+		}
+		.mobile-menu {
+			top: 56px;
 		}
 	}
 </style>
@@ -179,7 +213,7 @@ const navLinks = [
 <nav>
 	<div class="inner">
 		<a href="https://cc3po.com" class="logo">
-			<img src="https://cc3po.com/wp-content/uploads/2023/02/White-logo-no-background-scaled.png" alt="CC3PO" style="height: 45px; width: auto;" />
+			<img src="https://cc3po.com/wp-content/uploads/2023/02/White-logo-no-background-scaled.png" alt="CC3PO" />
 		</a>
 		<div class="nav-center">
 			<ul class="nav-links">
@@ -195,12 +229,12 @@ const navLinks = [
 		<div class="nav-right">
 			<SearchWidget />
 			<a href="/blog#newsletter-section" class="nav-subscribe">Subscribe</a>
+			<button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
 		</div>
-	</div>
-	<div class="nav-toggle" id="nav-toggle">
-		<span></span>
-		<span></span>
-		<span></span>
 	</div>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
@@ -210,7 +244,7 @@ const navLinks = [
 	{navLinks.map(link => (
 		<a href={link.href}>{link.label}</a>
 	))}
-	<a href="/blog#newsletter-section" class="nav-subscribe" style="text-align: center; margin-top: 12px;">Subscribe</a>
+	<a href="/blog#newsletter-section" class="nav-subscribe" style="text-align: center; margin-top: 16px; display: inline-block; padding: 12px 32px;">Subscribe</a>
 </div>
 
 <script>
@@ -220,5 +254,13 @@ const navLinks = [
 	toggle?.addEventListener('click', () => {
 		toggle.classList.toggle('active');
 		mobileMenu?.classList.toggle('active');
+	});
+
+	// Close menu when clicking a link
+	mobileMenu?.querySelectorAll('a').forEach(link => {
+		link.addEventListener('click', () => {
+			toggle?.classList.remove('active');
+			mobileMenu?.classList.remove('active');
+		});
 	});
 </script>
