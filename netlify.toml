@@ -2,6 +2,12 @@
   command = "npm run build"
   publish = "dist"
 
+# Analytics - visitor tracking (privacy-focused)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Analytics = "true"
+
 [[redirects]]
   from = "/blog.html"
   to = "/signal/"
