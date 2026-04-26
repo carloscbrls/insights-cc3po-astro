@@ -5,7 +5,7 @@ pubDate: '2026-05-09'
 category: 'Business'
 author: 'Carlos Cabrales'
 authorUrl: 'https://cc3po.com'
-image: '/blog-images/10k-blueprint.jpg'
+heroImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80'
 ---
 
 # The $10K/Month Blueprint: Automating Your Way to Freedom

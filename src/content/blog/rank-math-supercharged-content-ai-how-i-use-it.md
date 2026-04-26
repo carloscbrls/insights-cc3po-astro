@@ -5,7 +5,7 @@ pubDate: '2026-04-11'
 category: 'WordPress'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
-heroImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80'
+heroImage: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80'
 ---
 
 # Rank Math Supercharged Content AI: How I Use It

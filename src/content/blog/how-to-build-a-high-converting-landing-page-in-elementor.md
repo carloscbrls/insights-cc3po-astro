@@ -5,7 +5,7 @@ pubDate: '2026-04-13'
 category: 'WordPress'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
-heroImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80'
+heroImage: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&q=80'
 ---
 
 # How to Build a High-Converting Landing Page in Elementor

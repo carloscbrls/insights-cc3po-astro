@@ -5,7 +5,7 @@ pubDate: '2026-05-05'
 category: 'AI & Automation'
 author: 'Carlos Cabrales'
 authorUrl: 'https://cc3po.com'
-image: '/blog-images/ai-business-hero.jpg'
+heroImage: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80'
 ---
 
 # Why Your Business Needs AI (And It's Not What You Think)
