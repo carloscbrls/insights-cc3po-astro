@@ -5,7 +5,7 @@ pubDate: '2026-04-25'
 category: 'Nonprofit'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
-heroImage: 'https://images.unsplash.com/photo-1504257405189-2e1b6a93e9e5?w=1200&q=80'
+heroImage: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1200&q=80'
 ---
 
 # Shattered, Reforged: With Companion, Trauma No Script to Recovery

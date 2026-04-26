@@ -5,7 +5,7 @@ pubDate: '2026-04-09'
 category: 'WordPress'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
-heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f91?w=1200&q=80'
+heroImage: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80'
 ---
 
 # WordPress Automation: Hands-Off Maintenance

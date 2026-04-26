@@ -5,7 +5,7 @@ pubDate: '2026-04-20'
 category: 'Business'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
-heroImage: 'https://images.unsplash.com/photo-1573164713714-d95e4b8d3da1?w=1200&q=80'
+heroImage: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80'
 ---
 
 # ADA Awareness Without the Fear Tactics

@@ -5,7 +5,7 @@ pubDate: '2026-03-15'
 category: 'Business'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
-heroImage: 'https://images.unsplash.com/photo-1507003211169-0a1b7a948fa7?w=1200&q=80'
+heroImage: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=1200&q=80'
 ---
 
 # Who Am I: The Journey Behind CC3PO
