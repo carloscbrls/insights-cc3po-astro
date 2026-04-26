@@ -1,11 +1,11 @@
 ---
 title: 'ADA Awareness Without the Fear Tactics'
 description: 'Learn how to approach web accessibility compliance calmly and effectively. Practical guidance on making your website accessible without the scare tactics.'
-pubDate: '2026-04-08'
+pubDate: '2026-04-20'
 category: 'Business'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/ada-awareness.jpg'
+authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+heroImage: 'https://images.unsplash.com/photo-1573164713714-d95e4b8d3da1?w=1200&q=80'
 ---
 
 # ADA Awareness Without the Fear Tactics

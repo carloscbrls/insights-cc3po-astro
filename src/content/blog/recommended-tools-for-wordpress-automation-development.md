@@ -1,11 +1,11 @@
 ---
 title: 'Recommended Tools for WordPress Automation Development'
 description: 'The tools I actually use for building WordPress automation systems. Practical recommendations based on real projects, not theoretical possibilities.'
-pubDate: '2026-04-08'
+pubDate: '2026-04-12'
 category: 'WordPress'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/wp-automation-tools.jpg'
+authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+heroImage: 'https://images.unsplash.com/photo-1519389980479-4bf8f6d0d6d6?w=1200&q=80'
 ---
 
 # Recommended Tools for WordPress Automation Development

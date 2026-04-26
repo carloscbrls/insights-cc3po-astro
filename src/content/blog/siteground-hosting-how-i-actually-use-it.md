@@ -1,11 +1,11 @@
 ---
 title: 'SiteGround Hosting: How I Actually Use It'
 description: "Real-world experience with SiteGround hosting. What works well, what doesn't, and how to get the most value from this popular WordPress host."
-pubDate: '2026-04-08'
+pubDate: '2026-03-24'
 category: 'WordPress'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/siteground-hosting.jpg'
+authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f91?w=1200&q=80'
 ---
 
 # SiteGround Hosting: How I Actually Use It

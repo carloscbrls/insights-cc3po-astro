@@ -1,11 +1,11 @@
 ---
 title: 'Website Security: WordPress Security Best Practices'
 description: 'Practical security measures that actually protect WordPress sites. No paranoia, no unnecessary complexity—what works based on real threats.'
-pubDate: '2026-04-08'
+pubDate: '2026-03-21'
 category: 'WordPress'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/website-security.jpg'
+authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+heroImage: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200&q=80'
 ---
 
 # Website Security: WordPress Security Best Practices

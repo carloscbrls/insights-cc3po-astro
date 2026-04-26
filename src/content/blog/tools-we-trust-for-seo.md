@@ -1,11 +1,11 @@
 ---
 title: 'Tools We Trust for SEO'
 description: 'The SEO tools we actually use and recommend based on real results. Not affiliate suggestions—genuine tool preferences from daily work.'
-pubDate: '2026-04-08'
+pubDate: '2026-04-10'
 category: 'WordPress'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/tools-seo.jpg'
+authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+heroImage: 'https://images.unsplash.com/photo-1432888498266-38a7452d0c28?w=1200&q=80'
 ---
 
 # Tools We Trust for SEO

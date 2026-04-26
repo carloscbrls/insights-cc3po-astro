@@ -1,11 +1,11 @@
 ---
 title: 'Website Care: Why WordPress Maintenance Matters'
 description: 'The real cost of neglected WordPress sites and what proper maintenance actually involves. Move beyond "set it and forget it" thinking.'
-pubDate: '2026-04-08'
+pubDate: '2026-03-27'
 category: 'WordPress'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/website-care.jpg'
+authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f91?w=1200&q=80'
 ---
 
 # Website Care: Why WordPress Maintenance Matters

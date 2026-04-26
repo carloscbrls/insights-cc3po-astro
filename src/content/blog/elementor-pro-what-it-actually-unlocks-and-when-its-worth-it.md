@@ -1,11 +1,11 @@
 ---
 title: "Elementor Pro: What It Actually Unlocks (And When It's Worth It)"
 description: 'A practical breakdown of Elementor Pro features and whether the upgrade makes sense for your WordPress site. Real value assessment, not marketing hype.'
-pubDate: '2026-04-08'
+pubDate: '2026-03-30'
 category: 'WordPress'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/elementor-pro.jpg'
+authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+heroImage: 'https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=1200&q=80'
 ---
 
 # Elementor Pro: What It Actually Unlocks (And When It's Worth It)

@@ -1,11 +1,11 @@
 ---
 title: 'AI Tools for California Nonprofits: A Practical Guide'
 description: 'Discover AI tools specifically valuable for California nonprofit organizations. Practical guidance on implementation, costs, and real-world applications.'
-pubDate: '2026-04-08'
+pubDate: '2026-04-21'
 category: 'Nonprofit'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/nonprofits-california.jpg'
+authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+heroImage: 'https://images.unsplash.com/photo-1559027615-cb99b4410a24?w=1200&q=80'
 ---
 
 # AI Tools for California Nonprofits: A Practical Guide
