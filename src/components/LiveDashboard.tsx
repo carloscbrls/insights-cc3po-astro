@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
-import { supabase, DEFAULT_STATS, type DashboardStats } from '../lib/supabase';
+import { getSupabase, DEFAULT_STATS, type DashboardStats } from '../lib/supabase';
 
 function useAnimatedCounter(target: number, duration = 2000, decimals = 0): number {
   const [value, setValue] = useState(0);
@@ -60,6 +60,12 @@ export default function LiveDashboard() {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchStats = useCallback(async () => {
+    const supabase = getSupabase();
+    if (!supabase) {
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const { data, error } = await supabase
         .from('dashboard_stats')
@@ -85,6 +91,9 @@ export default function LiveDashboard() {
 
   useEffect(() => {
     fetchStats();
+
+    const supabase = getSupabase();
+    if (!supabase) return;
 
     const channel = supabase
       .channel('dashboard_stats_changes')
