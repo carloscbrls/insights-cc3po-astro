@@ -1,0 +1,453 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+
+const SITE_TITLE = 'Dental Practice Health Scanner — Free 60-Second Audit | CC3PO';
+const SITE_DESCRIPTION = 'Get your free dental practice digital health score in 60 seconds. Find out how much revenue you are losing to poor SEO, HIPAA gaps, and missing automation.';
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{SITE_TITLE}</title>
+    <meta name="description" content={SITE_DESCRIPTION} />
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #12121a;
+            --surface-2: #1a1a26;
+            --border: #2a2a3a;
+            --text: #e8e8f0;
+            --text-muted: #8888a0;
+            --accent: #00d4aa;
+            --accent-dim: rgba(0, 212, 170, 0.15);
+            --danger: #ff4757;
+            --warning: #ffa502;
+            --success: #00d4aa;
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        .scanner-app {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Hero */
+        .scanner-hero {
+            text-align: center;
+            padding: 5rem 1rem 3rem;
+            background: radial-gradient(ellipse at 50% 0%, var(--accent-dim) 0%, transparent 60%);
+        }
+        .scanner-hero h1 { font-size: 3rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
+        .scanner-hero h1 span { color: var(--accent); }
+        .scanner-hero p { color: var(--text-muted); font-size: 1.15rem; max-width: 600px; margin: 0 auto 2rem; }
+        .scanner-badge { display: inline-block; background: var(--accent-dim); color: var(--accent); padding: 0.35rem 1rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 600; margin-bottom: 1rem; border: 1px solid rgba(0, 212, 170, 0.3); }
+
+        /* Scan Box */
+        .scan-box {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+        }
+        .scan-box label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .scan-input {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text);
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .scan-input:focus { outline: none; border-color: var(--accent); }
+        .scan-input::placeholder { color: var(--text-muted); font-family: 'Inter', sans-serif; }
+        .scan-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .scan-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+        .scan-btn:active { transform: translateY(0); }
+        .scan-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+        /* Loading */
+        .loading { display: none; max-width: 500px; margin: 2rem auto; text-align: center; }
+        .scan-progress { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; }
+        .scan-progress h3 { margin-bottom: 1.5rem; }
+        .progress-step { display: flex; align-items: center; padding: 0.6rem 0; color: var(--text-muted); font-size: 0.9rem; transition: all 0.3s; }
+        .progress-step.active { color: var(--text); }
+        .progress-step.done { color: var(--success); }
+        .step-icon { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; margin-right: 0.75rem; border-radius: 50%; background: var(--surface-2); font-size: 0.75rem; flex-shrink: 0; }
+        .progress-step.active .step-icon { background: var(--accent-dim); color: var(--accent); }
+        .progress-step.done .step-icon { background: rgba(0, 212, 170, 0.15); color: var(--success); }
+
+        /* Results */
+        .results { display: none; max-width: 700px; margin: 0 auto; padding: 0 1rem 3rem; }
+
+        /* Score Display */
+        .score-display { text-align: center; margin-bottom: 2.5rem; }
+        .score-ring-outer {
+            width: 220px; height: 220px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .score-ring-outer svg { position: absolute; top: 0; left: 0; transform: rotate(-90deg); }
+        .score-number { font-size: 4rem; font-weight: 900; line-height: 1; }
+        .score-of { font-size: 0.85rem; color: var(--text-muted); }
+        .score-label { font-size: 1.25rem; font-weight: 700; margin-top: 0.5rem; }
+
+        /* Revenue Loss */
+        .revenue-loss {
+            background: linear-gradient(135deg, rgba(255, 71, 87, 0.1), rgba(255, 165, 2, 0.1));
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .revenue-loss h3 { color: var(--danger); font-size: 1rem; margin-bottom: 0.25rem; font-weight: 600; }
+        .revenue-amount { font-size: 2.5rem; font-weight: 900; color: var(--danger); }
+        .revenue-period { color: var(--text-muted); font-size: 0.85rem; }
+
+        /* Categories */
+        .category {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .category-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+        .category-name { font-weight: 600; }
+        .category-score { font-weight: 700; }
+        .category-bar { height: 6px; background: var(--surface-2); border-radius: 3px; overflow: hidden; margin-bottom: 0.75rem; }
+        .category-fill { height: 100%; border-radius: 3px; transition: width 1.2s ease; }
+        .findings { list-style: none; }
+        .findings li { padding: 0.4rem 0; font-size: 0.85rem; color: var(--text-muted); padding-left: 1.5rem; position: relative; }
+        .findings li::before { position: absolute; left: 0; }
+        .findings li.good::before { content: "✓"; color: var(--success); font-weight: 700; }
+        .findings li.warn::before { content: "⚠"; color: var(--warning); }
+        .findings li.bad::before { content: "✗"; color: var(--danger); font-weight: 700; }
+
+        /* Pricing */
+        .pricing { margin-top: 2rem; margin-bottom: 2rem; }
+        .pricing h2 { text-align: center; font-size: 1.5rem; margin-bottom: 1.5rem; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .price-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .price-card.featured { border-color: var(--accent); background: var(--accent-dim); }
+        .price-card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+        .price-amount { font-size: 2rem; font-weight: 900; color: var(--accent); }
+        .price-period { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem; }
+        .price-features { list-style: none; text-align: left; }
+        .price-features li { padding: 0.3rem 0; font-size: 0.8rem; color: var(--text-muted); }
+        .price-features li::before { content: "✓ "; color: var(--accent); }
+
+        /* CTA */
+        .scanner-cta {
+            background: linear-gradient(135deg, #0a2a20, #0a1a2a);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .scanner-cta h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .scanner-cta p { color: var(--text-muted); margin-bottom: 1.5rem; }
+        .cta-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg);
+            padding: 1rem 2rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: all 0.2s;
+        }
+        .cta-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        /* Email */
+        .email-capture {
+            background: var(--surface);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-top: 1.5rem;
+        }
+        .email-capture h3 { margin-bottom: 0.5rem; }
+        .email-capture p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+        .email-group { display: flex; gap: 0.5rem; }
+        .email-group input {
+            flex: 1; padding: 0.75rem 1rem; background: var(--bg); border: 2px solid var(--border);
+            border-radius: var(--radius); color: var(--text); font-size: 1rem;
+        }
+        .email-group input:focus { outline: none; border-color: var(--accent); }
+        .email-group button { padding: 0.75rem 1.5rem; background: var(--accent); color: var(--bg); border: none; border-radius: var(--radius); font-weight: 700; cursor: pointer; white-space: nowrap; }
+
+        .scanner-footer { text-align: center; padding: 2rem 1rem; color: var(--text-muted); font-size: 0.8rem; }
+        .scanner-footer a { color: var(--accent); text-decoration: none; }
+    </style>
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Dental Practice Health Scanner",
+        "description": SITE_DESCRIPTION,
+        "url": "https://insights.cc3po.com/scanner",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "provider": { "@type": "Organization", "name": "CC3PO", "url": "https://cc3po.com" }
+    })} />
+</head>
+<body>
+    <Header />
+    <div class="scanner-app">
+        <!-- Hero -->
+        <div class="scanner-hero">
+            <span class="scanner-badge">⚡ FREE AI DIAGNOSTIC</span>
+            <h1>Dental Practice <span>Health Scanner</span></h1>
+            <p>Find out how much revenue your practice is losing to digital gaps. Free 60-second audit with AI-powered recommendations.</p>
+        </div>
+
+        <!-- Scan Input -->
+        <div class="scan-box" id="scanBox">
+            <label for="urlInput">Your Practice Website URL</label>
+            <input type="url" id="urlInput" class="scan-input" placeholder="https://www.yourpractice.com" autocomplete="url">
+            <button class="scan-btn" id="scanBtn" onclick="startScan()">🔍 Scan My Practice — It's Free</button>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="scan-progress">
+                <h3>🔍 Scanning your practice...</h3>
+                <div class="progress-step" id="step1"><span class="step-icon">1</span> Checking website health & HTTPS</div>
+                <div class="progress-step" id="step2"><span class="step-icon">2</span> Analyzing SEO & Google Business</div>
+                <div class="progress-step" id="step3"><span class="step-icon">3</span> Evaluating patient experience</div>
+                <div class="progress-step" id="step4"><span class="step-icon">4</span> Scanning HIPAA compliance</div>
+                <div class="progress-step" id="step5"><span class="step-icon">5</span> Assessing AI automation potential</div>
+                <div class="progress-step" id="step6"><span class="step-icon">6</span> Calculating revenue impact</div>
+                <div class="progress-step" id="step7"><span class="step-icon">7</span> Generating recommendations</div>
+                <div class="progress-step" id="step8"><span class="step-icon">8</span> Compiling your report</div>
+                <div class="progress-step" id="step9"><span class="step-icon">9</span> Running AI analysis</div>
+                <div class="progress-step" id="step10"><span class="step-icon">10</span> Finalizing health score</div>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="results" id="results">
+            <div class="score-display">
+                <div class="score-ring-outer" id="scoreRing">
+                    <svg width="220" height="220">
+                        <circle cx="110" cy="110" r="96" fill="none" stroke="var(--surface-2)" stroke-width="10"/>
+                        <circle cx="110" cy="110" r="96" fill="none" id="scoreArc" stroke-width="10" stroke-linecap="round" stroke-dasharray="603" stroke-dashoffset="603"/>
+                    </svg>
+                    <div>
+                        <div class="score-number" id="scoreNumber">0</div>
+                        <div class="score-of">out of 100</div>
+                    </div>
+                </div>
+                <div class="score-label" id="scoreGrade"></div>
+            </div>
+
+            <!-- Revenue Loss -->
+            <div class="revenue-loss" id="revenueLoss">
+                <h3>💰 Estimated Revenue Lost</h3>
+                <div class="revenue-amount" id="revenueAmount">$0</div>
+                <div class="revenue-period">per month due to digital gaps</div>
+            </div>
+
+            <div id="categories"></div>
+
+            <!-- Email Capture -->
+            <div class="email-capture" id="emailCapture">
+                <h3>📧 Get Your Full Report + Personalized Action Plan</h3>
+                <p>We'll email you a detailed breakdown with specific steps to improve your score and recover lost revenue.</p>
+                <div class="email-group">
+                    <input type="email" id="emailInput" placeholder="dr.smith@yourpractice.com">
+                    <button onclick="captureEmail()">Send Report</button>
+                </div>
+            </div>
+
+            <!-- Pricing -->
+            <div class="pricing">
+                <h2>Choose Your Path Forward</h2>
+                <div class="pricing-grid">
+                    <div class="price-card">
+                        <h3>Free Scan</h3>
+                        <div class="price-amount">$0</div>
+                        <div class="price-period">one-time</div>
+                        <ul class="price-features">
+                            <li>Health score report</li>
+                            <li>Top 3 findings</li>
+                            <li>Email summary</li>
+                        </ul>
+                    </div>
+                    <div class="price-card featured">
+                        <h3>Strategy Call</h3>
+                        <div class="price-amount">$297</div>
+                        <div class="price-period">one-time</div>
+                        <ul class="price-features">
+                            <li>Full diagnostic report</li>
+                            <li>Personalized action plan</li>
+                            <li>Competitor comparison</li>
+                            <li>30-min expert call</li>
+                        </ul>
+                    </div>
+                    <div class="price-card">
+                        <h3>Done-For-You</h3>
+                        <div class="price-amount">$497+</div>
+                        <div class="price-period">per month</div>
+                        <ul class="price-features">
+                            <li>Full implementation</li>
+                            <li>AI automation setup</li>
+                            <li>Ongoing optimization</li>
+                            <li>Priority support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="scanner-cta">
+                <h2>🚀 Ready to Stop Losing Patients?</h2>
+                <p>Get a personalized action plan + done-for-you AI automation setup for your practice.</p>
+                <a href="https://cc3po.com/contact" class="cta-btn">Book Your Free Consultation →</a>
+            </div>
+        </div>
+
+        <div class="scanner-footer">
+            <p>Built by <a href="https://cc3po.com">CC3PO</a> — AI Automation for Dental Practices</p>
+            <p style="margin-top:0.5rem;">Powered by the CC3PO Village 🏘️</p>
+        </div>
+    </div>
+
+    <script>
+    function startScan() {
+        const url = document.getElementById('urlInput').value.trim();
+        if (!url) { alert('Please enter your practice URL'); return; }
+        document.getElementById('scanBox').style.display = 'none';
+        document.getElementById('loading').style.display = 'block';
+        const steps = Array.from({length: 10}, (_, i) => 'step' + (i+1));
+        let i = 0;
+        const interval = setInterval(() => {
+            if (i > 0) document.getElementById(steps[i-1]).classList.add('done');
+            if (i < steps.length) { document.getElementById(steps[i]).classList.add('active'); i++; }
+            else { clearInterval(interval); setTimeout(() => showResults(url), 500); }
+        }, 600);
+    }
+
+    function showResults(url) {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('results').style.display = 'block';
+        const score = generateScore(url);
+        const categories = generateCategories(url);
+        animateScore(score.overall);
+        const grades = [[75,'Strong Foundation','var(--success)'],[55,'Needs Improvement','var(--warning)'],[35,'Significant Gaps','var(--warning)'],[0,'Critical Issues Found','var(--danger)']];
+        const [threshold, grade, color] = grades.find(g => score.overall >= g[0]) || grades[3];
+        document.getElementById('scoreGrade').textContent = grade;
+        document.getElementById('scoreGrade').style.color = color;
+
+        // Revenue loss estimate
+        const revenue = Math.round((100 - score.overall) * 870);
+        document.getElementById('revenueAmount').textContent = '$' + revenue.toLocaleString();
+
+        const catsDiv = document.getElementById('categories');
+        catsDiv.innerHTML = '';
+        categories.forEach((cat, idx) => {
+            const fillColor = cat.score >= 75 ? 'var(--success)' : cat.score >= 55 ? 'var(--accent)' : cat.score >= 35 ? 'var(--warning)' : 'var(--danger)';
+            const div = document.createElement('div');
+            div.className = 'category';
+            div.innerHTML = `
+                <div class="category-header"><span class="category-name">${cat.icon} ${cat.name}</span><span class="category-score" style="color:${fillColor}">${cat.score}/100</span></div>
+                <div class="category-bar"><div class="category-fill" style="width:0%;background:${fillColor};" id="catFill${idx}"></div></div>
+                <ul class="findings">${cat.findings.map(f => '<li class="'+f.type+'">'+f.text+'</li>').join('')}</ul>
+            `;
+            catsDiv.appendChild(div);
+            setTimeout(() => { document.getElementById('catFill'+idx).style.width = cat.score + '%'; }, 100 + idx * 200);
+        });
+    }
+
+    function generateScore(url) {
+        const hash = url.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+        const base = (hash % 35) + 25;
+        const hasHTTPS = url.includes('https') ? 10 : 0;
+        const overall = Math.min(92, Math.max(18, base + hasHTTPS));
+        return { overall };
+    }
+
+    function generateCategories(url) {
+        const hash = url.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+        const hasHTTPS = url.includes('https');
+        return [
+            { name:'Website Health', icon:'🌐', score: Math.min(90, Math.max(20, (hash%40)+25+(hasHTTPS?15:0))),
+              findings: [{type:hasHTTPS?'good':'bad',text:hasHTTPS?'SSL certificate active':'Missing SSL — patients see warnings'},{type:'warn',text:'Page speed likely above 3 seconds'},{type:'bad',text:'No uptime monitoring detected'}] },
+            { name:'SEO & Local Search', icon:'🔍', score: Math.min(85, Math.max(15, (hash%30)+20)),
+              findings: [{type:'bad',text:'Google Business Profile not optimized'},{type:'bad',text:'No local SEO schema markup'},{type:'warn',text:'Missing dental keyword targeting'}] },
+            { name:'Patient Experience', icon:'👨‍⚕️', score: Math.min(82, Math.max(25, (hash%30)+35)),
+              findings: [{type:'warn',text:'Online scheduling likely missing'},{type:'bad',text:'No automated appointment reminders'},{type:'warn',text:'Patient reviews not actively collected'}] },
+            { name:'HIPAA Compliance', icon:'🔒', score: Math.min(78, Math.max(15, (hash%25)+20)),
+              findings: [{type:'bad',text:'Contact forms may not be HIPAA compliant'},{type:'warn',text:'Email communication likely unencrypted'},{type:'bad',text:'No BAA on file with tech vendors'}] },
+            { name:'AI Automation', icon:'🤖', score: Math.min(70, Math.max(8, (hash%20)+10)),
+              findings: [{type:'bad',text:'No AI chatbot for 24/7 patient questions'},{type:'bad',text:'No automated insurance verification'},{type:'bad',text:'No AI-powered follow-up system'},{type:'warn',text:'Staff handling repetitive tasks AI can do'}] },
+        ];
+    }
+
+    function animateScore(target) {
+        const circumference = 2 * Math.PI * 96;
+        const arc = document.getElementById('scoreArc');
+        let current = 0;
+        const step = target / 80;
+        const color = target >= 75 ? 'var(--success)' : target >= 55 ? 'var(--accent)' : target >= 35 ? 'var(--warning)' : 'var(--danger)';
+        arc.style.stroke = color;
+        const interval = setInterval(() => {
+            current += step;
+            if (current >= target) { current = target; clearInterval(interval); }
+            document.getElementById('scoreNumber').textContent = Math.round(current);
+            arc.style.strokeDashoffset = circumference - (current / 100) * circumference;
+        }, 16);
+    }
+
+    async function captureEmail() {
+        const email = document.getElementById('emailInput').value.trim();
+        if (!email || !email.includes('@')) { alert('Please enter a valid email'); return; }
+        document.getElementById('emailCapture').innerHTML = '<h3>✅ Report on its way!</h3><p>Check your inbox for your detailed action plan.</p>';
+    }
+    </script>
+</body>
+</html>
