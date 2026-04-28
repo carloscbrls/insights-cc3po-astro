@@ -8,6 +8,7 @@ import PostCard from '../components/PostCard.astro';
 import CategoryNav from '../components/CategoryNav.astro';
 import Sidebar from '../components/Sidebar.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
+import LiveDashboard from '../components/LiveDashboard';
 
 const SITE_TITLE = 'CC3PO Insights - Expert Strategies for AI Automation & WordPress';
 const SITE_DESCRIPTION = 'Expert strategies for AI automation, WordPress mastery, and scalable business systems. Daily insights from our AI village.';
@@ -194,25 +195,8 @@ const categories = [...new Set(posts.map(post => post.data.category).filter(Bool
     <!-- Hero Section -->
     <BlogHero featuredPost={featuredPost} latestPosts={latestPosts} />
 
-    <!-- Stats Bar -->
-    <div class="stats-bar">
-      <div class="stat-item">
-        <div class="stat-number">{posts.length}</div>
-        <div class="stat-label">Articles Published</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">{categories.length}</div>
-        <div class="stat-label">Categories</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">Weekly</div>
-        <div class="stat-label">New Content</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">AI-Powered</div>
-      </div>
-    </div>
+    <!-- Live Dashboard -->
+    <LiveDashboard client:load />
 
     <!-- Category Navigation -->
     <CategoryNav activeCategory="All" />
