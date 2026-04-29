@@ -41,9 +41,9 @@ const categories = [...new Set(posts.map(post => post.data.category).filter(Bool
         --card: #141418;
         --text: #fff;
         --muted: #a1a1aa;
-        --primary: #6b35ff;
-        --accent: #00d2ff;
-        --grad: linear-gradient(135deg, #6b35ff, #00d2ff);
+        --primary: #e94560;
+        --accent: #4fc3f7;
+        --grad: #e94560;
       }
       
       * { 
@@ -58,6 +58,7 @@ const categories = [...new Set(posts.map(post => post.data.category).filter(Bool
         color: var(--text);
         line-height: 1.6;
         min-height: 100vh;
+        overflow-x: hidden;
       }
 
       /* Main Content Layout */
@@ -96,11 +97,11 @@ const categories = [...new Set(posts.map(post => post.data.category).filter(Bool
         content: '';
         width: 40px;
         height: 2px;
-        background: linear-gradient(90deg, #6b35ff, transparent);
+        background: linear-gradient(90deg, #e94560, transparent);
       }
 
       .view-all-link {
-        color: #6b35ff;
+        color: #e94560;
         text-decoration: none;
         font-size: 14px;
         font-weight: 500;
@@ -140,7 +141,7 @@ const categories = [...new Set(posts.map(post => post.data.category).filter(Bool
       .stat-number {
         font-size: 28px;
         font-weight: 800;
-        background: linear-gradient(135deg, #6b35ff, #00d2ff);
+        background: #e94560;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;

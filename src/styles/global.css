@@ -4,9 +4,9 @@
 	--card: #141418;
 	--text: #fff;
 	--muted: #a1a1aa;
-	--primary: #6b35ff;
-	--accent: #00d2ff;
-	--grad: linear-gradient(135deg, #6b35ff, #00d2ff);
+	--primary: #e94560;
+	--accent: #4fc3f7;
+	--grad: #e94560;
 	--font-inter: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
@@ -80,6 +80,8 @@ body {
 	/* Phase 6: Smooth text rendering */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	overflow-x: hidden;
+	max-width: 100vw;
 }
 
 a {
@@ -207,4 +209,11 @@ mark {
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
 	}
+}
+/* Logo image */
+.nav-logo-img {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  object-fit: contain; background: #1a1a2e; padding: 2px;
+  flex-shrink: 0;
 }

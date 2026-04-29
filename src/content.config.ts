@@ -13,8 +13,8 @@ const blog = defineCollection({
 			// Transform string to Date object
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
-			// Use string instead of image() to avoid build failures when Unsplash URLs 404
-			heroImage: z.string().optional(),
+			// Blog post hero image - string path (local or URL)
+			image: z.string().optional(),
 			category: z.string().default('WordPress'),
 			author: z.string().default('Carlos Cabrales'),
 			authorUrl: z.string().optional(),

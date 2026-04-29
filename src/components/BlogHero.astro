@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -15,12 +14,10 @@ const { featuredPost, latestPosts } = Astro.props;
   <div class="featured-post">
     <a href={`/blog/${featuredPost.id}/`} class="featured-link">
       <div class="featured-image-wrapper">
-        {featuredPost.data.heroImage && (
-          <Image 
+        {(featuredPost.data.image || featuredPost.data.heroImage) && (
+          <img 
             class="featured-image" 
-            width={1200} 
-            height={600} 
-            src={featuredPost.data.heroImage} 
+            src={featuredPost.data.image || featuredPost.data.heroImage} 
             alt={featuredPost.data.title} 
             loading="eager"
           />
@@ -46,12 +43,10 @@ const { featuredPost, latestPosts } = Astro.props;
         <article class="latest-card">
           <a href={`/blog/${post.id}/`}>
             <div class="latest-image-wrapper">
-              {post.data.heroImage && (
-                <Image 
+              {(post.data.image || post.data.heroImage) && (
+                <img 
                   class="latest-image" 
-                  width={400} 
-                  height={225} 
-                  src={post.data.heroImage} 
+                  src={post.data.image || post.data.heroImage} 
                   alt={post.data.title}
                   loading="lazy"
                 />
@@ -135,7 +130,7 @@ const { featuredPost, latestPosts } = Astro.props;
 
   .featured-badge {
     display: inline-block;
-    background: linear-gradient(135deg, #6b35ff, #00d2ff);
+    background: #e94560;
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 12px;
@@ -163,7 +158,7 @@ const { featuredPost, latestPosts } = Astro.props;
   }
 
   .featured-cta {
-    color: #00d2ff;
+    color: #4fc3f7;
     font-weight: 600;
     font-size: 15px;
     display: inline-flex;
@@ -195,7 +190,7 @@ const { featuredPost, latestPosts } = Astro.props;
   }
 
   .view-all {
-    color: #6b35ff;
+    color: #e94560;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -312,7 +307,6 @@ const { featuredPost, latestPosts } = Astro.props;
   .newsletter-form {
     display: flex;
     gap: 12px;
-    min-width: 320px;
   }
 
   .newsletter-form input {
@@ -328,7 +322,7 @@ const { featuredPost, latestPosts } = Astro.props;
 
   .newsletter-form input:focus {
     outline: none;
-    border-color: #6b35ff;
+    border-color: #e94560;
   }
 
   .newsletter-form input::placeholder {
@@ -338,7 +332,7 @@ const { featuredPost, latestPosts } = Astro.props;
   .newsletter-form button {
     padding: 14px 28px;
     border-radius: 12px;
-    background: linear-gradient(135deg, #6b35ff, #00d2ff);
+    background: #e94560;
     color: #fff;
     font-weight: 600;
     font-size: 14px;
@@ -363,15 +357,24 @@ const { featuredPost, latestPosts } = Astro.props;
   @media (max-width: 768px) {
     .blog-hero {
       padding: 90px 16px 32px;
+      overflow-x: hidden;
     }
 
     .featured-image-wrapper {
       aspect-ratio: 16 / 10;
-      min-height: 300px;
+      min-height: 250px;
     }
 
     .featured-overlay {
-      padding: 24px;
+      padding: 20px;
+    }
+
+    .featured-overlay h1 {
+      font-size: 22px;
+    }
+
+    .featured-excerpt {
+      font-size: 14px;
     }
 
     .latest-scroll {
@@ -381,14 +384,24 @@ const { featuredPost, latestPosts } = Astro.props;
     .hero-newsletter {
       flex-direction: column;
       text-align: center;
-      gap: 24px;
-      padding: 24px;
+      gap: 20px;
+      padding: 24px 16px;
+    }
+
+    .newsletter-content h3 {
+      font-size: 18px;
+    }
+
+    .newsletter-content p {
+      font-size: 13px;
+      max-width: 100%;
     }
 
     .newsletter-form {
       width: 100%;
       min-width: auto;
       flex-direction: column;
+      gap: 10px;
     }
   }
 </style>

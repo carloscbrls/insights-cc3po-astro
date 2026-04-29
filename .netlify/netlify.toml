@@ -27,6 +27,12 @@ command = "npm run build"
 [build.services]
 
 [[headers]]
+for = "/*"
+
+[headers.values]
+X-Analytics = "true"
+
+[[headers]]
 for = "/*_astro/*"
 
 [headers.values]
@@ -77,18 +83,6 @@ X-Content-Type-Options = "nosniff"
 Referrer-Policy = "strict-origin-when-cross-origin"
 
 [[redirects]]
-from = "/*/:index.html"
-to = "/blog/:splat"
-status = 301.0
-force = false
-
-[redirects.query]
-
-[redirects.conditions]
-
-[redirects.headers]
-
-[[redirects]]
 from = "/blog.html"
 to = "/blog"
 status = 301.0
@@ -103,6 +97,66 @@ force = false
 [[redirects]]
 from = "/"
 to = "/blog"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/*/:index.html"
+to = "/blog/:splat"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/blog.html"
+to = "/signal/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/blog/"
+to = "/signal/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/blog"
+to = "/signal/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/"
+to = "/signal/"
 status = 301.0
 force = false
 

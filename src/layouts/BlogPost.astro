@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
@@ -13,7 +12,7 @@ import ExitIntentPopup from '../components/ExitIntentPopup.astro';
 
 type Props = CollectionEntry<'blog'>['data'] & { id?: string };
 
-const { title, description, pubDate, updatedDate, heroImage, category, author, authorUrl, id } = Astro.props;
+const { title, description, pubDate, updatedDate, image, category, author, authorUrl, id } = Astro.props;
 
 // Get related posts (same category)
 const allPosts = await getCollection('blog');
@@ -59,9 +58,9 @@ const relatedPosts = allPosts
 				--card: #141418;
 				--text: #fff;
 				--muted: #a1a1aa;
-				--primary: #6b35ff;
-				--accent: #00d2ff;
-				--grad: linear-gradient(135deg, #6b35ff, #00d2ff);
+				--primary: #e94560;
+				--accent: #4fc3f7;
+				--grad: #e94560;
 			}
 
 			* { margin: 0; padding: 0; box-sizing: border-box; }
@@ -235,7 +234,7 @@ const relatedPosts = allPosts
 			.social-btn:hover {
 				background: rgba(107,53,255,.1);
 				border-color: rgba(107,53,255,.3);
-				color: #6b35ff;
+				color: #e94560;
 				transform: translateY(-2px);
 			}
 
@@ -267,14 +266,14 @@ const relatedPosts = allPosts
 			}
 
 			.prose a {
-				color: #00d2ff;
+				color: #4fc3f7;
 				text-decoration: none;
 				border-bottom: 1px solid rgba(0,210,255,.3);
 				transition: border-color 0.2s;
 			}
 
 			.prose a:hover {
-				border-color: #00d2ff;
+				border-color: #4fc3f7;
 			}
 
 			.prose ul, .prose ol {
@@ -305,7 +304,7 @@ const relatedPosts = allPosts
 				padding: 3px 8px;
 				border-radius: 6px;
 				font-size: 15px;
-				color: #00d2ff;
+				color: #4fc3f7;
 			}
 
 			.prose pre {
@@ -381,14 +380,14 @@ const relatedPosts = allPosts
 			}
 
 			.author-links a {
-				color: #6b35ff;
+				color: #e94560;
 				text-decoration: none;
 				font-size: 14px;
 				font-weight: 500;
 			}
 
 			.author-links a:hover {
-				color: #00d2ff;
+				color: #4fc3f7;
 			}
 
 			/* Related Posts */
@@ -441,7 +440,7 @@ const relatedPosts = allPosts
 
 			.related-card span {
 				font-size: 12px;
-				color: #6b35ff;
+				color: #e94560;
 				font-weight: 600;
 				text-transform: uppercase;
 				letter-spacing: 0.5px;
@@ -555,14 +554,10 @@ const relatedPosts = allPosts
 			</div>
 		</header>
 
-		{heroImage && (
+		{image && (
 			<div class="hero-image-wrapper">
 				<div class="hero-image">
-					{heroImage.startsWith('http') ? (
-						<img src={heroImage} alt={title} width="1200" height="630" loading="lazy" />
-					) : (
-						<Image width={1200} height={630} src={heroImage} alt={title} />
-					)}
+					<img src={image.startsWith('/') ? image : image} alt={title} width="1200" height="630" loading="lazy" />
 				</div>
 			</div>
 		)}

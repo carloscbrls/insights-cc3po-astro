@@ -24,9 +24,9 @@ const posts = await getCollection('blog');
         --card: #141418;
         --text: #fff;
         --muted: #a1a1aa;
-        --primary: #6b35ff;
-        --accent: #00d2ff;
-        --grad: linear-gradient(135deg, #6b35ff, #00d2ff);
+        --primary: #e94560;
+        --accent: #4fc3f7;
+        --grad: #e94560;
       }
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body {
@@ -48,7 +48,7 @@ const posts = await getCollection('blog');
       .search-header h1 {
         font-size: clamp(32px, 5vw, 48px);
         font-weight: 800;
-        background: linear-gradient(135deg, #fff, #a78bfa, #00d2ff);
+        background: linear-gradient(135deg, #fff, #a78bfa, #4fc3f7);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         margin-bottom: 16px;
@@ -114,7 +114,7 @@ const posts = await getCollection('blog');
         background: rgba(255,255,255,0.08);
       }
       .filter-btn.active {
-        background: linear-gradient(135deg, #6b35ff, #00d2ff);
+        background: #e94560;
         border-color: transparent;
         color: #fff;
       }
