@@ -1,11 +1,11 @@
 ---
 title: 'Best AI Tools for Small Nonprofits in California: 2026 Guide'
 description: 'A curated guide to AI tools that deliver real value for California nonprofits with limited budgets. Practical recommendations based on actual use cases.'
-pubDate: '2026-04-08'
+pubDate: '2026-04-23'
 category: 'Nonprofit'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/best-ai-tools.jpg'
+authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+heroImage: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80'
 ---
 
 # Best AI Tools for Small Nonprofits in California: 2026 Guide

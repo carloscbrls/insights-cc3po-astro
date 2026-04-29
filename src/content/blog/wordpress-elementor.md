@@ -1,11 +1,11 @@
 ---
 title: 'WordPress + Elementor: Building Sites That Work'
 description: 'Why WordPress and Elementor together create practical websites for businesses. Real benefits, real limitations, and when this combination makes sense.'
-pubDate: '2026-04-08'
+pubDate: '2026-03-18'
 category: 'WordPress'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/wordpress-elementor.jpg'
+authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+heroImage: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&q=80'
 ---
 
 # WordPress + Elementor: Building Sites That Work

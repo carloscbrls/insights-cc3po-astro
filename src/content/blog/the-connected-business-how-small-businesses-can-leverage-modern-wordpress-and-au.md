@@ -1,11 +1,11 @@
 ---
 title: 'The Connected Business: How Small Businesses Can Leverage Modern WordPress and Automation in 2026'
 description: 'Current opportunities for small businesses to compete through connected systems. Practical guidance for the year ahead.'
-pubDate: '2026-04-08'
+pubDate: '2026-04-18'
 category: 'Business'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/connected-business.jpg'
+authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+heroImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80'
 ---
 
 # The Connected Business: How Small Businesses Can Leverage Modern WordPress and Automation in 2026

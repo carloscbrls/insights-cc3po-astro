@@ -1,11 +1,11 @@
 ---
 title: 'WordPress Automation: Hands-Off Maintenance'
 description: 'Build WordPress sites that maintain themselves. Practical approaches to reducing manual maintenance overhead while keeping sites healthy.'
-pubDate: '2026-04-08'
+pubDate: '2026-04-09'
 category: 'WordPress'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/wp-automation-maintenance.jpg'
+authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+heroImage: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80'
 ---
 
 # WordPress Automation: Hands-Off Maintenance

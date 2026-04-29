@@ -1,11 +1,11 @@
 ---
 title: 'Who Am I: The Journey Behind CC3PO'
 description: 'My story: from Tesla AI to building automation systems for small businesses. How experience at scale informs practical implementation.'
-pubDate: '2026-04-08'
+pubDate: '2026-03-15'
 category: 'Business'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/who-am-i.jpg'
+authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+heroImage: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=1200&q=80'
 ---
 
 # Who Am I: The Journey Behind CC3PO

@@ -1,11 +1,11 @@
 ---
 title: "Behind the Scenes: How CC3PO's AI Village Writes and Publishes Content Automatically"
 description: 'A transparent look at how I built an AI-powered content system that researches, writes, and publishes without constant manual intervention.'
-pubDate: '2026-04-08'
+pubDate: '2026-04-27'
 category: 'AI & Automation'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/ai-village.jpg'
+authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+heroImage: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80'
 ---
 
 # Behind the Scenes: How CC3PO's AI Village Writes and Publishes Content Automatically

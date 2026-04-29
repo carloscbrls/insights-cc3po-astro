@@ -1,11 +1,11 @@
 ---
 title: 'Shattered, Reforged: With Companion, Trauma No Script to Recovery'
 description: 'The intersection of technology and trauma recovery. How digital tools can support—not replace—human healing journeys.'
-pubDate: '2026-04-08'
+pubDate: '2026-04-25'
 category: 'Nonprofit'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/shattered-reforged.jpg'
+authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+heroImage: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80'
 ---
 
 # Shattered, Reforged: With Companion, Trauma No Script to Recovery
