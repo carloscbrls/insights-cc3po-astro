@@ -12,7 +12,7 @@ description: 'Brief description for SEO (150 chars max)'
 pubDate: '2026-04-21'
 category: 'WordPress'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 heroImage: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=80'
 ---
 

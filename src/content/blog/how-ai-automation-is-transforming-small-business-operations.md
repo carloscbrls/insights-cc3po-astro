@@ -4,7 +4,7 @@ description: 'Real-world ways small businesses are using AI automation to compet
 pubDate: '2026-04-08'
 category: 'AI & Automation'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/ai-transforming-ops.jpg'
 ---
 

@@ -4,7 +4,7 @@ description: "A practical guide to creating landing pages that convert visitors 
 pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/landing-page.jpg'
 ---
 

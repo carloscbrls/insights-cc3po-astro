@@ -4,7 +4,7 @@ description: 'Discover AI tools specifically valuable for California nonprofit o
 pubDate: '2026-04-08'
 category: 'Nonprofit'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/nonprofits-california.jpg'
 ---
 

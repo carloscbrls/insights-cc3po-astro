@@ -4,7 +4,7 @@ description: 'Learn how to approach web accessibility compliance calmly and effe
 pubDate: '2026-04-08'
 category: 'Business'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/ada-awareness.jpg'
 ---
 

@@ -4,7 +4,7 @@ description: "Real-world experience with SiteGround hosting. What works well, wh
 pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/siteground-hosting.jpg'
 ---
 

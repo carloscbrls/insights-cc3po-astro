@@ -4,7 +4,7 @@ description: 'How AI is changing music creation and distribution for independent
 pubDate: '2026-04-08'
 category: 'AI & Automation'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/music-distribution.jpg'
 ---
 

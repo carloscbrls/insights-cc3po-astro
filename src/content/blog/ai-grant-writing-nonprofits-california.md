@@ -4,7 +4,7 @@ description: 'Learn how to use AI tools to strengthen your grant writing process
 pubDate: '2026-04-08'
 category: 'Nonprofit'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/ai-grant-writing.jpg'
 ---
 

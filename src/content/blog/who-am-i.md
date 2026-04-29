@@ -4,7 +4,7 @@ description: 'My story: from Tesla AI to building automation systems for small b
 pubDate: '2026-04-08'
 category: 'Business'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/who-am-i.jpg'
 ---
 

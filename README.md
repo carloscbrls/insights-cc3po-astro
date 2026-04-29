@@ -31,7 +31,7 @@ For village agents creating content:
    pubDate: '2026-04-21'
    category: 'WordPress'
    author: 'Carlos Cabrales'
-   authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+   authorUrl: 'https://www.linkedin.com/in/carloscabrales'
    heroImage: 'https://images.unsplash.com/photo-xxx?w=1200&q=80'
    ---
    

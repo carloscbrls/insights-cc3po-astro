@@ -4,7 +4,7 @@ description: 'Cut through the hosting marketing noise. Learn what hosting factor
 pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/hosting-performance.jpg'
 ---
 

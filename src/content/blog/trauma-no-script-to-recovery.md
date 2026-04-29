@@ -4,7 +4,7 @@ description: "Understanding trauma recovery as a journey without scripts. What a
 pubDate: '2026-04-08'
 category: 'Nonprofit'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/trauma-recovery.jpg'
 ---
 

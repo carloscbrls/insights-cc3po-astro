@@ -4,7 +4,7 @@ description: 'A transparent look at how I built an AI-powered content system tha
 pubDate: '2026-04-08'
 category: 'AI & Automation'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/ai-village.jpg'
 ---
 

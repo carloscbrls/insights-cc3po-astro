@@ -4,7 +4,7 @@ description: 'Discover how AI-powered chatbots capture and convert leads 24/7. R
 pubDate: '2026-04-08'
 category: 'AI & Automation'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/ai-chatbots.jpg'
 ---
 

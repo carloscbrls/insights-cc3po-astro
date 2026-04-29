@@ -4,7 +4,7 @@ description: 'A curated guide to AI tools that deliver real value for California
 pubDate: '2026-04-08'
 category: 'Nonprofit'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/best-ai-tools.jpg'
 ---
 

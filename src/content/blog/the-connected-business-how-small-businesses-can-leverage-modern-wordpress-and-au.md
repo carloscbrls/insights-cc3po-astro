@@ -4,7 +4,7 @@ description: 'Current opportunities for small businesses to compete through conn
 pubDate: '2026-04-08'
 category: 'Business'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/connected-business.jpg'
 ---
 

@@ -7,7 +7,7 @@ plugins = []
 [functions."*"]
 
 [build]
-publish = "/Users/cc3po/.openclaw/workspace/insights-cc3po-astro/dist"
+publish = "/tmp/insights-cc3po-astro/dist"
 publishOrigin = "config"
 commandOrigin = "config"
 command = "npm run build"

@@ -4,7 +4,7 @@ description: 'The SEO tools we actually use and recommend based on real results.
 pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/tools-seo.jpg'
 ---
 

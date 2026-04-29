@@ -77,7 +77,7 @@ description: 'A brief description for SEO'
 pubDate: '2026-04-21'
 category: 'WordPress'  # or: AI & Automation, Security, Accessibility, etc.
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 heroImage: 'https://images.unsplash.com/photo-xxx?w=1200&q=80'
 ---
 

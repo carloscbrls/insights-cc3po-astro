@@ -4,7 +4,7 @@ description: 'Real stories of how nonprofits create lasting change in communitie
 pubDate: '2026-04-08'
 category: 'Nonprofit'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/echoes-nonprofit.jpg'
 ---
 

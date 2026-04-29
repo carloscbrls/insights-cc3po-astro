@@ -4,7 +4,7 @@ description: 'Understanding our consultation packages and which one fits your bu
 pubDate: '2026-04-08'
 category: 'Business'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/consultation-packages.jpg'
 ---
 
