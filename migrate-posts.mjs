@@ -193,7 +193,7 @@ description: '${content.description.replace(/'/g, "'")}'
 pubDate: '${content.pubDate}'
 category: '${content.category}'
 author: 'Carlos Cabrales'
-authorUrl: 'https://www.linkedin.com/in/carloscabralesiiicc3po/'
+authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 heroImage: '${content.heroImage}'
 ---
 
