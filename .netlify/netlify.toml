@@ -1,16 +1,15 @@
+functionsDirectory = "/Users/cc3po/.openclaw/workspace/insights-cc3po-astro/netlify/functions"
+functionsDirectoryOrigin = "default"
 headersOrigin = "config"
 redirectsOrigin = "config"
 plugins = []
 
-[functions]
-
-[functions."*"]
-
 [build]
-publish = "/tmp/insights-cc3po-astro/dist"
+publish = "/Users/cc3po/.openclaw/workspace/insights-cc3po-astro/dist"
 publishOrigin = "config"
 commandOrigin = "config"
 command = "npm run build"
+functions = "/Users/cc3po/.openclaw/workspace/insights-cc3po-astro/netlify/functions"
 
 [build.environment]
 
@@ -25,6 +24,10 @@ command = "npm run build"
 [build.processing.js]
 
 [build.services]
+
+[functions]
+
+[functions."*"]
 
 [[headers]]
 for = "/*"

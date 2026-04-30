@@ -5,6 +5,7 @@ pubDate: '2026-04-23'
 category: 'Compliance'
 author: 'Carlos Cabrales'
 authorUrl: 'https://cc3po.com'
+image: '/blog-images/hipaa-compliance-dental.jpg'
 ---
 
 # Is Your Dental Website HIPAA-Compliant? 5 Risks You're Probably Taking
