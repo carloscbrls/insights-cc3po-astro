@@ -4,5 +4,9 @@
 /blog.html /blog 301
 / /blog 301
 
+# Redirect removed blog posts to related content
+/blog/local-it-partner-story/ /blog/ 301
+/blog/tesla-autopilot-small-business-it/ /blog/ 301
+
 # Redirect individual posts (old format: /slug/ to /blog/slug/)
 /*/:index.html /blog/:splat 301
