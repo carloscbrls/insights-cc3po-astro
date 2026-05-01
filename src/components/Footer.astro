@@ -84,6 +84,72 @@ const currentYear = new Date().getFullYear();
 	.footer-links a:hover {
 		color: #e94560;
 	}
+	.footer-newsletter {
+		max-width: 400px;
+		margin: 20px auto 0;
+		padding: 20px;
+		background: rgba(255,255,255,0.03);
+		border: 1px solid rgba(255,255,255,0.08);
+		border-radius: 12px;
+	}
+	.footer-newsletter-title {
+		color: #fafafa;
+		font-size: 14px;
+		font-weight: 600;
+		margin-bottom: 10px;
+	}
+	.footer-newsletter-form {
+		display: flex;
+		gap: 8px;
+	}
+	.footer-newsletter-input {
+		flex: 1;
+		padding: 10px 14px;
+		background: rgba(255,255,255,0.06);
+		border: 1px solid rgba(255,255,255,0.1);
+		border-radius: 8px;
+		color: #fff;
+		font-size: 14px;
+		outline: none;
+		transition: border-color 0.2s;
+	}
+	.footer-newsletter-input:focus {
+		border-color: #e94560;
+	}
+	.footer-newsletter-input::placeholder {
+		color: #64748b;
+	}
+	.footer-newsletter-btn {
+		padding: 10px 20px;
+		background: linear-gradient(135deg, #e94560, #7c44ff);
+		border: none;
+		border-radius: 8px;
+		color: #fff;
+		font-size: 14px;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.2s;
+		white-space: nowrap;
+	}
+	.footer-newsletter-btn:hover {
+		transform: translateY(-1px);
+		box-shadow: 0 4px 15px rgba(107,53,255,0.3);
+	}
+	.footer-newsletter-btn:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+		transform: none;
+	}
+	.footer-newsletter-success {
+		color: #4ade80;
+		font-size: 13px;
+		margin-top: 8px;
+	}
+	.footer-newsletter-error {
+		color: #e94560;
+		font-size: 13px;
+		margin-top: 8px;
+	}
 </style>
 
 <div class="cta-section">
@@ -100,6 +166,15 @@ const currentYear = new Date().getFullYear();
 </div>
 
 <footer>
+	<div class="footer-newsletter" id="newsletter-widget">
+		<div class="footer-newsletter-title">📬 Stay in the loop</div>
+		<form class="footer-newsletter-form" id="newsletter-form">
+			<input type="email" class="footer-newsletter-input" id="newsletter-email" placeholder="you@email.com" required />
+			<button type="submit" class="footer-newsletter-btn" id="newsletter-btn">Subscribe</button>
+		</form>
+		<div id="newsletter-msg"></div>
+	</div>
+
 	<p>AI Agents That Work Within Your Rules by the CC3PO Village | © {currentYear} <a href="https://cc3po.com/">CC3PO Insights</a></p>
 	<p style="margin-top: 8px; font-size: 12px;">
 		<a href="/terms">Terms of Service</a> · <a href="/privacy">Privacy Policy</a> · <a href="/disclaimer">Disclaimer</a>
@@ -111,3 +186,54 @@ const currentYear = new Date().getFullYear();
 		<a href="https://centralvalleylocals.com">Directory</a>
 	</div>
 </footer>
+
+<script>
+(function() {
+	const SUPABASE_URL = 'https://cdrcgmdvepxwsbqaifxv.supabase.co';
+	const SUPABASE_SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNkcmNnbWR2ZXB4d3NicWFpZnh2Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MzUwNjgwOSwiZXhwIjoyMDg5MDgyODA5fQ.IXD7n4w6GadXsoqxL9SpI3Bc-CZWLF6ykUkpgas15FQ';
+
+	document.getElementById('newsletter-form')?.addEventListener('submit', async function(e) {
+		e.preventDefault();
+		const btn = document.getElementById('newsletter-btn');
+		const email = document.getElementById('newsletter-email').value.trim();
+		const msg = document.getElementById('newsletter-msg');
+
+		if (!email) return;
+
+		btn.disabled = true;
+		btn.textContent = '...';
+		msg.textContent = '';
+
+		try {
+			const res = await fetch(`${SUPABASE_URL}/rest/v1/client_forms`, {
+				method: 'POST',
+				headers: {
+					'apikey': SUPABASE_SERVICE_KEY,
+					'Authorization': `Bearer ${SUPABASE_SERVICE_KEY}`,
+					'Content-Type': 'application/json',
+					'Prefer': 'return=minimal'
+				},
+				body: JSON.stringify({
+					email,
+					source_site: 'insights.cc3po.com',
+					source_page: '/footer',
+					form_type: 'newsletter'
+				})
+			});
+
+			if (!res.ok) {
+				const err = await res.text();
+				throw new Error(err);
+			}
+
+			document.getElementById('newsletter-widget').innerHTML = '<div class="footer-newsletter-title">📬 Stay in the loop</div><p class="footer-newsletter-success">✅ You\'re subscribed! We\'ll send updates to your inbox.</p>';
+		} catch (error) {
+			console.error('Newsletter signup error:', error);
+			msg.className = 'footer-newsletter-error';
+			msg.textContent = 'Something went wrong. Please try again.';
+			btn.disabled = false;
+			btn.textContent = 'Subscribe';
+		}
+	});
+})();
+</script>
