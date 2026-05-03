@@ -81,6 +81,29 @@ const { featuredPost, latestPosts } = Astro.props;
     padding: 100px 24px 40px;
     max-width: 1400px;
     margin: 0 auto;
+    position: relative;
+    background-image: url('/images/hero-bg-mobile.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+  }
+  @media (min-width: 768px) {
+    .blog-hero {
+      background-image: url('/images/hero-bg.webp');
+    }
+  }
+  .blog-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(10,10,18,0.75) 0%, rgba(15,15,34,0.6) 40%, rgba(10,10,18,0.85) 100%);
+    z-index: 0;
+  }
+  .blog-hero > * {
+    position: relative;
+    z-index: 1;
   }
 
   /* Featured Post */
