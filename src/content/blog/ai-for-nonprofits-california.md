@@ -5,7 +5,7 @@ pubDate: '2026-04-08'
 category: 'Nonprofit'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/nonprofits-california.jpg'
+image: '/blog-images/nonprofits-california-gen.png'
 ---
 
 # AI Tools for California Nonprofits: A Practical Guide

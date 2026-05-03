@@ -5,7 +5,7 @@ pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/elementor-pro.jpg'
+image: '/blog-images/elementor-pro-gen.png'
 ---
 
 # Elementor Pro: What It Actually Unlocks (And When It's Worth It)

@@ -5,7 +5,7 @@ pubDate: '2026-04-08'
 category: 'Nonprofit'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/echoes-nonprofit.jpg'
+image: '/blog-images/echoes-nonprofit-gen.png'
 ---
 
 # Echoes They Left Behind: Stories of Nonprofit Impact

@@ -5,7 +5,7 @@ pubDate: '2026-04-08'
 category: 'AI & Automation'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/ai-transforming-ops.jpg'
+image: '/blog-images/ai-transforming-ops-gen.png'
 ---
 
 # How AI Automation Is Transforming Small Business Operations

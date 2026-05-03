@@ -5,7 +5,7 @@ pubDate: '2026-04-08'
 category: 'AI & Automation'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/ai-chatbots.jpg'
+image: '/blog-images/ai-chatbots-gen.png'
 ---
 
 # How AI Chatbots Convert Leads: A Practical Guide

@@ -5,7 +5,7 @@ pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/elementor-checklist.jpg'
+image: '/blog-images/elementor-checklist-gen.png'
 ---
 
 # Elementor Pro Without Breaking Your Site: A Calm Checklist

@@ -5,7 +5,7 @@ pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/elementor-mistakes.jpg'
+image: '/blog-images/elementor-mistakes-gen.png'
 ---
 
 # Common Elementor Mistakes We Fix (And How to Avoid Them)

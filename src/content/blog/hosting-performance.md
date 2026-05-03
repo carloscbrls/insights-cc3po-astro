@@ -5,7 +5,7 @@ pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/hosting-performance.jpg'
+image: '/blog-images/hosting-performance-gen.png'
 ---
 
 # WordPress Hosting Performance: What Actually Matters

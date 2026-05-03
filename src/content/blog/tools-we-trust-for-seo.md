@@ -5,7 +5,7 @@ pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/tools-seo.jpg'
+image: '/blog-images/tools-seo-gen.png'
 ---
 
 # Tools We Trust for SEO

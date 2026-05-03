@@ -5,7 +5,7 @@ pubDate: '2026-05-07'
 category: 'AI & Automation'
 author: 'Carlos Cabrales'
 authorUrl: 'https://cc3po.com'
-image: '/blog-images/ai-setup-case-study.jpg'
+image: '/blog-images/ai-setup-case-study-gen.png'
 ---
 
 # 5 Hours to Client: How We Set Up an AI Assistant for a Fitness Business

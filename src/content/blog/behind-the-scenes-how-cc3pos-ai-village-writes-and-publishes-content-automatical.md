@@ -5,7 +5,7 @@ pubDate: '2026-04-08'
 category: 'AI & Automation'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/ai-village.jpg'
+image: '/blog-images/ai-village-gen.png'
 ---
 
 # Behind the Scenes: How CC3PO's AI Village Writes and Publishes Content Automatically

@@ -4,7 +4,7 @@ description: 'AI scheduling is transforming healthcare practices, but PHI compli
 pubDate: 'May 25 2026'
 category: 'AI & Automation'
 author: 'Carlos Cabrales'
-image: '/blog-images/ai-scheduling-hero.jpg'
+image: '/blog-images/ai-scheduling-hero-gen.png'
 ---
 
 # How AI Agents Handle Patient Scheduling Without HIPAA Violations

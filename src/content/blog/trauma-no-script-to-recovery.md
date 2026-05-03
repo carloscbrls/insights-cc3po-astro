@@ -5,7 +5,7 @@ pubDate: '2026-04-08'
 category: 'Nonprofit'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/trauma-recovery.jpg'
+image: '/blog-images/trauma-recovery-gen.png'
 ---
 
 # Trauma: No Script to Recovery

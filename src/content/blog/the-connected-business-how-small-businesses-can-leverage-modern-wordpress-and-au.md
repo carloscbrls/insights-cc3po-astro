@@ -5,7 +5,7 @@ pubDate: '2026-04-08'
 category: 'Business'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/connected-business.jpg'
+image: '/blog-images/connected-business-gen.png'
 ---
 
 # The Connected Business: How Small Businesses Can Leverage Modern WordPress and Automation in 2026

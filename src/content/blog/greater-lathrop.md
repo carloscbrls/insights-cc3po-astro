@@ -5,7 +5,7 @@ pubDate: '2026-04-08'
 category: 'Business'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/greater-lathrop.jpg'
+image: '/blog-images/greater-lathrop-gen.png'
 ---
 
 # Greater Lathrop: A Local Business Digital Transformation Story

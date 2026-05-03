@@ -5,7 +5,7 @@ pubDate: '2026-04-08'
 category: 'Nonprofit'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/ai-grant-writing.jpg'
+image: '/blog-images/ai-grant-writing-gen.png'
 ---
 
 # AI-Assisted Grant Writing for California Nonprofits

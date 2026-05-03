@@ -4,7 +4,7 @@ description: 'A practical breakdown of what HIPAA auditors examine, common findi
 pubDate: 'May 19 2026'
 category: 'Compliance'
 author: 'Carlos Cabrales'
-image: '/blog-images/hipaa-auditors.jpg'
+image: '/blog-images/hipaa-auditors-gen.png'
 ---
 
 # What HIPAA Auditors Actually Look For (And How to Pass)

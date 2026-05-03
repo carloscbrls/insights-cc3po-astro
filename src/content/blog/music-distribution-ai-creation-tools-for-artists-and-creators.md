@@ -5,7 +5,7 @@ pubDate: '2026-04-08'
 category: 'AI & Automation'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/music-distribution.jpg'
+image: '/blog-images/music-distribution-gen.png'
 ---
 
 # Music Distribution: AI Creation Tools for Artists and Creators

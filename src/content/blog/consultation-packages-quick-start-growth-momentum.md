@@ -5,7 +5,7 @@ pubDate: '2026-04-08'
 category: 'Business'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/consultation-packages.jpg'
+image: '/blog-images/consultation-packages-gen.png'
 ---
 
 # Consultation Packages: Quick Start, Growth, Momentum

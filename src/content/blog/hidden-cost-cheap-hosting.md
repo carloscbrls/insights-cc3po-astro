@@ -4,7 +4,7 @@ description: 'That $3/month hosting plan is costing you far more than you think.
 pubDate: 'May 23 2026'
 category: 'WordPress'
 author: 'Carlos Cabrales'
-image: '/blog-images/hosting-cheap.jpg'
+image: '/blog-images/hosting-cheap-gen.png'
 ---
 
 # The Hidden Cost of Cheap Website Hosting

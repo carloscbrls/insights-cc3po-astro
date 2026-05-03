@@ -5,7 +5,7 @@ pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'Carlos Cabrales'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-image: '/blog-images/wp-automation-tools.jpg'
+image: '/blog-images/wp-automation-tools-gen.png'
 ---
 
 # Recommended Tools for WordPress Automation Development
