@@ -33,7 +33,7 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
       <div class="card-meta">
         <div class="author">
           <div class="author-avatar">
-            {post.data.author?.charAt(0) || 'C'}
+            <img src="/images/carlos.jpg" alt={post.data.author || 'Carlos Cabrales'} />
           </div>
           <span class="author-name">{post.data.author}</span>
         </div>
@@ -166,13 +166,14 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background: #e94560;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 700;
-    color: #fff;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .author-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .author-name {

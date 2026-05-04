@@ -2,13 +2,13 @@
 import SearchWidget from './SearchWidget.astro';
 
 const navLinks = [
-	{ href: 'https://cc3po.com', label: 'Home' },
+	{ href: '/', label: 'Blog', icon: '📝' },
 	{ href: 'https://offers.cc3po.com/our-services.html', label: 'Services' },
-	{ href: '/signal/', label: 'Signal' },
-	{ href: 'https://docs.cc3po.com', label: 'Docs' },
-	{ href: 'https://insights.cc3po.com/lead-magnets.html', label: 'Resources' },
 	{ href: 'https://audit.cc3po.com/', label: 'Free Audit' },
+	{ href: 'https://docs.cc3po.com', label: 'Docs' },
 ];
+
+const currentPath = Astro.url.pathname;
 ---
 
 <style>
@@ -17,129 +17,143 @@ const navLinks = [
 		top: 0;
 		left: 0;
 		right: 0;
-		height: 60px;
-		background: rgba(10, 10, 11, 0.95);
-		backdrop-filter: blur(20px);
-		-webkit-backdrop-filter: blur(20px);
-		display: flex;
-		align-items: center;
+		height: 64px;
+		background: rgba(10, 10, 11, 0.92);
+		backdrop-filter: blur(24px);
+		-webkit-backdrop-filter: blur(24px);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 		z-index: 1000;
+		transition: background 0.3s ease;
+	}
+	nav.scrolled {
+		background: rgba(10, 10, 11, 0.98);
+		border-bottom-color: rgba(255, 255, 255, 0.08);
 	}
 	nav .inner {
-		max-width: 1280px;
+		max-width: 1200px;
 		margin: 0 auto;
-		padding: 0 20px;
+		padding: 0 24px;
 		width: 100%;
+		height: 100%;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 	}
+
+	/* Logo */
 	nav .logo {
 		display: flex;
 		align-items: center;
+		gap: 10px;
 		text-decoration: none;
 		flex-shrink: 0;
 	}
 	nav .logo img {
-		height: 56px;
+		height: 36px;
 		width: auto;
-		max-width: 140px;
-		object-fit: contain;
-		border-radius: 8px;
-		background: #1a1a2e;
-		padding: 2px;
-		filter: brightness(1.15) saturate(1.2) drop-shadow(0 0 6px rgba(100,200,255,0.3));
-		transition: filter 0.3s ease;
+		border-radius: 6px;
+		transition: transform 0.2s ease;
 	}
 	nav .logo:hover img {
-		filter: brightness(1.25) saturate(1.35) drop-shadow(0 0 10px rgba(100,200,255,0.5));
+		transform: scale(1.05);
 	}
-	.nav-logo-icon { display: none; }
-	.nav-logo-full { display: block; }
-	@media (max-width: 768px) {
-		.nav-logo-full { display: none; }
-		.nav-logo-icon { display: block; }
+	.logo-text {
+		font-size: 18px;
+		font-weight: 800;
+		color: #fafafa;
+		letter-spacing: -0.02em;
 	}
-	.nav-center {
+	.logo-text .logo-cc {
+		background: linear-gradient(135deg, #6b35ff, #00d2ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+	.logo-text .logo-3po {
+		color: #fafafa;
+	}
+
+	/* Nav Links */
+	.nav-links {
 		display: flex;
 		align-items: center;
-		gap: 24px;
-		flex: 1;
-		justify-content: flex-start;
-	}
-	nav ul.nav-links {
-		display: flex;
-		gap: 20px;
+		gap: 6px;
 		list-style: none;
 		margin: 0;
 		padding: 0;
 	}
-	nav ul.nav-links a {
+	.nav-links a {
 		color: #a1a1aa;
 		font-size: 14px;
+		font-weight: 500;
 		text-decoration: none;
-		transition: color 0.2s;
+		padding: 6px 14px;
+		border-radius: 8px;
+		transition: all 0.2s ease;
 		white-space: nowrap;
 	}
-	nav ul.nav-links a:hover {
-		color: #fff;
+	.nav-links a:hover {
+		color: #fafafa;
+		background: rgba(255, 255, 255, 0.06);
 	}
-	nav ul.nav-links a.active {
+	.nav-links a.active {
 		color: #00d2ff;
+		background: rgba(0, 210, 255, 0.08);
 	}
+
+	/* Right Side */
 	.nav-right {
 		display: flex;
 		align-items: center;
-		gap: 10px;
+		gap: 12px;
 		margin-left: auto;
-	}
-	.search-trigger {
-		padding: 6px 10px;
-		font-size: 12px;
 	}
 	.nav-subscribe {
 		background: linear-gradient(135deg, #6b35ff, #00d2ff);
-		padding: 8px 18px;
-		border-radius: 25px;
+		padding: 8px 20px;
+		border-radius: 8px;
 		color: #fff;
 		font-size: 13px;
 		font-weight: 600;
 		text-decoration: none;
-		transition: transform 0.2s, box-shadow 0.2s;
+		transition: all 0.2s ease;
 		white-space: nowrap;
+		box-shadow: 0 2px 12px rgba(107, 53, 255, 0.25);
 	}
 	.nav-subscribe:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 4px 15px rgba(107, 53, 255, 0.4);
+		transform: translateY(-1px);
+		box-shadow: 0 4px 20px rgba(107, 53, 255, 0.4);
 	}
+
+	/* Hamburger */
 	.nav-toggle {
 		display: none;
 		flex-direction: column;
-		justify-content: space-between;
-		width: 28px;
-		height: 20px;
+		justify-content: center;
+		gap: 5px;
+		width: 32px;
+		height: 32px;
 		cursor: pointer;
+		background: transparent;
+		border: none;
 		padding: 4px;
-		background: transparent;
-		border: none;
-		margin-left: 16px;
-		background: transparent;
-		border: none;
-		padding: 0;
-		margin-left: 12px;
 		flex-shrink: 0;
+		border-radius: 6px;
+		transition: background 0.2s;
+	}
+	.nav-toggle:hover {
+		background: rgba(255, 255, 255, 0.06);
 	}
 	.nav-toggle span {
 		display: block;
-		width: 100%;
+		width: 20px;
 		height: 2px;
-		background: #fff;
+		background: #fafafa;
 		transition: all 0.3s ease;
 		transform-origin: center;
-		border-radius: 1px;
+		border-radius: 2px;
+		margin: 0 auto;
 	}
-	/* Hamburger → X animation */
 	.nav-toggle.active span:nth-child(1) {
 		transform: translateY(7px) rotate(45deg);
 	}
@@ -149,17 +163,19 @@ const navLinks = [
 	.nav-toggle.active span:nth-child(3) {
 		transform: translateY(-7px) rotate(-45deg);
 	}
+
+	/* Mobile Menu */
 	.mobile-menu {
 		display: none;
 		position: fixed;
-		top: 60px;
+		top: 64px;
 		left: 0;
 		right: 0;
 		bottom: 0;
 		background: rgba(10, 10, 11, 0.98);
 		backdrop-filter: blur(20px);
 		-webkit-backdrop-filter: blur(20px);
-		padding: 20px;
+		padding: 24px;
 		flex-direction: column;
 		gap: 0;
 		z-index: 999;
@@ -174,31 +190,39 @@ const navLinks = [
 		padding: 16px 0;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 		color: #a1a1aa;
-		font-size: 17px;
+		font-size: 16px;
+		font-weight: 500;
 		text-decoration: none;
+		transition: color 0.2s;
 	}
 	.mobile-menu a:hover {
+		color: #fafafa;
+	}
+	.mobile-menu a.active {
+		color: #00d2ff;
+	}
+	.mobile-menu .mobile-cta {
+		margin-top: 24px;
+		padding: 14px 24px;
+		border-radius: 8px;
+		background: linear-gradient(135deg, #6b35ff, #00d2ff);
 		color: #fff;
+		font-weight: 600;
+		text-align: center;
+		text-decoration: none;
+		border-bottom: none;
 	}
 	.mobile-search {
-		padding: 12px 0 8px;
+		padding: 0 0 16px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 	}
 
 	@media (max-width: 900px) {
-		nav ul.nav-links {
-			display: none;
-		}
-		.nav-center {
+		.nav-links {
 			display: none;
 		}
 		.nav-toggle {
 			display: flex;
-		}
-		.search-container {
-			display: none;
-		}
-		.mobile-menu .search-container {
-			display: block;
 		}
 	}
 
@@ -210,8 +234,10 @@ const navLinks = [
 			padding: 0 16px;
 		}
 		nav .logo img {
-			height: 44px;
-			max-width: 110px;
+			height: 32px;
+		}
+		.logo-text {
+			font-size: 16px;
 		}
 		.nav-right .nav-subscribe {
 			display: none;
@@ -219,31 +245,27 @@ const navLinks = [
 		.nav-right .search-trigger {
 			display: none;
 		}
-		.nav-toggle {
-			display: flex;
-		}
 		.mobile-menu {
 			top: 56px;
 		}
 	}
 </style>
 
-<nav>
+<nav id="main-nav">
 	<div class="inner">
 		<a href="https://cc3po.com" class="logo">
 			<img src="/images/cc3po-logo.png" alt="CC3PO" />
+			<span class="logo-text"><span class="logo-cc">CC</span><span class="logo-3po">3PO</span> <span style="color: #71717a; font-weight: 400; font-size: 13px;">Insights</span></span>
 		</a>
-		<div class="nav-center">
-			<ul class="nav-links">
-				{navLinks.map(link => (
-					<li>
-						<a href={link.href} class:list={[Astro.url.pathname.startsWith(link.href) && 'active']}>
-							{link.label}
-						</a>
-					</li>
-				))}
-			</ul>
-		</div>
+		<ul class="nav-links">
+			{navLinks.map(link => (
+				<li>
+					<a href={link.href} class:list={[currentPath === link.href && 'active']}>
+						{link.label}
+					</a>
+				</li>
+			))}
+		</ul>
 		<div class="nav-right">
 			<SearchWidget />
 			<a href="/blog#newsletter-section" class="nav-subscribe">Subscribe</a>
@@ -262,16 +284,31 @@ const navLinks = [
 	{navLinks.map(link => (
 		<a href={link.href}>{link.label}</a>
 	))}
-	<a href="/blog#newsletter-section" class="nav-subscribe" style="text-align: center; margin-top: 16px; display: inline-block; padding: 12px 32px;">Subscribe</a>
+	<a href="/blog#newsletter-section" class="mobile-cta">Subscribe</a>
 </div>
 
 <script>
+	const nav = document.getElementById('main-nav');
 	const toggle = document.getElementById('nav-toggle');
 	const mobileMenu = document.getElementById('mobile-menu');
-	
+
+	// Scroll effect
+	let lastScroll = 0;
+	window.addEventListener('scroll', () => {
+		const currentScroll = window.scrollY;
+		if (currentScroll > 20) {
+			nav?.classList.add('scrolled');
+		} else {
+			nav?.classList.remove('scrolled');
+		}
+		lastScroll = currentScroll;
+	});
+
+	// Toggle menu
 	toggle?.addEventListener('click', () => {
 		toggle.classList.toggle('active');
 		mobileMenu?.classList.toggle('active');
+		document.body.style.overflow = mobileMenu?.classList.contains('active') ? 'hidden' : '';
 	});
 
 	// Close menu when clicking a link
@@ -279,6 +316,16 @@ const navLinks = [
 		link.addEventListener('click', () => {
 			toggle?.classList.remove('active');
 			mobileMenu?.classList.remove('active');
+			document.body.style.overflow = '';
 		});
+	});
+
+	// Close on escape
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' && mobileMenu?.classList.contains('active')) {
+			toggle?.classList.remove('active');
+			mobileMenu.classList.remove('active');
+			document.body.style.overflow = '';
+		}
 	});
 </script>
