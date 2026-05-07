@@ -9,7 +9,7 @@ interface Props {
 const { featuredPost, latestPosts } = Astro.props;
 ---
 
-<section class="blog-hero">
+<section class="blog-hero animate-on-scroll">
   <!-- Featured Post -->
   <div class="featured-post">
     <a href={`/blog/${featuredPost.id}/`} class="featured-link">
