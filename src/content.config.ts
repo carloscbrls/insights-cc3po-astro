@@ -16,7 +16,7 @@ const blog = defineCollection({
 			// Blog post hero image - string path (local or URL)
 			image: z.string().optional(),
 			category: z.string().default('WordPress'),
-			author: z.string().default('Carlos Cabrales'),
+			author: z.string().default('atlas'),
 			authorUrl: z.string().optional(),
 		}),
 });
