@@ -3,7 +3,7 @@ title: 'Music Distribution: AI Creation Tools for Artists and Creators'
 description: 'How AI is changing music creation and distribution for independent artists. Practical tools, realistic expectations, and the human element that remains essential.'
 pubDate: '2026-04-08'
 category: 'AI & Automation'
-author: 'Carlos Cabrales'
+author: 'miles'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/music-distribution-gen.png'
 ---

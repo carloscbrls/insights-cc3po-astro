@@ -3,7 +3,7 @@ title: 'Why Your Business Needs AI (And It''s Not What You Think)'
 description: 'Most people hear AI for business and think chatbots. We''re talking about systems that run your business while you sleep. Here''s what AI automation actually does for small businesses.'
 pubDate: '2026-05-05'
 category: 'AI & Automation'
-author: 'Carlos Cabrales'
+author: 'forge'
 authorUrl: 'https://cc3po.com'
 image: '/blog-images/ai-business-hero-gen.png'
 ---

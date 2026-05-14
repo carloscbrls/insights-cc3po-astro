@@ -3,7 +3,7 @@ title: 'WordPress Hosting Performance: What Actually Matters'
 description: 'Cut through the hosting marketing noise. Learn what hosting factors actually affect WordPress site speed and how to choose wisely.'
 pubDate: '2026-04-08'
 category: 'WordPress'
-author: 'Carlos Cabrales'
+author: 'atlas'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/hosting-performance-gen.png'
 ---

@@ -3,7 +3,7 @@ title: 'Common Elementor Mistakes We Fix (And How to Avoid Them)'
 description: "Real-world Elementor problems we encounter regularly, with practical solutions. Learn from others' mistakes before they become yours."
 pubDate: '2026-04-08'
 category: 'WordPress'
-author: 'Carlos Cabrales'
+author: 'atlas'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/elementor-mistakes-gen.png'
 ---

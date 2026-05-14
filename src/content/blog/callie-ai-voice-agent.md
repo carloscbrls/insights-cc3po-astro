@@ -2,7 +2,7 @@
 title: "Meet Callie — The AI Voice Agent That Answers Your Phone 24/7"
 description: "Callie is the AI voice agent that never sleeps, never calls in sick, and handles every call professionally. Here's how AI phone coverage transforms small business operations."
 pubDate: 2026-05-13
-author: "Carlos Cabrales"
+author: "leo"
 image: '/blog-images/ai-scheduling-hero-gen.png'
 category: "AI & Automation"
 tags: ["AI", "voice agent", "automation", "small business", "customer service"]

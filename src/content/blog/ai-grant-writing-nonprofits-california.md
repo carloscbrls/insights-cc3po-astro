@@ -3,7 +3,7 @@ title: 'AI-Assisted Grant Writing for California Nonprofits'
 description: 'Learn how to use AI tools to strengthen your grant writing process. Practical strategies, tool recommendations, and ethical considerations for nonprofits.'
 pubDate: '2026-04-08'
 category: 'Nonprofit'
-author: 'Carlos Cabrales'
+author: 'atlas'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/ai-grant-writing-gen.png'
 ---

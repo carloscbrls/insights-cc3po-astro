@@ -3,7 +3,7 @@ title: 'Trauma: No Script to Recovery'
 description: "Understanding trauma recovery as a journey without scripts. What actually helps and what doesn't in supporting trauma survivors."
 pubDate: '2026-04-08'
 category: 'Nonprofit'
-author: 'Carlos Cabrales'
+author: 'anchor'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/trauma-recovery-gen.png'
 ---

@@ -3,7 +3,7 @@ title: 'How AI Agents Handle Patient Scheduling Without HIPAA Violations'
 description: 'AI scheduling is transforming healthcare practices, but PHI compliance cannot be an afterthought. Here is how to implement AI scheduling that stays within HIPAA rules.'
 pubDate: 'May 25 2026'
 category: 'AI & Automation'
-author: 'Carlos Cabrales'
+author: 'sentinel'
 image: '/blog-images/ai-scheduling-hero-gen.png'
 ---
 

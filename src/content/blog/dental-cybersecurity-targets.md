@@ -3,7 +3,7 @@ title: 'Why Dental Practices Are Prime Targets for Cyberattacks'
 description: 'Dental offices hold a goldmine of patient data and often lack the security to protect it. Here is why hackers target dental practices and what you can do about it.'
 pubDate: 'May 21 2026'
 category: 'Business'
-author: 'Carlos Cabrales'
+author: 'sentinel'
 image: '/blog-images/dental-cybersecurity-gen.png'
 ---
 

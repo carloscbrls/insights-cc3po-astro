@@ -3,7 +3,7 @@ title: 'How AI Automation Is Transforming Small Business Operations'
 description: 'Real-world ways small businesses are using AI automation to compete with larger competitors. Practical examples and implementation guidance.'
 pubDate: '2026-04-08'
 category: 'AI & Automation'
-author: 'Carlos Cabrales'
+author: 'forge'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/ai-transforming-ops-gen.png'
 ---

@@ -3,7 +3,7 @@ title: 'Echoes They Left Behind: Stories of Nonprofit Impact'
 description: 'Real stories of how nonprofits create lasting change in communities. Understanding the human impact behind the metrics and reports.'
 pubDate: '2026-04-08'
 category: 'Nonprofit'
-author: 'Carlos Cabrales'
+author: 'atlas'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/echoes-nonprofit-gen.png'
 ---

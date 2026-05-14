@@ -2,7 +2,7 @@
 title: "Your Website Loads in 6 Seconds. That's Costing You 40% of Visitors."
 description: "Quick test: pull up your website on your phone right now. Count how long it takes to fully load. If you're over 3 seconds, you're losing people. Learn how to fix it."
 pubDate: 2026-05-12
-author: "Carlos Cabrales"
+author: "atlas"
 category: "Technology"
 tags: ["website-speed", "Core-Web-Vitals", "WordPress-performance", "Elementor-optimization", "mobile-performance", "image-optimization", "page-speed", "conversion-optimization", "small-business-websites", "Central-Valley-business"]
 ---

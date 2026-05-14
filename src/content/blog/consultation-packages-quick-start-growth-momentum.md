@@ -3,7 +3,7 @@ title: 'Consultation Packages: Quick Start, Growth, Momentum'
 description: 'Understanding our consultation packages and which one fits your business stage. Practical guidance for choosing the right engagement level.'
 pubDate: '2026-04-08'
 category: 'Business'
-author: 'Carlos Cabrales'
+author: 'forge'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/consultation-packages-gen.png'
 ---

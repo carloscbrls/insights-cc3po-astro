@@ -3,7 +3,7 @@ title: 'Greater Lathrop: A Local Business Digital Transformation Story'
 description: 'How one local business modernized their digital presence and increased leads through strategic website improvements and automation.'
 pubDate: '2026-04-08'
 category: 'Business'
-author: 'Carlos Cabrales'
+author: 'leo'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/greater-lathrop-gen.png'
 ---

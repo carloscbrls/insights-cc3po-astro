@@ -3,7 +3,7 @@ title: 'Elementor Pro Without Breaking Your Site: A Calm Checklist'
 description: 'A systematic approach to upgrading and using Elementor Pro safely. Avoid common pitfalls with this field-tested checklist.'
 pubDate: '2026-04-08'
 category: 'WordPress'
-author: 'Carlos Cabrales'
+author: 'atlas'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/elementor-checklist-gen.png'
 ---

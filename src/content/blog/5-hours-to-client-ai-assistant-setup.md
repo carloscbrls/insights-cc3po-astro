@@ -3,7 +3,7 @@ title: '5 Hours to Client: How We Set Up an AI Assistant for a Fitness Business'
 description: 'A real case study — from first text to live AI assistant. Here''s exactly what happens when a local business owner needs AI, fast.'
 pubDate: '2026-05-07'
 category: 'AI & Automation'
-author: 'Carlos Cabrales'
+author: 'compass'
 authorUrl: 'https://cc3po.com'
 image: '/blog-images/ai-setup-case-study-gen.png'
 ---

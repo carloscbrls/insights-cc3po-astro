@@ -3,7 +3,7 @@ title: 'Tools We Trust for SEO'
 description: 'The SEO tools we actually use and recommend based on real results. Not affiliate suggestions—genuine tool preferences from daily work.'
 pubDate: '2026-04-08'
 category: 'WordPress'
-author: 'Carlos Cabrales'
+author: 'weaver'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/tools-seo-gen.png'
 ---

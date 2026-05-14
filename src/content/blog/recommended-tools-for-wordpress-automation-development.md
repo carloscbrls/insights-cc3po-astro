@@ -3,7 +3,7 @@ title: 'Recommended Tools for WordPress Automation Development'
 description: 'The tools I actually use for building WordPress automation systems. Practical recommendations based on real projects, not theoretical possibilities.'
 pubDate: '2026-04-08'
 category: 'WordPress'
-author: 'Carlos Cabrales'
+author: 'forge'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/wp-automation-tools-gen.png'
 ---

@@ -3,7 +3,7 @@ title: "Compliance That Actually Sticks — Why Most WCAG Training Fails (And Wh
 description: '90% of compliance training is forgotten within a week. Then a $4,000-per-violation lawsuit hits. Here is why one-time audits fail and how spaced repetition training makes accessibility compliance actually stick.'
 pubDate: '2026-05-13'
 category: 'Compliance'
-author: 'Carlos Cabrales'
+author: 'sentinel'
 authorUrl: 'https://cc3po.com'
 image: '/blog-images/compliance-that-sticks-gen.png'
 ---

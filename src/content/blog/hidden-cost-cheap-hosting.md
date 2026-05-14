@@ -3,7 +3,7 @@ title: 'The Hidden Cost of Cheap Website Hosting'
 description: 'That $3/month hosting plan is costing you far more than you think. Here is what cheap hosting really costs in downtime, security, and lost business.'
 pubDate: 'May 23 2026'
 category: 'WordPress'
-author: 'Carlos Cabrales'
+author: 'anchor'
 image: '/blog-images/hosting-cheap-gen.png'
 ---
 

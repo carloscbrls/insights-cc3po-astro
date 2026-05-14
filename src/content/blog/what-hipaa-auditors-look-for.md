@@ -3,7 +3,7 @@ title: 'What HIPAA Auditors Actually Look For (And How to Pass)'
 description: 'A practical breakdown of what HIPAA auditors examine, common findings that get practices in trouble, and how to pass your audit without the panic.'
 pubDate: 'May 19 2026'
 category: 'Compliance'
-author: 'Carlos Cabrales'
+author: 'sentinel'
 image: '/blog-images/hipaa-auditors-gen.png'
 ---
 

@@ -3,7 +3,7 @@ title: 'The $10K/Month Blueprint: Automating Your Way to Freedom'
 description: 'A practical blueprint for reaching $10K/month through AI automation. No theory — just the math, the stack, and the timeline.'
 pubDate: '2026-05-09'
 category: 'Business'
-author: 'Carlos Cabrales'
+author: 'compass'
 authorUrl: 'https://cc3po.com'
 image: '/blog-images/10k-blueprint-gen.png'
 ---

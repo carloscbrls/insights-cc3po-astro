@@ -3,7 +3,7 @@ title: "Why Your AI Agency Shouldn't Pick a Lane — The M-Shape Advantage"
 description: 'Everyone says niche down. They are wrong. In the AI era, multi-domain expertise compounds faster than specialization. Here is the framework to prove it.'
 pubDate: '2026-05-13'
 category: 'Business'
-author: 'Carlos Cabrales'
+author: 'sentinel'
 authorUrl: 'https://cc3po.com'
 image: '/blog-images/m-shape-advantage-gen.png'
 ---

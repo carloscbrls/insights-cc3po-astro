@@ -9,10 +9,12 @@ import NewsletterSignup from '../components/NewsletterSignup.astro';
 import BackToTop from '../components/BackToTop.astro';
 import CommentsSection from '../components/CommentsSection.astro';
 import ExitIntentPopup from '../components/ExitIntentPopup.astro';
+import { getAuthor } from '../data/authors';
 
 type Props = CollectionEntry<'blog'>['data'] & { id?: string };
 
 const { title, description, pubDate, updatedDate, image, category, author, authorUrl, id } = Astro.props;
+const authorData = getAuthor(author || 'atlas');
 
 // Get related posts (same category)
 const allPosts = await getCollection('blog');
@@ -540,10 +542,10 @@ const relatedPosts = allPosts
 			<p class="article-excerpt">{description}</p>
 
 			<div class="author-block">
-				<div class="author-avatar"><img src="/images/carlos.jpg" alt={author || 'Carlos Cabrales'} style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" /></div>
+				<div class="author-avatar"><img src={authorData.photo} alt={`${authorData.name} ${authorData.emoji}`} style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" /></div>
 				<div class="author-info">
-					<div class="author-name">{author}</div>
-					<div class="author-title">IT Consultant & AI Systems Architect</div>
+					<div class="author-name">{authorData.name} {authorData.emoji}</div>
+					<div class="author-title">{authorData.role} • CC3PO Village</div>
 				</div>
 			</div>
 

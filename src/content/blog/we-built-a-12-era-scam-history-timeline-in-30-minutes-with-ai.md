@@ -3,7 +3,7 @@ title: "We Built a 12-Era Scam History Timeline in 30 Minutes With AI"
 description: 'My dad asked for scam history sketches for his community program. 30 minutes later, he had 12 custom illustrations, an interactive timeline website, a video slideshow, and a narration script. Here is exactly how we did it.'
 pubDate: '2026-05-13'
 category: 'AI & Automation'
-author: 'Carlos Cabrales'
+author: 'weaver'
 authorUrl: 'https://cc3po.com'
 image: '/blog-images/scam-history-timeline-gen.png'
 ---

@@ -3,7 +3,7 @@ title: 'The Connected Business: How Small Businesses Can Leverage Modern WordPre
 description: 'Current opportunities for small businesses to compete through connected systems. Practical guidance for the year ahead.'
 pubDate: '2026-04-08'
 category: 'Business'
-author: 'Carlos Cabrales'
+author: 'atlas'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/connected-business-gen.png'
 ---

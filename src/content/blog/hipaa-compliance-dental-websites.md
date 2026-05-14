@@ -3,7 +3,7 @@ title: 'Is Your Dental Website HIPAA-Compliant? 5 Risks You Are Probably Taking'
 description: 'Most dental websites have HIPAA violations they do not know about. Learn the 5 biggest risks and how to fix them before they cost you $50,000.'
 pubDate: '2026-04-23'
 category: 'Compliance'
-author: 'Carlos Cabrales'
+author: 'sentinel'
 authorUrl: 'https://cc3po.com'
 image: '/blog-images/hipaa-compliance-dental-gen.png'
 ---

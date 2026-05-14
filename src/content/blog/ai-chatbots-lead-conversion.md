@@ -3,7 +3,7 @@ title: 'How AI Chatbots Convert Leads: A Practical Guide'
 description: 'Discover how AI-powered chatbots capture and convert leads 24/7. Real strategies for implementation, common pitfalls, and measurable results.'
 pubDate: '2026-04-08'
 category: 'AI & Automation'
-author: 'Carlos Cabrales'
+author: 'sage'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/ai-chatbots-gen.png'
 ---
