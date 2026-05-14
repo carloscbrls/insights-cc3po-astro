@@ -86,3 +86,13 @@ Speed isn't a technical detail. It's business strategy. Every second of load tim
 **Your website can load in under 2 seconds. Want to see how?**
 
 [Let's talk.](https://cc3po.com/contact) I'll run a free speed audit on your site and show you exactly what's slowing you down — and what it would take to fix it.
+
+---
+
+## Tools I Trust for Website Speed
+
+These are the tools I actually use and recommend to clients. Some have affiliate links — I only recommend what I've tested.
+
+- **[SiteGround Hosting](https://www.siteground.com/index.htm?afcode=8517af33febda54333228fba917e7ef1)** — Fast, reliable WordPress hosting with built-in caching and CDN. Starts at $3.99/mo.
+- **[Elementor Pro](https://elementor.com/pages/plugin-special/?cxd=229898_1974278&utm_source=elementor&utm_medium=affiliate&utm_campaign=229898&utm_content=cx&affid=229898)** — The page builder I build every client site with. V4's atomic foundation is a game-changer for performance.
+- **[Accessibly](https://dash.accessiblyapp.com/register?ref=carlos78)** — Accessibility widget that handles WCAG compliance and improves your site for all users. Speed + accessibility go hand in hand.

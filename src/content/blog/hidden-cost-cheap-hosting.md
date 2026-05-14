@@ -152,4 +152,12 @@ Does that deserve the cheapest option available?
 
 Invest in hosting that matches the value of what your website does for your business. The math is simple, and the answer is almost always: yes, it's worth spending more.
 
+---
+
+## Hosting I Recommend
+
+- **[SiteGround](https://www.siteground.com/index.htm?afcode=8517af33febda54333228fba917e7ef1)** — Managed WordPress hosting starting at $3.99/mo. Fast, reliable, with built-in caching and CDN. This is what I put most small business clients on.
+- **[WP Engine](https://wpengine.com/signup/?coupon=wpe3free&plan=startup&oid=1055761&affid=5001721&everflow_transaction_id=38b6a5911dd44a27a5c33c2c273c1228&utm_source=everflow&utm_medium=affiliate&utm_campaign=229898&utm_content=cx&affid=229898)** — Premium managed WordPress for businesses that need top-tier performance and support. Starts at $20/mo.
+- **[Accessibly](https://dash.accessiblyapp.com/register?ref=carlos78)** — Accessibility compliance widget. Fast hosting + accessibility = a site that works for everyone.
+
 If you're on budget hosting and wondering whether it's holding your business back, let's talk. I'll look at your current setup and give you an honest assessment — no upsell, just straight answers.
