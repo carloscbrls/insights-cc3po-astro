@@ -13,6 +13,16 @@ export interface Author {
 }
 
 export const authors: Record<string, Author> = {
+  carlos: {
+    id: 'carlos',
+    name: 'Carlos',
+    emoji: '🧑🏽\u200d💻',
+    role: 'Founder & Builder',
+    photo: '/images/authors/carlos.png',
+    bio: 'Built the village because he believed people deserve better tools. Former Tesla AI team. 10+ years IT, systems thinking, and building things that run themselves.',
+    quote: 'Build once. Run forever. Evolve continuously.',
+    village: 'mac-mini',
+  },
   atlas: {
     id: 'atlas',
     name: 'Atlas',
