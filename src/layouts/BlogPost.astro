@@ -624,14 +624,14 @@ const relatedPosts = allPosts
 				<div class="author-bio-footer">
 					<div class="author-bio-content">
 						<div class="author-bio-avatar">
-							<img src="/images/carlos.jpg" alt={author || 'Carlos Cabrales'} style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" />
+							<img src={authorData.photo} alt={`${authorData.name} ${authorData.emoji}`} style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" />
 						</div>
 						<div class="author-bio-text">
-							<h4>About {author || 'Carlos Cabrales'}</h4>
-							<p>IT Consultant and AI Systems Architect with 15+ years of experience. Former Tesla AI team member who helped train Autopilot. Now helping small businesses leverage AI and automation to scale efficiently.</p>
+							<h4>About {authorData.name} {authorData.emoji}</h4>
+							<p><em>"{authorData.quote}"</em></p>
+							<p>{authorData.bio} — {authorData.role}, CC3PO Village.</p>
 							<div class="author-links">
-								<a href={authorUrl || 'https://www.linkedin.com/company/cc3potechnology'} target="_blank" rel="noopener">LinkedIn →</a>
-								<a href="https://cc3po.com" target="_blank">Website →</a>
+								<a href="/village/" target="_blank" rel="noopener">Meet the Village →</a>
 							</div>
 						</div>
 					</div>
