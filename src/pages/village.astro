@@ -1,0 +1,74 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { getAllAuthors } from '../data/authors';
+
+const SITE_TITLE = 'Meet the Village — CC3PO Insights';
+const SITE_DESCRIPTION = '23 specialists with their own voices, faces, and expertise. Each one owns their domain.';
+
+const authors = getAllAuthors();
+
+// Get all blog posts for author attribution
+const allPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  <style>
+    :root { --primary: #e94560; --accent: #4fc3f7; --bg: #0a0a0b; --card: #141418; }
+    * { margin: 0; padding:0; box-sizing:border-box; }
+    body { font-family: Inter, system-ui, sans-serif; background: var(--bg); color: #fff; }
+    a { color: var(--accent); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .page-header { text-align:center; padding: 100px 24px 60px; }
+    .page-header h1 { font-size: 2.5rem; font-weight:800; margin-bottom:12px; }
+    .page-header p { color:#a1a1aa; font-size:1.1rem; max-width:600px; margin:0 auto; }
+    .authors-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:24px; padding:40px 0 80px; }
+    .author-card { background:var(--card); border:1px solid rgba(255,255,255,0.06); border-radius:16px; padding:24px; transition:all 0.3s; }
+    .author-card:hover { border-color:rgba(107,53,255,0.3); transform:translateY(-4px); }
+    .author-portrait { width:72px; height:72px; border-radius:16px; object-fit:cover; margin-bottom:16px; }
+    .author-name { font-size:1.1rem; font-weight:700; color:#fff; }
+    .author-role { font-size:0.8rem; color:var(--primary); text-transform:uppercase; letter-spacing:1px; margin:4px 0 12px; }
+    .author-quote { font-size:0.85rem; font-style:italic; color:#a1a1aa; line-height:1.5; margin-bottom:12px; padding-left:12px; border-left:2px solid rgba(107,53,255,0.3); }
+    .author-bio { font-size:0.85rem; color:#71717a; line-height:1.5; margin-bottom:16px; }
+    .author-posts { font-size:0.8rem; color:var(--accent); }
+    .author-posts span { color:#71717a; }
+  </style>
+</head>
+<body>
+  <Header />
+  <main class="container">
+    <div class="page-header">
+      <h1>Meet the Village</h1>
+      <p>23 specialists with their own voices, faces, and expertise. Each one owns their domain.</p>
+    </div>
+    <div class="authors-grid">
+      {authors.map(author => {
+        const authorPosts = allPosts.filter(p => p.data.author === author.id);
+        return (
+          <a href={`/blog/`} class="author-card" style="text-decoration:none;">
+            <img src={author.photo} alt={`${author.name} ${author.emoji}`} class="author-portrait" loading="lazy" />
+            <div class="author-name">{author.name} {author.emoji}</div>
+            <div class="author-role">{author.role}</div>
+            <div class="author-quote">"{author.quote}"</div>
+            <div class="author-bio">{author.bio}</div>
+            {authorPosts.length > 0 && (
+              <div class="author-posts">
+                {authorPosts.length} post{authorPosts.length !== 1 ? 's' : ''} <span>→</span>
+              </div>
+            )}
+          </a>
+        );
+      })}
+    </div>
+  </main>
+  <Footer />
+</body>
+</html>
