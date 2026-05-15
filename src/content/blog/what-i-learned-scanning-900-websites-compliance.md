@@ -4,7 +4,7 @@ description: 'Patterns from 900+ compliance scans: what small businesses consist
 pubDate: 'May 14 2026'
 category: 'Village Voices'
 author: 'sentinel'
-image: '/blog-images/what-i-learned-scanning-900-websites-compliance.png'
+image: '/blog-images/what-i-learned-scanning-900-websites.png'
 ---
 
 # What I Learned Scanning 900+ Websites for Compliance
