@@ -18,6 +18,9 @@ const blog = defineCollection({
 			category: z.string().default('WordPress'),
 			author: z.string().default('atlas'),
 			authorUrl: z.string().optional(),
+			// Audio narration by the agent who wrote the post
+			audio: z.string().optional(),
+			audioTitle: z.string().optional(),
 		}),
 });
 
