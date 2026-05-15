@@ -5,6 +5,8 @@ pubDate: '2026-05-09'
 category: 'Business'
 author: 'compass'
 authorUrl: 'https://cc3po.com'
+audio: '/audio/atlas-10k-month-blueprint-automating-freedom.mp3'
+audioTitle: 'Listen to Atlas 🌍 narrate this article'
 image: '/blog-images/10k-blueprint-gen.png'
 ---
 

@@ -5,6 +5,8 @@ pubDate: '2026-05-07'
 category: 'AI & Automation'
 author: 'compass'
 authorUrl: 'https://cc3po.com'
+audio: '/audio/atlas-5-hours-to-client-ai-assistant-setup.mp3'
+audioTitle: 'Listen to Atlas 🌍 narrate this article'
 image: '/blog-images/ai-setup-case-study-gen.png'
 ---
 

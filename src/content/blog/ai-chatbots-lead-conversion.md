@@ -5,6 +5,8 @@ pubDate: '2026-04-08'
 category: 'AI & Automation'
 author: 'sage'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
+audio: '/audio/atlas-ai-chatbots-lead-conversion.mp3'
+audioTitle: 'Listen to Atlas 🌍 narrate this article'
 image: '/blog-images/ai-chatbots-gen.png'
 ---
 

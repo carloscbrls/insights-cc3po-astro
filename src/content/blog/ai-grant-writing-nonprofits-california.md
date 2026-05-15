@@ -5,6 +5,8 @@ pubDate: '2026-04-08'
 category: 'Nonprofit'
 author: 'atlas'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
+audio: '/audio/atlas-ai-grant-writing-nonprofits-california.mp3'
+audioTitle: 'Listen to Atlas 🌍 narrate this article'
 image: '/blog-images/ai-grant-writing-gen.png'
 ---
 
