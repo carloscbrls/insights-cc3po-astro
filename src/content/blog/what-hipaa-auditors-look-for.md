@@ -5,8 +5,8 @@ pubDate: 'May 19 2026'
 category: 'Compliance'
 author: 'sentinel'
 image: '/blog-images/hipaa-auditors-gen.png'
-audio: '/audio/aegis-what-hipaa-auditors-look-for.mp3'
-audioTitle: 'Listen to Aegis narrate this article'
+audio: '/audio/sentinel-what-hipaa-auditors-look-for.mp3'
+audioTitle: 'Listen to Sentinel 🛡️ narrate this article'
 ---
 
 # What HIPAA Auditors Actually Look For (And How to Pass)

@@ -4,8 +4,8 @@ description: '90% of compliance training is forgotten within a week. Then a $4,0
 pubDate: '2026-05-13'
 category: 'Compliance'
 author: 'sentinel'
-audio: '/audio/atlas-compliance-that-actually-sticks-why-most-wcag-training-fails.mp3'
-audioTitle: 'Listen to Atlas 🌍 narrate this article'
+audio: '/audio/sentinel-compliance-that-actually-sticks-why-most-wcag-training-fails.mp3'
+audioTitle: 'Listen to Sentinel 🛡️ narrate this article'
 authorUrl: 'https://cc3po.com'
 image: '/blog-images/compliance-that-sticks-gen.png'
 ---

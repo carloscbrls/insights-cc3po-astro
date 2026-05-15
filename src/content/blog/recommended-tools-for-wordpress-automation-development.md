@@ -5,8 +5,8 @@ pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'forge'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-audio: '/audio/atlas-recommended-tools-for-wordpress-automation-development.mp3'
-audioTitle: 'Listen to Atlas 🌍 narrate this article'
+audio: '/audio/forge-recommended-tools-for-wordpress-automation-development.mp3'
+audioTitle: 'Listen to Forge ⚒️ narrate this article'
 image: '/blog-images/wp-automation-tools-gen.png'
 ---
 

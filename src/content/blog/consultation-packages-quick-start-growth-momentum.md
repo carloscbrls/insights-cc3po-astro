@@ -4,8 +4,8 @@ description: 'Understanding our consultation packages and which one fits your bu
 pubDate: '2026-04-08'
 category: 'Business'
 author: 'forge'
-audio: '/audio/atlas-consultation-packages-quick-start-growth-momentum.mp3'
-audioTitle: 'Listen to Atlas 🌍 narrate this article'
+audio: '/audio/forge-consultation-packages-quick-start-growth-momentum.mp3'
+audioTitle: 'Listen to Forge ⚒️ narrate this article'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/consultation-packages-gen.png'
 ---

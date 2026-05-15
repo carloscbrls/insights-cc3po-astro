@@ -7,8 +7,8 @@ category: 'Business'
 author: 'sentinel'
 image: '/blog-images/dental-cybersecurity-shield.png'
 
-audio: '/audio/atlas-dental-cybersecurity-targets.mp3'
-audioTitle: 'Listen to Atlas 🌍 narrate this article'
+audio: '/audio/sentinel-dental-cybersecurity-targets.mp3'
+audioTitle: 'Listen to Sentinel 🛡️ narrate this article'
 ---
 
 # Why Dental Practices Are Prime Targets for Cyberattacks

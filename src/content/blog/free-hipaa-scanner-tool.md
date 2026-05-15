@@ -8,8 +8,8 @@ image: '/blog-images/hipaa-auditors-gen.png'
 category: "Compliance"
 tags: ["HIPAA", "compliance", "scanner", "healthcare", "website security"]
 
-audio: '/audio/atlas-free-hipaa-scanner-tool.mp3'
-audioTitle: 'Listen to Atlas 🌍 narrate this article'
+audio: '/audio/sentinel-free-hipaa-scanner-tool.mp3'
+audioTitle: 'Listen to Sentinel 🛡️ narrate this article'
 ---
 
 # Free HIPAA Scanner — Find Your Website's Compliance Gaps in 60 Seconds

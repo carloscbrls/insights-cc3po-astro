@@ -5,8 +5,8 @@ pubDate: '2026-04-08'
 category: 'Business'
 author: 'leo'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-audio: '/audio/atlas-greater-lathrop.mp3'
-audioTitle: 'Listen to Atlas 🌍 narrate this article'
+audio: '/audio/leo-greater-lathrop.mp3'
+audioTitle: 'Listen to Leo 🦁 narrate this article'
 image: '/blog-images/greater-lathrop-gen.png'
 ---
 

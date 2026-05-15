@@ -8,8 +8,8 @@ image: '/blog-images/automation-first-wordpress-gen.png'
 category: "Business"
 tags: ["wordpress-automation", "small-business-it", "ai-automation", "elementor", "sticklight-ai", "workflow-automation", "central-valley-business", "hipaa-compliance"]
 
-audio: '/audio/atlas-automation-first-business-wordpress-2026.mp3'
-audioTitle: 'Listen to Atlas 🌍 narrate this article'
+audio: '/audio/forge-automation-first-business-wordpress-2026.mp3'
+audioTitle: 'Listen to Forge ⚒️ narrate this article'
 ---
 
 # The Automation-First Business: 5 Ways WordPress Sites Can Run Themselves in 2026

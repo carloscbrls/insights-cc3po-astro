@@ -5,8 +5,8 @@ pubDate: 'May 23 2026'
 category: 'WordPress'
 author: 'anchor'
 image: '/blog-images/hosting-cheap-gen.png'
-audio: '/audio/atlas-hidden-cost-cheap-hosting.mp3'
-audioTitle: 'Listen to Atlas 🌍 narrate this article'
+audio: '/audio/anchor-hidden-cost-cheap-hosting.mp3'
+audioTitle: 'Listen to Anchor ⚓ narrate this article'
 ---
 
 # The Hidden Cost of Cheap Website Hosting

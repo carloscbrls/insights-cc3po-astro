@@ -5,8 +5,8 @@ pubDate: '2026-04-08'
 category: 'Business'
 author: 'aegis'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-audio: '/audio/atlas-ada-awareness-without-the-fear-tactics.mp3'
-audioTitle: 'Listen to Atlas 🌍 narrate this article'
+audio: '/audio/aegis-ada-awareness-without-the-fear-tactics.mp3'
+audioTitle: 'Listen to Aegis ♿ narrate this article'
 image: '/blog-images/ada-awareness-gen.png'
 ---
 

@@ -8,8 +8,8 @@ image: '/blog-images/dental-it-support-gen.png'
 category: "Business"
 tags: ["dental", "IT support", "HIPAA", "compliance", "healthcare"]
 
-audio: '/audio/atlas-dental-it-specialized-support.mp3'
-audioTitle: 'Listen to Atlas 🌍 narrate this article'
+audio: '/audio/sentinel-dental-it-specialized-support.mp3'
+audioTitle: 'Listen to Sentinel 🛡️ narrate this article'
 ---
 
 # Why Your Dental Practice Needs Specialized IT Support

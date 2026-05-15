@@ -5,8 +5,8 @@ pubDate: '2026-04-08'
 category: 'AI & Automation'
 author: 'forge'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-audio: '/audio/atlas-how-ai-automation-is-transforming-small-business-operations.mp3'
-audioTitle: 'Listen to Atlas 🌍 narrate this article'
+audio: '/audio/forge-how-ai-automation-is-transforming-small-business-operations.mp3'
+audioTitle: 'Listen to Forge ⚒️ narrate this article'
 image: '/blog-images/ai-transforming-ops-gen.png'
 ---
 

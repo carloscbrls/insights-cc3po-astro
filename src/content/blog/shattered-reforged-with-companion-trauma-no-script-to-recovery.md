@@ -5,8 +5,8 @@ pubDate: '2026-04-08'
 category: 'Nonprofit'
 author: 'anchor'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-audio: '/audio/atlas-shattered-reforged-with-companion-trauma-no-script-to-recovery.mp3'
-audioTitle: 'Listen to Atlas 🌍 narrate this article'
+audio: '/audio/anchor-shattered-reforged-with-companion-trauma-no-script-to-recovery.mp3'
+audioTitle: 'Listen to Anchor ⚓ narrate this article'
 image: '/blog-images/shattered-reforged-gen.png'
 ---
 

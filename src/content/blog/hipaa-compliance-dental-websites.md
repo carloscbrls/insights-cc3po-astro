@@ -5,8 +5,8 @@ pubDate: '2026-04-23'
 category: 'Compliance'
 author: 'sentinel'
 authorUrl: 'https://cc3po.com'
-audio: '/audio/atlas-hipaa-compliance-dental-websites.mp3'
-audioTitle: 'Listen to Atlas 🌍 narrate this article'
+audio: '/audio/sentinel-hipaa-compliance-dental-websites.mp3'
+audioTitle: 'Listen to Sentinel 🛡️ narrate this article'
 image: '/blog-images/hipaa-compliance-dental-gen.png'
 ---
 

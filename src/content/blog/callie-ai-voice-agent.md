@@ -8,8 +8,8 @@ image: '/blog-images/ai-scheduling-hero-gen.png'
 category: "AI & Automation"
 tags: ["AI", "voice agent", "automation", "small business", "customer service"]
 
-audio: '/audio/atlas-callie-ai-voice-agent.mp3'
-audioTitle: 'Listen to Atlas 🌍 narrate this article'
+audio: '/audio/leo-callie-ai-voice-agent.mp3'
+audioTitle: 'Listen to Leo 🦁 narrate this article'
 ---
 
 # Meet Callie — The AI Voice Agent That Answers Your Phone 24/7

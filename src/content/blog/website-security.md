@@ -5,8 +5,8 @@ pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'sentinel'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
-audio: '/audio/aegis-website-security.mp3'
-audioTitle: 'Listen to Aegis narrate this article'
+audio: '/audio/sentinel-website-security.mp3'
+audioTitle: 'Listen to Sentinel 🛡️ narrate this article'
 image: '/blog-images/website-security-gen.png'
 ---
 
