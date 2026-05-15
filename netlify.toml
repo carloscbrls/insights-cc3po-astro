@@ -8,6 +8,12 @@
   [headers.values]
     X-Analytics = "true"
 
+# Audio files - serve directly, no redirect
+[[redirects]]
+  from = "/audio/*"
+  to = "/audio/:splat"
+  status = 200
+
 [[redirects]]
   from = "/blog.html"
   to = "/signal/"
@@ -29,6 +35,14 @@
   status = 301
 
 # Phase 6: Cache-Control headers for optimal performance
+
+# Audio files - long-term cache (1 year)
+[[headers]]
+  for = "/audio/*.mp3"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "audio/mpeg"
+    Accept-Ranges = "bytes"
 
 # Static assets - long-term cache (1 year)
 [[headers]]

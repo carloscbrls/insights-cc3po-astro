@@ -7,8 +7,6 @@ author: 'atlas'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 audio: '/audio/atlas-best-ai-tools-for-small-nonprofits-in-california-2026-guide.mp3'
 audioTitle: 'Listen to Atlas 🌍 narrate this article'
-audio: '/audio/atlas-best-ai-tools-for-small-nonprofits-in-california-2026-guide.mp3'
-audioTitle: 'Listen to Atlas 🌍 narrate this article'
 image: '/blog-images/best-ai-tools-gen.png'
 ---
 
