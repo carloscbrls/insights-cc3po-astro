@@ -11,9 +11,9 @@ import CommentsSection from '../components/CommentsSection.astro';
 import ExitIntentPopup from '../components/ExitIntentPopup.astro';
 import { getAuthor } from '../data/authors';
 
-type Props = CollectionEntry<'blog'>['data'] & { id?: string };
+type Props = CollectionEntry<'blog'>['data'] & { id?: string, audio?: string, audioTitle?: string };
 
-const { title, description, pubDate, updatedDate, image, category, author, authorUrl, id } = Astro.props;
+const { title, description, pubDate, updatedDate, image, category, author, authorUrl, id, audio, audioTitle } = Astro.props;
 const authorData = getAuthor(author || 'atlas');
 
 // Get related posts (same category)
@@ -163,6 +163,27 @@ const relatedPosts = allPosts
 				flex-wrap: wrap;
 				color: #71717a;
 				font-size: 14px;
+			}
+			.audio-narration {
+				background: linear-gradient(135deg, rgba(107, 53, 255, 0.08), rgba(79, 195, 247, 0.08));
+				border: 1px solid rgba(107, 53, 255, 0.2);
+				border-radius: 16px;
+				padding: 16px 20px;
+				margin-bottom: 24px;
+			}
+			.audio-label {
+				font-size: 14px;
+				color: #4fc3f7;
+				font-weight: 500;
+				margin-bottom: 4px;
+			}
+			.audio-icon {
+				font-size: 18px;
+				margin-right: 6px;
+			}
+			audio {
+				width: 100%;
+				border-radius: 12px;
 			}
 
 			.meta-divider {
@@ -599,6 +620,16 @@ const relatedPosts = allPosts
 				<span>CC3PO Insights</span>
 			</div>
 		</header>
+
+		{audio && (
+			<div class="audio-narration">
+				<div class="audio-label"><span class="audio-icon">♪</span> Listen to {authorData.name} {authorData.emoji} narrate this article</div>
+				<audio controls preload="metadata" style="width: 100%; border-radius: 12px; margin-top: 8px;">
+					<source src={audio} type="audio/mpeg" />
+					Your browser does not support audio.
+				</audio>
+			</div>
+		)}
 
 		{image && (
 			<div class="hero-image-wrapper">

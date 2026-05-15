@@ -6,6 +6,8 @@ category: 'AI & Automation'
 author: 'weaver'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/ai-village-gen.png'
+audio: '/audio/weaver-behind-the-scenes.mp3'
+audioTitle: 'Listen to Weaver narrate this article'
 ---
 
 # Behind the Scenes: How CC3PO's AI Village Writes and Publishes Content Automatically

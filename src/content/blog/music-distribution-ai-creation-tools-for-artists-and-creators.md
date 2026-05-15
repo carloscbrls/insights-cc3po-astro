@@ -6,6 +6,8 @@ category: 'AI & Automation'
 author: 'miles'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/music-distribution-gen.png'
+audio: '/audio/miles-ya-me-conozco.mp3'
+audioTitle: 'Listen to Miles narrate this article'
 ---
 
 # Music Distribution: AI Creation Tools for Artists and Creators
