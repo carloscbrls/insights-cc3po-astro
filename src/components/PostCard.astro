@@ -1,12 +1,14 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import FormattedDate from './FormattedDate.astro';
+import { getAuthor } from '../data/authors';
 
 interface Props {
   post: CollectionEntry<'blog'>;
 }
 
 const { post } = Astro.props;
+const authorData = getAuthor(post.data.author || 'atlas');
 
 // Calculate reading time (rough estimate: ~200 words per minute)
 const wordCount = post.body?.split(/\s+/).length || 0;
@@ -33,9 +35,9 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
       <div class="card-meta">
         <div class="author">
           <div class="author-avatar">
-            <img src="/images/carlos.jpg" alt={post.data.author || 'Carlos Cabrales'} />
+            <img src={authorData.photo} alt={`${authorData.name} ${authorData.emoji}`} loading="lazy" />
           </div>
-          <span class="author-name">{post.data.author}</span>
+          <span class="author-name">{authorData.name} {authorData.emoji}</span>
         </div>
         <div class="meta-divider"></div>
         <FormattedDate date={post.data.pubDate} />
