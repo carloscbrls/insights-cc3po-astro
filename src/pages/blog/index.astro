@@ -52,6 +52,8 @@ const categories = [...new Set(posts.map(post => post.data.category).filter(Bool
         box-sizing: border-box; 
       }
       
+      .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+      
       body {
         font-family: Inter, system-ui, sans-serif;
         background: var(--bg);
@@ -190,6 +192,8 @@ const categories = [...new Set(posts.map(post => post.data.category).filter(Bool
   <body>
     <Header />
     
+    <main>
+    <h1 class="sr-only">CC3PO Insights Blog — All Articles</h1>
     <!-- Hero Section -->
     <BlogHero featuredPost={featuredPost} latestPosts={latestPosts} />
 

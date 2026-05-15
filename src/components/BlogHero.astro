@@ -24,7 +24,7 @@ const { featuredPost, latestPosts } = Astro.props;
         )}
         <div class="featured-overlay">
           <span class="featured-badge">Featured</span>
-          <h1>{featuredPost.data.title}</h1>
+          <h2 class="featured-title">{featuredPost.data.title}</h2>
           <p class="featured-excerpt">{featuredPost.data.description}</p>
           <span class="featured-cta">Read Article →</span>
         </div>
@@ -164,7 +164,7 @@ const { featuredPost, latestPosts } = Astro.props;
     margin-bottom: 16px;
   }
 
-  .featured-overlay h1 {
+  .featured-overlay h2.featured-title {
     font-size: clamp(28px, 4vw, 48px);
     font-weight: 800;
     line-height: 1.2;
@@ -392,7 +392,7 @@ const { featuredPost, latestPosts } = Astro.props;
       padding: 20px;
     }
 
-    .featured-overlay h1 {
+    .featured-overlay h2.featured-title {
       font-size: 22px;
     }
 
