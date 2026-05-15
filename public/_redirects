@@ -1,12 +1,14 @@
-# Netlify redirects for legacy URLs
+# Netlify redirects for CC3PO Insights
+# Audio files are served directly from /audio/ - no redirect needed
+# Blog posts are served from /blog/slug/ format
+# The netlify.toml handles the main redirects
 
-# Redirect old HTML blog listing to new blog index
-/blog.html /blog 301
-/ /blog 301
+# Redirect root to signal (blog home)
+/ /signal/ 301
+/blog.html /signal/ 301
+/blog /signal/ 301
+/blog/ /signal/ 301
 
 # Redirect removed blog posts to related content
-/blog/local-it-partner-story/ /blog/ 301
-/blog/tesla-autopilot-small-business-it/ /blog/ 301
-
-# Redirect individual posts (old format: /slug/ to /blog/slug/)
-/*/:index.html /blog/:splat 301
+/blog/local-it-partner-story/ /signal/ 301
+/blog/tesla-autopilot-small-business-it/ /signal/ 301
