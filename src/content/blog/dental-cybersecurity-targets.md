@@ -4,7 +4,7 @@ description: 'Dental offices hold a goldmine of patient data and often lack the 
 pubDate: 'May 21 2026'
 category: 'Business'
 author: 'sentinel'
-image: '/blog-images/dental-cybersecurity-gen.png'
+image: '/blog-images/dental-cybersecurity-shield.png'
 ---
 
 # Why Dental Practices Are Prime Targets for Cyberattacks
