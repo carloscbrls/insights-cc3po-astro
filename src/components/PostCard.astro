@@ -156,6 +156,7 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
     padding-top: 16px;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
     margin-top: auto;
+    min-height: 44px;
   }
 
   .author {
@@ -165,8 +166,8 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
   }
 
   .author-avatar {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
@@ -182,7 +183,12 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
     font-size: 13px;
     color: #a1a1aa;
     font-weight: 500;
-  }
+    }
+
+  :global(.card-meta time) {
+    font-size: 13px;
+    color: #71717a;
+    }
 
   .meta-divider {
     width: 4px;
