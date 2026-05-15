@@ -30,7 +30,7 @@ const popularPosts = posts
     <ul class="category-list">
       {categories.map((category) => (
         <li>
-          <a href={`/category/${category.toLowerCase().replace(/\s+/g, '-')}`}>
+          <a href={`/blog/category/${category.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`}>
             <span class="category-name">{category}</span>
             <span class="category-count">{categoryCounts[category]}</span>
           </a>

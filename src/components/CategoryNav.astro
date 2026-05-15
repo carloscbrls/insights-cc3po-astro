@@ -26,7 +26,7 @@ const categoryCounts = categories.reduce((acc, cat) => {
   <div class="category-scroll">
     {categories.map((category) => (
       <a 
-        href={category === 'All' ? '/blog' : `/category/${category.toLowerCase().replace(/\s+/g, '-')}`}
+        href={category === 'All' ? '/blog/' : `/blog/category/${category.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`}
         class={`category-tab ${activeCategory === category ? 'active' : ''}`}
       >
         {category}
