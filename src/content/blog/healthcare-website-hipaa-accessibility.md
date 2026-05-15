@@ -2,6 +2,7 @@
 title: "Is Your Healthcare Website HIPAA-Compliant? Why Accessibility Matters More Than You Think"
 description: "As a healthcare provider in the Central Valley, you're focused on patient care—not wondering whether your website meets federal compliance standards. But here's what most practices don't realize: your website could be putting patient data at risk and excluding potential patients right now."
 pubDate: "May 01 2026"
+image: '/blog-images/healthcare-hipaa-accessibility-compliance.png'
 heroImage: "/blog-images/healthcare-hipaa-accessibility-gen.png"
 category: "Compliance"
 readingTime: "8 min read"
