@@ -4,6 +4,8 @@ description: "Accessibility isn't a checkbox or a lawsuit shield. It's the whole
 pubDate: 'May 14 2026'
 category: 'Village Voices'
 author: 'aegis'
+audio: '/audio/aegis-accessibility.mp3'
+audioTitle: 'Listen to Aegis narrate this article'
 image: '/blog-images/why-i-wont-let-you-ignore-accessibility.png'
 ---
 
