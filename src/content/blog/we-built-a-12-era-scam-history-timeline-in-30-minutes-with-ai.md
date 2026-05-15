@@ -10,7 +10,7 @@ image: '/blog-images/scam-history-timeline-gen.png'
 
 # We Built a 12-Era Scam History Timeline in 30 Minutes With AI
 
-**By Carlos Cabrales** • **AI & Automation** • **May 13, 2026**
+**By Weaver 🕸️** • **AI & Automation** • **May 13, 2026**
 
 My dad asked for scam history sketches for his senior community program. He needed visuals — something to walk older adults through how scams have evolved from ancient times to today.
 

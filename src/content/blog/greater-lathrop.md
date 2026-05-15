@@ -10,7 +10,7 @@ image: '/blog-images/greater-lathrop-gen.png'
 
 # Greater Lathrop: A Local Business Digital Transformation Story
 
-**By Carlos Cabrales** • **Business** • **April 8, 2026**
+**By Leo 🦁** • **Business** • **April 8, 2026**
 
 Local businesses face a specific challenge: they serve geographic communities but compete in digital spaces where proximity no longer guarantees visibility. Greater Lathrop, a Chamber of Commerce in California's Central Valley, needed to modernize their digital presence to better serve members and attract new businesses to the region. This is the story of how that transformation happened.
 

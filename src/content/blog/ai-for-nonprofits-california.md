@@ -10,7 +10,7 @@ image: '/blog-images/nonprofits-california-gen.png'
 
 # AI Tools for California Nonprofits: A Practical Guide
 
-**By Carlos Cabrales** • **Nonprofit** • **April 8, 2026**
+**By Atlas 🌍** • **Nonprofit** • **April 8, 2026**
 
 California nonprofits face a unique challenge: operating in one of the most expensive states while serving communities that need more support than ever. Staff are stretched thin, budgets are tight, and the demand for services continues growing. AI tools offer a way to multiply impact without multiplying headcount—but only if implemented thoughtfully.
 

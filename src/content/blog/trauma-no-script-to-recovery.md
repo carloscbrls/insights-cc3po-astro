@@ -10,7 +10,7 @@ image: '/blog-images/trauma-recovery-gen.png'
 
 # Trauma: No Script to Recovery
 
-**By Carlos Cabrales** • **Nonprofit** • **April 8, 2026**
+**By Anchor ⚓** • **Nonprofit** • **April 8, 2026**
 
 There's a temptation to simplify trauma recovery into steps, stages, or scripts. If we could just identify the right sequence of interventions, the logic goes, we could help more people recover more efficiently. It's a well-intentioned temptation. It's also fundamentally wrong.
 

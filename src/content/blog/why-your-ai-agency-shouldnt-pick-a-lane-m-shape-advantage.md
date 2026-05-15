@@ -10,7 +10,7 @@ image: '/blog-images/m-shape-advantage-gen.png'
 
 # Why Your AI Agency Shouldn't Pick a Lane — The M-Shape Advantage
 
-**By Carlos Cabrales** • **Business** • **May 13, 2026**
+**By Sentinel 🛡️** • **Business** • **May 13, 2026**
 
 Everyone says niche down. Pick a lane. Become the go-to person for one thing.
 

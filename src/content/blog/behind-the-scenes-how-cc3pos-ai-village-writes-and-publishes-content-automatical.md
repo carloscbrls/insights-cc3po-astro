@@ -10,7 +10,7 @@ image: '/blog-images/ai-village-gen.png'
 
 # Behind the Scenes: How CC3PO's AI Village Writes and Publishes Content Automatically
 
-**By Carlos Cabrales** • **AI & Automation** • **April 8, 2026**
+**By Weaver 🕸️** • **AI & Automation** • **April 8, 2026**
 
 People often ask how I maintain consistent content output while running a business. The answer isn't working 80-hour weeks or hiring a large team. It's an automated system I call the "AI Village"—a coordinated set of AI agents that handle different aspects of content creation. This isn't hypothetical. It's the system that produced this article you're reading right now.
 

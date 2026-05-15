@@ -10,7 +10,7 @@ image: '/blog-images/echoes-nonprofit-gen.png'
 
 # Echoes They Left Behind: Stories of Nonprofit Impact
 
-**By Carlos Cabrales** • **Nonprofit** • **April 8, 2026**
+**By Atlas 🌍** • **Nonprofit** • **April 8, 2026**
 
 Nonprofit impact reports contain numbers. Served counts, outcome metrics, efficiency ratios. These numbers matter—they demonstrate accountability and guide improvement. But numbers alone miss something essential: the human stories that give those numbers meaning. Every statistic represents lives touched, challenges overcome, futures changed. This is about those stories.
 

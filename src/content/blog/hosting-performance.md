@@ -10,7 +10,7 @@ image: '/blog-images/hosting-performance-gen.png'
 
 # WordPress Hosting Performance: What Actually Matters
 
-**By Carlos Cabrales** • **WordPress** • **April 8, 2026**
+**By Atlas 🌍** • **WordPress** • **April 8, 2026**
 
 Hosting providers compete on claims: fastest, most reliable, best support, unlimited everything. The marketing is aggressive because the margins are thin and the competition is fierce. But which hosting factors actually affect your WordPress site's performance? Let's cut through the noise.
 

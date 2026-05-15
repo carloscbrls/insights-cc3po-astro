@@ -10,7 +10,7 @@ image: '/blog-images/wp-automation-tools-gen.png'
 
 # Recommended Tools for WordPress Automation Development
 
-**By Carlos Cabrales** • **WordPress** • **April 8, 2026**
+**By Forge ⚒️** • **WordPress** • **April 8, 2026**
 
 WordPress automation spans simple tasks (scheduled post publishing) to complex workflows (multi-step user journeys with conditional logic). The tools you choose depend on what you're building. Here are the tools I actually use, organized by purpose.
 

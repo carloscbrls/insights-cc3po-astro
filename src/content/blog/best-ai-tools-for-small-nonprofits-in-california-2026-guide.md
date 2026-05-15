@@ -10,7 +10,7 @@ image: '/blog-images/best-ai-tools-gen.png'
 
 # Best AI Tools for Small Nonprofits in California: 2026 Guide
 
-**By Carlos Cabrales** • **Nonprofit** • **April 8, 2026**
+**By Atlas 🌍** • **Nonprofit** • **April 8, 2026**
 
 Small nonprofits face a brutal reality: needs exceed resources, staff wear multiple hats, and technology budgets are often the first cut. Yet the right AI tools can multiply impact without multiplying costs. This guide focuses on tools that deliver genuine value for California nonprofits with limited budgets and stretched staff.
 

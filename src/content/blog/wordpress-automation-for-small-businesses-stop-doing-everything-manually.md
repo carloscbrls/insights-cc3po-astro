@@ -10,7 +10,7 @@ image: '/blog-images/wp-automation-small-biz-gen.png'
 
 # WordPress Automation for Small Businesses: Stop Doing Everything Manually
 
-**By Carlos Cabrales** • **WordPress** • **April 8, 2026**
+**By Forge ⚒️** • **WordPress** • **April 8, 2026**
 
 Small business owners wear many hats. That's the nature of small business—you do what needs doing. But there's a difference between wearing many hats and wearing all hats. Automation removes hats you shouldn't be wearing at all.
 

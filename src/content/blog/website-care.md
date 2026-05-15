@@ -10,7 +10,7 @@ image: '/blog-images/website-care-gen.png'
 
 # Website Care: Why WordPress Maintenance Matters
 
-**By Carlos Cabrales** • **WordPress** • **April 8, 2026**
+**By Atlas 🌍** • **WordPress** • **April 8, 2026**
 
 Websites are not monuments. They don't get built once and stand unchanged for decades. They're more like gardens: requiring ongoing attention, vulnerable to neglect, capable of flourishing with proper care or declining without it. WordPress sites specifically need maintenance because WordPress changes constantly.
 

@@ -10,7 +10,7 @@ image: '/blog-images/ai-grant-writing-gen.png'
 
 # AI-Assisted Grant Writing for California Nonprofits
 
-**By Carlos Cabrales** • **Nonprofit** • **April 8, 2026**
+**By Atlas 🌍** • **Nonprofit** • **April 8, 2026**
 
 Grant writing consumes enormous nonprofit resources. A single foundation grant might require 20-40 hours of staff time—researching funder priorities, aligning programs with requirements, drafting narratives, gathering supporting documents, and revising based on feedback. When you're pursuing dozens of grants annually, that time adds up to full-time-equivalent positions dedicated solely to applications. AI tools offer a way to reduce that burden while potentially improving proposal quality.
 

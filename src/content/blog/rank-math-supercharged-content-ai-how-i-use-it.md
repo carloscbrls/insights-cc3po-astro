@@ -10,7 +10,7 @@ image: '/blog-images/rank-math-seo-gen.png'
 
 # Rank Math Supercharged Content AI: How I Use It
 
-**By Carlos Cabrales** • **WordPress** • **April 8, 2026**
+**By Weaver 🕸️** • **WordPress** • **April 8, 2026**
 
 Rank Math's Content AI represents a shift in how SEO tools work. Instead of analyzing content after you write it, Content AI helps write content that's optimized from the start. Here's how I actually use it in daily work—not theoretical features, but practical workflows.
 

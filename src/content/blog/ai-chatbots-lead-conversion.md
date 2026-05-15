@@ -10,7 +10,7 @@ image: '/blog-images/ai-chatbots-gen.png'
 
 # How AI Chatbots Convert Leads: A Practical Guide
 
-**By Carlos Cabrales** • **AI & Automation** • **April 8, 2026**
+**By Sage 🌿** • **AI & Automation** • **April 8, 2026**
 
 Every business has experienced the frustration of potential customers slipping away. They browse your site, show interest, maybe even start filling out a form—then something pulls them away. By the time you follow up hours later, they've moved on. AI chatbots address this exact problem by engaging visitors the moment interest peaks.
 

@@ -10,7 +10,7 @@ image: '/blog-images/tools-seo-gen.png'
 
 # Tools We Trust for SEO
 
-**By Carlos Cabrales** • **WordPress** • **April 8, 2026**
+**By Weaver 🕸️** • **WordPress** • **April 8, 2026**
 
 SEO tool marketing is aggressive. Every tool claims to be essential. Every platform promises to unlock rankings. The reality: a few tools matter, most are unnecessary. Here's what we actually use and trust based on real projects—not affiliate recommendations, but genuine preferences from daily work.
 

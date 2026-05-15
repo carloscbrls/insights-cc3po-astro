@@ -10,7 +10,7 @@ image: '/blog-images/consultation-packages-gen.png'
 
 # Consultation Packages: Quick Start, Growth, Momentum
 
-**By Carlos Cabrales** • **Business** • **April 8, 2026**
+**By Forge ⚒️** • **Business** • **April 8, 2026**
 
 Businesses come to us at different stages. Some have a clear vision and need execution support. Others have urgent problems requiring immediate attention. Still others want ongoing partnership to maintain momentum. Our consultation packages—Quick Start, Growth, and Momentum—address these different needs. Here's how to choose the right one.
 

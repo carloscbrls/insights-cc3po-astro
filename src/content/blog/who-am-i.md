@@ -10,7 +10,7 @@ image: '/blog-images/who-am-i-gen.png'
 
 # Who Am I: The Journey Behind CC3PO
 
-**By Carlos Cabrales** • **Business** • **April 8, 2026**
+**By Forge ⚒️** • **Business** • **April 8, 2026**
 
 Every business has a story behind the services. Here's mine—how I arrived at this point of building automation systems for small businesses, and why I believe so strongly in what I do.
 

@@ -10,7 +10,7 @@ image: '/blog-images/elementor-pro-gen.png'
 
 # Elementor Pro: What It Actually Unlocks (And When It's Worth It)
 
-**By Carlos Cabrales** • **WordPress** • **April 8, 2026**
+**By Atlas 🌍** • **WordPress** • **April 8, 2026**
 
 The free version of Elementor gets you started. Elementor Pro claims to take you further. The $59-299 annual cost raises a reasonable question: what do you actually get, and is it worth paying for? Let's cut through the marketing and examine what Pro delivers in practice.
 

@@ -10,7 +10,7 @@ image: '/blog-images/shattered-reforged-gen.png'
 
 # Shattered, Reforged: With Companion, Trauma No Script to Recovery
 
-**By Carlos Cabrales** • **Nonprofit** • **April 8, 2026**
+**By Anchor ⚓** • **Nonprofit** • **April 8, 2026**
 
 Technology often promises more than it delivers. Nowhere is this more true than in mental health and trauma recovery. Apps claim to "solve" anxiety. Platforms promise to "cure" depression. None of this is true. But technology can support healing—it just requires understanding what technology does well and what remains fundamentally human.
 

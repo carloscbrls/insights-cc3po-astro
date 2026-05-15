@@ -10,7 +10,7 @@ image: '/blog-images/elementor-mistakes-gen.png'
 
 # Common Elementor Mistakes We Fix (And How to Avoid Them)
 
-**By Carlos Cabrales** • **WordPress** • **April 8, 2026**
+**By Atlas 🌍** • **WordPress** • **April 8, 2026**
 
 Elementor makes WordPress site building accessible to non-developers. That accessibility comes with trade-offs. We regularly inherit sites where well-intentioned users have created problems that slow sites, break layouts, and complicate future updates. These issues aren't random—they follow predictable patterns. Understanding them helps you avoid the same traps.
 

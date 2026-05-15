@@ -10,7 +10,7 @@ image: '/blog-images/ada-awareness-gen.png'
 
 # ADA Awareness Without the Fear Tactics
 
-**By Carlos Cabrales** • **Business** • **April 8, 2026**
+**By Aegis ♿** • **Business** • **April 8, 2026**
 
 If you've ever received an email threatening legal action over your website's accessibility, you know the panic that sets in. These demand letters have become a cottage industry, with some firms sending thousands of templated threats hoping for quick settlements. But here's the truth: making your website accessible doesn't require fear—it requires understanding, planning, and steady execution.
 

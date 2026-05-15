@@ -10,7 +10,7 @@ image: '/blog-images/elementor-checklist-gen.png'
 
 # Elementor Pro Without Breaking Your Site: A Calm Checklist
 
-**By Carlos Cabrales** • **WordPress** • **April 8, 2026**
+**By Atlas 🌍** • **WordPress** • **April 8, 2026**
 
 Upgrading from Elementor Free to Pro feels like a significant step. The features are enticing, but so are the warnings: compatibility issues, template conflicts, update disasters. Let's approach this methodically. A calm checklist beats panic-driven problem-solving.
 

@@ -10,7 +10,7 @@ image: '/blog-images/connected-business-gen.png'
 
 # The Connected Business: How Small Businesses Can Leverage Modern WordPress and Automation in 2026
 
-**By Carlos Cabrales** • **Business** • **April 8, 2026**
+**By Atlas 🌍** • **Business** • **April 8, 2026**
 
 Small businesses used to compete on local presence and personal service. Those advantages remain, but they're no longer sufficient. Customers expect digital experiences that match what they get from large companies. The good news: the tools that power large-company experiences are now accessible to small businesses. Here's what connected business looks like in 2026.
 

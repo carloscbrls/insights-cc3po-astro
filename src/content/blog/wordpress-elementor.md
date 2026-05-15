@@ -10,7 +10,7 @@ image: '/blog-images/wordpress-elementor-gen.png'
 
 # WordPress + Elementor: Building Sites That Work
 
-**By Carlos Cabrales** • **WordPress** • **April 8, 2026**
+**By Atlas 🌍** • **WordPress** • **April 8, 2026**
 
 WordPress powers over 40% of websites. Elementor is the most popular WordPress page builder. The combination makes sense for many businesses—but not for all. Let's examine what this pairing actually delivers and when it's the right choice.
 

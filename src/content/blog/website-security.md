@@ -10,7 +10,7 @@ image: '/blog-images/website-security-gen.png'
 
 # Website Security: WordPress Security Best Practices
 
-**By Carlos Cabrales** • **WordPress** • **April 8, 2026**
+**By Sentinel 🛡️** • **WordPress** • **April 8, 2026**
 
 WordPress security advice often oscillates between "install this plugin and you're safe" and "your site is doomed unless you follow these 97 steps." Neither extreme serves you. Practical security focuses on what actually protects against real threats, not theoretical vulnerabilities.
 

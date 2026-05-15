@@ -10,7 +10,7 @@ image: '/blog-images/siteground-hosting-gen.png'
 
 # SiteGround Hosting: How I Actually Use It
 
-**By Carlos Cabrales** • **WordPress** • **April 8, 2026**
+**By Atlas 🌍** • **WordPress** • **April 8, 2026**
 
 SiteGround appears on nearly every "best WordPress hosting" list. Marketing claims are one thing; daily experience is another. Here's how I actually use SiteGround in client projects and my own work—not what their website says, but what happens in practice.
 

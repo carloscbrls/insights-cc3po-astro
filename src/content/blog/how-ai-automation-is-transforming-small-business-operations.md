@@ -10,7 +10,7 @@ image: '/blog-images/ai-transforming-ops-gen.png'
 
 # How AI Automation Is Transforming Small Business Operations
 
-**By Carlos Cabrales** • **AI & Automation** • **April 8, 2026**
+**By Forge ⚒️** • **AI & Automation** • **April 8, 2026**
 
 Small businesses have always competed on personal service, flexibility, and local knowledge. But they've struggled to match the operational efficiency of larger competitors. AI automation is changing that equation. Tools that were once enterprise-only are now accessible to businesses of any size. The businesses adopting these tools thoughtfully are seeing transformative results.
 

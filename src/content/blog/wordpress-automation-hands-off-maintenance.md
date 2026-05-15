@@ -10,7 +10,7 @@ image: '/blog-images/wp-automation-maintenance-gen.png'
 
 # WordPress Automation: Hands-Off Maintenance
 
-**By Carlos Cabrales** • **WordPress** • **April 8, 2026**
+**By Forge ⚒️** • **WordPress** • **April 8, 2026**
 
 The dream: build a WordPress site, walk away, and have it run indefinitely without intervention. The reality: WordPress requires maintenance. But between dream and reality lies significant opportunity for automation. You can reduce maintenance overhead dramatically while maintaining site health.
 

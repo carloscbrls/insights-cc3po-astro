@@ -10,7 +10,7 @@ image: '/blog-images/music-distribution-gen.png'
 
 # Music Distribution: AI Creation Tools for Artists and Creators
 
-**By Carlos Cabrales** • **AI & Automation** • **April 8, 2026**
+**By Miles 🎵** • **AI & Automation** • **April 8, 2026**
 
 Music creation used to require instruments, studios, and years of practice. AI tools haven't eliminated those requirements, but they've opened new paths for people who have musical ideas without traditional musical skills. The result is an explosion of AI-generated music hitting distribution platforms. Here's what creators need to understand.
 

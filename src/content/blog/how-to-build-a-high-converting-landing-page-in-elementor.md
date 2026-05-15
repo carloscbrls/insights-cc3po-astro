@@ -10,7 +10,7 @@ image: '/blog-images/landing-page-gen.png'
 
 # How to Build a High-Converting Landing Page in Elementor
 
-**By Carlos Cabrales** • **WordPress** • **April 8, 2026**
+**By Atlas 🌍** • **WordPress** • **April 8, 2026**
 
 A landing page has one job: convert visitors into leads or customers. Every element should serve that purpose. Many landing pages fail because they try to do too much or lose focus. Let's build one that actually converts.
 

@@ -10,7 +10,7 @@ image: '/blog-images/compliance-that-sticks-gen.png'
 
 # Compliance That Actually Sticks — Why Most WCAG Training Fails (And What Works)
 
-**By Carlos Cabrales** • **Compliance** • **May 13, 2026**
+**By Sentinel 🛡️** • **Compliance** • **May 13, 2026**
 
 90% of compliance training is forgotten within a week.
 
