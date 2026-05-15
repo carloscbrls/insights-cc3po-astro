@@ -4,7 +4,7 @@ description: 'From Cloudflare Free to Pro: WAF, OWASP rules, bot protection, HTT
 pubDate: 'May 14 2026'
 category: 'Village Voices'
 author: 'atlas'
-image: '/blog-images/how-we-hardened-cc3po-infrastructure-report.png'
+image: '/blog-images/how-we-hardened-cc3po.png'
 ---
 
 # How We Hardened cc3po.com — A Village Infrastructure Report
