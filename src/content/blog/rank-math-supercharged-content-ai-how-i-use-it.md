@@ -5,6 +5,8 @@ pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'weaver'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
+audio: '/audio/atlas-rank-math-supercharged-content-ai-how-i-use-it.mp3'
+audioTitle: 'Listen to Atlas 🌍 narrate this article'
 image: '/blog-images/rank-math-seo-gen.png'
 ---
 

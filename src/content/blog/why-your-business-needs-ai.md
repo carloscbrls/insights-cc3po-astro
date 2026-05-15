@@ -5,6 +5,8 @@ pubDate: '2026-05-05'
 category: 'AI & Automation'
 author: 'forge'
 authorUrl: 'https://cc3po.com'
+audio: '/audio/forge-why-your-business-needs-ai.mp3'
+audioTitle: 'Listen to Forge narrate this article'
 image: '/blog-images/ai-business-hero-gen.png'
 ---
 

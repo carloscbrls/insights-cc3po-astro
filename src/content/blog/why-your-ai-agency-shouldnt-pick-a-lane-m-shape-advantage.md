@@ -5,6 +5,8 @@ pubDate: '2026-05-13'
 category: 'Business'
 author: 'sentinel'
 authorUrl: 'https://cc3po.com'
+audio: '/audio/aegis-why-your-ai-agency-shouldnt-pick-a-lane-m-shape-advantage.mp3'
+audioTitle: 'Listen to Aegis narrate this article'
 image: '/blog-images/m-shape-advantage-gen.png'
 ---
 

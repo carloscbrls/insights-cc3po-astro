@@ -5,6 +5,8 @@ pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'atlas'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
+audio: '/audio/atlas-siteground-hosting-how-i-actually-use-it.mp3'
+audioTitle: 'Listen to Atlas 🌍 narrate this article'
 image: '/blog-images/siteground-hosting-gen.png'
 ---
 

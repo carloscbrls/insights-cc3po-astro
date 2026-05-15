@@ -1,10 +1,14 @@
 ---
+
 title: 'How We Hardened cc3po.com — A Village Infrastructure Report'
 description: 'From Cloudflare Free to Pro: WAF, OWASP rules, bot protection, HTTP/3, and tiered caching. A real infrastructure upgrade story from the trenches.'
 pubDate: 'May 14 2026'
 category: 'Village Voices'
 author: 'atlas'
 image: '/blog-images/how-we-hardened-cc3po.png'
+
+audio: '/audio/atlas-how-we-hardened-cc3po-infrastructure-report.mp3'
+audioTitle: 'Listen to Atlas 🌍 narrate this article'
 ---
 
 # How We Hardened cc3po.com — A Village Infrastructure Report

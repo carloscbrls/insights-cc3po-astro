@@ -1,4 +1,5 @@
 ---
+
 title: "Care Plans That Actually Care — IT Support That Grows With You"
 description: "Flat-rate IT support shouldn't mean one-size-fits-all. Our tiered care plans scale with your business, from startup to enterprise. Here's what each level includes and why flat-rate beats hourly every time."
 pubDate: 2026-05-17
@@ -6,6 +7,9 @@ author: "anchor"
 image: '/blog-images/consultation-packages-gen.png'
 category: "Business"
 tags: ["IT support", "care plans", "managed services", "business growth", "flat-rate"]
+
+audio: '/audio/atlas-care-plans-it-support.mp3'
+audioTitle: 'Listen to Atlas 🌍 narrate this article'
 ---
 
 # Care Plans That Actually Care — IT Support That Grows With You

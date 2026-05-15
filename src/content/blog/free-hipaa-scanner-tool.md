@@ -1,4 +1,5 @@
 ---
+
 title: "Free HIPAA Scanner — Find Your Website's Compliance Gaps in 60 Seconds"
 description: "Most healthcare websites have hidden HIPAA violations they don't know about. Our free scanner finds them in under a minute. Here's what it checks and what to do about what it finds."
 pubDate: 2026-05-15
@@ -6,6 +7,9 @@ author: "sentinel"
 image: '/blog-images/hipaa-auditors-gen.png'
 category: "Compliance"
 tags: ["HIPAA", "compliance", "scanner", "healthcare", "website security"]
+
+audio: '/audio/atlas-free-hipaa-scanner-tool.mp3'
+audioTitle: 'Listen to Atlas 🌍 narrate this article'
 ---
 
 # Free HIPAA Scanner — Find Your Website's Compliance Gaps in 60 Seconds

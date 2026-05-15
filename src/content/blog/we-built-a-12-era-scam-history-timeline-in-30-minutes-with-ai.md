@@ -5,6 +5,8 @@ pubDate: '2026-05-13'
 category: 'AI & Automation'
 author: 'weaver'
 authorUrl: 'https://cc3po.com'
+audio: '/audio/weaver-we-built-a-12-era-scam-history-timeline-in-30-minutes-with-ai.mp3'
+audioTitle: 'Listen to Weaver narrate this article'
 image: '/blog-images/scam-history-timeline-gen.png'
 ---
 

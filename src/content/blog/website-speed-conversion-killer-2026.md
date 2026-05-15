@@ -6,6 +6,8 @@ author: "atlas"
 image: '/blog-images/website-speed-conversion-killer-gen.png'
 category: "Technology"
 tags: ["website-speed", "Core-Web-Vitals", "WordPress-performance", "Elementor-optimization", "mobile-performance", "image-optimization", "page-speed", "conversion-optimization", "small-business-websites", "Central-Valley-business"]
+audio: '/audio/atlas-website-speed-conversion-killer-2026.mp3'
+audioTitle: 'Listen to Atlas 🌍 narrate this article'
 ---
 
 # Your Website Loads in 6 Seconds. That's Costing You 40% of Visitors.

@@ -1,4 +1,5 @@
 ---
+
 title: "Why Your Dental Practice Needs Specialized IT Support"
 description: "Generic IT support can't handle the unique demands of a dental practice. Here's why specialized dental IT makes the difference for compliance, imaging, and patient care."
 pubDate: 2026-05-11
@@ -6,6 +7,9 @@ author: "sentinel"
 image: '/blog-images/dental-it-support-gen.png'
 category: "Business"
 tags: ["dental", "IT support", "HIPAA", "compliance", "healthcare"]
+
+audio: '/audio/atlas-dental-it-specialized-support.mp3'
+audioTitle: 'Listen to Atlas 🌍 narrate this article'
 ---
 
 # Why Your Dental Practice Needs Specialized IT Support

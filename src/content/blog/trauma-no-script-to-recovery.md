@@ -5,6 +5,8 @@ pubDate: '2026-04-08'
 category: 'Nonprofit'
 author: 'anchor'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
+audio: '/audio/atlas-trauma-no-script-to-recovery.mp3'
+audioTitle: 'Listen to Atlas 🌍 narrate this article'
 image: '/blog-images/trauma-recovery-gen.png'
 ---
 

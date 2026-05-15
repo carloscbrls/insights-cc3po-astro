@@ -3,8 +3,8 @@ title: "ADA Website Compliance in 2026: What Small Businesses Actually Need to K
 description: "Lawsuits are hitting small businesses for $4,000+ per violation. Here's what ADA/WCAG compliance actually means, how to check your site in 30 seconds, and the fastest way to protect yourself."
 pubDate: 2026-05-14
 author: "aegis"
-audio: '/audio/sentinel-ada-compliance.mp3'
-audioTitle: 'Listen to Sentinel narrate this article'
+audio: '/audio/aegis-ada-website-compliance-small-business-2026.mp3'
+audioTitle: 'Listen to Aegis narrate this article'
 image: '/blog-images/ada-compliance-guide-gen.png'
 category: "Compliance"
 tags: ["ADA-compliance", "WCAG", "accessibility", "small-business", "website-compliance", "lawsuit-protection", "web-accessibility", "Core-Web-Vitals", "legal-risk", "Central-Valley-business"]

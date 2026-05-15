@@ -5,6 +5,8 @@ pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'weaver'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
+audio: '/audio/weaver-tools-we-trust-for-seo.mp3'
+audioTitle: 'Listen to Weaver narrate this article'
 image: '/blog-images/tools-seo-gen.png'
 ---
 

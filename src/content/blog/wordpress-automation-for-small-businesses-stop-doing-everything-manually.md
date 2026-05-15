@@ -5,6 +5,8 @@ pubDate: '2026-04-08'
 category: 'WordPress'
 author: 'forge'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
+audio: '/audio/forge-wordpress-automation-for-small-businesses-stop-doing-everything-manually.mp3'
+audioTitle: 'Listen to Forge narrate this article'
 image: '/blog-images/wp-automation-small-biz-gen.png'
 ---
 

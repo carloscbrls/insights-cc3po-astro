@@ -5,6 +5,8 @@ pubDate: '2026-04-08'
 category: 'Nonprofit'
 author: 'atlas'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
+audio: '/audio/atlas-echoes-they-left-behind.mp3'
+audioTitle: 'Listen to Atlas 🌍 narrate this article'
 image: '/blog-images/echoes-nonprofit-gen.png'
 ---
 

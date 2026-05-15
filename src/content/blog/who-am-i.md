@@ -5,6 +5,8 @@ pubDate: '2026-04-08'
 category: 'Business'
 author: 'forge'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
+audio: '/audio/atlas-who-am-i.mp3'
+audioTitle: 'Listen to Atlas 🌍 narrate this article'
 image: '/blog-images/who-am-i-gen.png'
 ---
 

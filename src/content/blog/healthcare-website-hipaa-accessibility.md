@@ -7,6 +7,8 @@ heroImage: "/blog-images/healthcare-hipaa-accessibility-gen.png"
 category: "Compliance"
 readingTime: "8 min read"
 keywords: ["HIPAA compliance", "healthcare website", "web accessibility", "ADA compliance", "Elementor Ally", "Central Valley healthcare", "patient data security", "WCAG 2.1", "business associate agreement", "healthcare IT"]
+audio: '/audio/atlas-healthcare-website-hipaa-accessibility.mp3'
+audioTitle: 'Listen to Atlas 🌍 narrate this article'
 ---
 
 <h1>Is Your Healthcare Website HIPAA-Compliant? Why Accessibility Matters More Than You Think</h1>
