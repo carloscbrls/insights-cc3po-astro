@@ -9,8 +9,8 @@ import CategoryNav from '../components/CategoryNav.astro';
 import Sidebar from '../components/Sidebar.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
 
-const SITE_TITLE = 'CC3PO Insights - Expert Strategies for AI Automation & WordPress';
-const SITE_DESCRIPTION = 'Expert strategies for AI automation, WordPress mastery, and scalable business systems. Daily insights from our AI village.';
+const SITE_TITLE = 'CC3PO Insights — Compliance, Speed & Security for Your Business';
+const SITE_DESCRIPTION = 'Expert strategies for website compliance, performance optimization, and security. Practical advice for small businesses that want to stay protected and fast.';
 
 // Get all posts sorted by date
 const posts = (await getCollection('blog')).sort(
@@ -209,6 +209,44 @@ const categories = [...new Set(posts.map(post => post.data.category).filter(Bool
           gap: 12px;
         }
       }
+      .scan-cta {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        background: linear-gradient(135deg, rgba(233,69,96,0.08), rgba(76,195,240,0.05));
+        border: 1px solid rgba(233,69,96,0.2);
+        border-radius: 16px;
+        padding: 24px;
+        margin-top: 32px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+      .scan-cta.visible { opacity: 1; transform: translateY(0); }
+      .scan-cta-icon { font-size: 2rem; flex-shrink: 0; }
+      .scan-cta-content h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+      .scan-cta-content p { color: var(--muted); font-size: 0.85rem; }
+      .scan-cta-btn {
+        margin-left: auto;
+        padding: 12px 24px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #e94560, #7209b7);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        transition: transform 0.2s, box-shadow 0.2s;
+        flex-shrink: 0;
+      }
+      .scan-cta-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(233,69,96,0.3);
+      }
+      @media (max-width: 768px) {
+        .scan-cta { flex-direction: column; text-align: center; }
+        .scan-cta-btn { margin-left: 0; width: 100%; }
+      }
     </style>
   </head>
   <body>
@@ -257,6 +295,16 @@ const categories = [...new Set(posts.map(post => post.data.category).filter(Bool
 
         <!-- Newsletter CTA -->
         <NewsletterSignup variant="inline" />
+
+        <!-- Free Scan CTA -->
+        <div class="scan-cta animate-on-scroll">
+          <div class="scan-cta-icon">🔍</div>
+          <div class="scan-cta-content">
+            <h3>Is Your Site Compliant?</h3>
+            <p>Free 30-second scan checks ADA compliance, speed, and security. No signup required.</p>
+          </div>
+          <a href="https://scanner.cc3po.com" class="scan-cta-btn">Scan Your Site Free →</a>
+        </div>
       </div>
 
       <!-- Sidebar -->

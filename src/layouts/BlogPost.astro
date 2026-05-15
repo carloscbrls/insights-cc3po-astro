@@ -574,10 +574,12 @@ const relatedPosts = allPosts
 	</head>
 
 	<body>
+		<a href="#main-content" class="skip-link">Skip to main content</a>
 		<BackToTop />
 		<ExitIntentPopup />
 		<Header />
 
+		<main id="main-content">
 		<header class="article-header">
 			<span class="category-badge">{category}</span>
 			<h1 class="article-title">{title}</h1>
@@ -712,6 +714,7 @@ const relatedPosts = allPosts
 			</article>
 		</div>
 
+		</main>
 		<Footer />
 	</body>
 </html>
