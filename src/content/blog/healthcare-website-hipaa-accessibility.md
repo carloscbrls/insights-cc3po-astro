@@ -7,6 +7,7 @@ heroImage: "/blog-images/healthcare-hipaa-accessibility-gen.png"
 category: "Compliance"
 readingTime: "8 min read"
 keywords: ["HIPAA compliance", "healthcare website", "web accessibility", "ADA compliance", "Elementor Ally", "Central Valley healthcare", "patient data security", "WCAG 2.1", "business associate agreement", "healthcare IT"]
+author: "sentinel"
 audio: '/audio/unknown-healthcare-website-hipaa-accessibility.mp3'
 audioTitle: 'Listen to Atlas 🌍 narrate this article'
 ---
