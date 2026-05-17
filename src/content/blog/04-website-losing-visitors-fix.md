@@ -5,6 +5,9 @@ pubDate: 2026-05-16
 author: "weaver"
 category: "Performance"
 tags: ["website-performance", "Core-Web-Vitals", "accessibility", "mobile-optimization", "page-speed", "bounce-rate", "small-business", "SEO"]
+image: '/blog-images/website-losing-visitors-fix-gen.png'
+audio: '/audio/weaver-website-losing-visitors-fix.mp3'
+audioTitle: 'Listen to Weaver 🕸️ narrate this article'
 ---
 
 # Why Your Website is Losing 40% of Visitors (And How to Fix It)

@@ -5,6 +5,9 @@ pubDate: 2026-05-16
 author: "weaver"
 category: "Compliance"
 tags: ["ADA-compliance", "WCAG", "small-business", "accessibility", "website-lawsuits", "HVAC", "plumbing", "retail", "legal-risk", "compliance-tools"]
+image: '/blog-images/ada-compliance-2026-small-business-gen.png'
+audio: '/audio/weaver-ada-compliance-2026-small-business.mp3'
+audioTitle: 'Listen to Weaver 🕸️ narrate this article'
 ---
 
 # ADA Compliance in 2026: What Every Small Business Needs to Know

@@ -5,6 +5,9 @@ pubDate: 2026-05-16
 author: "weaver"
 category: "Tools"
 tags: ["tech-stack", "small-business", "Cloudflare", "Netlify", "ElevenLabs", "Perplexity", "n8n", "Supabase", "tools", "infrastructure"]
+image: '/blog-images/small-business-tech-stack-gen.png'
+audio: '/audio/weaver-small-business-tech-stack.mp3'
+audioTitle: 'Listen to Weaver 🕸️ narrate this article'
 ---
 
 # The Small Business Tech Stack That Actually Works

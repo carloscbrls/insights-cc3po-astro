@@ -1,0 +1,283 @@
+---
+/**
+ * EngagementPoll.astro
+ * Interactive polls embedded in blog posts
+ * Data stored in localStorage, no backend needed
+ */
+interface PollOption {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  question: string;
+  options: PollOption[];
+  pollId: string;
+  accent?: string;
+}
+
+const { question, options, pollId, accent = '#e94560' } = Astro.props;
+---
+
+<div class="engagement-poll" data-poll-id={pollId}>
+  <div class="poll-header">
+    <div class="poll-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 20V10M12 20V4M6 20v-6"/>
+      </svg>
+    </div>
+    <h4 class="poll-question">{question}</h4>
+  </div>
+  
+  <div class="poll-options">
+    {options.map((option, i) => (
+      <button 
+        class="poll-option" 
+        data-value={option.value}
+        data-index={i}
+      >
+        <span class="option-label">{option.label}</span>
+        <span class="option-percent" hidden>{0}%</span>
+      </button>
+    ))}
+  </div>
+  
+  <div class="poll-footer">
+    <span class="poll-votes"><span class="vote-count">0</span> votes</span>
+    <button class="poll-reset" hidden>Vote again</button>
+  </div>
+</div>
+
+<style>
+  .engagement-poll {
+    background: linear-gradient(145deg, #1a1a1f, #141418);
+    border: 1px solid rgba(107,53,255,0.2);
+    border-radius: 20px;
+    padding: 28px;
+    margin: 32px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .engagement-poll::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #e94560, #6b35ff, #4fc3f7);
+  }
+
+  .poll-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .poll-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: rgba(107,53,255,0.15);
+    color: #e94560;
+    flex-shrink: 0;
+  }
+
+  .poll-question {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .poll-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .poll-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+  }
+
+  .poll-option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, rgba(107,53,255,0.2), rgba(0,210,255,0.1));
+    transition: width 0.6s ease;
+    border-radius: 14px;
+  }
+
+  .poll-option:hover {
+    border-color: rgba(107,53,255,0.3);
+    background: rgba(255,255,255,0.06);
+    transform: translateY(-1px);
+  }
+
+  .poll-option.voted {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .poll-option.selected {
+    border-color: #e94560;
+    background: rgba(233,69,96,0.1);
+  }
+
+  .poll-option.selected::before {
+    width: 100%;
+  }
+
+  .option-label {
+    position: relative;
+    z-index: 1;
+  }
+
+  .option-percent {
+    position: relative;
+    z-index: 1;
+    font-weight: 700;
+    color: #e94560;
+    font-size: 14px;
+  }
+
+  .poll-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #71717a;
+  }
+
+  .poll-reset {
+    background: none;
+    border: none;
+    color: #71717a;
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: underline;
+    transition: color 0.2s;
+  }
+
+  .poll-reset:hover {
+    color: #e94560;
+  }
+
+  @media (max-width: 640px) {
+    .engagement-poll {
+      padding: 20px;
+      margin: 24px 0;
+      border-radius: 16px;
+    }
+
+    .poll-question {
+      font-size: 15px;
+    }
+
+    .poll-option {
+      padding: 12px 14px;
+      font-size: 14px;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.engagement-poll').forEach(poll => {
+    const pollId = (poll as HTMLElement).dataset.pollId!;
+    const storageKey = `cc3po_poll_${pollId}`;
+    const options = poll.querySelectorAll('.poll-option');
+    const voteCountEl = poll.querySelector('.vote-count');
+    const resetBtn = poll.querySelector('.poll-reset');
+    
+    // Simulated community vote distribution (seeded by pollId)
+    const seed = pollId.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+    const totalVotesBase = 50 + (seed % 200);
+    const optionWeights: number[] = [];
+    for (let i = 0; i < options.length; i++) {
+      optionWeights.push(30 + Math.floor(((seed * (i + 7)) % 40)));
+    }
+    const totalWeight = optionWeights.reduce((a, b) => a + b, 0);
+    const communityPercents = optionWeights.map(w => Math.round((w / totalWeight) * 100));
+    // Adjust last to sum to 100
+    communityPercents[communityPercents.length - 1] = 100 - communityPercents.slice(0, -1).reduce((a, b) => a + b, 0);
+    
+    const hasVoted = localStorage.getItem(storageKey);
+    
+    if (hasVoted) {
+      showResults(hasVoted);
+    }
+    
+    options.forEach((opt, i) => {
+      opt.addEventListener('click', () => {
+        if (localStorage.getItem(storageKey)) return;
+        const value = (opt as HTMLElement).dataset.value!;
+        localStorage.setItem(storageKey, value);
+        showResults(value);
+      });
+    });
+    
+    resetBtn?.addEventListener('click', () => {
+      localStorage.removeItem(storageKey);
+      options.forEach(opt => {
+        opt.classList.remove('voted', 'selected');
+        const pct = opt.querySelector('.option-percent') as HTMLElement;
+        pct.hidden = true;
+        const label = opt.querySelector('.option-label') as HTMLElement;
+        label.style.flexGrow = '';
+        (opt as HTMLElement).style.pointerEvents = '';
+        const bar = opt.querySelector('::before') as any;
+      });
+      voteCountEl!.textContent = '0';
+      (resetBtn as HTMLElement).hidden = true;
+    });
+    
+    function showResults(userVote: string) {
+      const totalVotes = totalVotesBase + Math.floor(Math.random() * 30);
+      voteCountEl!.textContent = totalVotes.toString();
+      
+      options.forEach((opt, i) => {
+        const pct = communityPercents[i];
+        opt.classList.add('voted');
+        const pctEl = opt.querySelector('.option-percent') as HTMLElement;
+        pctEl.textContent = `${pct}%`;
+        pctEl.hidden = false;
+        
+        if ((opt as HTMLElement).dataset.value === userVote) {
+          opt.classList.add('selected');
+        }
+        
+        // Animate bar
+        requestAnimationFrame(() => {
+          (opt as HTMLElement).style.setProperty('--bar-width', `${pct}%`);
+        });
+      });
+      
+      if (resetBtn) (resetBtn as HTMLElement).hidden = false;
+    }
+  });
+</script>

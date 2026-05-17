@@ -5,6 +5,9 @@ pubDate: 2026-05-16
 author: "weaver"
 category: "Automation"
 tags: ["lead-follow-up", "n8n", "JotForm", "Supabase", "AI-automation", "lead-scoring", "small-business", "workflow-automation", "CRM"]
+image: '/blog-images/automated-lead-follow-up-ai-gen.png'
+audio: '/audio/weaver-automated-lead-follow-up-ai.mp3'
+audioTitle: 'Listen to Weaver 🕸️ narrate this article'
 ---
 
 # How We Automated Lead Follow-Up with AI (And You Can Too)

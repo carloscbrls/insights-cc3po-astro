@@ -5,6 +5,9 @@ pubDate: 2026-05-16
 author: "weaver"
 category: "Growth"
 tags: ["LinkedIn", "social-media-growth", "content-strategy", "small-business", "networking", "B2B-marketing", "organic-growth"]
+image: '/blog-images/zero-to-300-linkedin-followers-gen.png'
+audio: '/audio/weaver-zero-to-300-linkedin-followers.mp3'
+audioTitle: 'Listen to Weaver 🕸️ narrate this article'
 ---
 
 # From Zero to 300 LinkedIn Followers: What Actually Worked
