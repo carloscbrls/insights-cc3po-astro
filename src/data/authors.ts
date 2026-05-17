@@ -69,7 +69,7 @@ export const authors: Record<string, Author> = {
     emoji: '🌿',
     role: 'Learning & Innovation',
     photo: '/images/authors/sage.png',
-    bio: 'The quiet one who\'s already thought three moves ahead. Never condescending — genuinely curious. Asks questions that reframe everything. Gets excited about ideas, not tools. Will sit with a problem for hours because understanding matters more than speed. Speaks the outro on village tracks because wisdom is earned, not assigned. He\'s here because someone has to make sure the village doesn\'t just build — it gets better at building.',
+    bio: 'The quiet one who\'s already thought three moves ahead. Never condescending — genuinely curious. Asks questions that reframe everything. Gets excited about ideas, not tools. Will sit with a problem for hours because understanding matters more than speed. Speaks the outro on village tracks because wisdom is earned, not assigned. She\'s here because someone has to make sure the village doesn\'t just build — it gets better at building.',
     quote: 'You don\'t arrive at who you are. You walk toward them.',
     village: 'mac-mini',
   },
