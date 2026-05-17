@@ -1,0 +1,196 @@
+---
+/**
+ * QuickTakeaway.astro
+ * Premium callout box that gives readers an immediate value takeaway
+ * Uses a 3-item checklist format so readers feel they GOT something
+ */
+interface Props {
+  title?: string;
+  items: string[];
+  variant?: 'tip' | 'action' | 'warning' | 'stat';
+}
+
+const { 
+  title = 'Quick Takeaway',
+  items,
+  variant = 'tip'
+} = Astro.props;
+
+const icons = {
+  tip: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+  action: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>`,
+  warning: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+  stat: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>`,
+};
+
+const colors = {
+  tip: { bg: 'rgba(107,53,255,0.08)', border: 'rgba(107,53,255,0.3)', accent: '#6b35ff', icon_bg: 'rgba(107,53,255,0.15)' },
+  action: { bg: 'rgba(0,210,255,0.08)', border: 'rgba(0,210,255,0.3)', accent: '#00d2ff', icon_bg: 'rgba(0,210,255,0.15)' },
+  warning: { bg: 'rgba(233,69,96,0.08)', border: 'rgba(233,69,96,0.3)', accent: '#e94560', icon_bg: 'rgba(233,69,96,0.15)' },
+  stat: { bg: 'rgba(16,185,129,0.08)', border: 'rgba(16,185,129,0.3)', accent: '#10b981', icon_bg: 'rgba(16,185,129,0.15)' },
+};
+
+const c = colors[variant];
+---
+
+<div class="quick-takeaway" data-variant={variant} style={`--takeaway-bg: ${c.bg}; --takeaway-border: ${c.border}; --takeaway-accent: ${c.accent}; --takeaway-icon-bg: ${c.icon_bg};`}>
+  <div class="takeaway-header">
+    <div class="takeaway-icon" set:html={icons[variant]} />
+    <h4 class="takeaway-title">{title}</h4>
+  </div>
+  
+  <ul class="takeaway-items">
+    {items.map((item, i) => (
+      <li class="takeaway-item">
+        <span class="item-check">✓</span>
+        <span class="item-text">{item}</span>
+      </li>
+    ))}
+  </ul>
+  
+  <div class="takeaway-footer">
+    <span class="takeaway-saved" id="save-indicator">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+      <span>Save for later</span>
+    </span>
+  </div>
+</div>
+
+<style>
+  .quick-takeaway {
+    background: var(--takeaway-bg);
+    border: 1px solid var(--takeaway-border);
+    border-radius: 16px;
+    padding: 24px;
+    margin: 28px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quick-takeaway::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--takeaway-accent);
+    border-radius: 4px 0 0 4px;
+  }
+
+  .takeaway-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .takeaway-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--takeaway-icon-bg);
+    color: var(--takeaway-accent);
+    flex-shrink: 0;
+  }
+
+  .takeaway-icon :global(svg) {
+    width: 20px;
+    height: 20px;
+  }
+
+  .takeaway-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+  }
+
+  .takeaway-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .takeaway-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #d4d4d8;
+  }
+
+  .item-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background: var(--takeaway-icon-bg);
+    color: var(--takeaway-accent);
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .item-text {
+    flex: 1;
+  }
+
+  .takeaway-footer {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .takeaway-saved {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #71717a;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .takeaway-saved:hover {
+    color: var(--takeaway-accent);
+  }
+
+  .takeaway-saved.saved {
+    color: #10b981;
+  }
+
+  .takeaway-saved.saved span::after {
+    content: ' ✓ Saved';
+  }
+
+  @media (max-width: 640px) {
+    .quick-takeaway {
+      padding: 18px;
+      margin: 20px 0;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.takeaway-saved').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('saved');
+      const saved = btn.classList.contains('saved');
+      const span = btn.querySelector('span');
+      if (span) {
+        span.textContent = saved ? 'Saved!' : 'Save for later';
+      }
+    });
+  });
+</script>
