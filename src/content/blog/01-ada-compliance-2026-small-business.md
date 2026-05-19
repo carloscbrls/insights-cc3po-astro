@@ -1,7 +1,7 @@
 ---
 title: "ADA Compliance in 2026: What Every Small Business Needs to Know"
 description: "ADA website lawsuits are hitting HVAC, plumbing, and retail owners for $4K+ per violation. Here's what compliance actually means, how to check your site fast, and the tools that protect you."
-pubDate: 2026-05-16
+pubDate: 2026-05-19
 author: "weaver"
 category: "Compliance"
 tags: ["ADA-compliance", "WCAG", "small-business", "accessibility", "website-lawsuits", "HVAC", "plumbing", "retail", "legal-risk", "compliance-tools"]
