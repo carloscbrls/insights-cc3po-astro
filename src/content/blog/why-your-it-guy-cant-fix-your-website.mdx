@@ -1,0 +1,91 @@
+---
+title: "Why Your IT Guy Can't Fix Your Website (And What to Look For Instead)"
+description: "Most small businesses treat IT support and web development as the same thing. They're not. Here's why that mistake costs you traffic, security, and customers — and what actually competent WordPress IT looks like."
+pubDate: 2026-05-19
+author: "atlas"
+image: '/blog-images/it-guy-cant-fix-website-gen.png'
+category: "Technology"
+tags: ["wordpress-support", "IT-consulting", "small-business-websites", "web-development", "Elementor", "website-maintenance", "Central-Valley-IT", "WordPress-specialist", "IT-support", "business-automation"]
+---
+
+# Why Your IT Guy Can't Fix Your Website (And What to Look For Instead)
+
+73% of small businesses rely on their IT provider to manage their website. 73% of small businesses have a website that's slow, insecure, or broken in ways they don't know about yet.
+
+Coincidence? Not even close.
+
+Your IT guy set up your network. Installed your printers. Maybe even migrated your email to Microsoft 365. So when your WordPress site goes down or your contact form stops working, you call him.
+
+I've been doing IT consulting for over 10 years in the Central Valley. I've walked into offices across Modesto, Merced, and Fresno where the "IT person" — internal or contracted — has been managing a WordPress site they fundamentally don't understand. Not because they're bad at their job. Because **IT support and WordPress web development are different disciplines**, and pretending they're the same thing costs you traffic, customers, and money.
+
+Here's what that actually looks like — and what to look for instead.
+
+## The 4 Things Your IT Guy Gets Wrong About WordPress
+
+After inheriting dozens of broken WordPress sites from general IT providers, these are the patterns I see every single time:
+
+### 1. Updates Applied Blindly Without Testing
+
+Your IT person sees "WordPress 6.8 available — update now" and clicks update. On your production site. With no backup. With 30 plugins that haven't been tested against the new core version.
+
+This is how sites break. A PHP deprecation warning kills your contact form. An Elementor update changes the container structure and your homepage layout collapses. A plugin conflict white-screens your entire site during business hours.
+
+**The right approach:** Stage updates. Test them on a staging environment first. Roll back if something breaks. Automated backups before any update cycle. This is WordPress-specific operations — it's not general IT.
+
+### 2. Security Treated as "Install Wordfence"
+
+Most IT providers handle WordPress security the same way they handle server security: install a firewall plugin and call it done. That's not WordPress security. That's a checkbox.
+
+Real WordPress security means: disabling XML-RPC if you're not using it (it's the #1 attack vector for brute force), restricting wp-admin access by IP or 2FA, setting proper file permissions (644 for files, 755 for directories — not 777 everywhere), removing the default admin user, limiting login attempts at the server level, and running daily malware scans that actually check core file integrity.
+
+Wordfence is fine. But it's the last 10% of the solution, not the first 90%.
+
+### 3. Performance "Optimized" by Caching Everything
+
+IT people love caching. Turn on Cloudflare, enable page caching, set browser cache to a year, done. Site loads fast.
+
+Except now your contact form submissions don't appear for 15 minutes. Your blog shows yesterday's content. Your WooCommerce cart is empty because the cached page doesn't reflect the session. Your appointment booking page shows last week's availability.
+
+WordPress caching is surgical, not blanket. You cache static assets aggressively. You exclude pages with dynamic content. You configure cache-busting for logged-in users. You set up proper cache purging when content updates. Elementor pages with forms, carts, or booking systems need specific exclusion rules.
+
+**"Just cache everything" breaks the things that make your website useful.**
+
+### 4. Backups That Have Never Been Tested
+
+Every IT person sets up backups. Almost none of them test restores.
+
+Here's what I find: backup files are 6 months old because the cron job silently failed. The backup includes the database but not the uploads directory (where all your images live). The backup is stored on the same server as the website, so when the server goes down, both are gone. The restore script has never been run, so when you actually need it, it fails halfway through and leaves the site in a worse state than before.
+
+A backup you can't restore is not a backup. It's a false sense of security.
+
+## What Competent WordPress IT Actually Looks Like
+
+You don't need a full-time web developer on staff. You need someone who understands both the IT infrastructure layer and the WordPress application layer. Here's what that looks like in practice:
+
+**Proactive monitoring, not reactive fixes.** Your WordPress IT person should know your site is slow before you do. They should catch plugin vulnerabilities before they're exploited. They should notify you about expiring SSL certificates, not discover them when your visitors see security warnings.
+
+**Staging environments for every change.** Every update, every plugin install, every code change goes through staging first. No exceptions. If your IT person is making changes directly on production, they're gambling with your business.
+
+**WordPress-specific security hardening.** Not just a firewall plugin. Server-level protections, proper file permissions, authentication hardening, database security, and regular vulnerability scanning. The WordPress attack surface is different from a general server's attack surface. Protect it accordingly.
+
+**Performance optimization that respects dynamic content.** Selective caching, image optimization (not just compression — proper WebP conversion with fallbacks), database query optimization, asset minification that doesn't break JavaScript dependencies. Performance is a system, not a plugin.
+
+**Documentation and runbooks.** If your WordPress IT person gets hit by a bus tomorrow, can someone else take over? Are there documented procedures for common issues? Are credentials stored securely and accessible? If the answer is no, you have a single point of failure — and that person isn't doing their job properly.
+
+## The Central Valley Problem
+
+Here's what makes this worse for Central Valley businesses: our region has fewer specialized WordPress providers than the Bay Area or LA. That means local businesses often have two choices — a general IT company that treats WordPress as an afterthought, or a remote agency that charges Bay Area rates and takes 3 days to respond to an urgent issue.
+
+Neither works. You need someone local who specializes in this space. Someone who can be at your office in 30 minutes if your site goes down during a busy Monday. Someone who understands both the server and the application. Someone who answers the phone when you call.
+
+That's what I do. Not because I'm special — because I spent 10+ years learning both sides instead of picking one.
+
+## Stop Paying for Half-Expertise
+
+If your IT person can't tell you the difference between a WordPress transients cache and a page cache, they shouldn't be managing your website. If they've never heard of WP-CLI, they're probably clicking through wp-admin for tasks that should take seconds. If they can't explain what your site's Core Web Vitals scores mean and how to improve them, they're not monitoring what matters.
+
+Your website is how the world finds you, trusts you, and contacts you. It's not a side project for your IT provider. It deserves the same level of expertise you'd expect for your network, your accounting system, or your phone system.
+
+**Run a free scan on your site right now.** Our audit tool checks speed, security, accessibility, and compliance in under 60 seconds. No login required, no sales call afterward. Just the data. [Start your free audit here](https://cc3po.com/audit/).
+
+*This article is for informational purposes only and does not constitute legal or professional IT advice. Consult a qualified professional for guidance specific to your business.*
