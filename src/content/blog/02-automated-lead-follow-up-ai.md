@@ -1,7 +1,7 @@
 ---
 title: "How We Automated Lead Follow-Up with AI (And You Can Too)"
 description: "We went from losing 40% of leads to responding in under 2 minutes. Here's the exact n8n workflow, JotForm pipeline, and AI scoring system we built — and how you can replicate it."
-pubDate: 2026-05-16
+pubDate: 2026-05-21
 author: "weaver"
 category: "Automation"
 tags: ["lead-follow-up", "n8n", "JotForm", "Supabase", "AI-automation", "lead-scoring", "small-business", "workflow-automation", "CRM"]
