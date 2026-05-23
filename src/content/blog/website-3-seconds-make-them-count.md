@@ -2,7 +2,7 @@
 title: "Your Website Has 3 Seconds. Here's How to Make Them Count."
 description: "Most business websites are bleeding money. After 10+ years building WordPress sites for Central Valley businesses, here's what actually converts."
 pubDate: 2026-05-15
-author: "Carlos Cabrales"
+author: "carlos"
 category: "Technology"
 tags: ["web-design", "performance", "accessibility", "conversion-optimization", "elementor", "small-business", "central-valley"]
 image: "/images/blog/website-performance.jpg"

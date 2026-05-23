@@ -34,10 +34,12 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
       <p class="card-excerpt">{post.data.description}</p>
       <div class="card-meta">
         <div class="author">
-          <div class="author-avatar">
-            <img src={authorData.photo} alt={`${authorData.name} ${authorData.emoji}`} loading="lazy" />
-          </div>
-          <span class="author-name">{authorData.name} {authorData.emoji}</span>
+          <a href={`/village/${authorData.id}/`} class="author-link">
+            <div class="author-avatar">
+              <img src={authorData.photo} alt={`${authorData.name} ${authorData.emoji}`} loading="lazy" />
+            </div>
+            <span class="author-name">{authorData.name} {authorData.emoji}</span>
+          </a>
         </div>
         <div class="meta-divider"></div>
         <FormattedDate date={post.data.pubDate} />
@@ -163,6 +165,18 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
     display: flex;
     align-items: center;
     gap: 8px;
+  }
+
+  .author-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .author-link:hover {
+    opacity: 0.8;
   }
 
   .author-avatar {
