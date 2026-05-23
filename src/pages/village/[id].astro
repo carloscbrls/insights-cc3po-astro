@@ -1,0 +1,177 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { getAllAuthors, getAuthor } from '../../data/authors';
+
+export async function getStaticPaths() {
+  const authors = getAllAuthors();
+  return authors.map(author => ({
+    params: { id: author.id },
+    props: { author },
+  }));
+}
+
+const { author } = Astro.props;
+const allPosts = (await getCollection('blog'))
+  .filter(p => p.data.author === author.id)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const SITE_TITLE = `${author.name} ${author.emoji} — CC3PO Village`;
+const SITE_DESCRIPTION = author.bio.slice(0, 160);
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  <style>
+    :root { --primary: #e94560; --accent: #4fc3f7; --bg: #0a0a0b; --card: #141418; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Inter, system-ui, sans-serif; background: var(--bg); color: #fff; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+    .author-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 120px 24px 60px;
+      text-align: center;
+    }
+
+    .author-portrait {
+      width: 160px;
+      height: 160px;
+      border-radius: 24px;
+      object-fit: cover;
+      margin-bottom: 24px;
+      border: 3px solid rgba(107, 53, 255, 0.3);
+      box-shadow: 0 0 40px rgba(107, 53, 255, 0.15);
+    }
+
+    .author-emoji { font-size: 2rem; margin-bottom: 8px; }
+    .author-name { font-size: 2.2rem; font-weight: 800; margin-bottom: 4px; }
+    .author-role { font-size: 0.9rem; color: var(--primary); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 24px; }
+
+    .author-quote {
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--accent);
+      line-height: 1.5;
+      max-width: 600px;
+      margin: 0 auto 32px;
+      padding: 20px 24px;
+      border-left: 3px solid var(--accent);
+      background: rgba(79, 195, 247, 0.05);
+      border-radius: 0 12px 12px 0;
+    }
+
+    .author-bio {
+      font-size: 1rem;
+      color: #d4d4d8;
+      line-height: 1.8;
+      max-width: 650px;
+      margin: 0 auto 48px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #71717a;
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); text-decoration: none; }
+
+    .posts-section { margin-bottom: 80px; }
+    .posts-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .posts-section h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(107,53,255,0.3), transparent);
+    }
+
+    .post-card {
+      display: block;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: #fff;
+    }
+    .post-card:hover {
+      border-color: rgba(107,53,255,0.3);
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+    .post-date { font-size: 0.8rem; color: #71717a; margin-bottom: 4px; }
+    .post-title { font-size: 1.05rem; font-weight: 600; }
+    .post-category { font-size: 0.75rem; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 6px; }
+
+    .village-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: #71717a;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: 4px 12px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .author-portrait { width: 120px; height: 120px; }
+      .author-name { font-size: 1.6rem; }
+      .author-quote { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <Header />
+  <main class="container">
+    <div class="author-hero">
+      <a href="/village" class="back-link">← Back to Village</a>
+      <div class="village-badge">
+        {author.village === 'mac-mini' ? '🌍 Mac Mini' : '⚡ Worker'} Village
+      </div>
+      <img src={author.photo} alt={`${author.name} ${author.emoji}`} class="author-portrait" />
+      <div class="author-name">{author.name} {author.emoji}</div>
+      <div class="author-role">{author.role}</div>
+      <div class="author-quote">"{author.quote}"</div>
+      <div class="author-bio">{author.bio}</div>
+    </div>
+
+    {allPosts.length > 0 && (
+      <div class="posts-section">
+        <h2>Posts by {author.name} ({allPosts.length})</h2>
+        {allPosts.map(post => (
+          <a href={`/blog/${post.id}`} class="post-card">
+            <div class="post-date">{post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+            <div class="post-title">{post.data.title}</div>
+            {post.data.category && <div class="post-category">{post.data.category}</div>}
+          </a>
+        ))}
+      </div>
+    )}
+  </main>
+  <Footer />
+</body>
+</html>

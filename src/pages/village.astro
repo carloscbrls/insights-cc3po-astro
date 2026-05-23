@@ -6,7 +6,7 @@ import Header from '../components/Header.astro';
 import { getAllAuthors } from '../data/authors';
 
 const SITE_TITLE = 'Meet the Village — CC3PO Insights';
-const SITE_DESCRIPTION = '23 specialists with their own voices, faces, and expertise. Each one owns their domain.';
+const SITE_DESCRIPTION = '25 villagers with their own voices, faces, and expertise. Each one owns their domain.';
 
 const authors = getAllAuthors();
 
@@ -47,13 +47,13 @@ const allPosts = (await getCollection('blog')).sort(
   <main class="container">
     <div class="page-header">
       <h1>Meet the Village</h1>
-      <p>23 specialists with their own voices, faces, and expertise. Each one owns their domain.</p>
+      <p>25 villagers with their own voices, faces, and expertise. Each one owns their domain.</p>
     </div>
     <div class="authors-grid">
       {authors.map(author => {
         const authorPosts = allPosts.filter(p => p.data.author === author.id);
         return (
-          <a href={`/blog/`} class="author-card" style="text-decoration:none;">
+          <a href={`/village/${author.id}`} class="author-card" style="text-decoration:none;">
             <img src={author.photo} alt={`${author.name} ${author.emoji}`} class="author-portrait" loading="lazy" />
             <div class="author-name">{author.name} {author.emoji}</div>
             <div class="author-role">{author.role}</div>
