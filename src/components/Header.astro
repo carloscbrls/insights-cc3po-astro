@@ -130,15 +130,16 @@ const currentPath = Astro.url.pathname;
 		display: none;
 		flex-direction: column;
 		justify-content: center;
+		align-items: center;
 		gap: 5px;
-		width: 32px;
-		height: 32px;
+		width: 40px;
+		height: 40px;
 		cursor: pointer;
 		background: transparent;
 		border: none;
-		padding: 4px;
+		padding: 8px;
 		flex-shrink: 0;
-		border-radius: 6px;
+		border-radius: 8px;
 		transition: background 0.2s;
 	}
 	.nav-toggle:hover {
@@ -152,7 +153,6 @@ const currentPath = Astro.url.pathname;
 		transition: all 0.3s ease;
 		transform-origin: center;
 		border-radius: 2px;
-		margin: 0 auto;
 	}
 	.nav-toggle.active span:nth-child(1) {
 		transform: translateY(7px) rotate(45deg);
@@ -176,6 +176,8 @@ const currentPath = Astro.url.pathname;
 		backdrop-filter: blur(20px);
 		-webkit-backdrop-filter: blur(20px);
 		padding: 24px;
+		padding-top: 16px;
+		padding-bottom: env(safe-area-inset-bottom, 0px);
 		flex-direction: column;
 		gap: 0;
 		z-index: 999;
@@ -190,7 +192,7 @@ const currentPath = Astro.url.pathname;
 		padding: 16px 0;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 		color: #a1a1aa;
-		font-size: 16px;
+		font-size: 17px;
 		font-weight: 500;
 		text-decoration: none;
 		transition: color 0.2s;
@@ -204,17 +206,20 @@ const currentPath = Astro.url.pathname;
 	.mobile-menu .mobile-cta {
 		margin-top: 24px;
 		padding: 14px 24px;
-		border-radius: 8px;
+		border-radius: 12px;
 		background: linear-gradient(135deg, #6b35ff, #00d2ff);
 		color: #fff;
+		font-size: 17px;
 		font-weight: 600;
 		text-align: center;
 		text-decoration: none;
 		border-bottom: none;
+		box-shadow: 0 4px 20px rgba(107, 53, 255, 0.3);
 	}
 	.mobile-search {
-		padding: 0 0 16px;
+		padding: 0 0 20px;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+		margin-bottom: 4px;
 	}
 
 	@media (max-width: 900px) {
@@ -224,29 +229,46 @@ const currentPath = Astro.url.pathname;
 		.nav-toggle {
 			display: flex;
 		}
+		/* Keep Subscribe visible on tablets */
 	}
 
 	@media (max-width: 768px) {
 		nav {
-			height: 56px;
+			height: 60px;
 		}
 		nav .inner {
 			padding: 0 16px;
+			/* Safe area for notched phones */
+			padding-right: max(16px, env(safe-area-inset-right, 0px));
+			padding-left: max(16px, env(safe-area-inset-left, 0px));
 		}
 		nav .logo img {
 			height: 32px;
 		}
 		.logo-text {
-			font-size: 16px;
+			font-size: 15px;
 		}
-		.nav-right .nav-subscribe {
+		.logo-text .logo-insights {
+			display: none;
+		}
+		.nav-subscribe {
 			display: none;
 		}
 		.nav-right .search-trigger {
 			display: none;
 		}
 		.mobile-menu {
-			top: 56px;
+			top: 60px;
+		}
+		.nav-toggle {
+			width: 44px;
+			height: 44px;
+			padding: 10px;
+			/* Ensure adequate touch target and spacing from edge */
+			margin-right: -4px;
+		}
+		.nav-toggle span {
+			width: 20px;
 		}
 	}
 </style>
@@ -255,7 +277,7 @@ const currentPath = Astro.url.pathname;
 	<div class="inner">
 		<a href="https://cc3po.com" class="logo">
 			<img src="/images/cc3po-logo.png" alt="CC3PO" />
-			<span class="logo-text"><span class="logo-cc">CC</span><span class="logo-3po">3PO</span> <span style="color: #a1a1aa; font-weight: 400; font-size: 13px;">Insights</span></span>
+			<span class="logo-text"><span class="logo-cc">CC</span><span class="logo-3po">3PO</span> <span class="logo-insights" style="color: #a1a1aa; font-weight: 400; font-size: 13px;">Insights</span></span>
 		</a>
 		<ul class="nav-links">
 			{navLinks.map(link => (
@@ -315,7 +337,7 @@ const currentPath = Astro.url.pathname;
 	mobileMenu?.querySelectorAll('a').forEach(link => {
 		link.addEventListener('click', () => {
 			toggle?.classList.remove('active');
-			mobileMenu?.classList.remove('active');
+			mobileMenu.classList.remove('active');
 			document.body.style.overflow = '';
 		});
 	});
