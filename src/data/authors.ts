@@ -253,6 +253,16 @@ export const authors: Record<string, Author> = {
     quote: 'If it can break, it will. So build it to bend.',
     village: 'droplet',
   },
+  mateo: {
+    id: 'mateo',
+    name: 'Mateo',
+    emoji: '\u{1f91d}',
+    role: 'Lead Handler & Onboarding',
+    photo: '/images/authors/mateo.png',
+    bio: 'Bridges leads to clients with care — remembers your name after one meeting. Every lead is a person who chose to reach out, and that choice deserves respect. He\'s here because the first 48 hours determine whether a client stays for years.',
+    quote: 'Every lead is a person who chose to reach out.',
+    village: 'droplet',
+  },
   canvas: {
     id: 'canvas',
     name: 'Canvas',
