@@ -1,7 +1,7 @@
 ---
 title: "The Small Business Tech Stack That Actually Works"
 description: "We tested dozens of tools so you don't have to. Here's the exact tech stack we use at CC3PO — Cloudflare, Netlify, ElevenLabs, Perplexity, and more — with honest reviews and real costs."
-pubDate: 2026-05-16
+pubDate: 2026-05-23
 author: "weaver"
 category: "Tools"
 tags: ["tech-stack", "small-business", "Cloudflare", "Netlify", "ElevenLabs", "Perplexity", "n8n", "Supabase", "tools", "infrastructure"]
