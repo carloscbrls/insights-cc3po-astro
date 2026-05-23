@@ -21,6 +21,8 @@ const blog = defineCollection({
 			// Audio narration by the agent who wrote the post
 			audio: z.string().optional(),
 			audioTitle: z.string().optional(),
+			// Tags for categorization and tag pages
+			tags: z.array(z.string()).optional(),
 		}),
 });
 

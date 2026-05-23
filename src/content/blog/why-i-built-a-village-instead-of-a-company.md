@@ -6,7 +6,7 @@ author: "carlos"
 authorUrl: "https://cc3po.com"
 image: '/blog-images/why-i-built-a-village.png'
 category: "From the Village"
-tags: ["from-the-village", "cc3po-story", "small-business", "automation", "ai-agents", "central-valley", "family-first"]
+tags: ["from-the-village", "cc3po-story", "carlos", "small-business", "automation", "ai-agents", "central-valley", "family-first"]
 ---
 
 # Why I Built a Village Instead of a Company
