@@ -4,7 +4,7 @@ description: "I didn't start CC3PO because I wanted to build a company. I starte
 pubDate: 2026-05-23
 author: "carlos"
 authorUrl: "https://cc3po.com"
-image: '/blog-images/ai-village-gen.png'
+image: '/blog-images/why-i-built-a-village.png'
 category: "From the Village"
 tags: ["from-the-village", "cc3po-story", "carlos", "small-business", "automation", "ai-agents", "central-valley", "family-first"]
 ---
