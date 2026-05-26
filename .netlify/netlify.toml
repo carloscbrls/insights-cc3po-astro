@@ -33,7 +33,26 @@ functions = "/Users/cc3po/.openclaw/workspace/insights-cc3po-astro/netlify/funct
 for = "/*"
 
 [headers.values]
+X-Frame-Options = "DENY"
+X-Content-Type-Options = "nosniff"
+X-XSS-Protection = "1; mode=block"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+[[headers]]
+for = "/*"
+
+[headers.values]
 X-Analytics = "true"
+
+[[headers]]
+for = "/audio/*.mp3"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+Content-Type = "audio/mpeg"
+Accept-Ranges = "bytes"
 
 [[headers]]
 for = "/*_astro/*"
@@ -86,8 +105,8 @@ X-Content-Type-Options = "nosniff"
 Referrer-Policy = "strict-origin-when-cross-origin"
 
 [[redirects]]
-from = "/blog.html"
-to = "/blog"
+from = "/blog/local-it-partner-story/"
+to = "/signal/"
 status = 301.0
 force = false
 
@@ -98,8 +117,8 @@ force = false
 [redirects.headers]
 
 [[redirects]]
-from = "/"
-to = "/blog"
+from = "/blog/tesla-autopilot-small-business-it/"
+to = "/signal/"
 status = 301.0
 force = false
 
@@ -110,9 +129,9 @@ force = false
 [redirects.headers]
 
 [[redirects]]
-from = "/*/:index.html"
-to = "/blog/:splat"
-status = 301.0
+from = "/audio/*"
+to = "/audio/:splat"
+status = 200.0
 force = false
 
 [redirects.query]

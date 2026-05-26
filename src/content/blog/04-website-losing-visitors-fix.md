@@ -1,7 +1,7 @@
 ---
 title: "Why Your Website is Losing 40% of Visitors (And How to Fix It)"
 description: "Most small business websites hemorrhage visitors due to slow load times, poor accessibility, and bad mobile experience. Here are the 5 biggest leaks and exactly how to patch them."
-pubDate: 2026-05-16
+pubDate: 2026-05-25
 author: "weaver"
 category: "Performance"
 tags: ["website-performance", "Core-Web-Vitals", "accessibility", "mobile-optimization", "page-speed", "bounce-rate", "small-business", "SEO"]

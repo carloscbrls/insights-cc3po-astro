@@ -3,7 +3,7 @@ title: 'WordPress Automation for Small Businesses: Stop Doing Everything Manuall
 description: 'Why small businesses need WordPress automation and how to implement it practically. Move beyond the manual trap that limits growth.'
 pubDate: '2026-04-08'
 category: 'WordPress'
-author: 'forge'
+author: 'kaol'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 audio: '/audio/forge-wordpress-automation-for-small-businesses-stop-doing-everything-manually.mp3'
 audioTitle: 'Listen to Forge narrate this article'

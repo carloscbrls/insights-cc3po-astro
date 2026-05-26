@@ -3,7 +3,7 @@ title: 'Trauma: No Script to Recovery'
 description: "Understanding trauma recovery as a journey without scripts. What actually helps and what doesn't in supporting trauma survivors."
 pubDate: '2026-04-08'
 category: 'Nonprofit'
-author: 'anchor'
+author: 'keel'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 audio: '/audio/anchor-trauma-no-script-to-recovery.mp3'
 audioTitle: 'Listen to Anchor ⚓ narrate this article'

@@ -3,7 +3,7 @@
 title: "The Automation-First Business: 5 Ways WordPress Sites Can Run Themselves in 2026"
 description: "Discover how Central Valley small businesses are using WordPress automation to save 10+ hours per week. From AI-powered scheduling to self-maintaining backups, learn what's possible today."
 pubDate: 2026-05-08
-author: "forge"
+author: "kaol"
 image: '/blog-images/automation-first-wordpress-gen.png'
 category: "Business"
 tags: ["wordpress-automation", "small-business-it", "ai-automation", "elementor", "sticklight-ai", "workflow-automation", "central-valley-business", "hipaa-compliance"]
