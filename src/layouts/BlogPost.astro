@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 import Header from '../components/Header.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
@@ -847,5 +848,6 @@ const relatedPosts = allPosts
 
 		</main>
 		<Footer />
+		<CookieBanner />
 	</body>
 </html>
