@@ -332,10 +332,14 @@ mark {
 
 	.prose h2 {
 		font-size: 1.5rem !important;
+		color: #ffffff !important;
+		-webkit-text-fill-color: #ffffff !important;
 	}
 
 	.prose h3 {
 		font-size: 1.25rem !important;
+		color: #ffffff !important;
+		-webkit-text-fill-color: #ffffff !important;
 	}
 
 	/* Responsive tables — wrap in scrollable container on mobile */
