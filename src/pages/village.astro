@@ -40,6 +40,46 @@ const allPosts = (await getCollection('blog')).sort(
     .author-bio { font-size:0.85rem; color:#71717a; line-height:1.5; margin-bottom:16px; }
     .author-posts { font-size:0.8rem; color:var(--accent); }
     .author-posts span { color:#71717a; }
+
+    /* Mobile responsive for Village page */
+    @media (max-width: 768px) {
+      .page-header {
+        padding: 80px 16px 40px;
+      }
+      .page-header h1 {
+        font-size: 1.75rem;
+      }
+      .page-header p {
+        font-size: 1rem;
+      }
+      .authors-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 24px 0 60px;
+      }
+      .author-card {
+        padding: 20px;
+      }
+      .container {
+        padding: 0 16px;
+      }
+    }
+
+    /* Small phones */
+    @media (max-width: 400px) {
+      .page-header h1 {
+        font-size: 1.5rem;
+      }
+      .author-role {
+        font-size: 0.7rem;
+      }
+      .author-quote {
+        font-size: 0.8rem;
+      }
+      .author-bio {
+        font-size: 0.85rem;
+      }
+    }
   </style>
 </head>
 <body>

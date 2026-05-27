@@ -294,7 +294,7 @@
   
   @media (max-width: 768px) {
     .search-modal {
-      padding: 60px 8px;
+      padding: calc(60px + env(safe-area-inset-top, 0px)) 8px;
     }
     
     .search-shortcut {
@@ -302,11 +302,22 @@
     }
     
     .search-trigger {
-      padding: 8px 12px;
+      padding: 10px 12px;
+      min-height: 44px;
     }
     
     .search-text {
       display: none;
+    }
+    
+    .search-panel {
+      max-height: calc(100vh - 80px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+      overflow-y: auto;
+    }
+    
+    .filter-btn {
+      min-height: 44px;
+      padding: 8px 14px;
     }
   }
 </style>

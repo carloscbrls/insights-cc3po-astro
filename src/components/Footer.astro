@@ -104,14 +104,15 @@ const currentYear = new Date().getFullYear();
 	}
 	.footer-newsletter-input {
 		flex: 1;
-		padding: 10px 14px;
+		padding: 12px 14px;
 		background: rgba(255,255,255,0.06);
 		border: 1px solid rgba(255,255,255,0.1);
 		border-radius: 8px;
 		color: #fff;
-		font-size: 14px;
+		font-size: 16px; /* Prevent iOS zoom */
 		outline: none;
 		transition: border-color 0.2s;
+		min-height: 44px;
 	}
 	.footer-newsletter-input:focus {
 		border-color: #e94560;
@@ -120,7 +121,7 @@ const currentYear = new Date().getFullYear();
 		color: #64748b;
 	}
 	.footer-newsletter-btn {
-		padding: 10px 20px;
+		padding: 12px 20px;
 		background: linear-gradient(135deg, #c7364f, #6235dd);
 		border: none;
 		border-radius: 8px;
@@ -130,6 +131,7 @@ const currentYear = new Date().getFullYear();
 		cursor: pointer;
 		transition: all 0.2s;
 		white-space: nowrap;
+		min-height: 44px;
 	}
 	.footer-newsletter-btn:hover {
 		transform: translateY(-1px);
@@ -149,6 +151,15 @@ const currentYear = new Date().getFullYear();
 		color: #e94560;
 		font-size: 14px;
 		margin-top: 8px;
+	}
+	/* Stack footer newsletter form on very small screens */
+	@media (max-width: 400px) {
+		.footer-newsletter-form {
+			flex-direction: column;
+		}
+		.footer-newsletter-btn {
+			width: 100%;
+		}
 	}
 </style>
 

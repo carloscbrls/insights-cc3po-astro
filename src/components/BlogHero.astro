@@ -339,8 +339,9 @@ const { featuredPost, latestPosts } = Astro.props;
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(255, 255, 255, 0.05);
     color: #fff;
-    font-size: 14px;
+    font-size: 16px;
     transition: border-color 0.2s;
+    min-height: 44px;
   }
 
   .newsletter-form input:focus {
@@ -363,6 +364,7 @@ const { featuredPost, latestPosts } = Astro.props;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
     white-space: nowrap;
+    min-height: 44px;
   }
 
   .newsletter-form button:hover {

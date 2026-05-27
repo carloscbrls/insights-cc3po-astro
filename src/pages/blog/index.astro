@@ -119,7 +119,7 @@ const categories = [...new Set(posts.map(post => post.data.category).filter(Bool
       /* Posts Grid */
       .posts-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 24px;
       }
 
@@ -169,6 +169,7 @@ const categories = [...new Set(posts.map(post => post.data.category).filter(Bool
       @media (max-width: 768px) {
         .main-container {
           padding: 0 16px 40px;
+          overflow-x: hidden;
         }
 
         .posts-grid {
@@ -185,6 +186,15 @@ const categories = [...new Set(posts.map(post => post.data.category).filter(Bool
           flex-direction: column;
           align-items: flex-start;
           gap: 12px;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .stat-number {
+          font-size: 22px;
+        }
+        .stat-label {
+          font-size: 12px;
         }
       }
     </style>

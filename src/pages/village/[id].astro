@@ -142,6 +142,28 @@ const SITE_DESCRIPTION = author.bio.slice(0, 160);
       .author-name { font-size: 1.6rem; }
       .author-quote { font-size: 1rem; }
     }
+
+    /* Mobile responsive for Village detail page */
+    @media (max-width: 768px) {
+      .author-hero {
+        padding: 80px 16px 40px;
+      }
+      .author-portrait { width: 120px; height: 120px; }
+      .author-name { font-size: 1.6rem; }
+      .author-role { font-size: 0.8rem; }
+      .author-quote { font-size: 1rem; padding: 16px 20px; }
+      .author-bio { font-size: 0.9rem; }
+      .container { padding: 0 16px; }
+      .post-card {
+        padding: 16px 20px;
+      }
+      .post-title { font-size: 0.95rem; }
+    }
+
+    @media (max-width: 400px) {
+      .author-name { font-size: 1.4rem; }
+      .author-quote { font-size: 0.9rem; }
+    }
   </style>
 </head>
 <body>
