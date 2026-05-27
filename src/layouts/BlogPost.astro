@@ -250,6 +250,42 @@ const relatedPosts = allPosts
 				overflow-x: hidden;
 			}
 
+			/* Responsive tables — scroll horizontally on mobile */
+			.article-content :global(table) {
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				border-radius: 8px;
+				margin: 1.5rem 0;
+				font-size: 0.875rem;
+				border-collapse: collapse;
+				width: 100%;
+			}
+
+			.article-content :global(th),
+			.article-content :global(td) {
+				padding: 0.5rem 0.75rem;
+				text-align: left;
+				white-space: normal;
+				word-wrap: break-word;
+				overflow-wrap: break-word;
+			}
+
+			.article-content :global(th) {
+				font-weight: 600;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+			}
+
+			.article-content :global(tr:nth-child(even)) {
+				background: rgba(255, 255, 255, 0.03);
+			}
+
+			@media (max-width: 768px) {
+				.article-content :global(table) {
+					display: block;
+					overflow-x: auto;
+					-webkit-overflow-scrolling: touch;
+				}
+			}
+
 			/* Social Share Sidebar */
 			.social-sidebar {
 				position: sticky;
