@@ -84,6 +84,58 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
+# Village renames — 301 redirects from old slugs to new canonical URLs
+# These ensure SEO link equity transfers and users land on the right page
+[[redirects]]
+  from = "/village/anchor"
+  to = "/village/keel"
+  status = 301
+
+[[redirects]]
+  from = "/village/apollo"
+  to = "/village/aether"
+  status = 301
+
+[[redirects]]
+  from = "/village/bridge"
+  to = "/village/rook"
+  status = 301
+
+[[redirects]]
+  from = "/village/clio"
+  to = "/village/vesper"
+  status = 301
+
+[[redirects]]
+  from = "/village/compass"
+  to = "/village/lodestone"
+  status = 301
+
+[[redirects]]
+  from = "/village/echo"
+  to = "/village/resonance"
+  status = 301
+
+[[redirects]]
+  from = "/village/forge"
+  to = "/village/kaol"
+  status = 301
+
+[[redirects]]
+  from = "/village/lens"
+  to = "/village/vistra"
+  status = 301
+
+[[redirects]]
+  from = "/village/mirror"
+  to = "/village/candor"
+  status = 301
+
+[[redirects]]
+  from = "/village/pulse"
+  to = "/village/kairo"
+  status = 301
+
 # Security headers for all pages
 [[headers]]
   for = "/*"

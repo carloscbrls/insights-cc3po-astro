@@ -9,6 +9,18 @@
 /blog /signal/ 301
 /blog/ /signal/ 301
 
+# Village renames — 301 redirects from old slugs to new canonical URLs
+/village/anchor /village/keel 301
+/village/apollo /village/aether 301
+/village/bridge /village/rook 301
+/village/clio /village/vesper 301
+/village/compass /village/lodestone 301
+/village/echo /village/resonance 301
+/village/forge /village/kaol 301
+/village/lens /village/vistra 301
+/village/mirror /village/candor 301
+/village/pulse /village/kairo 301
+
 # Redirect removed blog posts to related content
 /blog/local-it-partner-story/ /signal/ 301
 /blog/tesla-autopilot-small-business-it/ /signal/ 301
