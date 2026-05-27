@@ -256,6 +256,22 @@ const relatedPosts = allPosts
 				overflow-x: hidden;
 			}
 
+			/* MDX content headings — must use :global() because MDX elements don't get scoped attrs */
+			.prose :global(h2) {
+				color: #ffffff !important;
+				-webkit-text-fill-color: #ffffff !important;
+			}
+
+			.prose :global(h3) {
+				color: #ffffff !important;
+				-webkit-text-fill-color: #ffffff !important;
+			}
+
+			.prose :global(a) {
+				color: #4fc3f7;
+				-webkit-text-fill-color: #4fc3f7;
+			}
+
 			/* Responsive tables — scroll horizontally on mobile */
 			.article-content :global(table) {
 				border: 1px solid rgba(255, 255, 255, 0.1);
