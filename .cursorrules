@@ -63,3 +63,18 @@ invisible (black on dark background) on mobile devices.
 - Global styles in `src/styles/global.css`
 - Blog content in `src/content/blog/` (`.mdx` and `.md` files)
 - Authors defined in `src/data/authors.ts`
+## MDX Content (Critical)
+
+Astro's `<Content />` component renders MDX/Markdown elements WITHOUT data-astro-cid
+attributes. This means scoped CSS selectors like `.prose[cid] h2[cid]` will NEVER match
+MDX-generated heading elements. Always use `:global()` selectors for MDX content styling:
+
+```css
+/* ❌ WRONG — scoped selector won't match MDX h2 elements */
+.prose h2 { color: #fff; }
+
+/* ✅ CORRECT — :global() compiles to unscoped rule that matches all h2 in .prose */
+.prose :global(h2) { color: #fff !important; -webkit-text-fill-color: #fff !important; }
+```
+
+Always verify text visibility with `getComputedStyle(el).webkitTextFillColor` in DevTools.
