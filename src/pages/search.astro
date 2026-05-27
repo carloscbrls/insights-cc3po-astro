@@ -23,7 +23,7 @@ const posts = await getCollection('blog');
         --bg: #0a0a0b;
         --card: #141418;
         --text: #fff;
-        --muted: #a1a1aa;
+        --muted: #d4d4d8;
         --primary: #e94560;
         --accent: #4fc3f7;
         --grad: #e94560;
@@ -197,8 +197,9 @@ const posts = await getCollection('blog');
     </style>
   </head>
   <body>
+		<a href="#main-content" class="skip-link">Skip to main content</a>
     <Header />
-    <main class="search-page">
+    <main id="main-content" class="search-page">
       <header class="search-header">
         <h1>Search Articles</h1>
         <p>Find insights on AI, automation, WordPress, and business growth</p>

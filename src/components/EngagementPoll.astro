@@ -44,7 +44,7 @@ const { question, options, pollId, accent = '#e94560' } = Astro.props;
   
   <div class="poll-footer">
     <span class="poll-votes"><span class="vote-count">0</span> votes</span>
-    <button class="poll-reset" hidden>Vote again</button>
+    <button class="poll-reset" hidden aria-label="Reset poll">Vote again</button>
   </div>
 </div>
 
@@ -171,13 +171,13 @@ const { question, options, pollId, accent = '#e94560' } = Astro.props;
     align-items: center;
     justify-content: space-between;
     font-size: 12px;
-    color: #a1a1aa;
+    color: #d4d4d8;
   }
 
   .poll-reset {
     background: none;
     border: none;
-    color: #a1a1aa;
+    color: #d4d4d8;
     cursor: pointer;
     font-size: 12px;
     text-decoration: underline;

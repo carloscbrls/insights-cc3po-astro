@@ -47,7 +47,7 @@ const SITE_DESCRIPTION = `${tagDisplay} articles from CC3PO Insights — strateg
         --bg: #0a0a0b;
         --card: #141418;
         --text: #fff;
-        --muted: #a1a1aa;
+        --muted: #d4d4d8;
         --primary: #e94560;
         --accent: #4fc3f7;
       }
@@ -95,13 +95,13 @@ const SITE_DESCRIPTION = `${tagDisplay} articles from CC3PO Insights — strateg
 
       .tag-count {
         font-size: 18px;
-        color: #a1a1aa;
+        color: #d4d4d8;
         margin-bottom: 8px;
       }
 
       .tag-description {
         font-size: 16px;
-        color: #a1a1aa;
+        color: #d4d4d8;
         line-height: 1.6;
       }
 
@@ -125,7 +125,7 @@ const SITE_DESCRIPTION = `${tagDisplay} articles from CC3PO Insights — strateg
         background: rgba(255,255,255,.05);
         border: 1px solid rgba(255,255,255,.08);
         border-radius: 12px;
-        color: #a1a1aa;
+        color: #d4d4d8;
         text-decoration: none;
         font-size: 14px;
         font-weight: 500;
@@ -155,6 +155,7 @@ const SITE_DESCRIPTION = `${tagDisplay} articles from CC3PO Insights — strateg
     </style>
   </head>
   <body>
+		<a href="#main-content" class="skip-link">Skip to main content</a>
     <Header />
     
     <header class="tag-hero">
@@ -165,7 +166,7 @@ const SITE_DESCRIPTION = `${tagDisplay} articles from CC3PO Insights — strateg
 
     <CategoryNav />
 
-    <div class="main-container">
+    <main id="main-content" class="main-container">
       <a href="/blog/" class="back-link">← Back to All Signals</a>
       <div class="posts-grid">
         {posts.map((post) => (

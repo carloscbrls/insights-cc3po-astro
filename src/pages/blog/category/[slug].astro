@@ -43,7 +43,7 @@ const SITE_DESCRIPTION = `${category} articles from CC3PO Insights — strategie
         --bg: #0a0a0b;
         --card: #141418;
         --text: #fff;
-        --muted: #a1a1aa;
+        --muted: #d4d4d8;
         --primary: #e94560;
         --accent: #4fc3f7;
       }
@@ -91,13 +91,13 @@ const SITE_DESCRIPTION = `${category} articles from CC3PO Insights — strategie
 
       .category-count {
         font-size: 18px;
-        color: #a1a1aa;
+        color: #d4d4d8;
         margin-bottom: 8px;
       }
 
       .category-description {
         font-size: 16px;
-        color: #a1a1aa;
+        color: #d4d4d8;
         line-height: 1.6;
       }
 
@@ -121,7 +121,7 @@ const SITE_DESCRIPTION = `${category} articles from CC3PO Insights — strategie
         background: rgba(255,255,255,.05);
         border: 1px solid rgba(255,255,255,.08);
         border-radius: 12px;
-        color: #a1a1aa;
+        color: #d4d4d8;
         text-decoration: none;
         font-size: 14px;
         font-weight: 500;
@@ -151,6 +151,7 @@ const SITE_DESCRIPTION = `${category} articles from CC3PO Insights — strategie
     </style>
   </head>
   <body>
+		<a href="#main-content" class="skip-link">Skip to main content</a>
     <Header />
     
     <header class="category-hero">
@@ -161,7 +162,7 @@ const SITE_DESCRIPTION = `${category} articles from CC3PO Insights — strategie
 
     <CategoryNav activeCategory={category} />
 
-    <div class="main-container">
+    <main id="main-content" class="main-container">
       <a href="/blog/" class="back-link">← Back to All Signals</a>
       <div class="posts-grid">
         {posts.map((post) => (
