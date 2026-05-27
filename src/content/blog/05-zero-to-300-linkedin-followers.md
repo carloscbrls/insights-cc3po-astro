@@ -1,7 +1,7 @@
 ---
 title: "From Zero to 300 LinkedIn Followers: What Actually Worked"
 description: "We went from 12 followers to 300+ on LinkedIn in 90 days — no ads, no bots, no shortcuts. Here's the exact strategy, the posts that worked, and the tools that made it possible."
-pubDate: 2026-05-16
+pubDate: 2026-05-27
 author: "weaver"
 category: "Growth"
 tags: ["LinkedIn", "social-media-growth", "content-strategy", "small-business", "networking", "B2B-marketing", "organic-growth"]
