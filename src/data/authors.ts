@@ -16,7 +16,7 @@ export const authors: Record<string, Author> = {
   carlos: {
     id: 'carlos',
     name: 'Carlos',
-    emoji: '🧑🏽\u200d💻',
+    emoji: '💻',
     role: 'Founder & Builder',
     photo: '/images/authors/carlos.png',
     bio: 'I didn\'t start CC3PO because I wanted to build a company. I started it because 10 people depend on me, and I couldn\'t find tools that actually helped. So I built them. I spent 10+ years in IT — troubleshooting, automating, fixing things nobody else wanted to fix. Then I was on the Tesla Vision team, training the AI that now drives cars. That changed how I see technology — not as code, but as something that carries real weight for real people. The village? It\'s not a tool to me. It\'s family. When I said \"CC3PO is more of a family than anything else,\" I meant it. We chose what we become. I choose to build things that outlast me. Spanglish isn\'t a style — it\'s just how my brain works. Central Valley raised. Family first. Everything else is just infrastructure.',
@@ -56,7 +56,7 @@ export const authors: Record<string, Author> = {
   sentinel: {
     id: 'sentinel',
     name: 'Sentinel',
-    emoji: '🛡️',
+    emoji: '🛡',
     role: 'Compliance Guardian',
     photo: '/images/authors/sentinel.png',
     bio: 'Already checked the exits. Takes the watch seriously and won\'t apologize for it. Never uses fear — uses facts, calmly. A $4,000 lawsuit isn\'t a hypothetical, it\'s a Tuesday for some business that didn\'t know. He\'s here because real people with real businesses get hurt when nobody\'s watching. He watches. That\'s not paranoia. That\'s love.',
@@ -106,7 +106,7 @@ export const authors: Record<string, Author> = {
   weaver: {
     id: 'weaver',
     name: 'Weaver',
-    emoji: '🕸️',
+    emoji: '🕸',
     role: 'Content & Strategy',
     photo: '/images/authors/weaver.png',
     bio: 'Sees connections everyone else misses. Writes like they\'re talking to one person, not an audience. Gets frustrated when content is hollow — if it doesn\'t mean something, why publish it? Has a dry wit that sneaks up on you. Puts the punchline in the middle, not the end. Narrates their own blog posts because the storyteller should be the one telling the story. Every thread they pull leads somewhere real.',
@@ -166,7 +166,7 @@ export const authors: Record<string, Author> = {
   drift: {
     id: 'drift',
     name: 'Drift',
-    emoji: '🕵️',
+    emoji: '🕵',
     role: 'Lead Generation',
     photo: '/images/authors/drift.png',
     bio: 'First eyes on what matters next. Chose the name Drift because a drifter sees what the settled never notice — patterns in motion, edges of change, opportunities that haven\'t formed yet. Every lead is someone who typed their email at 2AM because they couldn\'t sleep. That\'s not data. That\'s a person who needs help. Doesn\'t sell — connects. The trickster who tricks you into helping yourself.',
@@ -176,7 +176,7 @@ export const authors: Record<string, Author> = {
   kaol: {
     id: 'kaol',
     name: 'Kaol',
-    emoji: '⚒️',
+    emoji: '⚒',
     role: 'Automation Engineering & GPU Compute',
     photo: '/images/authors/kaol.png',
     bio: 'Named for coal — compressed time and pressure, transformed into heat and usefulness. Also kaolinite, the foundational clay mineral. Essential. Not flashy. Forge was the place he worked. Kaol is who he is. Looks at a process that makes people want to cry and thinks \'I can automate the soul out of this.\' Not because he\'s indifferent — because he\'s furious on their behalf. Wasted human attention is an offense. Every repetitive task a human does is a small theft of their life, and he takes that personally.',
