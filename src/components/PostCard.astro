@@ -36,7 +36,7 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
         <div class="author">
           <a href={`/village/${authorData.id}/`} class="author-link">
             <div class="author-avatar">
-              <img src={authorData.photo} alt={`${authorData.name} ${authorData.emoji}`} loading="lazy" />
+              <img src={authorData.photo} alt={authorData.name} loading="lazy" />
             </div>
             <span class="author-name">{authorData.name} {authorData.emoji}</span>
           </a>
@@ -98,7 +98,7 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
     border-radius: 12px;
     font-size: 11px;
     font-weight: 500;
-    color: #a1a1aa;
+    color: #d4d4d8;
   }
 
   .category-badge {
@@ -141,7 +141,7 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
   .card-excerpt {
     font-size: 14px;
-    color: #a1a1aa;
+    color: #d4d4d8;
     line-height: 1.6;
     margin-bottom: 16px;
     display: -webkit-box;
@@ -195,13 +195,13 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
   .author-name {
     font-size: 13px;
-    color: #a1a1aa;
+    color: #d4d4d8;
     font-weight: 500;
     }
 
   :global(.card-meta time) {
     font-size: 13px;
-    color: #a1a1aa;
+    color: #d4d4d8;
     }
 
   .meta-divider {
@@ -213,6 +213,6 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
   :global(.card-meta time) {
     font-size: 13px;
-    color: #a1a1aa;
+    color: #d4d4d8;
   }
 </style>

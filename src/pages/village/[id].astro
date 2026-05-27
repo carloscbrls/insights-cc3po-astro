@@ -145,14 +145,15 @@ const SITE_DESCRIPTION = author.bio.slice(0, 160);
   </style>
 </head>
 <body>
+		<a href="#main-content" class="skip-link">Skip to main content</a>
   <Header />
-  <main class="container">
+  <main id="main-content" class="container">
     <div class="author-hero">
       <a href="/village" class="back-link">← Back to Village</a>
       <div class="village-badge">
         {author.village === 'mac-mini' ? '🌍 Mac Mini' : '⚡ Worker'} Village
       </div>
-      <img src={author.photo} alt={`${author.name} ${author.emoji}`} class="author-portrait" />
+      <img src={author.photo} alt={author.name} class="author-portrait" />
       <div class="author-name">{author.name} {author.emoji}</div>
       <div class="author-role">{author.role}</div>
       <div class="author-quote">"{author.quote}"</div>

@@ -57,7 +57,7 @@ const shareCount = Math.floor(Math.random() * 50) + 10; // Placeholder until rea
 </div>
 
 <div class="mobile-share-bar" id="mobile-share-bar">
-	<button class="mobile-share-btn" id="mobile-share-trigger">
+	<button class="mobile-share-btn" id="mobile-share-trigger" aria-label="Share options">
 		<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 			<circle cx="18" cy="5" r="3"/>
 			<circle cx="6" cy="12" r="3"/>
@@ -80,7 +80,7 @@ const shareCount = Math.floor(Math.random() * 50) + 10; // Placeholder until rea
 			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
 			<span>Email</span>
 		</a>
-		<button class="mobile-link" id="mobile-copy-btn">
+		<button class="mobile-link" id="mobile-copy-btn" aria-label="Copy link">
 			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
 			<span>Copy link</span>
 		</button>
@@ -122,7 +122,7 @@ const shareCount = Math.floor(Math.random() * 50) + 10; // Placeholder until rea
 		border: none;
 		cursor: pointer;
 		background: rgba(255, 255, 255, 0.03);
-		color: #a1a1aa;
+		color: #d4d4d8;
 		transition: all 0.2s ease;
 		text-decoration: none;
 	}
@@ -170,12 +170,12 @@ const shareCount = Math.floor(Math.random() * 50) + 10; // Placeholder until rea
 
 	.count-label {
 		font-size: 10px;
-		color: #a1a1aa;
+		color: #d4d4d8;
 	}
 
 	.share-label {
 		font-size: 11px;
-		color: #a1a1aa;
+		color: #d4d4d8;
 		text-transform: uppercase;
 		letter-spacing: 1px;
 	}
