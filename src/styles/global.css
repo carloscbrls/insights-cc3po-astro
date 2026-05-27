@@ -76,6 +76,7 @@ body {
 	font-family: var(--font-inter);
 	background: var(--bg);
 	color: var(--text);
+	-webkit-text-fill-color: var(--text);
 	line-height: 1.6;
 	/* Phase 6: Smooth text rendering */
 	-webkit-font-smoothing: antialiased;

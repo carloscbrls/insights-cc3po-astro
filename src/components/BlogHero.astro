@@ -171,13 +171,15 @@ const { featuredPost, latestPosts } = Astro.props;
     line-height: 1.2;
     margin-bottom: 12px;
     max-width: 800px;
-    color: #fff;
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
     text-shadow: 0 2px 4px rgba(0,0,0,0.3);
   }
 
   .featured-excerpt {
     font-size: clamp(15px, 1.5vw, 18px);
     color: #d4d4d8;
+    -webkit-text-fill-color: #d4d4d8;
     max-width: 600px;
     margin-bottom: 20px;
     line-height: 1.6;
@@ -186,6 +188,7 @@ const { featuredPost, latestPosts } = Astro.props;
 
   .featured-cta {
     color: #4fc3f7;
+    -webkit-text-fill-color: #4fc3f7;
     font-weight: 600;
     font-size: 15px;
     display: inline-flex;
@@ -284,16 +287,19 @@ const { featuredPost, latestPosts } = Astro.props;
     font-size: 14px;
     font-weight: 600;
     color: #fff;
+    -webkit-text-fill-color: #fff;
   }
 
   .latest-content {
     padding: 16px;
+    background: #141418;
   }
 
   .latest-content h3 {
     font-size: 15px;
     font-weight: 600;
-    color: #fff;
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
     margin-bottom: 8px;
     line-height: 1.4;
     display: -webkit-box;
@@ -305,6 +311,7 @@ const { featuredPost, latestPosts } = Astro.props;
   .read-time {
     font-size: 14px;
     color: #d4d4d8;
+    -webkit-text-fill-color: #d4d4d8;
   }
 
   /* Newsletter CTA */
