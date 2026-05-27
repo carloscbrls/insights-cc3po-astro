@@ -1,0 +1,65 @@
+# CC3PO Insights — Development Rules
+
+## CRITICAL: Mobile Safari / WebKit Text Visibility
+
+Safari on iOS has a known rendering bug where `color:` declarations are ignored inside
+elements with gradient backgrounds or `background-clip: text`. This causes text to appear
+invisible (black on dark background) on mobile devices.
+
+### MANDATORY Rules for ALL CSS changes:
+
+1. **Every visible text element MUST have `-webkit-text-fill-color` alongside `color`**
+   ```css
+   /* ❌ WRONG — invisible on Safari iOS */
+   .my-title { color: #fff; }
+
+   /* ✅ CORRECT — works everywhere */
+   .my-title { color: #ffffff; -webkit-text-fill-color: #ffffff; }
+   ```
+
+2. **NEVER use gradient text** (`background-clip: text` + `-webkit-text-fill-color: transparent`)
+   - This makes text invisible on ~40% of mobile devices
+   - Use solid colors only: `color: #ffffff; -webkit-text-fill-color: #ffffff;`
+   - If a gradient effect is needed, use a subtle text-shadow instead
+
+3. **Always add solid `background:` on card/overlay content areas**
+   ```css
+   /* ❌ WRONG — gradient-only background can cause transparency bugs */
+   .card-content { background: linear-gradient(145deg, #141418, #0f0f11); }
+
+   /* ✅ CORRECT — solid fallback first */
+   .card-content {
+     background: #141418;
+     background: linear-gradient(145deg, #141418, #0f0f11);
+   }
+   ```
+
+4. **Headings inside `.prose` MUST use `!important` on color**
+   - The `.prose` base rule sets `color: #d4d4d8` which overrides component-scoped h2/h3 styles
+   - Always use: `.prose h2 { color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; }`
+
+5. **Before pushing, verify text visibility with browser DevTools:**
+   - Open Safari Web Inspector or Chrome DevTools mobile emulation
+   - Check that `getComputedStyle(el).webkitTextFillColor` returns `rgb(255, 255, 255)` for headings
+   - Check that NO element has `-webkit-text-fill-color: transparent`
+
+## Image Assets
+
+- All blog images go in `/public/blog-images/`
+- Every `image:` frontmatter field in `.mdx`/`.md` files MUST have a matching file in `/public/blog-images/`
+- Run `grep -rh "^image:" src/content/blog/ | while read line; do ... done` to verify none are missing
+- Provide both `.png` and `.webp` versions when possible (use `cwebp -q 80 input.png -o output.webp`)
+
+## Build & Deploy
+
+- `npm run build` → builds to `dist/`
+- Push to `master` → Netlify auto-deploys
+- Netlify caches CSS by content hash — changes appear when the hash changes (usually 1-2 min after push)
+
+## Architecture
+
+- Astro static site, dark theme (`--bg: #0a0a0b`, `--card: #141418`, `--text: #fff`)
+- Component-scoped styles via Astro `<style>` blocks (add `data-astro-cid-*` attributes)
+- Global styles in `src/styles/global.css`
+- Blog content in `src/content/blog/` (`.mdx` and `.md` files)
+- Authors defined in `src/data/authors.ts`
