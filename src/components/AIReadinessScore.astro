@@ -1,0 +1,512 @@
+---
+const FEED_URL = '/content-feed.json';  // served from public/ at build or fetched client-side
+---
+
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --card: #141418;
+    --text: #fff;
+    --muted: #d4d4d8;
+    --primary: #e94560;
+    --accent: #4fc3f7;
+  }
+
+  .ai-readiness {
+    background: linear-gradient(145deg, #1a1a1f, #141418);
+    border: 1px solid rgba(107,53,255,0.2);
+    border-radius: 24px;
+    padding: 40px 32px;
+    max-width: 680px;
+    margin: 0 auto 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ai-readiness::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #e94560, #6b35ff, #4fc3f7);
+  }
+
+  .readiness-header { margin-bottom: 28px; }
+  .readiness-header h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .readiness-header p {
+    color: #71717a;
+    font-size: 14px;
+  }
+
+  .readiness-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .readiness-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 52px;
+  }
+  .readiness-item:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(107,53,255,0.3);
+  }
+  .readiness-item.checked {
+    background: rgba(107,53,255,0.1);
+    border-color: rgba(107,53,255,0.4);
+  }
+
+  .readiness-item input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #52525b;
+    border-radius: 6px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  .readiness-item input[type="checkbox"]:checked {
+    background: #6b35ff;
+    border-color: #6b35ff;
+  }
+  .readiness-item input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .readiness-item .item-text { flex: 1; }
+  .readiness-item .item-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #d4d4d8;
+    margin-bottom: 2px;
+  }
+  .readiness-item .item-weight {
+    font-size: 12px;
+    color: #52525b;
+  }
+  .readiness-item .item-score {
+    font-size: 13px;
+    font-weight: 700;
+    color: #52525b;
+    flex-shrink: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .readiness-item.checked .item-score {
+    opacity: 1;
+    color: #4fc3f7;
+  }
+
+  /* Score display */
+  .readiness-score {
+    text-align: center;
+    padding: 24px;
+    margin-bottom: 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+  }
+  .readiness-score.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .readiness-score .score-number {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .readiness-score .score-band {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .readiness-score .score-desc {
+    font-size: 14px;
+    color: #71717a;
+  }
+
+  /* Recommendation cards */
+  .readiness-recs {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .readiness-recs.visible { display: flex; }
+  .readiness-recs h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #71717a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .rec-card {
+    display: block;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .rec-card:hover {
+    background: rgba(107,53,255,0.08);
+    border-color: rgba(107,53,255,0.3);
+    transform: translateX(4px);
+  }
+  .rec-card .rec-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+  .rec-card .rec-meta {
+    font-size: 12px;
+    color: #71717a;
+  }
+
+  /* Email capture — only after results */
+  .readiness-email {
+    display: none;
+    text-align: center;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .readiness-email.visible { display: block; }
+  .readiness-email p {
+    font-size: 13px;
+    color: #71717a;
+    margin-bottom: 10px;
+  }
+  .readiness-email .email-row {
+    display: flex;
+    gap: 8px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .readiness-email input {
+    flex: 1;
+    padding: 12px 14px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    min-height: 44px;
+    outline: none;
+  }
+  .readiness-email input:focus {
+    border-color: #6b35ff;
+  }
+  .readiness-email button {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #6b35ff, #00d2ff);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    min-height: 44px;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .readiness-email button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(107,53,255,0.3);
+  }
+  .readiness-email .email-thanks {
+    display: none;
+    color: #4ade80;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  @media (max-width: 640px) {
+    .ai-readiness { padding: 24px 16px; border-radius: 16px; }
+    .readiness-header h2 { font-size: 20px; }
+    .readiness-item { padding: 12px 14px; }
+    .readiness-score .score-number { font-size: 36px; }
+    .readiness-email .email-row { flex-direction: column; }
+  }
+</style>
+
+<section class="ai-readiness" id="ai-readiness-score" aria-label="AI Readiness Score Assessment">
+  <div class="readiness-header">
+    <h2>🧠 Your AI Readiness Score</h2>
+    <p>Check what you already have. See where you stand.</p>
+  </div>
+
+  <div class="readiness-questions" id="readiness-questions">
+    <!-- 10 weighted checkboxes, populated by JS from the Q&A data -->
+  </div>
+
+  <div class="readiness-score" id="readiness-score">
+    <div class="score-number" id="score-number">0</div>
+    <div class="score-band" id="score-band">Getting Started</div>
+    <div class="score-desc" id="score-desc">Every journey starts somewhere. Pick a few items above to begin.</div>
+  </div>
+
+  <div class="readiness-recs" id="readiness-recs">
+    <h4>Recommended reading</h4>
+    <div id="recs-list"></div>
+  </div>
+
+  <div class="readiness-email" id="readiness-email">
+    <p>Get your score + a personalized AI action plan delivered.</p>
+    <div class="email-row">
+      <input type="email" id="readiness-email-input" placeholder="your@email.com" aria-label="Email for action plan" />
+      <button id="readiness-email-btn">Send My Plan</button>
+    </div>
+    <div class="email-thanks" id="email-thanks">✅ Check your inbox for your action plan.</div>
+  </div>
+</section>
+
+<script>
+(function() {
+  // 10 weighted questions — mix of strategic depth
+  const QUESTIONS = [
+    { id: 'q1', label: 'Do you use any automation tools (Zapier, Make, n8n, etc.)?', weight: 15 },
+    { id: 'q2', label: 'Do you have a website that generates leads or sales?', weight: 15 },
+    { id: 'q3', label: 'Do you use AI tools like ChatGPT, Claude, or Perplexity regularly?', weight: 12 },
+    { id: 'q4', label: 'Do you have automated email or SMS follow-ups for clients?', weight: 10 },
+    { id: 'q5', label: 'Do you track business metrics in a dashboard?', weight: 10 },
+    { id: 'q6', label: 'Do you use a CRM to manage customer relationships?', weight: 10 },
+    { id: 'q7', label: 'Is your website accessible (WCAG-compliant)?', weight: 8 },
+    { id: 'q8', label: 'Do you have automated client scheduling or booking?', weight: 8 },
+    { id: 'q9', label: 'Do you use AI for content creation or social media?', weight: 7 },
+    { id: 'q10', label: 'Do you have documented SOPs for your key processes?', weight: 5 },
+  ];
+  const MAX_SCORE = QUESTIONS.reduce((s, q) => s + q.weight, 0);
+
+  // Result bands
+  const BANDS = [
+    { min: 80, label: 'AI-Ready 🚀', desc: 'You are ahead of most businesses. Focus on automation depth and compliance.' },
+    { min: 50, label: 'Building Momentum 📈', desc: 'Strong foundation. The next step is connecting your tools into workflows.' },
+    { min: 20, label: 'Getting Started 🏁', desc: 'Good early progress. Pick 2-3 areas above and automate them this quarter.' },
+    { min: 0, label: 'Exploring 🔍', desc: 'Every journey starts somewhere. Pick a few items above to begin.' },
+  ];
+
+  // Post recommendations by score band
+  const RECS = {
+    'ai-ready': [
+      { title: 'Your Industry Faces 55% of All DDoS Attacks', url: 'https://insights.cc3po.com/blog/radar-threat-intelligence-small-business-2026/', meta: 'Security · 8 min read' },
+      { title: 'How AI Agents Handle Patient Scheduling Without HIPAA Violations', url: 'https://insights.cc3po.com/blog/ai-patient-scheduling-hipaa/', meta: 'AI & Automation · 8 min read' },
+      { title: 'The $10K/Month Blueprint: Automating Your Way to Freedom', url: 'https://insights.cc3po.com/blog/10k-month-blueprint-automating-freedom/', meta: 'Business · 10 min read' },
+    ],
+    'building': [
+      { title: 'The Small Business Tech Stack That Actually Works', url: 'https://insights.cc3po.com/blog/03-small-business-tech-stack/', meta: 'Tools · 8 min read' },
+      { title: 'Why Your Website is Losing 40% of Visitors (And How to Fix It)', url: 'https://insights.cc3po.com/blog/04-website-losing-visitors-fix/', meta: 'Performance · 10 min read' },
+      { title: '11 Web Design Trends for 2026 — And Which Ones Actually Matter', url: 'https://insights.cc3po.com/blog/11-web-design-trends-2026-what-actually-matters/', meta: 'Technology · 7 min read' },
+    ],
+    'getting-started': [
+      { title: 'The Small Business Tech Stack That Actually Works', url: 'https://insights.cc3po.com/blog/03-small-business-tech-stack/', meta: 'Tools · 8 min read' },
+      { title: 'From Zero to 300 LinkedIn Followers: What Actually Worked', url: 'https://insights.cc3po.com/blog/05-zero-to-300-linkedin-followers/', meta: 'Growth · 6 min read' },
+      { title: 'Why Your Website is Losing 40% of Visitors', url: 'https://insights.cc3po.com/blog/04-website-losing-visitors-fix/', meta: 'Performance · 10 min read' },
+    ],
+    'exploring': [
+      { title: 'The $10K/Month Blueprint: Automating Your Way to Freedom', url: 'https://insights.cc3po.com/blog/10k-month-blueprint-automating-freedom/', meta: 'Business · 10 min read' },
+      { title: 'What I Learned Scanning 900+ Websites for Compliance', url: 'https://insights.cc3po.com/blog/what-i-learned-scanning-900-sites/', meta: 'Compliance · 12 min read' },
+      { title: 'The Automation-First Business: 5 Ways WordPress Sites Can Work Smarter', url: 'https://insights.cc3po.com/blog/02-automation-first-business/', meta: 'Automation · 8 min read' },
+    ],
+  };
+
+  const container = document.getElementById('readiness-questions');
+  const scoreEl = document.getElementById('score-number');
+  const bandEl = document.getElementById('score-band');
+  const descEl = document.getElementById('score-desc');
+  const scoreBox = document.getElementById('readiness-score');
+  const recsBox = document.getElementById('readiness-recs');
+  const recsList = document.getElementById('recs-list');
+  const emailBox = document.getElementById('readiness-email');
+  const emailInput = document.getElementById('readiness-email-input');
+  const emailBtn = document.getElementById('readiness-email-btn');
+  const emailThanks = document.getElementById('email-thanks');
+
+  let checkedState = {};
+
+  // Render questions
+  QUESTIONS.forEach((q, i) => {
+    const item = document.createElement('label');
+    item.className = 'readiness-item';
+    item.htmlFor = q.id;
+
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.id = q.id;
+    cb.setAttribute('data-weight', q.weight);
+
+    const textDiv = document.createElement('div');
+    textDiv.className = 'item-text';
+
+    const labelSpan = document.createElement('div');
+    labelSpan.className = 'item-label';
+    labelSpan.textContent = q.label;
+
+    const weightSpan = document.createElement('div');
+    weightSpan.className = 'item-weight';
+    weightSpan.textContent = `Impact: ${'•'.repeat(Math.round(q.weight / 5))}`;
+
+    textDiv.appendChild(labelSpan);
+    textDiv.appendChild(weightSpan);
+
+    const scoreSpan = document.createElement('div');
+    scoreSpan.className = 'item-score';
+    scoreSpan.textContent = `+${q.weight}`;
+
+    item.appendChild(cb);
+    item.appendChild(textDiv);
+    item.appendChild(scoreSpan);
+
+    container.appendChild(item);
+
+    // Restore state from localStorage
+    const saved = localStorage.getItem('ai-readiness-' + q.id);
+    if (saved === 'true') {
+      cb.checked = true;
+      item.classList.add('checked');
+      checkedState[q.id] = true;
+    }
+
+    cb.addEventListener('change', function() {
+      item.classList.toggle('checked', this.checked);
+      checkedState[q.id] = this.checked;
+      localStorage.setItem('ai-readiness-' + q.id, this.checked);
+      updateScore();
+    });
+  });
+
+  function getScore() {
+    let score = 0;
+    QUESTIONS.forEach(q => {
+      if (checkedState[q.id]) score += q.weight;
+    });
+    return score;
+  }
+
+  function getBand(score) {
+    for (const band of BANDS) {
+      if (score >= band.min) return band;
+    }
+    return BANDS[BANDS.length - 1];
+  }
+
+  function getRecsForScore(score) {
+    if (score >= 80) return RECS['ai-ready'];
+    if (score >= 50) return RECS['building'];
+    if (score >= 20) return RECS['getting-started'];
+    return RECS['exploring'];
+  }
+
+  function updateScore() {
+    const score = getScore();
+    const band = getBand(score);
+    const recs = getRecsForScore(score);
+
+    scoreEl.textContent = score;
+    bandEl.textContent = band.label;
+    descEl.textContent = band.desc;
+
+    // Color the score
+    if (score >= 80) scoreEl.style.color = '#4ade80';
+    else if (score >= 50) scoreEl.style.color = '#4fc3f7';
+    else if (score >= 20) scoreEl.style.color = '#facc15';
+    else scoreEl.style.color = '#71717a';
+
+    // Show score box
+    scoreBox.classList.add('visible');
+
+    // Show recommendations
+    recsBox.classList.add('visible');
+    recsList.innerHTML = '';
+    recs.forEach(r => {
+      const a = document.createElement('a');
+      a.className = 'rec-card';
+      a.href = r.url;
+      a.target = '_blank';
+      const title = document.createElement('div');
+      title.className = 'rec-title';
+      title.textContent = r.title;
+      const meta = document.createElement('div');
+      meta.className = 'rec-meta';
+      meta.textContent = r.meta;
+      a.appendChild(title);
+      a.appendChild(meta);
+      recsList.appendChild(a);
+    });
+
+    // Show email capture after score is visible
+    emailBox.classList.add('visible');
+  }
+
+  // Email capture
+  emailBtn.addEventListener('click', function() {
+    const email = emailInput.value.trim();
+    if (!email || !email.includes('@')) {
+      emailInput.style.borderColor = '#e94560';
+      emailInput.focus();
+      return;
+    }
+    emailInput.style.borderColor = '';
+    const score = getScore();
+    const band = getBand(score);
+    const payload = {
+      email: email,
+      score: score,
+      band: band.label,
+      source: 'ai-readiness-score',
+      timestamp: new Date().toISOString()
+    };
+    // Store locally
+    localStorage.setItem('ai-readiness-email', email);
+    // Send to newsletter API
+    fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: email,
+        tags: ['ai-readiness-score', `score-${score}`, `${score >= 80 ? 'ai-ready' : score >= 50 ? 'building' : 'starting'}`]
+      })
+    }).catch(() => {});
+    // Show thanks
+    emailInput.style.display = 'none';
+    emailBtn.style.display = 'none';
+    emailThanks.style.display = 'block';
+  });
+
+  // Initialize score on load
+  setTimeout(updateScore, 100);
+})();
+</script>

@@ -7,6 +7,7 @@ import PostCard from '../components/PostCard.astro';
 import EngagementPoll from '../components/EngagementPoll.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
 import CookieBanner from '../components/CookieBanner.astro';
+import AIReadinessScore from '../components/AIReadinessScore.astro';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -406,6 +407,8 @@ const SITE_DESCRIPTION = 'Get strategies that actually work. From the AI village
     </section>
 
     <!-- 📬 NEWSLETTER -->
+    <AIReadinessScore />
+
     <section class="cta-section">
       <NewsletterSignup variant="inline" />
     </section>
