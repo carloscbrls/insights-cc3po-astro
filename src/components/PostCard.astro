@@ -13,10 +13,11 @@ const authorData = getAuthor(post.data.author || 'atlas');
 // Calculate reading time (rough estimate: ~200 words per minute)
 const wordCount = post.body?.split(/\s+/).length || 0;
 const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+const postUrl = `/blog/${post.id}/`;
 ---
 
-<article class="post-card animate-on-scroll">
-  <a href={`/blog/${post.id}/`} class="card-link">
+<article class="post-card animate-on-scroll" onclick="window.location.href='{postUrl}'" style="cursor: pointer;">
+  <a href={postUrl} class="card-image-link" tabindex="-1" aria-hidden="true">
     <div class="card-image-wrapper">
       {(post.data.image || post.data.heroImage) && (
         <img 
@@ -29,23 +30,25 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
       <span class="reading-time-badge">{readingTime} min read</span>
       <span class="category-badge">{post.data.category}</span>
     </div>
-    <div class="card-content">
-      <h3 class="card-title">{post.data.title}</h3>
-      <p class="card-excerpt">{post.data.description}</p>
-      <div class="card-meta">
-        <div class="author">
-          <a href={`/village/${authorData.id}/`} class="author-link">
-            <div class="author-avatar">
-              <img src={authorData.photo} alt={authorData.name} loading="lazy" />
-            </div>
-            <span class="author-name">{authorData.name} {authorData.emoji}</span>
-          </a>
-        </div>
-        <div class="meta-divider"></div>
-        <FormattedDate date={post.data.pubDate} />
-      </div>
-    </div>
   </a>
+  <div class="card-content">
+    <a href={postUrl} class="card-title-link">
+      <h3 class="card-title">{post.data.title}</h3>
+    </a>
+    <p class="card-excerpt">{post.data.description}</p>
+    <div class="card-meta">
+      <div class="author">
+        <a href={`/village/${authorData.id}/`} class="author-link">
+          <div class="author-avatar">
+            <img src={authorData.photo} alt={authorData.name} loading="lazy" />
+          </div>
+          <span class="author-name">{authorData.name} {authorData.emoji}</span>
+        </a>
+      </div>
+      <div class="meta-divider"></div>
+      <FormattedDate date={post.data.pubDate} />
+    </div>
+  </div>
 </article>
 
 <style>
@@ -65,15 +68,11 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
     box-shadow: 0 20px 50px rgba(107, 53, 255, 0.15);
   }
 
-  .card-link,
-  .card-link:visited,
-  .card-link:link {
+  .card-image-link,
+  .card-image-link:visited,
+  .card-image-link:link {
     text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    color: #fff;
-    -webkit-text-fill-color: #fff;
+    display: block;
   }
 
   .card-image-wrapper {
@@ -87,6 +86,7 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    display: block;
   }
 
   .post-card:hover .card-image {
@@ -128,16 +128,22 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
     flex: 1;
     background: #141418;
     color: #fff;
-    -webkit-text-fill-color: #fff;
+  }
+
+  .card-title-link,
+  .card-title-link:visited,
+  .card-title-link:link {
+    text-decoration: none;
+    color: #ffffff;
   }
 
   .card-title {
     font-size: 17px;
     font-weight: 700;
     color: #ffffff;
-    -webkit-text-fill-color: #ffffff;
     line-height: 1.4;
     margin-bottom: 10px;
+    margin-top: 0;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -145,17 +151,17 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
     transition: color 0.2s;
   }
 
+  .card-title-link:hover .card-title,
   .post-card:hover .card-title {
-    color: #4fc3f7 !important;
-    -webkit-text-fill-color: #4fc3f7 !important;
+    color: #4fc3f7;
   }
 
   .card-excerpt {
     font-size: 14px;
     color: #d4d4d8;
-    -webkit-text-fill-color: #d4d4d8;
     line-height: 1.6;
     margin-bottom: 16px;
+    margin-top: 0;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -185,6 +191,7 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
     gap: 8px;
     text-decoration: none;
     transition: opacity 0.2s;
+    color: #d4d4d8;
   }
 
   .author-link:hover {
@@ -208,25 +215,18 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
   .author-name {
     font-size: 14px;
     color: #d4d4d8;
-    -webkit-text-fill-color: #d4d4d8;
     font-weight: 500;
-    }
+  }
 
   :global(.card-meta time) {
     font-size: 14px;
     color: #d4d4d8;
-    -webkit-text-fill-color: #d4d4d8;
-    }
+  }
 
   .meta-divider {
     width: 4px;
     height: 4px;
     border-radius: 50%;
     background: #52525b;
-  }
-
-  :global(.card-meta time) {
-    font-size: 14px;
-    color: #d4d4d8;
   }
 </style>
