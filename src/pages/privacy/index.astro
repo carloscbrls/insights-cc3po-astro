@@ -1,0 +1,86 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = 'Privacy Policy — CC3PO Insights';
+const description = 'CC3PO Insights privacy policy — how we collect, use, and protect your data.';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <link rel="canonical" href="https://insights.cc3po.com/privacy/" />
+  </head>
+  <body>
+    <Header />
+    <main style="max-width: 800px; margin: 100px auto 60px; padding: 0 24px;">
+      <h1>Privacy Policy</h1>
+      <p><em>Last updated: June 3, 2026</em></p>
+
+      <h2>Information We Collect</h2>
+      <p>We collect minimal information necessary to provide our services:</p>
+      <ul>
+        <li><strong>Email address</strong> — when you subscribe to our newsletter</li>
+        <li><strong>Website URL</strong> — when you use our free compliance scanner</li>
+        <li><strong>Anonymous analytics</strong> — page views via Plausible (privacy-friendly, no cookies)</li>
+      </ul>
+
+      <h2>How We Use Your Information</h2>
+      <ul>
+        <li>To send you the newsletter you subscribed to</li>
+        <li>To provide compliance scan results</li>
+        <li>To improve our content and services</li>
+      </ul>
+
+      <h2>Data Sharing</h2>
+      <p>We do not sell, rent, or share your personal data with third parties. We use:</p>
+      <ul>
+        <li><strong>Plausible Analytics</strong> — self-hosted, privacy-first analytics (no cookies)</li>
+        <li><strong>Netlify</strong> — hosting (standard server logs)</li>
+      </ul>
+
+      <h2>Your Rights (GDPR/CCPA)</h2>
+      <p>You have the right to:</p>
+      <ul>
+        <li><strong>Access</strong> — request what data we hold about you</li>
+        <li><strong>Delete</strong> — request deletion of your data</li>
+        <li><strong>Opt-out</strong> — unsubscribe from communications at any time</li>
+        <li><strong>Non-discrimination</strong> — we will not discriminate for exercising your rights</li>
+      </ul>
+      <p>To exercise these rights, email <a href="mailto:privacy@cc3po.com">privacy@cc3po.com</a>.</p>
+
+      <h2>Data Breach Notification</h2>
+      <p>In the event of a data breach affecting your personal information, we will notify affected users within 72 hours as required by GDPR.</p>
+
+      <h2>Cookies</h2>
+      <p>We use no tracking cookies. Plausible Analytics runs without cookies. If we add non-essential cookies in the future, we will implement a consent banner.</p>
+
+      <h2>GDPR Compliance</h2>
+      <p>If you are in the European Economic Area (EEA), you have additional rights under GDPR. Our lawful basis for processing is consent (newsletter subscription) and legitimate interest (analytics).</p>
+
+      <h2>CCPA/CPRA Compliance</h2>
+      <p>California residents have the right to know what personal information is collected, request deletion, and opt-out of data sales. We do not sell personal information.</p>
+
+      <h2>Contact</h2>
+      <p>Privacy questions: <a href="mailto:privacy@cc3po.com">privacy@cc3po.com</a></p>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  h1 { font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+  h2 { font-size: 22px; font-weight: 700; color: #fff; margin-top: 40px; margin-bottom: 12px; }
+  p, li { color: #d4d4d8; line-height: 1.7; font-size: 16px; }
+  ul { padding-left: 20px; }
+  li { margin-bottom: 8px; }
+  a { color: #4fc3f7; }
+  @media (max-width: 768px) {
+    main { margin-top: 80px; padding: 0 16px; }
+    h1 { font-size: 26px; }
+  }
+</style>

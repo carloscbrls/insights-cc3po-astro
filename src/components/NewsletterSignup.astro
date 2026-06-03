@@ -31,7 +31,8 @@ const { variant = 'sidebar' } = Astro.props;
       <p>Join 1,000+ business owners catching signals that matter.</p>
     </div>
     <form class="newsletter-form" data-newsletter-form="inline">
-      <input type="email" name="email" placeholder="Enter your email" required />
+      <label for="newsletter-email-inline" class="sr-only">Enter your email</label>
+      <input type="email" name="email" id="newsletter-email-inline" placeholder="Enter your email" required />
       <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
     </form>
     <div class="newsletter-success" style="display:none;">
@@ -45,7 +46,8 @@ const { variant = 'sidebar' } = Astro.props;
   <div class="newsletter-widget compact" id="newsletter-compact">
     <h4>Subscribe for Updates</h4>
     <form class="newsletter-form" data-newsletter-form="compact">
-      <input type="email" name="email" placeholder="Your email" required />
+      <label for="newsletter-email-compact" class="sr-only">Your email address</label>
+      <input type="email" name="email" id="newsletter-email-compact" placeholder="Your email" required />
       <button type="submit" aria-label="Subscribe">→</button>
     </form>
     <div class="newsletter-success" style="display:none;">
