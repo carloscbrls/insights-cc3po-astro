@@ -8,6 +8,7 @@ import PostCard from '../components/PostCard.astro';
 import CategoryNav from '../components/CategoryNav.astro';
 import Sidebar from '../components/Sidebar.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 
 const SITE_TITLE = 'CC3PO Insights — Compliance, Speed & Security for Your Business';
 const SITE_DESCRIPTION = 'Expert strategies for website compliance, performance optimization, and security. Practical advice for small businesses that want to stay protected and fast.';
@@ -326,6 +327,7 @@ const categories = [...new Set(posts.map(post => post.data.category).filter(Bool
 
     </main>
     <Footer />
+    <CookieBanner />
     <script>
     (function() {
       var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
