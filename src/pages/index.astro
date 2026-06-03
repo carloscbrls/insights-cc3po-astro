@@ -24,7 +24,7 @@ const audienceMap = {
   'Technology': 'creator', 'AI & Automation': 'creator',
   'AI &amp; Automation': 'creator', 'Growth': 'creator',
   'Music': 'creator', 'Nonprofit': 'nonprofit',
-  'Village Voices': 'all', 'From The Village': 'all',
+  'Real Stories': 'all', 'Behind the Build': 'all',
 };
 
 // Tag each post with audience
@@ -34,11 +34,11 @@ const taggedPosts = posts.map(p => ({
   tags: p.data.tags || [],
 }));
 
-// Featured post
-const featured = taggedPosts[0];
-const latest = taggedPosts.slice(0, 6);
-const SITE_TITLE = 'CC3PO Insights — Signals from the AI Village';
-const SITE_DESCRIPTION = 'Get strategies that actually work. From the AI village that builds them.';
+const mostRecent = posts[0];
+const latestCount = Math.min(30, posts.length);
+const featuredPost = posts[0];
+const SITE_TITLE = 'CC3PO Insights — Compliance & WordPress for Small Business Owners';
+const SITE_DESCRIPTION = 'Real talk about ADA compliance, WordPress security, and the tech that actually helps your business — from people who build websites, not people who sell consulting.';
 ---
 
 <!doctype html>
@@ -60,7 +60,7 @@ const SITE_DESCRIPTION = 'Get strategies that actually work. From the AI village
       /* === HERO === */
       .village-hero {
         text-align: center;
-        padding: 120px 24px 80px;
+        padding: 100px 24px 60px;
         position: relative;
         overflow: hidden;
       }
@@ -71,90 +71,94 @@ const SITE_DESCRIPTION = 'Get strategies that actually work. From the AI village
         left: -50%;
         width: 200%;
         height: 200%;
-        background: radial-gradient(ellipse at 50% 50%, rgba(107,53,255,0.08), transparent 60%),
-                    radial-gradient(ellipse at 80% 20%, rgba(0,210,255,0.05), transparent 50%);
+        background: radial-gradient(ellipse at 50% 50%, rgba(107,53,255,0.08), transparent 60%);
         pointer-events: none;
       }
       .village-hero h1 {
-        font-size: 48px;
+        font-size: 36px;
         font-weight: 800;
-        background: linear-gradient(135deg, #fafafa 20%, #e94560 60%, #4fc3f7);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 16px;
+        color: #fff;
+        max-width: 680px;
+        margin: 0 auto 12px;
+        line-height: 1.3;
         position: relative;
+      }
+      .village-hero h1 em {
+        color: #e94560;
+        font-style: normal;
       }
       .village-hero p {
-        font-size: 18px;
-        color: #d4d4d8;
-        max-width: 600px;
+        font-size: 17px;
+        color: #a1a1aa;
+        max-width: 520px;
         margin: 0 auto 8px;
         position: relative;
+        line-height: 1.6;
       }
-      .village-hero .tagline {
-        font-size: 14px;
-        color: #71717a;
-        margin-bottom: 32px;
+      .village-hero .hero-cta {
+        margin-top: 28px;
         position: relative;
       }
-      .village-hero .tagline span {
-        color: #4fc3f7;
-      }
-
-      /* === AUDIENCE SELECTOR === */
-      .audience-section {
-        max-width: 1200px;
-        margin: 0 auto 48px;
-        padding: 0 24px;
-      }
-      .audience-section h2 {
-        text-align: center;
-        font-size: 22px;
-        font-weight: 700;
-        margin-bottom: 20px;
-      }
-      .audience-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-      .audience-btn {
-        display: flex;
+      .village-hero .hero-cta a {
+        display: inline-flex;
         align-items: center;
-        gap: 10px;
-        padding: 14px 24px;
-        border-radius: 14px;
+        gap: 8px;
+        padding: 14px 28px;
+        background: linear-gradient(135deg, #6b35ff, #00d2ff);
+        border-radius: 10px;
+        color: #fff;
         font-size: 15px;
         font-weight: 600;
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.08);
-        color: #d4d4d8;
-        cursor: pointer;
-        transition: all 0.25s ease;
-        min-height: 52px;
+        text-decoration: none;
+        transition: all 0.2s;
       }
-      .audience-btn:hover {
-        background: rgba(255,255,255,0.08);
-        border-color: rgba(107,53,255,0.3);
+      .village-hero .hero-cta a:hover {
         transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(107,53,255,0.3);
       }
-      .audience-btn.active {
-        background: linear-gradient(135deg, rgba(107,53,255,0.2), rgba(0,210,255,0.1));
-        border-color: #6b35ff;
-        color: #fff;
-        box-shadow: 0 4px 20px rgba(107,53,255,0.15);
-      }
-      .audience-btn .icon { font-size: 20px; }
-      .audience-count {
-        background: rgba(255,255,255,0.1);
-        padding: 2px 10px;
-        border-radius: 10px;
+      .village-hero .hero-note {
         font-size: 13px;
+        color: #52525b;
+        margin-top: 8px;
+        position: relative;
       }
-      .audience-btn.active .audience-count {
-        background: rgba(107,53,255,0.3);
+
+      /* === INLINE FILTER TOGGLE (subtle) === */
+      .filter-toggle {
+        max-width: 1200px;
+        margin: 0 auto 32px;
+        padding: 0 24px;
+        text-align: center;
+      }
+      .filter-toggle p {
+        font-size: 14px;
+        color: #71717a;
+        margin-bottom: 8px;
+      }
+      .filter-links {
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+      .filter-links a {
+        font-size: 13px;
+        color: #52525b;
+        text-decoration: none;
+        padding: 4px 12px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: 1px solid transparent;
+      }
+      .filter-links a:hover {
+        color: #d4d4d8;
+        border-color: rgba(255,255,255,0.08);
+      }
+      .filter-links a.active {
+        color: #fff;
+        border-color: rgba(107,53,255,0.4);
+        background: rgba(107,53,255,0.1);
       }
 
       /* === POSTS GRID === */
@@ -168,120 +172,30 @@ const SITE_DESCRIPTION = 'Get strategies that actually work. From the AI village
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 20px;
       }
-      .post-card-wrapper {
-        transition: all 0.3s ease;
-      }
-      .post-card-wrapper.hidden {
-        display: none;
-      }
+      .post-card-wrapper { transition: all 0.3s ease; }
+      .post-card-wrapper.hidden { display: none; }
 
-      /* === POLL SECTION === */
-      .poll-section {
-        max-width: 640px;
-        margin: 0 auto 48px;
-        padding: 0 24px;
-      }
-      .poll-section .poll-card {
-        background: linear-gradient(145deg, #1a1a1f, #141418);
-        border: 1px solid rgba(107,53,255,0.2);
-        border-radius: 20px;
-        padding: 32px;
-        position: relative;
-        overflow: hidden;
-      }
-      .poll-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #e94560, #6b35ff, #4fc3f7);
-      }
-      .poll-card h3 {
-        font-size: 20px;
-        font-weight: 700;
-        margin-bottom: 8px;
-      }
-      .poll-card .subtitle {
-        color: #71717a;
-        font-size: 14px;
-        margin-bottom: 20px;
-      }
-
-      /* === TOOL TEASERS === */
-      .tools-section {
+      /* === SOCIAL PROOF === */
+      .social-proof {
         max-width: 1200px;
+        margin: 0 auto 32px;
+        padding: 0 24px;
+      }
+      .social-proof .most-read {
+        font-size: 13px;
+        color: #52525b;
+      }
+      .social-proof .most-read a {
+        color: #4fc3f7;
+        text-decoration: none;
+      }
+
+      /* === AI READINESS SCORE === */
+      .readiness-wrapper {
+        max-width: 680px;
         margin: 0 auto 48px;
         padding: 0 24px;
       }
-      .tools-section h2 {
-        text-align: center;
-        font-size: 22px;
-        font-weight: 700;
-        margin-bottom: 24px;
-      }
-      .tools-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 16px;
-      }
-      .tool-card {
-        background: #141418;
-        border: 1px solid rgba(255,255,255,0.06);
-        border-radius: 16px;
-        padding: 28px 24px;
-        text-align: center;
-        transition: all 0.3s ease;
-        cursor: pointer;
-      }
-      .tool-card:hover {
-        border-color: rgba(107,53,255,0.4);
-        transform: translateY(-4px);
-        box-shadow: 0 12px 40px rgba(107,53,255,0.15);
-      }
-      .tool-card .tool-icon {
-        font-size: 36px;
-        margin-bottom: 12px;
-      }
-      .tool-card h4 {
-        font-size: 17px;
-        font-weight: 700;
-        margin-bottom: 8px;
-      }
-      .tool-card p {
-        font-size: 14px;
-        color: #d4d4d8;
-        line-height: 1.5;
-      }
-      .tool-card .tool-badge {
-        display: inline-block;
-        margin-top: 12px;
-        padding: 4px 12px;
-        background: rgba(233,69,96,0.1);
-        color: #e94560;
-        border-radius: 8px;
-        font-size: 12px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.3px;
-      }
-
-      /* === VILLAGE STATS === */
-      .village-stats {
-        display: flex;
-        justify-content: center;
-        gap: 48px;
-        padding: 32px 24px;
-        margin: 0 auto 48px;
-        background: linear-gradient(135deg, rgba(107,53,255,0.05), rgba(0,210,255,0.05));
-        border: 1px solid rgba(255,255,255,0.06);
-        border-radius: 16px;
-        max-width: 800px;
-      }
-      .stat-item { text-align: center; }
-      .stat-number { font-size: 28px; font-weight: 800; color: #e94560; }
-      .stat-label { font-size: 14px; color: #d4d4d8; margin-top: 4px; }
 
       /* === NEWSLETTER CTA === */
       .cta-section {
@@ -310,35 +224,24 @@ const SITE_DESCRIPTION = 'Get strategies that actually work. From the AI village
 
     <!-- 🏠 HERO -->
     <section class="village-hero">
-      <h1>Signals from the Village</h1>
-      <p>Get strategies that actually work. From the AI village that builds them.</p>
-      <p class="tagline"><span>{taggedPosts.length}</span> signals · <span>{[...new Set(taggedPosts.filter(p => p.data.author).map(p => p.data.author))].length}</span> villagers · daily</p>
-    </section>
-
-    <!-- 🎯 AUDIENCE SELECTOR -->
-    <section class="audience-section" id="audience-section">
-      <h2>Who are you?</h2>
-      <div class="audience-buttons" role="group" aria-label="Filter by audience">
-        <button class="audience-btn active" data-audience="all">
-          <span class="icon">🌐</span> Everyone
-          <span class="audience-count" data-count>{taggedPosts.length}</span>
-        </button>
-        <button class="audience-btn" data-audience="local-business">
-          <span class="icon">🏪</span> Local Business
-          <span class="audience-count" data-count>{taggedPosts.filter(p => p.audience === 'local-business').length}</span>
-        </button>
-        <button class="audience-btn" data-audience="creator">
-          <span class="icon">🎨</span> Creator
-          <span class="audience-count" data-count>{taggedPosts.filter(p => p.audience === 'creator').length}</span>
-        </button>
-        <button class="audience-btn" data-audience="nonprofit">
-          <span class="icon">🤝</span> Nonprofit
-          <span class="audience-count" data-count>{taggedPosts.filter(p => p.audience === 'nonprofit').length}</span>
-        </button>
+      <h1>Your website could cost you <em>$4,000 per violation</em>. And you probably have more than one.</h1>
+      <p>Real talk about ADA compliance, WordPress security, and the tech that actually helps your business — from people who build websites, not people who sell consulting.</p>
+      <div class="hero-cta">
+        <a href="/signal/">See what's new →</a>
       </div>
+      <div class="hero-note">Built by the same team behind the free compliance scanner used by 900+ California businesses.</div>
     </section>
 
-    <!-- 📰 FILTERED POSTS -->
+    <!-- 🔖 INLINE FILTER (subtle: above posts only) -->
+    <div class="filter-toggle">
+      <p>For <strong>business owners</strong> &middot;
+        <a id="filter-creator">tech teams</a> &middot;
+        <a id="filter-nonprofit">nonprofits</a> &middot;
+        <a id="filter-all" class="active">everyone</a>
+      </p>
+    </div>
+
+    <!-- 📰 POSTS -->
     <section class="posts-section" id="main-content">
       <div class="posts-grid">
         {taggedPosts.map((post) => (
@@ -349,66 +252,17 @@ const SITE_DESCRIPTION = 'Get strategies that actually work. From the AI village
       </div>
     </section>
 
-    <!-- 📊 VILLAGE STATS -->
-    <div class="village-stats">
-      <div class="stat-item">
-        <div class="stat-number">{taggedPosts.length}</div>
-        <div class="stat-label">Signals Published</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">{[...new Set(taggedPosts.map(p => p.data.category).filter(Boolean))].length}</div>
-        <div class="stat-label">Categories</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">{[...new Set(taggedPosts.filter(p => p.data.author).map(p => p.data.author))].length}</div>
-        <div class="stat-label">Villagers Writing</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">AI-Powered</div>
-      </div>
+    <!-- 📈 SOCIAL PROOF (replaces stats bar) -->
+    <div class="social-proof">
+      <p class="most-read">Most read this week: <a href="{featuredPost.data.permalink || ('/blog/' + featuredPost.slug)}">{featuredPost.data.title}</a></p>
     </div>
 
-    <!-- 📊 POLL -->
-    <section class="poll-section">
-      <div class="poll-card">
-        <h3>What are you trying to automate first?</h3>
-        <p class="subtitle">The village wants to know what to build next.</p>
-        <EngagementPoll
-          question="Your top automation priority?"
-          options={["Lead generation", "Client scheduling", "Content creation", "IT/support tickets"]}
-        />
-      </div>
-    </section>
-
-    <!-- 🛠 TOOL TEASERS -->
-    <section class="tools-section">
-      <h2>Try a Village Tool</h2>
-      <div class="tools-grid">
-        <div class="tool-card">
-          <div class="tool-icon">🧠</div>
-          <h4>AI Readiness Score</h4>
-          <p>Answer 10 quick questions and see how ready your business is for AI automation.</p>
-          <span class="tool-badge">Coming soon</span>
-        </div>
-        <div class="tool-card">
-          <div class="tool-icon">💰</div>
-          <h4>Automation Savings Calculator</h4>
-          <p>See how many hours and dollars you can save by automating repetitive tasks.</p>
-          <span class="tool-badge">Coming soon</span>
-        </div>
-        <div class="tool-card">
-          <div class="tool-icon">🎯</div>
-          <h4>Which CC3PO Service Fits?</h4>
-          <p>Not sure where to start? Tell us about your business and we'll recommend a path.</p>
-          <span class="tool-badge">Coming soon</span>
-        </div>
-      </div>
-    </section>
+    <!-- 🧠 AI READINESS SCORE -->
+    <div class="readiness-wrapper">
+      <AIReadinessScore />
+    </div>
 
     <!-- 📬 NEWSLETTER -->
-    <AIReadinessScore />
-
     <section class="cta-section">
       <NewsletterSignup variant="inline" />
     </section>

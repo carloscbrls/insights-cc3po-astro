@@ -9,8 +9,8 @@ const { variant = 'sidebar' } = Astro.props;
 {variant === 'sidebar' && (
   <div class="newsletter-widget sidebar" id="newsletter-sidebar">
     <div class="newsletter-icon">📧</div>
-    <h4>Catch the Signal</h4>
-    <p>Get AI automation strategies and WordPress tips delivered to your inbox every week.</p>
+    <h4>Get the weekly email</h4>
+    <p>ADA updates, security warnings, and tools that save you money — straight to your inbox.</p>
     <form class="newsletter-form" data-newsletter-form="sidebar">
       <input type="email" name="email" placeholder="Enter your email" required />
       <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
@@ -27,8 +27,8 @@ const { variant = 'sidebar' } = Astro.props;
 {variant === 'inline' && (
   <div class="newsletter-widget inline" id="newsletter-inline">
     <div class="newsletter-content">
-      <h4>Catch the Signal</h4>
-      <p>Join 1,000+ business owners catching signals that matter.</p>
+      <h4>One email a week. No fluff. Just what matters for your business.</h4>
+      <p>ADA updates, security warnings, and tools that save you money — straight to your inbox.</p>
     </div>
     <form class="newsletter-form" data-newsletter-form="inline">
       <label for="newsletter-email-inline" class="sr-only">Enter your email</label>

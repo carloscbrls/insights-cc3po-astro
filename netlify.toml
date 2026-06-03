@@ -29,9 +29,10 @@
   to = "/signal/"
   status = 301
 
+# /signal/ page (kept as secondary entry point)
 [[redirects]]
-  from = "/"
-  to = "/signal/"
+  from = "/signal"
+  to = "/"
   status = 301
 
 # Phase 6: Cache-Control headers for optimal performance

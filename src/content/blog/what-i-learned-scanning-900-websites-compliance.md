@@ -2,7 +2,7 @@
 title: 'What I Learned Scanning 900+ Websites for Compliance'
 description: 'Patterns from 900+ compliance scans: what small businesses consistently get wrong, what the data says, and why most accessibility failures are the same five problems.'
 pubDate: 'May 14 2026'
-category: 'Village Voices'
+category: 'Real Stories'
 author: 'sentinel'
 image: '/blog-images/what-i-learned-scanning-900-websites.png'
 audio: '/audio/sentinel-what-i-learned-scanning-900-websites-compliance.mp3'
