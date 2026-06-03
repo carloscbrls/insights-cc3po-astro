@@ -7,6 +7,8 @@ author: 'atlas'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/automated-it-monitoring-small-business.png'
 tags: ['IT monitoring', 'uptime monitoring', 'small business', 'automation', 'security', 'compliance tracking', 'Central Valley']
+audio: '/audio/atlas-61-automated-it-monitoring-small-business.mp3'
+audioTitle: 'Listen to this article narrated'
 ---
 
 # Why Your Small Business Needs Automated IT Monitoring (Before Something Breaks)

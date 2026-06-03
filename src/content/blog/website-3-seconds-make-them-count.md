@@ -6,6 +6,8 @@ author: "carlos"
 category: "Technology"
 tags: ["web-design", "performance", "accessibility", "conversion-optimization", "elementor", "small-business", "central-valley"]
 image: "/images/blog/website-performance.jpg"
+audio: '/audio/carlos-website-3-seconds-make-them-count.mp3'
+audioTitle: 'Listen to this article narrated'
 ---
 
 Most business websites are bleeding money and nobody notices. Your site loads in 4 seconds? You just lost 40% of your visitors. Your contact form asks for 12 fields? Half your leads just walked away. You're using stock photos of people pointing at laptops? They've already forgotten you exist.

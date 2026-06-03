@@ -65,11 +65,15 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
     box-shadow: 0 20px 50px rgba(107, 53, 255, 0.15);
   }
 
-  .card-link {
+  .card-link,
+  .card-link:visited,
+  .card-link:link {
     text-decoration: none;
     display: flex;
     flex-direction: column;
     height: 100%;
+    color: unset !important;
+    -webkit-text-fill-color: unset !important;
   }
 
   .card-image-wrapper {
@@ -123,15 +127,15 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
     flex-direction: column;
     flex: 1;
     background: #141418;
-    color: #fff;
-    -webkit-text-fill-color: #fff;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
   }
 
   .card-title {
     font-size: 17px;
     font-weight: 700;
-    color: #ffffff;
-    -webkit-text-fill-color: #ffffff;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
     line-height: 1.4;
     margin-bottom: 10px;
     display: -webkit-box;
@@ -142,14 +146,14 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
   }
 
   .post-card:hover .card-title {
-    color: #4fc3f7;
-    -webkit-text-fill-color: #4fc3f7;
+    color: #4fc3f7 !important;
+    -webkit-text-fill-color: #4fc3f7 !important;
   }
 
   .card-excerpt {
     font-size: 14px;
-    color: #d4d4d8;
-    -webkit-text-fill-color: #d4d4d8;
+    color: #d4d4d8 !important;
+    -webkit-text-fill-color: #d4d4d8 !important;
     line-height: 1.6;
     margin-bottom: 16px;
     display: -webkit-box;

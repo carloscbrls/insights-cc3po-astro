@@ -7,6 +7,8 @@ author: 'atlas'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/free-5-minute-ada-audit.png'
 tags: ['ADA compliance', 'website audit', 'WCAG', 'accessibility', 'free scanner', 'small business']
+audio: '/audio/atlas-60-how-to-check-website-ada-compliant-free-audit.mp3'
+audioTitle: 'Listen to this article narrated'
 ---
 
 # How to Check if Your Website Is ADA Compliant: A Free 5-Minute Audit

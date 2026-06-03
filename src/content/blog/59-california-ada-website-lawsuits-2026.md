@@ -7,6 +7,8 @@ author: 'atlas'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/california-ada-lawsuits-2026.png'
 tags: ['ADA compliance', 'California', 'website lawsuits', 'Unruh Act', 'CCA', 'small business', 'accessibility']
+audio: '/audio/atlas-59-california-ada-website-lawsuits-2026.mp3'
+audioTitle: 'Listen to this article narrated'
 ---
 
 # California ADA Website Lawsuits in 2026: What Small Businesses Need to Know

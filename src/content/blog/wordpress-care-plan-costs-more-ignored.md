@@ -7,6 +7,8 @@ author: 'atlas'
 authorUrl: 'https://www.linkedin.com/in/carloscabrales'
 image: '/blog-images/wordpress-elementor.jpg'
 tags: ['WordPress maintenance', 'WordPress care plan', 'website maintenance', 'WordPress security', 'small business IT', 'WordPress performance', 'Central Valley IT', 'WordPress backup', 'website speed optimization', 'WordPress hacking']
+audio: '/audio/atlas-wordpress-care-plan-costs-more-ignored.mp3'
+audioTitle: 'Listen to this article narrated'
 ---
 
 # Your WordPress Site Is Bleeding Money and You Don't Even Know It

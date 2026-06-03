@@ -7,38 +7,50 @@ const { variant = 'sidebar' } = Astro.props;
 ---
 
 {variant === 'sidebar' && (
-  <div class="newsletter-widget sidebar">
+  <div class="newsletter-widget sidebar" id="newsletter-sidebar">
     <div class="newsletter-icon">📧</div>
     <h4>Catch the Signal</h4>
     <p>Get AI automation strategies and WordPress tips delivered to your inbox every week.</p>
-    <form class="newsletter-form" action="https://formspree.io/f/xwvaydvn" method="POST">
+    <form class="newsletter-form" data-newsletter-form="sidebar">
       <input type="email" name="email" placeholder="Enter your email" required />
       <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
     </form>
+    <div class="newsletter-success" style="display:none;">
+      <div class="newsletter-icon">✅</div>
+      <h4>You're in!</h4>
+      <p>Check your inbox for your free compliance scan link.</p>
+    </div>
     <span class="newsletter-microcopy">🔒 No spam. Unsubscribe anytime.</span>
   </div>
 )}
 
 {variant === 'inline' && (
-  <div class="newsletter-widget inline">
+  <div class="newsletter-widget inline" id="newsletter-inline">
     <div class="newsletter-content">
       <h4>Catch the Signal</h4>
       <p>Join 1,000+ business owners catching signals that matter.</p>
     </div>
-    <form class="newsletter-form" action="https://formspree.io/f/xwvaydvn" method="POST">
+    <form class="newsletter-form" data-newsletter-form="inline">
       <input type="email" name="email" placeholder="Enter your email" required />
       <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
     </form>
+    <div class="newsletter-success" style="display:none;">
+      <h4>✅ Welcome to the Signal!</h4>
+      <p>Check your inbox for your free compliance scan link.</p>
+    </div>
   </div>
 )}
 
 {variant === 'compact' && (
-  <div class="newsletter-widget compact">
+  <div class="newsletter-widget compact" id="newsletter-compact">
     <h4>Subscribe for Updates</h4>
-    <form class="newsletter-form" action="https://formspree.io/f/xwvaydvn" method="POST">
+    <form class="newsletter-form" data-newsletter-form="compact">
       <input type="email" name="email" placeholder="Your email" required />
       <button type="submit" aria-label="Subscribe">→</button>
     </form>
+    <div class="newsletter-success" style="display:none;">
+      <h4>✅ You're in!</h4>
+    </div>
   </div>
 )}
 
@@ -113,7 +125,7 @@ const { variant = 'sidebar' } = Astro.props;
     margin-bottom: 12px;
   }
 
-  /* Shared form styles */
+  /* Form styles (shared) */
   .newsletter-form {
     display: flex;
     gap: 10px;
@@ -183,6 +195,24 @@ const { variant = 'sidebar' } = Astro.props;
     margin-top: 12px;
   }
 
+  /* Success state */
+  .newsletter-success {
+    text-align: center;
+    padding: 8px 0;
+  }
+
+  .newsletter-success h4 {
+    color: #10b981 !important;
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .newsletter-success p {
+    color: #8b949e !important;
+    font-size: 13px;
+    margin: 0;
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
     .newsletter-widget.inline {
@@ -192,7 +222,7 @@ const { variant = 'sidebar' } = Astro.props;
       gap: 24px;
     }
 
-    .newsletter-widget.inline .newsletter-form {
+    .inline .newsletter-form {
       min-width: auto;
       width: 100%;
       flex-direction: column;
@@ -201,32 +231,38 @@ const { variant = 'sidebar' } = Astro.props;
 </style>
 
 <script>
-  // Handle form submission
-  document.querySelectorAll('.newsletter-form').forEach(form => {
+  document.querySelectorAll('[data-newsletter-form]').forEach(form => {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = form.querySelector('input[type="email"]')?.value;
-      
-      if (email) {
-        try {
-          const res = await fetch('/api/subscribe', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email })
-          });
-          
-          const data = await res.json();
-          
-          if (data.success) {
-            alert('Thanks for subscribing! Check your email for confirmation.');
-            form.reset();
-          } else {
-            alert(data.error || 'Something went wrong. Please try again.');
-          }
-        } catch (err) {
-          console.error('Newsletter signup error:', err);
-          alert('Error subscribing. Please try again later.');
+      const email = (form.querySelector('input[type="email"]') as HTMLInputElement).value;
+      const button = form.querySelector('button') as HTMLButtonElement;
+      const originalText = button.textContent;
+      const widget = form.closest('.newsletter-widget') as HTMLElement;
+      const successEl = widget?.querySelector('.newsletter-success') as HTMLElement;
+
+      button.textContent = 'Sending...';
+      button.disabled = true;
+
+      try {
+        const resp = await fetch('https://scanner.cc3po.com/api/newsletter-subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, source: 'blog' })
+        });
+        const data = await resp.json();
+
+        if (data.success) {
+          (form as HTMLElement).style.display = 'none';
+          if (successEl) successEl.style.display = 'block';
+        } else {
+          alert(data.error || 'Something went wrong. Please try again.');
+          button.textContent = originalText;
+          button.disabled = false;
         }
+      } catch {
+        alert('Network error. Please try again.');
+        button.textContent = originalText;
+        button.disabled = false;
       }
     });
   });

@@ -6,6 +6,8 @@ author: "sentinel"
 image: '/blog-images/ada-lawsuit-surge-2026.png'
 category: "Compliance"
 tags: ["ADA-compliance", "WCAG", "accessibility", "small-business", "lawsuit-protection", "demand-letter", "website-compliance", "legal-risk", "Central-Valley-business", "compliance-score"]
+audio: '/audio/sentinel-ada-website-lawsuits-2026.mp3'
+audioTitle: 'Listen to this article narrated'
 ---
 
 # ADA Website Lawsuits in 2026: Why Small Businesses Are Getting Sued (And How to Stop It)

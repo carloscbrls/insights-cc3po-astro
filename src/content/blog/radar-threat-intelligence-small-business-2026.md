@@ -6,6 +6,8 @@ author: "sentinel"
 image: '/blog-images/radar-threat-intelligence-2026.png'
 category: "Security"
 tags: ["DDoS", "Cloudflare-Radar", "threat-intelligence", "small-business", "cybersecurity", "WAF", "compliance", "website-security", "attack-vectors", "AI-governance"]
+audio: '/audio/sentinel-radar-threat-intelligence-small-business-2026.mp3'
+audioTitle: 'Listen to this article narrated'
 ---
 
 # Your Industry Faces 55% of All DDoS Attacks — Are You Protected?

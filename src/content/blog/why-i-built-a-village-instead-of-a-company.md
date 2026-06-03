@@ -7,6 +7,8 @@ authorUrl: "https://cc3po.com"
 image: '/blog-images/why-i-built-a-village.png'
 category: "From the Village"
 tags: ["from-the-village", "cc3po-story", "carlos", "small-business", "automation", "ai-agents", "central-valley", "family-first"]
+audio: '/audio/carlos-why-i-built-a-village-instead-of-a-company.mp3'
+audioTitle: 'Listen to this article narrated'
 ---
 
 # Why I Built a Village Instead of a Company
