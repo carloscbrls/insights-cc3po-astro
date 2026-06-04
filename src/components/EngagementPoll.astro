@@ -11,15 +11,29 @@ interface PollOption {
 
 interface Props {
   question: string;
-  options: PollOption[];
+  options: (PollOption | string)[];
   pollId: string;
   accent?: string;
 }
 
-const { question, options, pollId, accent = '#e94560' } = Astro.props;
+const { question, options: rawOptions, pollId, accent = '#e94560' } = Astro.props;
+
+// Normalize options: strings become {label: string, value: slugified-string}
+const options = rawOptions.map((opt) => {
+  if (typeof opt === 'string') {
+    return {
+      label: opt,
+      value: opt.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').substring(0, 60)
+    };
+  }
+  return opt;
+});
+
+// Generate a stable pollId from the question if not provided
+const resolvedId = pollId || question.toLowerCase().replace(/[^a-z0-9]+/g, '-').substring(0, 60);
 ---
 
-<div class="engagement-poll" data-poll-id={pollId}>
+<div class="engagement-poll" data-poll-id={resolvedId}>
   <div class="poll-header">
     <div class="poll-icon">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
