@@ -128,4 +128,4 @@ The goal isn't to sell you the largest package. It's to match engagement level t
 
 ---
 
-**Ready to discuss which package fits your business?** [Get Started Today →](https://offers.cc3po.com/our-services.html)
+**Ready to discuss which package fits your business?** [See our services and pricing →](https://offers.cc3po.com/our-services.html)

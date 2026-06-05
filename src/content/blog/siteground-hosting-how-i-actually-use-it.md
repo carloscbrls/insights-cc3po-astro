@@ -191,4 +191,6 @@ SiteGround serves many sites effectively, mine included. Understanding its stren
 
 ---
 
-**Need help choosing and configuring WordPress hosting?** [Get Started Today →](https://offers.cc3po.com/our-services.html)
+**Need help choosing and configuring WordPress hosting?** We'll evaluate your specific needs against the full hosting landscape and recommend what actually fits. No cookie-cutter advice.
+
+[🔍 Get a Personalized Hosting Assessment →](https://offers.cc3po.com/hosting-assessment)

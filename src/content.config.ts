@@ -23,6 +23,9 @@ const blog = defineCollection({
 			audioTitle: z.string().optional(),
 			// Tags for categorization and tag pages
 			tags: z.array(z.string()).optional(),
+			// Redirect to canonical post (for consolidated content)
+			redirectTo: z.string().optional(),
+			canonical: z.boolean().optional(),
 		}),
 });
 
