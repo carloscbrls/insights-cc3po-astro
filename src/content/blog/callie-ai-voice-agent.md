@@ -98,6 +98,10 @@ That's Callie.
 
 ---
 
+**[Hear Callie in action → Book a free demo](https://offers.cc3po.com/get-started)** — We'll set up a live call, show you the dashboard, and have your first voice agent running in under 30 minutes.
+
+---
+
 **Want Callie answering your business phone 24/7?** We can get you live in under a week.
 
 [📞 Book a Callie Demo →](https://offers.cc3po.com/callie-demo)

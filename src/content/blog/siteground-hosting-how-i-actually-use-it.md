@@ -187,7 +187,11 @@ SiteGround remains on my recommended list, but with caveats that didn't used to 
 - Consider self-managed VPS for complete control
 - Evaluate based on your specific needs, not general rankings
 
-SiteGround serves many sites effectively, mine included. Understanding its strengths and limitations enables effective use. Blind faith in reputation leads to disappointment.
+---
+
+**Note:** As of June 2026, we no longer recommend SiteGround for new projects. [Check our current recommended hosting stack →](https://insights.cc3po.com/blog/03-small-business-tech-stack)
+
+If you're already on SiteGround and looking to migrate, [we can help with that →](https://offers.cc3po.com/get-started)
 
 ---
 
