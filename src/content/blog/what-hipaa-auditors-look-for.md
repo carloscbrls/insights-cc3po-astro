@@ -159,6 +159,10 @@ If you need help getting your compliance house in order, that's what we do. Reac
 
 ---
 
+**[Scan your dental website for free →](https://scanner.cc3po.com/)** Find out exactly where you stand on HIPAA compliance in 60 seconds.
+
+---
+
 **Not sure where you stand?** Run a free HIPAA-focused compliance scan on your website — takes 30 seconds, no email required.
 
 [🛡️ Scan Your Website for Compliance Issues →](https://audit.cc3po.com/?focus=hipaa)

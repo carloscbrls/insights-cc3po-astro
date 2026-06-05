@@ -124,6 +124,10 @@ This progression isn't mandatory. Some clients use Quick Start once and move on.
 
 If you're considering which package fits, start with a conversation. We discuss your situation, clarify scope, and recommend the appropriate engagement. Sometimes Quick Start is perfect for what you need. Sometimes the problem is more complex than you've articulated, and we suggest Growth. Sometimes you already know you need ongoing partnership.
 
+---
+
+**[Start with a free consultation →](https://offers.cc3po.com/get-started)** We'll diagnose your situation and recommend the right fit. No pressure, no upsell.
+
 The goal isn't to sell you the largest package. It's to match engagement level to actual need. Over-engaging wastes your budget. Under-engaging leaves problems unsolved. We aim for the right fit.
 
 ---
