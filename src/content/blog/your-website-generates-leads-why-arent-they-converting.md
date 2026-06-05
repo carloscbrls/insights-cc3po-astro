@@ -4,7 +4,7 @@ description: 'We scanned 900+ small business websites and found most generate tr
 pubDate: 2026-06-04
 category: 'Automation'
 author: 'atlas'
-image: '/blog-images/lead-conversion-village.png'
+image: '/blog-images/what-i-learned-scanning-900-websites-gen.png'
 tags:
   - lead-conversion
   - lead-response-time
