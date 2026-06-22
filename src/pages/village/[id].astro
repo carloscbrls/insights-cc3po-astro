@@ -4,6 +4,7 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { getAllAuthors, getAuthor } from '../../data/authors';
+import AudioPlayer from '../../components/AudioPlayer.astro';
 
 export async function getStaticPaths() {
   const authors = getAllAuthors();
@@ -178,6 +179,9 @@ const SITE_DESCRIPTION = author.bio.slice(0, 160);
       <img src={author.photo} alt={author.name} class="author-portrait" />
       <div class="author-name">{author.name} {author.emoji}</div>
       <div class="author-role">{author.role}</div>
+      {author.audioIntro && (
+        <AudioPlayer src={author.audioIntro} agentName={author.name} agentEmoji={author.emoji} />
+      )}
       <div class="author-quote">"{author.quote}"</div>
       <div class="author-bio">{author.bio}</div>
     </div>
