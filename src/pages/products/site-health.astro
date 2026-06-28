@@ -1,0 +1,405 @@
+---
+// SiteHealth — Astro Product Page
+// astro/site-health.astro
+
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="SiteHealth — Uptime, CWV & Error Monitoring + Status Page | CC3PO">
+  <section class="max-w-4xl mx-auto px-4 py-16">
+    <div class="mb-8">
+      <a href="/products/" class="text-sm text-gray-500 hover:text-emerald-400 transition">&larr; Back to all products</a>
+    </div>
+
+    <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-12">
+      <div class="flex-1">
+        <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">SiteHealth</h1>
+        <p class="text-xl text-gray-400 mb-6">Comprehensive website monitoring — uptime, Core Web Vitals, error tracking, and public status pages. Know before your customers do.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/products/site-health/#pricing" class="inline-block bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-8 py-3 rounded-lg transition">See Plans — Starting at $49/mo</a>
+          <a href="#free-check" class="inline-block border border-gray-700 hover:border-gray-500 text-gray-300 font-semibold px-8 py-3 rounded-lg transition">Free Site Check</a>
+        </div>
+      </div>
+      <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 text-center flex-shrink-0 w-full lg:w-64">
+        <p class="text-sm text-gray-500 mb-1">Starting at</p>
+        <p class="text-4xl font-bold text-emerald-400">$49</p>
+        <p class="text-sm text-gray-500">per month</p>
+        <p class="text-xs text-gray-600 mt-2">Cancel anytime</p>
+      </div>
+    </div>
+
+    <!-- What It Is -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-4">What Is SiteHealth?</h2>
+      <p class="text-gray-400 leading-relaxed">
+        SiteHealth is a complete website monitoring platform that checks your sites every 5 minutes for uptime, 
+        measures Core Web Vitals (LCP, INP, CLS) every hour, and monitors for JavaScript errors and broken resources. 
+        Get instant alerts via email, SMS, or Telegram, and provide your customers with a beautiful public status page.
+      </p>
+    </div>
+
+    <!-- How It Works -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-6">How It Works</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+          <div class="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-3">
+            <span class="text-emerald-400 font-bold">1</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">Add Your Sites</h3>
+          <p class="text-sm text-gray-500">Enter your website URLs. We handle the rest — no code, no configuration.</p>
+        </div>
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+          <div class="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-3">
+            <span class="text-emerald-400 font-bold">2</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">Continuous Monitoring</h3>
+          <p class="text-sm text-gray-500">Uptime checks every 5 minutes, CWV every hour, error scans every 15 minutes.</p>
+        </div>
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+          <div class="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-3">
+            <span class="text-emerald-400 font-bold">3</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">Instant Alerts</h3>
+          <p class="text-sm text-gray-500">Get notified via email, SMS, or Telegram the moment something goes wrong.</p>
+        </div>
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+          <div class="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-3">
+            <span class="text-emerald-400 font-bold">4</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">Status Page + Reports</h3>
+          <p class="text-sm text-gray-500">Public status page for your customers. Monthly SLA reports for your team.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-6">Features</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">Uptime monitoring every 5 minutes</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">Core Web Vitals (LCP, INP, CLS, TTFB)</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">JavaScript error &amp; 4xx/5xx monitoring</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">SSL certificate expiry alerts</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">Email, SMS &amp; Telegram alerts</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">Public status page per client</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">Daily Telegram one-liner summaries</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">Monthly SLA PDF reports</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div id="pricing" class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-6 text-center">Simple Pricing</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Basic -->
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-2xl p-6 flex flex-col">
+          <h3 class="text-xl font-bold text-white mb-2">Basic</h3>
+          <p class="text-sm text-gray-500 mb-4">For small sites that need basic monitoring</p>
+          <div class="mb-6">
+            <span class="text-4xl font-bold text-white">$49</span>
+            <span class="text-gray-500">/mo</span>
+          </div>
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-start gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Up to 3 sites
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              5-minute uptime checks
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              SSL monitoring
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Email alerts
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-500">
+              <svg class="w-4 h-4 text-gray-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              No CWV monitoring
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-500">
+              <svg class="w-4 h-4 text-gray-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              No error monitoring
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-500">
+              <svg class="w-4 h-4 text-gray-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              No status page
+            </li>
+          </ul>
+          <a href="https://checkout.cc3po.com/b/PLACEHOLDER_BASIC" class="block w-full bg-gray-800 hover:bg-gray-700 text-white font-semibold text-center py-3 rounded-lg transition">Buy Now — $49/mo</a>
+        </div>
+
+        <!-- Pro (Recommended) -->
+        <div class="bg-gradient-to-b from-emerald-500/10 to-[#0f0f1a] border border-emerald-500/30 rounded-2xl p-6 flex flex-col relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-black text-xs font-bold px-4 py-1 rounded-full">Most Popular</div>
+          <h3 class="text-xl font-bold text-white mb-2">Pro</h3>
+          <p class="text-sm text-gray-500 mb-4">For growing businesses that need full visibility</p>
+          <div class="mb-6">
+            <span class="text-4xl font-bold text-white">$97</span>
+            <span class="text-gray-500">/mo</span>
+          </div>
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-start gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Up to 10 sites
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              5-minute uptime checks
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Core Web Vitals (LCP, INP, CLS)
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Error log monitoring
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              SSL monitoring
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Email &amp; SMS alerts
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-500">
+              <svg class="w-4 h-4 text-gray-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              No status page
+            </li>
+          </ul>
+          <a href="https://checkout.cc3po.com/b/PLACEHOLDER_PRO" class="block w-full bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-center py-3 rounded-lg transition">Buy Now — $97/mo</a>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-2xl p-6 flex flex-col">
+          <h3 class="text-xl font-bold text-white mb-2">Enterprise</h3>
+          <p class="text-sm text-gray-500 mb-4">For agencies and businesses that need it all</p>
+          <div class="mb-6">
+            <span class="text-4xl font-bold text-white">$197</span>
+            <span class="text-gray-500">/mo</span>
+          </div>
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-start gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Up to 25 sites
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Everything in Pro
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Public status page
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Monthly SLA PDF reports
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Telegram alerts
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Daily Telegram summaries
+            </li>
+            <li class="flex items-start gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              99.9% uptime SLA
+            </li>
+          </ul>
+          <a href="https://checkout.cc3po.com/b/PLACEHOLDER_ENTERPRISE" class="block w-full bg-gray-800 hover:bg-gray-700 text-white font-semibold text-center py-3 rounded-lg transition">Buy Now — $197/mo</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-6">Plan Comparison</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-gray-800">
+              <th class="text-left py-3 pr-4 text-gray-400 font-medium">Feature</th>
+              <th class="text-center py-3 px-4 text-gray-400 font-medium">Basic</th>
+              <th class="text-center py-3 px-4 text-emerald-400 font-medium">Pro</th>
+              <th class="text-center py-3 pl-4 text-emerald-400 font-medium">Enterprise</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-800/50">
+              <td class="py-3 pr-4 text-gray-400">Max sites</td>
+              <td class="text-center py-3 px-4 text-gray-400">3</td>
+              <td class="text-center py-3 px-4 text-gray-400">10</td>
+              <td class="text-center py-3 pl-4 text-gray-400">25</td>
+            </tr>
+            <tr class="border-b border-gray-800/50">
+              <td class="py-3 pr-4 text-gray-400">Uptime monitoring (5min)</td>
+              <td class="text-center py-3 px-4 text-emerald-400">✓</td>
+              <td class="text-center py-3 px-4 text-emerald-400">✓</td>
+              <td class="text-center py-3 pl-4 text-emerald-400">✓</td>
+            </tr>
+            <tr class="border-b border-gray-800/50">
+              <td class="py-3 pr-4 text-gray-400">SSL monitoring</td>
+              <td class="text-center py-3 px-4 text-emerald-400">✓</td>
+              <td class="text-center py-3 px-4 text-emerald-400">✓</td>
+              <td class="text-center py-3 pl-4 text-emerald-400">✓</td>
+            </tr>
+            <tr class="border-b border-gray-800/50">
+              <td class="py-3 pr-4 text-gray-400">Email alerts</td>
+              <td class="text-center py-3 px-4 text-emerald-400">✓</td>
+              <td class="text-center py-3 px-4 text-emerald-400">✓</td>
+              <td class="text-center py-3 pl-4 text-emerald-400">✓</td>
+            </tr>
+            <tr class="border-b border-gray-800/50">
+              <td class="py-3 pr-4 text-gray-400">Core Web Vitals</td>
+              <td class="text-center py-3 px-4 text-gray-600">—</td>
+              <td class="text-center py-3 px-4 text-emerald-400">✓</td>
+              <td class="text-center py-3 pl-4 text-emerald-400">✓</td>
+            </tr>
+            <tr class="border-b border-gray-800/50">
+              <td class="py-3 pr-4 text-gray-400">Error monitoring</td>
+              <td class="text-center py-3 px-4 text-gray-600">—</td>
+              <td class="text-center py-3 px-4 text-emerald-400">✓</td>
+              <td class="text-center py-3 pl-4 text-emerald-400">✓</td>
+            </tr>
+            <tr class="border-b border-gray-800/50">
+              <td class="py-3 pr-4 text-gray-400">SMS alerts</td>
+              <td class="text-center py-3 px-4 text-gray-600">—</td>
+              <td class="text-center py-3 px-4 text-emerald-400">✓</td>
+              <td class="text-center py-3 pl-4 text-emerald-400">✓</td>
+            </tr>
+            <tr class="border-b border-gray-800/50">
+              <td class="py-3 pr-4 text-gray-400">Public status page</td>
+              <td class="text-center py-3 px-4 text-gray-600">—</td>
+              <td class="text-center py-3 px-4 text-gray-600">—</td>
+              <td class="text-center py-3 pl-4 text-emerald-400">✓</td>
+            </tr>
+            <tr class="border-b border-gray-800/50">
+              <td class="py-3 pr-4 text-gray-400">Monthly SLA reports</td>
+              <td class="text-center py-3 px-4 text-gray-600">—</td>
+              <td class="text-center py-3 px-4 text-gray-600">—</td>
+              <td class="text-center py-3 pl-4 text-emerald-400">✓</td>
+            </tr>
+            <tr class="border-b border-gray-800/50">
+              <td class="py-3 pr-4 text-gray-400">Telegram alerts</td>
+              <td class="text-center py-3 px-4 text-gray-600">—</td>
+              <td class="text-center py-3 px-4 text-gray-600">—</td>
+              <td class="text-center py-3 pl-4 text-emerald-400">✓</td>
+            </tr>
+            <tr>
+              <td class="py-3 pr-4 text-gray-400">Daily summaries</td>
+              <td class="text-center py-3 px-4 text-gray-600">—</td>
+              <td class="text-center py-3 px-4 text-gray-600">—</td>
+              <td class="text-center py-3 pl-4 text-emerald-400">✓</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Free Check -->
+    <div id="free-check" class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-6 text-center">Try It Free</h2>
+      <div class="bg-[#0f0f1a] border border-gray-800 rounded-2xl p-8 max-w-lg mx-auto">
+        <p class="text-gray-400 text-center mb-6">Enter your email and URL for a free health check. We'll send you the results.</p>
+        <form id="freeCheckForm" class="space-y-4">
+          <div>
+            <label class="block text-sm text-gray-500 mb-1" for="email">Email</label>
+            <input type="email" id="email" required class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500" placeholder="you@company.com">
+          </div>
+          <div>
+            <label class="block text-sm text-gray-500 mb-1" for="url">Website URL</label>
+            <input type="url" id="url" required class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500" placeholder="https://yoursite.com">
+          </div>
+          <div>
+            <label class="block text-sm text-gray-500 mb-1" for="company">Company (optional)</label>
+            <input type="text" id="company" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500" placeholder="Your Company Inc.">
+          </div>
+          <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-semibold py-3 rounded-lg transition">Check My Site</button>
+        </form>
+        <div id="freeCheckResult" class="hidden mt-4 p-4 rounded-lg text-center"></div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="bg-gradient-to-br from-emerald-500/10 to-transparent border border-emerald-500/20 rounded-2xl p-8 text-center">
+      <h2 class="text-2xl font-bold text-white mb-4">Never Be Surprised by Downtime Again</h2>
+      <p class="text-gray-400 mb-6 max-w-lg mx-auto">
+        Start monitoring your websites in minutes. Cancel anytime.
+      </p>
+      <a href="#pricing" class="inline-block bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-8 py-3 rounded-lg transition">See Plans</a>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Free check form handler
+  const form = document.getElementById('freeCheckForm');
+  const result = document.getElementById('freeCheckResult');
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const url = document.getElementById('url').value;
+      const company = document.getElementById('company').value;
+
+      result.classList.remove('hidden');
+      result.innerHTML = '<p class="text-gray-400">Checking your site...</p>';
+
+      try {
+        const response = await fetch('/api/free-check', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, url, company }),
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          const statusEmoji = data.status === 'up' ? '✅' : data.status === 'degraded' ? '⚠️' : '🔴';
+          result.innerHTML = `
+            <p class="text-emerald-400 font-semibold mb-2">${statusEmoji} Check Complete!</p>
+            <p class="text-gray-400 text-sm">${data.url}</p>
+            <p class="text-gray-400 text-sm">Status: ${data.status} (${data.responseTimeMs}ms)</p>
+            <p class="text-gray-500 text-xs mt-2">We'll email you the full report.</p>
+          `;
+        } else {
+          result.innerHTML = `<p class="text-red-400">Error: ${data.error || 'Something went wrong'}</p>`;
+        }
+      } catch (err) {
+        result.innerHTML = `<p class="text-red-400">Error: Could not reach server</p>`;
+      }
+    });
+  }
+</script>

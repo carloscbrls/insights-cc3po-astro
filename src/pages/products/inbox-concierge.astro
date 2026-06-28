@@ -1,0 +1,407 @@
+---
+// InboxConcierge — Bilingual AI Inbox Triage
+// Product page for cc3po.com/products/inbox-concierge
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const content = {
+  en: {
+    title: 'InboxConcierge — AI-Powered Email Triage',
+    subtitle: 'Never miss what matters. AI triages your inbox, drafts replies in English or Spanish, and delivers a daily digest so you stay on top of everything.',
+    heroCTA: 'Start Free Trial',
+    heroSecondary: 'See How It Works',
+    problemTitle: 'Your inbox is drowning you',
+    problemDesc: 'Between spam, newsletters, client emails, and internal comms, the average professional spends 3+ hours per day on email. Critical messages get buried. Replies go unsent. Opportunities slip through the cracks.',
+    solutionTitle: 'AI that treats your inbox like a priority queue',
+    solutionDesc: 'InboxConcierge connects to your Gmail or Outlook, triages every incoming message, drafts smart replies in English or Spanish, and sends you a daily digest of what needs your attention.',
+    features: [
+      { icon: '🔗', title: 'Gmail & Outlook Integration', desc: 'Secure OAuth 2.0 connection to your inbox. No passwords stored. Read-only access for triage, write access only for drafts you approve.' },
+      { icon: '🧠', title: 'AI Triage Engine', desc: 'Every email is classified: Urgent 🔴, Important 🟡, Read Later 🔵, Spam ⚫. Priority scoring based on sender, content, and context.' },
+      { icon: '✍️', title: 'Bilingual AI Drafts', desc: 'AI drafts replies in English or Spanish with your tone. Review and send with one click. Supports code-switching and mixed-language emails.' },
+      { icon: '📋', title: 'Daily Digest', desc: 'Every morning, get a Telegram summary of what needs attention. Urgent items, pending replies, and a quick scan of the rest.' },
+      { icon: '👁️', title: 'Human Review Mode', desc: 'Sensitive emails flagged for your review before any action. Full control over what gets sent. Perfect for legal, HR, and executive comms.' },
+      { icon: '📊', title: 'Monthly Report', desc: 'PDF report with inbox stats: triage accuracy, reply rate, language breakdown, and time saved. Track your email productivity.' },
+    ],
+    howItWorks: [
+      { step: '1', title: 'Connect', desc: 'Link your Gmail or Outlook account via secure OAuth. We never store your password.' },
+      { step: '2', 'title': 'Configure', desc: 'Set your triage preferences, language (EN/ES/both), and human review rules for sensitive emails.' },
+      { step: '3', title: 'Relax', desc: 'AI triages incoming mail, drafts replies, and sends your daily digest. You stay in control.' },
+    ],
+    pricingTitle: 'Simple pricing. Real results.',
+    tiers: [
+      {
+        name: 'Triage',
+        price: '$97',
+        period: '/mo',
+        desc: 'AI triage + daily digest',
+        features: [
+          'Gmail/Outlook integration',
+          'AI email triage (urgent/important/read later/spam)',
+          'Daily Telegram digest',
+          'Monthly PDF report',
+          'Email support',
+        ],
+        cta: 'Start Free Trial',
+        popular: false,
+        priceId: 'price_inbox_triage',
+      },
+      {
+        name: 'Reply',
+        price: '$197',
+        period: '/mo',
+        desc: 'Triage + AI draft replies',
+        features: [
+          'Everything in Triage',
+          'AI draft replies (EN & ES)',
+          'One-click send from digest',
+          'Custom reply tone',
+          'Priority email support',
+        ],
+        cta: 'Start Free Trial',
+        popular: true,
+        priceId: 'price_inbox_reply',
+      },
+      {
+        name: 'Managed',
+        price: '$297',
+        period: '/mo',
+        desc: 'Full managed + bilingual + human review',
+        features: [
+          'Everything in Reply',
+          'Bilingual EN/ES auto-detect',
+          'Human review for sensitive emails',
+          'Dedicated inbox manager',
+          'Custom triage rules',
+          'White-glove onboarding',
+        ],
+        cta: 'Start Free Trial',
+        popular: false,
+        priceId: 'price_inbox_managed',
+      },
+    ],
+    faq: [
+      { q: 'How does the AI triage work?', a: 'Every incoming email is analyzed by our AI engine. It considers the sender, subject line, content, urgency signals (like "ASAP" or "deadline"), and your past behavior. Each email gets a priority score and is classified into one of four categories: Urgent, Important, Read Later, or Spam.' },
+      { q: 'Can I use both English and Spanish?', a: 'Yes! InboxConcierge detects the language of each email and drafts replies in the same language. You can also set your preferred reply language independently. The Managed tier supports full bilingual operation with code-switching awareness.' },
+      { q: 'What happens to sensitive emails?', a: 'In the Managed tier, sensitive emails (legal, HR, financial, or flagged senders) are held for human review. You get a notification and can approve, edit, or reject the draft before it goes out.' },
+      { q: 'Is my data secure?', a: 'Absolutely. We use OAuth 2.0 (no passwords stored), encryption at rest and in transit, and never share your email data. You can revoke access at any time. Read-only access for triage; write access only for drafts you approve.' },
+      { q: 'Can I cancel anytime?', a: 'Yes. No long-term contracts. Cancel from your dashboard and your access ends at the billing period. We also offer a 7-day free trial so you can see the value before committing.' },
+    ],
+    ctaSection: {
+      title: 'Take control of your inbox',
+      desc: 'Join professionals who save 10+ hours per week with AI-powered email triage. Start your free trial today.',
+      button: 'Get Started Free',
+    },
+    footer: 'InboxConcierge is a CC3PO product. Secure. Bilingual. Intelligent.',
+  },
+  es: {
+    title: 'InboxConcierge — Bandeja de Entrada con IA',
+    subtitle: 'Nunca te pierdas lo que importa. La IA tria tu bandeja de entrada, redacta respuestas en inglés o español y te envía un resumen diario para que estés al tanto de todo.',
+    heroCTA: 'Prueba Gratis',
+    heroSecondary: 'Ver Cómo Funciona',
+    problemTitle: 'Tu bandeja de entrada te está ahogando',
+    problemDesc: 'Entre spam, boletines, correos de clientes y comunicaciones internas, el profesional promedio pasa 3+ horas al día en el correo. Los mensajes críticos se entierran. Las respuestas no se envían. Las oportunidades se escapan.',
+    solutionTitle: 'IA que trata tu bandeja de entrada como una cola de prioridades',
+    solutionDesc: 'InboxConcierge se conecta a tu Gmail u Outlook, tria cada mensaje entrante, redacta respuestas inteligentes en inglés o español y te envía un resumen diario de lo que necesita tu atención.',
+    features: [
+      { icon: '🔗', title: 'Integración con Gmail y Outlook', desc: 'Conexión segura OAuth 2.0 a tu bandeja de entrada. Sin almacenamiento de contraseñas. Acceso de solo lectura para triage, acceso de escritura solo para borradores que apruebes.' },
+      { icon: '🧠', title: 'Motor de Triage con IA', desc: 'Cada correo se clasifica: Urgente 🔴, Importante 🟡, Leer Después 🔵, Spam ⚫. Puntuación de prioridad basada en remitente, contenido y contexto.' },
+      { icon: '✍️', title: 'Borradores Bilingües con IA', desc: 'La IA redacta respuestas en inglés o español con tu tono. Revisa y envía con un clic. Soporta cambio de idioma y correos mixtos.' },
+      { icon: '📋', title: 'Resumen Diario', desc: 'Cada mañana, recibe un resumen por Telegram de lo que necesita atención. Elementos urgentes, respuestas pendientes y un vistazo rápido al resto.' },
+      { icon: '👁️', title: 'Modo de Revisión Humana', desc: 'Correos sensibles marcados para tu revisión antes de cualquier acción. Control total sobre lo que se envía. Perfecto para comunicaciones legales, de RRHH y ejecutivas.' },
+      { icon: '📊', title: 'Informe Mensual', desc: 'Informe PDF con estadísticas de la bandeja de entrada: precisión del triage, tasa de respuesta, desglose por idioma y tiempo ahorrado.' },
+    ],
+    howItWorks: [
+      { step: '1', title: 'Conecta', desc: 'Vincula tu cuenta de Gmail u Outlook mediante OAuth seguro. Nunca almacenamos tu contraseña.' },
+      { step: '2', title: 'Configura', desc: 'Establece tus preferencias de triage, idioma (EN/ES/ambos) y reglas de revisión humana para correos sensibles.' },
+      { step: '3', title: 'Relájate', desc: 'La IA tria los correos entrantes, redacta respuestas y envía tu resumen diario. Tú mantienes el control.' },
+    ],
+    pricingTitle: 'Precios simples. Resultados reales.',
+    tiers: [
+      {
+        name: 'Triage',
+        price: '$97',
+        period: '/mes',
+        desc: 'Triage con IA + resumen diario',
+        features: [
+          'Integración con Gmail/Outlook',
+          'Triage de correos con IA (urgente/importante/leer después/spam)',
+          'Resumen diario por Telegram',
+          'Informe mensual en PDF',
+          'Soporte por correo',
+        ],
+        cta: 'Prueba Gratis',
+        popular: false,
+        priceId: 'price_inbox_triage',
+      },
+      {
+        name: 'Reply',
+        price: '$197',
+        period: '/mes',
+        desc: 'Triage + borradores con IA',
+        features: [
+          'Todo en Triage',
+          'Borradores de respuesta con IA (EN y ES)',
+          'Envío con un clic desde el resumen',
+          'Tono de respuesta personalizado',
+          'Soporte prioritario por correo',
+        ],
+        cta: 'Prueba Gratis',
+        popular: true,
+        priceId: 'price_inbox_reply',
+      },
+      {
+        name: 'Managed',
+        price: '$297',
+        period: '/mes',
+        desc: 'Completo + bilingüe + revisión humana',
+        features: [
+          'Todo en Reply',
+          'Detección automática EN/ES',
+          'Revisión humana para correos sensibles',
+          'Gestor de bandeja dedicado',
+          'Reglas de triage personalizadas',
+          'Incorporación con soporte personalizado',
+        ],
+        cta: 'Prueba Gratis',
+        popular: false,
+        priceId: 'price_inbox_managed',
+      },
+    ],
+    faq: [
+      { q: '¿Cómo funciona el triage con IA?', a: 'Cada correo entrante es analizado por nuestro motor de IA. Considera el remitente, el asunto, el contenido, las señales de urgencia (como "urgente" o "fecha límite") y tu comportamiento pasado. Cada correo recibe una puntuación de prioridad y se clasifica en una de cuatro categorías: Urgente, Importante, Leer Después o Spam.' },
+      { q: '¿Puedo usar inglés y español?', a: '¡Sí! InboxConcierge detecta el idioma de cada correo y redacta respuestas en el mismo idioma. También puedes configurar tu idioma de respuesta preferido de forma independiente. El nivel Managed soporta operación bilingüe completa con detección de cambio de idioma.' },
+      { q: '¿Qué pasa con los correos sensibles?', a: 'En el nivel Managed, los correos sensibles (legales, de RRHH, financieros o de remitentes marcados) se retienen para revisión humana. Recibes una notificación y puedes aprobar, editar o rechazar el borrador antes de que se envíe.' },
+      { q: '¿Están seguros mis datos?', a: 'Absolutamente. Usamos OAuth 2.0 (sin almacenar contraseñas), cifrado en reposo y en tránsito, y nunca compartimos tus datos de correo. Puedes revocar el acceso en cualquier momento.' },
+      { q: '¿Puedo cancelar en cualquier momento?', a: 'Sí. Sin contratos a largo plazo. Cancela desde tu panel y tu acceso termina al final del período de facturación. También ofrecemos una prueba gratuita de 7 días.' },
+    ],
+    ctaSection: {
+      title: 'Toma el control de tu bandeja de entrada',
+      desc: 'Únete a profesionales que ahorran 10+ horas por semana con el triage de correos con IA. Comienza tu prueba gratuita hoy.',
+      button: 'Comienza Gratis',
+    },
+    footer: 'InboxConcierge es un producto de CC3PO. Seguro. Bilingüe. Inteligente.',
+  },
+}[lang];
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{content.title}</title>
+  <meta name="description" content={content.subtitle} />
+  <link rel="alternate" hreflang="en" href="https://cc3po.com/products/inbox-concierge" />
+  <link rel="alternate" hreflang="es" href="https://cc3po.com/products/inbox-concierge?lang=es" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; line-height: 1.6; background: #f8f9fa; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; background: #fff; border-bottom: 1px solid #e2e8f0; }
+    nav .logo { font-size: 20px; font-weight: 700; color: #0f3460; text-decoration: none; }
+    nav .logo span { color: #e94560; }
+    nav .nav-links { display: flex; gap: 24px; align-items: center; }
+    nav .nav-links a { color: #475569; text-decoration: none; font-size: 14px; font-weight: 500; }
+    nav .nav-links a:hover { color: #0f3460; }
+    nav .lang-toggle { padding: 6px 12px; border: 1px solid #e2e8f0; border-radius: 6px; background: #fff; cursor: pointer; font-size: 13px; color: #475569; }
+    nav .lang-toggle:hover { background: #f1f5f9; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #1a1a2e 100%); color: #fff; padding: 80px 24px; text-align: center; }
+    .hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 16px; line-height: 1.2; }
+    .hero h1 span { color: #e94560; }
+    .hero p { font-size: 18px; max-width: 700px; margin: 0 auto 32px; opacity: 0.9; }
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { padding: 14px 32px; background: #e94560; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+    .btn-primary:hover { background: #d63851; }
+    .btn-secondary { padding: 14px 32px; background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.3); border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none; transition: border-color 0.2s; }
+    .btn-secondary:hover { border-color: #e94560; }
+
+    /* Problem/Solution */
+    .problem-solution { padding: 80px 24px; background: #fff; }
+    .problem-solution .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .problem-solution h2 { font-size: 32px; font-weight: 700; margin-bottom: 16px; }
+    .problem-solution p { font-size: 16px; color: #475569; }
+    .problem-solution .problem h2 { color: #e94560; }
+    .problem-solution .solution h2 { color: #0f3460; }
+
+    /* Features */
+    .features { padding: 80px 24px; background: #f8f9fa; }
+    .features h2 { text-align: center; font-size: 32px; font-weight: 700; margin-bottom: 48px; color: #0f3460; }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .feature-card { background: #fff; padding: 32px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s; }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .feature-card .icon { font-size: 36px; margin-bottom: 16px; }
+    .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #0f3460; }
+    .feature-card p { font-size: 14px; color: #64748b; line-height: 1.7; }
+
+    /* How It Works */
+    .how-it-works { padding: 80px 24px; background: #fff; }
+    .how-it-works h2 { text-align: center; font-size: 32px; font-weight: 700; margin-bottom: 48px; color: #0f3460; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .step { text-align: center; }
+    .step-number { width: 48px; height: 48px; background: #e94560; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; margin: 0 auto 16px; }
+    .step h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #0f3460; }
+    .step p { font-size: 14px; color: #64748b; max-width: 300px; margin: 0 auto; }
+
+    /* Pricing */
+    .pricing { padding: 80px 24px; background: #f8f9fa; }
+    .pricing h2 { text-align: center; font-size: 32px; font-weight: 700; margin-bottom: 48px; color: #0f3460; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
+    .pricing-card { background: #fff; border-radius: 12px; padding: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); text-align: center; position: relative; transition: transform 0.2s, box-shadow 0.2s; }
+    .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .pricing-card.popular { border: 2px solid #e94560; transform: scale(1.05); }
+    .pricing-card.popular:hover { transform: scale(1.05) translateY(-4px); }
+    .pricing-card .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #e94560; color: #fff; padding: 4px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+    .pricing-card .name { font-size: 20px; font-weight: 700; color: #0f3460; margin-bottom: 4px; }
+    .pricing-card .desc { font-size: 13px; color: #64748b; margin-bottom: 16px; }
+    .pricing-card .price { font-size: 42px; font-weight: 800; color: #0f3460; }
+    .pricing-card .price span { font-size: 16px; font-weight: 400; color: #64748b; }
+    .pricing-card .features { list-style: none; margin: 24px 0; text-align: left; }
+    .pricing-card .features li { padding: 8px 0; font-size: 14px; color: #475569; border-bottom: 1px solid #f1f5f9; }
+    .pricing-card .features li::before { content: '✓ '; color: #27ae60; font-weight: 700; }
+    .pricing-card .btn-primary { width: 100%; }
+
+    /* FAQ */
+    .faq { padding: 80px 24px; background: #fff; }
+    .faq h2 { text-align: center; font-size: 32px; font-weight: 700; margin-bottom: 48px; color: #0f3460; }
+    .faq-grid { max-width: 700px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid #e2e8f0; padding: 20px 0; }
+    .faq-item h3 { font-size: 16px; font-weight: 600; color: #1a1a2e; margin-bottom: 8px; cursor: pointer; }
+    .faq-item p { font-size: 14px; color: #64748b; line-height: 1.7; }
+
+    /* CTA */
+    .cta-section { padding: 80px 24px; background: linear-gradient(135deg, #0f3460, #16213e); color: #fff; text-align: center; }
+    .cta-section h2 { font-size: 36px; font-weight: 700; margin-bottom: 16px; }
+    .cta-section p { font-size: 18px; opacity: 0.9; margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+    /* Footer */
+    footer { padding: 24px; text-align: center; color: #94a3b8; font-size: 13px; background: #1a1a2e; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; }
+      .problem-solution .grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .pricing-card.popular { transform: none; }
+      .pricing-card.popular:hover { transform: translateY(-4px); }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="logo">CC3PO<span>.</span></a>
+    <div class="nav-links">
+      <a href="/products/inbox-concierge">{lang === 'es' ? 'Inicio' : 'Home'}</a>
+      <a href="#pricing">{lang === 'es' ? 'Precios' : 'Pricing'}</a>
+      <a href="#faq">FAQ</a>
+      <a href={lang === 'en' ? '?lang=es' : '?lang=en'} class="lang-toggle">{lang === 'en' ? 'Español' : 'English'}</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <h1>{content.title.split('—')[0]}<br /><span>{content.title.split('—')[1]}</span></h1>
+      <p>{content.subtitle}</p>
+      <div class="hero-buttons">
+        <a href="#pricing" class="btn-primary">{content.heroCTA}</a>
+        <a href="#how-it-works" class="btn-secondary">{content.heroSecondary}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="problem-solution">
+    <div class="container">
+      <div class="grid">
+        <div class="problem">
+          <h2>{content.problemTitle}</h2>
+          <p>{content.problemDesc}</p>
+        </div>
+        <div class="solution">
+          <h2>{content.solutionTitle}</h2>
+          <p>{content.solutionDesc}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="container">
+      <h2>{lang === 'es' ? 'Características' : 'Features'}</h2>
+      <div class="features-grid">
+        {content.features.map(f => (
+          <div class="feature-card">
+            <div class="icon">{f.icon}</div>
+            <h3>{f.title}</h3>
+            <p>{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <h2>{lang === 'es' ? 'Cómo Funciona' : 'How It Works'}</h2>
+      <div class="steps">
+        {content.howItWorks.map(s => (
+          <div class="step">
+            <div class="step-number">{s.step}</div>
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <h2>{content.pricingTitle}</h2>
+      <div class="pricing-grid">
+        {content.tiers.map(t => (
+          <div class={`pricing-card${t.popular ? ' popular' : ''}`}>
+            {t.popular && <div class="badge">{lang === 'es' ? 'Popular' : 'Most Popular'}</div>}
+            <div class="name">{t.name}</div>
+            <div class="desc">{t.desc}</div>
+            <div class="price">{t.price}<span>{t.period}</span></div>
+            <ul class="features">
+              {t.features.map(f => <li>{f}</li>)}
+            </ul>
+            <a href="/api/stripe/checkout?priceId={t.priceId}&lang={lang}" class="btn-primary">{t.cta}</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="container">
+      <h2>{lang === 'es' ? 'Preguntas Frecuentes' : 'Frequently Asked Questions'}</h2>
+      <div class="faq-grid">
+        {content.faq.map(item => (
+          <div class="faq-item">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2>{content.ctaSection.title}</h2>
+      <p>{content.ctaSection.desc}</p>
+      <a href="#pricing" class="btn-primary">{content.ctaSection.button}</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>{content.footer}</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,495 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// Spanish toggle support
+const locale = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    title: 'VisibleAI — AI Visibility & Share-of-Voice Monitor | CC3PO',
+    new: 'New',
+    backToProducts: '← Back to all products',
+    startingAt: 'Starting at',
+    perMonth: 'per month',
+    freeTrial: '30-day free trial. Cancel anytime.',
+    startFree: 'Start Free Trial',
+    tryItFree: 'Try It Free',
+    whatIs: 'What Is VisibleAI?',
+    whatIsDesc: 'VisibleAI monitors what AI search engines say about your business. It crawls Perplexity, ChatGPT, Gemini, and Claude for brand mentions, measures your share of voice against competitors, detects negative or incorrect AI-generated content, and sends alerts when your brand is misrepresented. Get daily one-liners via Telegram, weekly reports, and comprehensive monthly PDFs.',
+    howItWorks: 'How It Works',
+    step1: 'Add Your Brand',
+    step1Desc: 'Tell us your business name, website, and competitors.',
+    step2: 'AI Crawl',
+    step2Desc: 'We query Perplexity, ChatGPT, Gemini, and Claude for mentions.',
+    step3: 'Analysis',
+    step3Desc: 'We measure sentiment, share of voice, and detect misinformation.',
+    step4: 'Alerts & Reports',
+    step4Desc: 'Get daily one-liners, weekly reports, and instant alerts.',
+    sourcesMonitored: 'AI Sources Monitored',
+    aiSearch: 'AI Search',
+    aiChat: 'AI Chat',
+    aiAssistant: 'AI Assistant',
+    features: 'Features',
+    feature1: 'Multi-AI monitoring across 4 platforms',
+    feature2: 'Share-of-voice vs competitors',
+    feature3: 'Negative sentiment detection',
+    feature4: 'Misinformation alerts',
+    feature5: 'Daily Telegram one-liner',
+    feature6: 'Monthly PDF reports',
+    feature7: '30-day free trial',
+    feature8: 'Spanish language support',
+    pricing: 'Pricing',
+    basic: 'Basic',
+    basicPrice: '$79',
+    basicPer: '/mo',
+    basicDesc: 'Perfect for small businesses',
+    basicFeature1: '1 brand monitored',
+    basicFeature2: '3 competitors',
+    basicFeature3: 'Monthly visibility scan',
+    basicFeature4: 'Monthly PDF report',
+    pro: 'Pro',
+    proPrice: '$147',
+    proPer: '/mo',
+    proDesc: 'For growing businesses',
+    proFeature1: '3 brands monitored',
+    proFeature2: '10 competitors',
+    proFeature3: 'Weekly monitoring + alerts',
+    proFeature4: 'Daily Telegram one-liner',
+    proFeature5: 'Weekly reports',
+    enterprise: 'Enterprise',
+    enterprisePrice: '$297',
+    enterprisePer: '/mo',
+    enterpriseDesc: 'For agencies and enterprises',
+    enterpriseFeature1: 'Unlimited brands',
+    enterpriseFeature2: 'Unlimited competitors',
+    enterpriseFeature3: 'Full share-of-voice + competitive intel',
+    enterpriseFeature4: 'Real-time alerts',
+    enterpriseFeature5: 'Custom integrations',
+    popular: 'Most Popular',
+    getStarted: 'Get Started',
+    getFreeScan: 'Get Your Free Visibility Scan',
+    getFreeScanDesc: 'Enter your email and we\'ll send you a free AI visibility report for your business.',
+    emailPlaceholder: 'Enter your email',
+    namePlaceholder: 'Your name (optional)',
+    companyPlaceholder: 'Company name (optional)',
+    subtitle: 'Know what AI search engines say about your business. Monitor Perplexity, ChatGPT, Gemini, and Claude.',
+    faq: 'Frequently Asked Questions',
+    faq1q: 'How does VisibleAI work?',
+    faq1a: 'VisibleAI queries multiple AI platforms (Perplexity, ChatGPT, Gemini, Claude) for information about your brand. It analyzes the responses for sentiment, share of voice compared to competitors, and potential misinformation. Results are compiled into daily one-liners, weekly reports, and monthly PDFs.',
+    faq2q: 'Which AI platforms do you monitor?',
+    faq2a: 'We currently monitor Perplexity, ChatGPT (OpenAI), Google Gemini, and Anthropic Claude. These represent the major AI search and chat platforms that users consult for business information.',
+    faq3q: 'How is share of voice calculated?',
+    faq3a: 'Share of voice is calculated by counting how many times your brand is mentioned across AI responses compared to your competitors. We track mentions across all four platforms and calculate your percentage of total industry mentions.',
+    faq4q: 'What happens if misinformation is detected?',
+    faq4a: 'If we detect incorrect or misleading AI-generated content about your brand, you receive an immediate alert via Telegram. The alert includes the source, the potentially incorrect content, and recommendations for how to address it with the AI provider.'
+  },
+  es: {
+    title: 'VisibleAI — Monitor de Visibilidad y Share of Voice en IA | CC3PO',
+    new: 'Nuevo',
+    backToProducts: '← Volver a todos los productos',
+    startingAt: 'Desde',
+    perMonth: '/mes',
+    freeTrial: 'Prueba gratuita de 30 días. Cancele cuando quiera.',
+    startFree: 'Iniciar Prueba Gratis',
+    tryItFree: 'Pruébelo Gratis',
+    whatIs: '¿Qué es VisibleAI?',
+    whatIsDesc: 'VisibleAI monitorea lo que los motores de búsqueda de IA dicen sobre su negocio. Analiza Perplexity, ChatGPT, Gemini y Claude en busca de menciones de marca, mide su share of voice frente a competidores, detecta contenido negativo o incorrecto generado por IA, y envía alertas cuando su marca es mal representada. Reciba resúmenes diarios por Telegram, informes semanales y PDFs mensuales completos.',
+    howItWorks: 'Cómo Funciona',
+    step1: 'Agregue su Marca',
+    step1Desc: 'Díganos el nombre de su negocio, sitio web y competidores.',
+    step2: 'Análisis de IA',
+    step2Desc: 'Consultamos Perplexity, ChatGPT, Gemini y Claude por menciones.',
+    step3: 'Análisis',
+    step3Desc: 'Medimos sentimiento, share of voice y detectamos desinformación.',
+    step4: 'Alertas e Informes',
+    step4Desc: 'Reciba resúmenes diarios, informes semanales y alertas instantáneas.',
+    sourcesMonitored: 'Fuentes de IA Monitoreadas',
+    aiSearch: 'Búsqueda IA',
+    aiChat: 'Chat IA',
+    aiAssistant: 'Asistente IA',
+    features: 'Características',
+    feature1: 'Monitoreo multi-IA en 4 plataformas',
+    feature2: 'Share of voice vs competidores',
+    feature3: 'Detección de sentimiento negativo',
+    feature4: 'Alertas de desinformación',
+    feature5: 'Resumen diario por Telegram',
+    feature6: 'Informes mensuales en PDF',
+    feature7: 'Prueba gratuita de 30 días',
+    feature8: 'Soporte en español',
+    pricing: 'Precios',
+    basic: 'Básico',
+    basicPrice: '$79',
+    basicPer: '/mes',
+    basicDesc: 'Perfecto para pequeñas empresas',
+    basicFeature1: '1 marca monitoreada',
+    basicFeature2: '3 competidores',
+    basicFeature3: 'Escaneo mensual de visibilidad',
+    basicFeature4: 'Informe mensual en PDF',
+    pro: 'Pro',
+    proPrice: '$147',
+    proPer: '/mes',
+    proDesc: 'Para negocios en crecimiento',
+    proFeature1: '3 marcas monitoreadas',
+    proFeature2: '10 competidores',
+    proFeature3: 'Monitoreo semanal + alertas',
+    proFeature4: 'Resumen diario por Telegram',
+    proFeature5: 'Informes semanales',
+    enterprise: 'Empresarial',
+    enterprisePrice: '$297',
+    enterprisePer: '/mes',
+    enterpriseDesc: 'Para agencias y empresas',
+    enterpriseFeature1: 'Marcas ilimitadas',
+    enterpriseFeature2: 'Competidores ilimitados',
+    enterpriseFeature3: 'Share of voice completo + inteligencia competitiva',
+    enterpriseFeature4: 'Alertas en tiempo real',
+    enterpriseFeature5: 'Integraciones personalizadas',
+    popular: 'Más Popular',
+    getStarted: 'Comenzar',
+    getFreeScan: 'Obtenga su Escaneo de Visibilidad Gratis',
+    getFreeScanDesc: 'Ingrese su correo y le enviaremos un informe gratuito de visibilidad en IA para su negocio.',
+    emailPlaceholder: 'Ingrese su correo electrónico',
+    namePlaceholder: 'Su nombre (opcional)',
+    companyPlaceholder: 'Nombre de empresa (opcional)',
+    subtitle: 'Sepa lo que los motores de búsqueda de IA dicen sobre su negocio. Monitoree Perplexity, ChatGPT, Gemini y Claude.',
+    faq: 'Preguntas Frecuentes',
+    faq1q: '¿Cómo funciona VisibleAI?',
+    faq1a: 'VisibleAI consulta múltiples plataformas de IA (Perplexity, ChatGPT, Gemini, Claude) en busca de información sobre su marca. Analiza las respuestas para determinar sentimiento, share of voice en comparación con competidores y posible desinformación. Los resultados se compilan en resúmenes diarios, informes semanales y PDFs mensuales.',
+    faq2q: '¿Qué plataformas de IA monitorean?',
+    faq2a: 'Actualmente monitoreamos Perplexity, ChatGPT (OpenAI), Google Gemini y Anthropic Claude. Estas representan las principales plataformas de búsqueda y chat de IA que los usuarios consultan para información empresarial.',
+    faq3q: '¿Cómo se calcula el share of voice?',
+    faq3a: 'El share of voice se calcula contando cuántas veces se menciona su marca en las respuestas de IA en comparación con sus competidores. Rastreamos menciones en las cuatro plataformas y calculamos su porcentaje del total de menciones de la industria.',
+    faq4q: '¿Qué sucede si se detecta desinformación?',
+    faq4a: 'Si detectamos contenido generado por IA incorrecto o engañoso sobre su marca, recibe una alerta inmediata por Telegram. La alerta incluye la fuente, el contenido potencialmente incorrecto y recomendaciones sobre cómo abordarlo con el proveedor de IA.'
+  }
+};
+
+const t = locale === 'es' ? translations.es : translations.en;
+---
+
+<Layout title={t.title}>
+  <section class="max-w-4xl mx-auto px-4 py-16">
+    <!-- Back link + language toggle -->
+    <div class="flex items-center justify-between mb-8">
+      <a href="/products/" class="text-sm text-gray-500 hover:text-emerald-400 transition">&larr; {t.backToProducts}</a>
+      <a href={locale === 'es' ? '/products/visible-ai/' : '/products/visible-ai/?lang=es'} class="text-sm text-gray-500 hover:text-emerald-400 transition">
+        {locale === 'es' ? t.englishToggle : t.spanishToggle}
+      </a>
+    </div>
+
+    <!-- Hero -->
+    <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-12">
+      <div class="flex-1">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-xs font-semibold bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded-full">AI</span>
+          <span class="text-xs font-semibold bg-purple-500/10 text-purple-400 px-2 py-1 rounded-full">{t.new}</span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">{t.title}</h1>
+        <p class="text-xl text-gray-400 mb-6">{t.subtitle}</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#pricing" class="inline-block bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-8 py-3 rounded-lg transition">{t.startFree}</a>
+          <a href="#free-scan" class="inline-block border border-gray-700 hover:border-emerald-500 text-gray-300 hover:text-emerald-400 font-semibold px-8 py-3 rounded-lg transition">{t.tryItFree}</a>
+        </div>
+      </div>
+      <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 text-center flex-shrink-0 w-full lg:w-64">
+        <p class="text-sm text-gray-500 mb-1">{t.startingAt}</p>
+        <p class="text-4xl font-bold text-emerald-400">$79</p>
+        <p class="text-sm text-gray-500">{t.perMonth}</p>
+        <p class="text-xs text-gray-600 mt-2">{t.freeTrial}</p>
+      </div>
+    </div>
+
+    <!-- What It Is -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-4">{t.whatIs}</h2>
+      <p class="text-gray-400 leading-relaxed">{t.whatIsDesc}</p>
+    </div>
+
+    <!-- How It Works -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-6">{t.howItWorks}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+          <div class="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-3">
+            <span class="text-emerald-400 font-bold">1</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">{t.step1}</h3>
+          <p class="text-sm text-gray-500">{t.step1Desc}</p>
+        </div>
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+          <div class="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-3">
+            <span class="text-emerald-400 font-bold">2</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">{t.step2}</h3>
+          <p class="text-sm text-gray-500">{t.step2Desc}</p>
+        </div>
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+          <div class="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-3">
+            <span class="text-emerald-400 font-bold">3</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">{t.step3}</h3>
+          <p class="text-sm text-gray-500">{t.step3Desc}</p>
+        </div>
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+          <div class="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-3">
+            <span class="text-emerald-400 font-bold">4</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">{t.step4}</h3>
+          <p class="text-sm text-gray-500">{t.step4Desc}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Sources Monitored -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-6">{t.sourcesMonitored}</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-4 text-center">
+          <div class="text-2xl mb-2">🔍</div>
+          <h3 class="text-sm font-semibold text-white">Perplexity</h3>
+          <p class="text-xs text-gray-500">{t.aiSearch}</p>
+        </div>
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-4 text-center">
+          <div class="text-2xl mb-2">💬</div>
+          <h3 class="text-sm font-semibold text-white">ChatGPT</h3>
+          <p class="text-xs text-gray-500">{t.aiChat}</p>
+        </div>
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-4 text-center">
+          <div class="text-2xl mb-2">🌐</div>
+          <h3 class="text-sm font-semibold text-white">Gemini</h3>
+          <p class="text-xs text-gray-500">{t.aiAssistant}</p>
+        </div>
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-4 text-center">
+          <div class="text-2xl mb-2">🤖</div>
+          <h3 class="text-sm font-semibold text-white">Claude</h3>
+          <p class="text-xs text-gray-500">{t.aiAssistant}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-6">{t.features}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">{t.feature1}</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">{t.feature2}</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">{t.feature3}</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">{t.feature4}</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">{t.feature5}</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">{t.feature6}</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">{t.feature7}</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">{t.feature8}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div id="pricing" class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-6 text-center">{t.pricing}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Basic -->
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 flex flex-col">
+          <h3 class="text-lg font-semibold text-white mb-1">{t.basic}</h3>
+          <p class="text-sm text-gray-500 mb-4">{t.basicDesc}</p>
+          <div class="mb-4">
+            <span class="text-3xl font-bold text-white">{t.basicPrice}</span>
+            <span class="text-gray-500 text-sm">{t.basicPer}</span>
+          </div>
+          <ul class="text-sm text-gray-400 space-y-2 mb-6 flex-1">
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              {t.basicFeature1}
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              {t.basicFeature2}
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              {t.basicFeature3}
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              {t.basicFeature4}
+            </li>
+          </ul>
+          <a href="https://checkout.cc3po.com/b/visible-ai-basic" class="block text-center bg-gray-800 hover:bg-gray-700 text-white font-semibold px-6 py-3 rounded-lg transition text-sm">{t.getStarted}</a>
+        </div>
+
+        <!-- Pro (Featured) -->
+        <div class="bg-[#0f0f1a] border-2 border-emerald-500/50 rounded-xl p-6 flex flex-col relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-black text-xs font-bold px-4 py-1 rounded-full">{t.popular}</div>
+          <h3 class="text-lg font-semibold text-white mb-1">{t.pro}</h3>
+          <p class="text-sm text-gray-500 mb-4">{t.proDesc}</p>
+          <div class="mb-4">
+            <span class="text-3xl font-bold text-white">{t.proPrice}</span>
+            <span class="text-gray-500 text-sm">{t.proPer}</span>
+          </div>
+          <ul class="text-sm text-gray-400 space-y-2 mb-6 flex-1">
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              {t.proFeature1}
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              {t.proFeature2}
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              {t.proFeature3}
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              {t.proFeature4}
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              {t.proFeature5}
+            </li>
+          </ul>
+          <a href="https://checkout.cc3po.com/b/visible-ai-pro" class="block text-center bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-6 py-3 rounded-lg transition text-sm">{t.getStarted}</a>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 flex flex-col">
+          <h3 class="text-lg font-semibold text-white mb-1">{t.enterprise}</h3>
+          <p class="text-sm text-gray-500 mb-4">{t.enterpriseDesc}</p>
+          <div class="mb-4">
+            <span class="text-3xl font-bold text-white">{t.enterprisePrice}</span>
+            <span class="text-gray-500 text-sm">{t.enterprisePer}</span>
+          </div>
+          <ul class="text-sm text-gray-400 space-y-2 mb-6 flex-1">
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              {t.enterpriseFeature1}
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              {t.enterpriseFeature2}
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              {t.enterpriseFeature3}
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              {t.enterpriseFeature4}
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              {t.enterpriseFeature5}
+            </li>
+          </ul>
+          <a href="https://checkout.cc3po.com/b/visible-ai-enterprise" class="block text-center bg-gray-800 hover:bg-gray-700 text-white font-semibold px-6 py-3 rounded-lg transition text-sm">{t.getStarted}</a>
+        </div>
+      </div>
+      <p class="text-center text-sm text-gray-500 mt-4">{t.freeTrial}</p>
+    </div>
+
+    <!-- Free Email-Gated Scan -->
+    <div id="free-scan" class="mb-12 bg-[#0f0f1a] border border-gray-800 rounded-xl p-8">
+      <div class="max-w-md mx-auto text-center">
+        <h2 class="text-2xl font-bold text-white mb-2">{t.getFreeScan}</h2>
+        <p class="text-gray-400 mb-6">{t.getFreeScanDesc}</p>
+        <form id="visibleai-free-scan-form" class="space-y-3">
+          <input
+            type="email"
+            name="email"
+            placeholder={t.emailPlaceholder}
+            required
+            class="w-full bg-[#08080d] border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 transition"
+          />
+          <input
+            type="text"
+            name="name"
+            placeholder={t.namePlaceholder}
+            class="w-full bg-[#08080d] border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 transition"
+          />
+          <input
+            type="text"
+            name="company"
+            placeholder={t.companyPlaceholder}
+            class="w-full bg-[#08080d] border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 transition"
+          />
+          <input type="hidden" name="locale" value={locale} />
+          <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-8 py-3 rounded-lg transition">
+            {t.getFreeScan}
+          </button>
+        </form>
+        <div id="visibleai-scan-result" class="mt-4 text-sm"></div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-6">{t.faq}</h2>
+      <div class="space-y-4">
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+          <h3 class="text-lg font-semibold text-white mb-2">{t.faq1q}</h3>
+          <p class="text-gray-400 text-sm">{t.faq1a}</p>
+        </div>
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+          <h3 class="text-lg font-semibold text-white mb-2">{t.faq2q}</h3>
+          <p class="text-gray-400 text-sm">{t.faq2a}</p>
+        </div>
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+          <h3 class="text-lg font-semibold text-white mb-2">{t.faq3q}</h3>
+          <p class="text-gray-400 text-sm">{t.faq3a}</p>
+        </div>
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+          <h3 class="text-lg font-semibold text-white mb-2">{t.faq4q}</h3>
+          <p class="text-gray-400 text-sm">{t.faq4a}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Free scan form handler
+  document.getElementById('visibleai-free-scan-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const data = Object.fromEntries(new FormData(form));
+    const resultDiv = document.getElementById('visibleai-scan-result');
+
+    resultDiv.innerHTML = '<span class="text-gray-400">Submitting...</span>';
+
+    try {
+      const response = await fetch('https://cc3po.com/api/visible-ai/free-scan', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      resultDiv.innerHTML = result.success
+        ? '<span class="text-emerald-400">' + result.message + '</span>'
+        : '<span class="text-red-400">' + result.message + '</span>';
+    } catch (error) {
+      resultDiv.innerHTML = '<span class="text-red-400">An error occurred. Please try again.</span>';
+    }
+  });
+</script>

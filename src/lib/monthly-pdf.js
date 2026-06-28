@@ -1,0 +1,327 @@
+/**
+ * monthly-pdf.js — CC3PO Shelf Shared Library
+ * 
+ * Generates monthly compliance PDF reports for subscribers.
+ * Uses puppeteer-core or PDFKit depending on deployment environment.
+ * 
+ * Usage:
+ *   import { generateMonthlyPDF } from './lib/monthly-pdf.js';
+ *   const pdfBuffer = await generateMonthlyPDF({ tier: 'it-owner', month: '2025-07' });
+ */
+
+const REPORT_SECTIONS = {
+  'local': [
+    { title: 'Local Compliance Checklist', type: 'checklist' },
+    { title: 'Permit & License Status', type: 'table' },
+    { title: 'Upcoming Deadlines', type: 'timeline' },
+    { title: 'Recommendations', type: 'bullets' },
+  ],
+  'it-owner': [
+    { title: 'Security Posture Summary', type: 'scorecard' },
+    { title: 'Vulnerability Scan Results', type: 'table' },
+    { title: 'Compliance Framework Status', type: 'matrix' },
+    { title: 'Incident Summary', type: 'timeline' },
+    { title: 'Recommendations & Action Items', type: 'bullets' },
+  ],
+  'digital-growth': [
+    { title: 'SEO Performance Summary', type: 'scorecard' },
+    { title: 'Content Pipeline Status', type: 'table' },
+    { title: 'Campaign Metrics', type: 'chart' },
+    { title: 'Upcoming Opportunities', type: 'timeline' },
+    { title: 'Recommendations', type: 'bullets' },
+  ],
+};
+
+const MONTHS = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+
+/**
+ * Generate HTML for the monthly report.
+ * 
+ * @param {Object} opts
+ * @param {string} opts.tier - Subscription tier
+ * @param {string} opts.month - Month string (YYYY-MM)
+ * @param {Object} [opts.data] - Override data for sections
+ * @returns {string} HTML string
+ */
+export function generateReportHTML({ tier, month, data } = {}) {
+  const [year, monthNum] = month.split('-').map(Number);
+  const monthName = MONTHS[monthNum - 1];
+  const sections = REPORT_SECTIONS[tier] || REPORT_SECTIONS['local'];
+
+  const sectionHTML = sections.map((section, i) => {
+    const sectionData = data?.[section.title] || generateMockSectionData(section, tier, month);
+    return renderSection(section, sectionData, i + 1);
+  }).join('\n');
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CC3PO ${monthName} ${year} Report — ${tierLabel(tier)}</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; line-height: 1.6; }
+    .header { background: linear-gradient(135deg, #0f3460, #16213e); color: #fff; padding: 40px; text-align: center; }
+    .header h1 { font-size: 28px; margin-bottom: 8px; }
+    .header p { font-size: 16px; opacity: 0.9; }
+    .content { max-width: 800px; margin: 0 auto; padding: 30px; }
+    .section { margin-bottom: 32px; page-break-inside: avoid; }
+    .section-title { font-size: 20px; font-weight: 700; color: #0f3460; border-bottom: 2px solid #e94560; padding-bottom: 8px; margin-bottom: 16px; }
+    .checklist-item { display: flex; align-items: center; padding: 8px 0; border-bottom: 1px solid #eee; }
+    .checklist-item .icon { margin-right: 12px; font-size: 18px; }
+    .checklist-item .text { flex: 1; }
+    .checklist-item .status { font-weight: 600; font-size: 14px; }
+    .status-pass { color: #27ae60; }
+    .status-warn { color: #f39c12; }
+    .status-fail { color: #e74c3c; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    th { background: #16213e; color: #fff; padding: 10px 16px; text-align: left; font-size: 14px; }
+    td { padding: 10px 16px; border-bottom: 1px solid #eee; font-size: 14px; }
+    tr:nth-child(even) { background: #f8f9fa; }
+    .scorecard { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 12px; }
+    .score { text-align: center; flex: 1; min-width: 120px; padding: 16px; background: #f8f9fa; border-radius: 8px; }
+    .score .number { font-size: 36px; font-weight: 700; color: #0f3460; }
+    .score .label { font-size: 13px; color: #666; margin-top: 4px; }
+    .timeline-item { padding: 12px 0; border-left: 3px solid #e94560; padding-left: 16px; margin-left: 8px; }
+    .timeline-item .date { font-weight: 600; color: #0f3460; font-size: 14px; }
+    .timeline-item .desc { font-size: 14px; color: #444; }
+    .bullets { list-style: none; margin-top: 12px; }
+    .bullets li { padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+    .bullets li::before { content: '→ '; color: #e94560; font-weight: 600; }
+    .footer { text-align: center; padding: 30px; color: #999; font-size: 12px; }
+    @media print { .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>CC3PO Monthly Report</h1>
+    <p>${monthName} ${year} — ${tierLabel(tier)} Bundle</p>
+  </div>
+  <div class="content">
+    ${sectionHTML}
+  </div>
+  <div class="footer">
+    <p>Generated by CC3PO Shelf — ${new Date().toISOString()}</p>
+    <p>Confidential — For subscriber use only</p>
+  </div>
+</body>
+</html>`;
+}
+
+function tierLabel(tier) {
+  const labels = {
+    'local': 'Local Business',
+    'it-owner': 'IT Owner',
+    'digital-growth': 'Digital Growth',
+  };
+  return labels[tier] || tier;
+}
+
+function renderSection(section, data, number) {
+  switch (section.type) {
+    case 'checklist':
+      return renderChecklist(section, data, number);
+    case 'table':
+      return renderTable(section, data, number);
+    case 'timeline':
+      return renderTimeline(section, data, number);
+    case 'bullets':
+      return renderBullets(section, data, number);
+    case 'scorecard':
+      return renderScorecard(section, data, number);
+    case 'matrix':
+      return renderMatrix(section, data, number);
+    case 'chart':
+      return renderChart(section, data, number);
+    default:
+      return `<div class="section"><h2 class="section-title">${number}. ${section.title}</h2><p>Content not available.</p></div>`;
+  }
+}
+
+function renderChecklist(section, data, number) {
+  const items = (data.items || []).map(item => `
+    <div class="checklist-item">
+      <span class="icon">${item.pass ? '✅' : item.warn ? '⚠️' : '❌'}</span>
+      <span class="text">${item.text}</span>
+      <span class="status ${item.pass ? 'status-pass' : item.warn ? 'status-warn' : 'status-fail'}">${item.pass ? 'Pass' : item.warn ? 'Warning' : 'Fail'}</span>
+    </div>
+  `).join('');
+
+  return `<div class="section"><h2 class="section-title">${number}. ${section.title}</h2>${items}</div>`;
+}
+
+function renderTable(section, data, number) {
+  const headers = (data.headers || ['Item', 'Status', 'Due Date']).map(h => `<th>${h}</th>`).join('');
+  const rows = (data.rows || []).map(row =>
+    `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`
+  ).join('');
+
+  return `<div class="section"><h2 class="section-title">${number}. ${section.title}</h2><table><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+function renderTimeline(section, data, number) {
+  const items = (data.items || []).map(item => `
+    <div class="timeline-item">
+      <div class="date">${item.date}</div>
+      <div class="desc">${item.desc}</div>
+    </div>
+  `).join('');
+
+  return `<div class="section"><h2 class="section-title">${number}. ${section.title}</h2>${items}</div>`;
+}
+
+function renderBullets(section, data, number) {
+  const items = (data.items || []).map(item => `<li>${item}</li>`).join('');
+  return `<div class="section"><h2 class="section-title">${number}. ${section.title}</h2><ul class="bullets">${items}</ul></div>`;
+}
+
+function renderScorecard(section, data, number) {
+  const scores = (data.scores || []).map(s => `
+    <div class="score">
+      <div class="number">${s.value}</div>
+      <div class="label">${s.label}</div>
+    </div>
+  `).join('');
+
+  return `<div class="section"><h2 class="section-title">${number}. ${section.title}</h2><div class="scorecard">${scores}</div></div>`;
+}
+
+function renderMatrix(section, data, number) {
+  const headers = (data.headers || []).map(h => `<th>${h}</th>`).join('');
+  const rows = (data.rows || []).map(row =>
+    `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`
+  ).join('');
+
+  return `<div class="section"><h2 class="section-title">${number}. ${section.title}</h2><table><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+function renderChart(section, data, number) {
+  // Simplified — render as scorecard since real charts need canvas
+  const metrics = (data.metrics || []).map(m => `
+    <div class="score">
+      <div class="number">${m.value}</div>
+      <div class="label">${m.label}</div>
+    </div>
+  `).join('');
+
+  return `<div class="section"><h2 class="section-title">${number}. ${section.title}</h2><div class="scorecard">${metrics}</div></div>`;
+}
+
+function generateMockSectionData(section, tier, month) {
+  // Production: replace with real Supabase queries
+  switch (section.type) {
+    case 'checklist':
+      return {
+        items: [
+          { text: 'Annual permit renewal filed', pass: true },
+          { text: 'Employee poster compliance', pass: true },
+          { text: 'Safety inspection scheduled', warn: true },
+          { text: 'Data privacy policy updated', pass: false },
+        ],
+      };
+    case 'table':
+      return {
+        headers: ['Item', 'Status', 'Due Date'],
+        rows: [
+          ['Business License', 'Active', '2025-12-31'],
+          ['Fire Permit', 'Renewal Needed', '2025-08-15'],
+          ['Health Inspection', 'Scheduled', '2025-08-01'],
+        ],
+      };
+    case 'timeline':
+      return {
+        items: [
+          { date: 'Aug 1', desc: 'Health inspection — Main St location' },
+          { date: 'Aug 15', desc: 'Fire permit renewal deadline' },
+          { date: 'Sep 1', desc: 'Quarterly tax filing' },
+        ],
+      };
+    case 'bullets':
+      return {
+        items: [
+          'Schedule annual compliance review before Q3',
+          'Update employee handbook with new regulations',
+          'Review insurance coverage for adequate protection',
+          'Set calendar reminders for upcoming deadlines',
+        ],
+      };
+    case 'scorecard':
+      return {
+        scores: [
+          { value: '92%', label: 'Compliance Score' },
+          { value: 'A', label: 'Overall Grade' },
+          { value: '3', label: 'Action Items' },
+        ],
+      };
+    case 'matrix':
+      return {
+        headers: ['Framework', 'Status', 'Last Audit', 'Next Review'],
+        rows: [
+          ['SOC 2', 'Compliant', '2025-05-01', '2025-11-01'],
+          ['ISO 27001', 'In Progress', '2025-03-15', '2025-09-15'],
+          ['GDPR', 'Compliant', '2025-06-01', '2025-12-01'],
+        ],
+      };
+    case 'chart':
+      return {
+        metrics: [
+          { value: '+23%', label: 'Organic Traffic' },
+          { value: '4.2%', label: 'Conversion Rate' },
+          { value: '$12.4K', label: 'Revenue' },
+        ],
+      };
+    default:
+      return {};
+  }
+}
+
+/**
+ * Generate a monthly PDF report.
+ * Uses puppeteer-core to render HTML to PDF in production.
+ * Falls back to returning HTML for preview/testing.
+ * 
+ * @param {Object} opts
+ * @param {string} opts.tier - Subscription tier
+ * @param {string} opts.month - Month string (YYYY-MM)
+ * @param {Object} [opts.data] - Override data for sections
+ * @param {boolean} [opts.pdf=true] - Whether to generate PDF (vs HTML)
+ * @returns {Promise<{ buffer: Buffer|null, html: string, filename: string }>}
+ */
+export async function generateMonthlyPDF({ tier, month, data, pdf = true } = {}) {
+  const html = generateReportHTML({ tier, month, data });
+  const filename = `cc3po-${tier}-report-${month}.pdf`;
+
+  if (!pdf) {
+    return { buffer: null, html, filename };
+  }
+
+  // Dynamic import — puppeteer-core is optional
+  let pdfBuffer;
+  try {
+    const puppeteer = await import('puppeteer-core');
+    const browser = await puppeteer.default.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
+    const page = await browser.newPage();
+    await page.setContent(html, { waitUntil: 'networkidle0' });
+    pdfBuffer = await page.pdf({
+      format: 'A4',
+      printBackground: true,
+      margin: { top: '20px', bottom: '20px', left: '20px', right: '20px' },
+    });
+    await browser.close();
+  } catch {
+    // puppeteer not available — return HTML
+    console.warn('puppeteer-core not available, returning HTML only');
+    pdfBuffer = null;
+  }
+
+  return { buffer: pdfBuffer, html, filename };
+}
+
+export { REPORT_SECTIONS, MONTHS };

@@ -1,0 +1,149 @@
+---
+// src/pages/bundles/local-business.astro
+// Local Business Bundle — $247/mo
+import '../../styles/global.css';
+
+const tier = 'local';
+const price = 247;
+const priceLabel = '$247/mo';
+const title = 'Local Business Bundle';
+const subtitle = 'Compliance & conformity for local businesses';
+const description = 'Stay ahead of local regulations, permits, and compliance deadlines with daily alerts and monthly reports. Built for business owners who don\'t have time to track every rule change.';
+
+const features = [
+  { icon: '⚡', title: 'Daily Telegram Alerts', desc: 'One-liner compliance reminders delivered to your phone every morning' },
+  { icon: '📋', title: 'Monthly PDF Reports', desc: 'Professional compliance reports with checklists, timelines, and action items' },
+  { icon: '🇪🇸', title: 'Spanish Toggle', desc: 'Full Spanish language support — switch any time with one click' },
+  { icon: '🆓', title: 'Free Tier Access', desc: 'Try it free for 7 days — no credit card required' },
+  { icon: '🔒', title: '30-Day Auto-Cancel', desc: 'Not engaged? We auto-cancel so you don\'t pay for something you\'re not using' },
+  { icon: '🛡️', title: 'Dedup Protection', desc: 'Never double-billed — our system prevents duplicate charges' },
+];
+
+const checklist = [
+  'ADA website accessibility',
+  'Local business license renewal',
+  'CalOSHA poster compliance',
+  'Fire safety inspection',
+  'Sales tax quarterly filing',
+  'Employee handbook review',
+  'Privacy policy update',
+  'Workers comp insurance',
+  'Signage compliance',
+  'Food safety certification',
+];
+
+const faqs = [
+  { q: 'What happens after the 7-day free trial?', a: 'You\'ll be prompted to subscribe. If you don\'t engage, the subscription auto-cancels after 30 days — no surprise charges.' },
+  { q: 'Can I switch to the IT Owner bundle later?', a: 'Yes! You can upgrade or change tiers from the customer portal at any time.' },
+  { q: 'How do the daily Telegram alerts work?', a: 'You\'ll get one compliance reminder per day, targeted to your business type and local regulations.' },
+  { q: 'Is my data secure?', a: 'All data is encrypted at rest and in transit. We never sell your information.' },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} — CC3PO</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href="https://cc3po.com/bundles/local-business" />
+  <style>
+    :root {
+      --color-primary: #0f3460;
+      --color-accent: #e94560;
+      --color-bg: #f8f9fa;
+      --color-surface: #ffffff;
+      --color-text: #1a1a2e;
+      --color-muted: #666;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(15, 52, 96, 0.1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--color-text); background: var(--color-bg); line-height: 1.6; }
+    .hero { background: linear-gradient(135deg, #0f3460 0%, #16213e 100%); color: #fff; padding: 80px 20px; text-align: center; }
+    .hero h1 { font-size: 3rem; margin-bottom: 12px; }
+    .hero .subtitle { font-size: 1.3rem; opacity: 0.9; margin-bottom: 24px; }
+    .hero .price { font-size: 2.5rem; font-weight: 800; }
+    .hero .price span { font-size: 1rem; font-weight: 400; opacity: 0.7; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; padding: 60px 0; }
+    .feature-card { background: var(--color-surface); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+    .feature-card .icon { font-size: 2rem; margin-bottom: 12px; }
+    .feature-card h3 { font-size: 1.2rem; color: var(--color-primary); margin-bottom: 8px; }
+    .feature-card p { color: var(--color-muted); font-size: 0.95rem; }
+    .checklist { background: var(--color-surface); border-radius: var(--radius); padding: 40px; margin: 40px 0; box-shadow: var(--shadow); }
+    .checklist h2 { font-size: 1.6rem; color: var(--color-primary); margin-bottom: 24px; }
+    .checklist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .checklist-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; }
+    .checklist-item .check { color: #27ae60; font-weight: 700; }
+    .cta-section { text-align: center; padding: 60px 20px; }
+    .cta-button { display: inline-block; background: var(--color-accent); color: #fff; padding: 16px 48px; border-radius: 8px; font-size: 1.2rem; font-weight: 700; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+    .cta-button:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(233, 69, 96, 0.3); }
+    .cta-button.secondary { background: transparent; color: var(--color-primary); border: 2px solid var(--color-primary); margin-left: 16px; }
+    .cta-button.secondary:hover { background: var(--color-primary); color: #fff; }
+    .faqs { padding: 40px 0; }
+    .faq { background: var(--color-surface); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; box-shadow: var(--shadow); }
+    .faq h3 { color: var(--color-primary); font-size: 1.1rem; margin-bottom: 8px; }
+    .faq p { color: var(--color-muted); }
+    .guarantee { text-align: center; padding: 40px; color: var(--color-muted); font-size: 0.95rem; }
+    .guarantee strong { color: var(--color-primary); }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .hero .price { font-size: 2rem; }
+      .features { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="container">
+      <h1>🏪 {title}</h1>
+      <p class="subtitle">{subtitle}</p>
+      <p class="price">{priceLabel} <span>/month</span></p>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="features">
+      {features.map(f => (
+        <div class="feature-card">
+          <div class="icon">{f.icon}</div>
+          <h3>{f.title}</h3>
+          <p>{f.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="checklist">
+      <h2>📋 What's Covered</h2>
+      <div class="checklist-grid">
+        {checklist.map(item => (
+          <div class="checklist-item">
+            <span class="check">✓</span> {item}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <a href={`/api/checkout?tier=${tier}`} class="cta-button">Get Started — {priceLabel}</a>
+      <a href={`/api/free-access?tier=${tier}`} class="cta-button secondary">Try Free for 7 Days</a>
+    </div>
+
+    <div class="faqs">
+      <h2 style="font-size: 1.8rem; color: var(--color-primary); margin-bottom: 24px;">Frequently Asked Questions</h2>
+      {faqs.map(faq => (
+        <div class="faq">
+          <h3>{faq.q}</h3>
+          <p>{faq.a}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="guarantee">
+      <strong>30-Day Engagement Guarantee:</strong> If you're not actively using the service, we'll auto-cancel your subscription — no surprise charges, no hassle.
+    </div>
+  </section>
+</body>
+</html>

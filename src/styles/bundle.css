@@ -1,0 +1,16 @@
+/* Bundle page styles */
+.bundle-card {
+  @apply bg-[#0f0f1a] border border-gray-800 rounded-xl p-6;
+}
+.bundle-hero {
+  @apply bg-gradient-to-br from-emerald-900/20 to-gray-900 border-2 border-emerald-500/20 rounded-2xl p-8 md:p-12;
+}
+.bundle-price {
+  @apply text-4xl font-bold text-emerald-400;
+}
+.bundle-feature {
+  @apply flex items-start gap-3 text-gray-300;
+}
+.bundle-feature-icon {
+  @apply text-emerald-400 mt-1 flex-shrink-0;
+}

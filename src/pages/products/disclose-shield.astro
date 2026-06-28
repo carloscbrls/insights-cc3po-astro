@@ -1,0 +1,475 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+const es = lang === 'es';
+---
+
+<Layout title={es ? 'DiscloseShield — Monitoreo de Divulgación de Chatbots IA | CC3PO' : 'DiscloseShield — AI Act Chatbot Disclosure Monitor | CC3PO'}>
+  <section class="max-w-4xl mx-auto px-4 py-16">
+    <div class="mb-8">
+      <a href="/products/" class="text-sm text-gray-500 hover:text-emerald-400 transition">&larr; {es ? 'Volver a todos los productos' : 'Back to all products'}</a>
+      <span class="text-xs text-gray-600 ml-3 border border-gray-700 rounded px-2 py-0.5">
+        {es ? '🌐 ES' : '🌐 EN'} <a href="?lang={es ? 'en' : 'es'}" class="text-emerald-400 hover:text-emerald-300 ml-1">{es ? 'Switch to English' : 'Cambiar a Español'}</a>
+      </span>
+    </div>
+
+    <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-12">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-full px-3 py-1">{es ? 'NUEVO — Cumplimiento con la Ley de IA de la UE' : 'NEW — EU AI Act Compliance'}</span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">
+          {es ? 'DiscloseShield' : 'DiscloseShield'}
+        </h1>
+        <p class="text-xl text-gray-400 mb-6">
+          {es
+            ? 'Monitoreo automatizado de divulgación de chatbots IA. Escanea tu sitio web para verificar que los chatbots de IA tengan las etiquetas y avisos de transparencia requeridos por la Ley de IA de la UE.'
+            : 'Automated AI chatbot disclosure monitoring. Scans your website to ensure AI chatbots have proper labels and transparency notices required by the EU AI Act.'}
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#pricing" class="inline-block bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-8 py-3 rounded-lg transition">
+            {es ? 'Ver Planes — Desde $67/mes' : 'View Plans — From $67/mo'}
+          </a>
+          <a href="#free-scan" class="inline-block border border-gray-700 hover:border-gray-500 text-gray-300 font-semibold px-8 py-3 rounded-lg transition">
+            {es ? 'Escaneo Gratuito' : 'Free Scan'}
+          </a>
+        </div>
+      </div>
+      <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 text-center flex-shrink-0 w-full lg:w-64">
+        <p class="text-sm text-gray-500 mb-1">{es ? 'Desde' : 'Starting at'}</p>
+        <p class="text-4xl font-bold text-emerald-400">$67</p>
+        <p class="text-sm text-gray-500">{es ? 'por mes' : 'per month'}</p>
+        <p class="text-xs text-gray-600 mt-2">{es ? 'Cancela cuando quieras' : 'Cancel anytime'}</p>
+      </div>
+    </div>
+
+    <!-- What It Is -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-4">
+        {es ? '¿Qué es DiscloseShield?' : 'What Is DiscloseShield?'}
+      </h2>
+      <p class="text-gray-400 leading-relaxed">
+        {es
+          ? 'DiscloseShield es un servicio automatizado que monitorea tu sitio web para verificar que todos los chatbots de IA (Intercom, Drift, Zendesk AI, widgets de ChatGPT, etc.) tengan las etiquetas y avisos de transparencia requeridos por la Ley de IA de la UE. Recibe alertas diarias, informes mensuales y correcciones automáticas cuando sea necesario.'
+          : 'DiscloseShield is an automated service that monitors your website to ensure all AI chatbots (Intercom, Drift, Zendesk AI, ChatGPT widgets, etc.) have proper labels and transparency notices required by the EU AI Act. Get daily alerts, monthly reports, and auto-fixes when needed.'}
+      </p>
+    </div>
+
+    <!-- Why It Matters -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-6">
+        {es ? 'Por qué es importante' : 'Why It Matters'}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+          <div class="w-10 h-10 bg-red-500/10 rounded-lg flex items-center justify-center mb-3">
+            <span class="text-red-400 font-bold text-lg">!</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">
+            {es ? 'Multas de hasta €35M' : 'Fines Up to €35M'}
+          </h3>
+          <p class="text-sm text-gray-500">
+            {es
+              ? 'La Ley de IA de la UE exige la divulgación de chatbots. El incumplimiento puede resultar en multas de hasta €35 millones o el 7% de los ingresos globales.'
+              : 'The EU AI Act requires chatbot disclosure. Non-compliance can result in fines up to €35M or 7% of global revenue.'}
+          </p>
+        </div>
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+          <div class="w-10 h-10 bg-amber-500/10 rounded-lg flex items-center justify-center mb-3">
+            <span class="text-amber-400 font-bold text-lg">!</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">
+            {es ? 'Vence el 2 de agosto de 2026' : 'Deadline Aug 2, 2026'}
+          </h3>
+          <p class="text-sm text-gray-500">
+            {es
+              ? 'Las reglas de transparencia de la Ley de IA de la UE entran en vigor el 2 de agosto de 2026. Solo quedan 34 días para estar en cumplimiento.'
+              : 'EU AI Act transparency rules take effect August 2, 2026. Only 34 days left to get compliant.'}
+          </p>
+        </div>
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+          <div class="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-3">
+            <span class="text-emerald-400 font-bold text-lg">✓</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">
+            {es ? 'Confianza del Cliente' : 'Customer Trust'}
+          </h3>
+          <p class="text-sm text-gray-500">
+            {es
+              ? 'Los usuarios tienen derecho a saber si están interactuando con una IA. La divulgación transparente genera confianza y protege tu marca.'
+              : 'Users have the right to know if they\'re interacting with AI. Transparent disclosure builds trust and protects your brand.'}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-6">
+        {es ? 'Cómo Funciona' : 'How It Works'}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+          <div class="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-3">
+            <span class="text-emerald-400 font-bold">1</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">
+            {es ? 'Escaneo Diario' : 'Daily Scan'}
+          </h3>
+          <p class="text-sm text-gray-500">
+            {es
+              ? 'Escaneamos tu sitio web diariamente para detectar chatbots de IA y verificar que tengan las etiquetas de divulgación requeridas.'
+              : 'We scan your website daily to detect AI chatbots and verify they have required disclosure labels.'}
+          </p>
+        </div>
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+          <div class="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-3">
+            <span class="text-emerald-400 font-bold">2</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">
+            {es ? 'Informe de Cumplimiento' : 'Compliance Report'}
+          </h3>
+          <p class="text-sm text-gray-500">
+            {es
+              ? 'Generamos un informe detallado de cumplimiento con el estado de cada chatbot, problemas encontrados y recomendaciones de corrección.'
+              : 'We generate a detailed compliance report with status of each chatbot, issues found, and fix recommendations.'}
+          </p>
+        </div>
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+          <div class="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-3">
+            <span class="text-emerald-400 font-bold">3</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">
+            {es ? 'Alertas y Correcciones' : 'Alerts & Fixes'}
+          </h3>
+          <p class="text-sm text-gray-500">
+            {es
+              ? 'Recibe alertas diarias por Telegram y correcciones automáticas de divulgaciones faltantes cuando sea posible.'
+              : 'Get daily Telegram alerts and auto-fixes for missing disclosures where possible.'}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-6">
+        {es ? 'Características' : 'Features'}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">{es ? 'Escaneo diario de chatbots IA' : 'Daily AI chatbot scanning'}</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">{es ? 'Verificación de cumplimiento con Ley de IA UE' : 'EU AI Act compliance verification'}</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">{es ? 'Alertas diarias por Telegram' : 'Daily Telegram alerts'}</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">{es ? 'Informe mensual PDF por correo' : 'Monthly PDF report via email'}</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">{es ? 'Corrección automática de divulgaciones' : 'Auto-fix missing disclosures'}</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">{es ? 'Documentos legales de cumplimiento' : 'Compliance legal docs'}</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">{es ? 'Portal de autoservicio' : 'Self-service customer portal'}</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-400">{es ? 'Interfaz en español disponible' : 'Spanish language toggle'}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Free Scan Section -->
+    <div id="free-scan" class="mb-12 bg-gradient-to-br from-emerald-500/10 to-transparent border border-emerald-500/20 rounded-2xl p-8">
+      <h2 class="text-2xl font-bold text-white mb-4 text-center">
+        {es ? 'Escaneo Gratuito de Divulgación de Chatbots' : 'Free Chatbot Disclosure Scan'}
+      </h2>
+      <p class="text-gray-400 mb-6 text-center max-w-lg mx-auto">
+        {es
+          ? 'Ingresa tu URL y obtén un escaneo gratuito de divulgación de chatbots IA. Sin registro, sin tarjeta de crédito.'
+          : 'Enter your URL and get a free AI chatbot disclosure scan. No signup, no credit card.'}
+      </p>
+      <form id="free-scan-form" class="max-w-md mx-auto flex gap-3" onsubmit="return handleFreeScan(event)">
+        <input type="url" id="scan-url" placeholder="https://tusitio.com" required class="flex-1 bg-[#0f0f1a] border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500" />
+        <button type="submit" class="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-6 py-3 rounded-lg transition whitespace-nowrap">
+          {es ? 'Escanear' : 'Scan'}
+        </button>
+      </form>
+      <div id="scan-result" class="mt-6 hidden"></div>
+    </div>
+
+    <!-- Pricing -->
+    <div id="pricing" class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-6 text-center">
+        {es ? 'Planes y Precios' : 'Pricing Plans'}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Scan + Report -->
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 flex flex-col">
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold text-white mb-1">
+              {es ? 'Escaneo + Informe' : 'Scan + Report'}
+            </h3>
+            <p class="text-sm text-gray-500">
+              {es ? 'Escaneo diario e informes de cumplimiento' : 'Daily scanning and compliance reports'}
+            </p>
+          </div>
+          <div class="mb-6">
+            <p class="text-3xl font-bold text-emerald-400">$67</p>
+            <p class="text-sm text-gray-500">{es ? 'por mes' : 'per month'}</p>
+          </div>
+          <ul class="text-sm text-gray-500 space-y-2 mb-8 flex-1">
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>{es ? 'Escaneo diario de chatbots IA' : 'Daily AI chatbot scanning'}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>{es ? 'Informe de cumplimiento' : 'Compliance report'}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>{es ? 'Alertas diarias por Telegram' : 'Daily Telegram alerts'}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>{es ? 'Informe mensual PDF' : 'Monthly PDF report'}</span>
+            </li>
+          </ul>
+          <a href="https://checkout.cc3po.com/b/PLACEHOLDER_SCAN_REPORT" class="block w-full text-center bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-6 py-3 rounded-lg transition">
+            {es ? 'Comprar — $67/mes' : 'Buy Now — $67/mo'}
+          </a>
+        </div>
+
+        <!-- Scan + Auto-Fix -->
+        <div class="bg-[#0f0f1a] border-2 border-emerald-500/30 rounded-xl p-6 flex flex-col relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+            <span class="text-xs font-semibold bg-emerald-500 text-black px-3 py-1 rounded-full">
+              {es ? 'MÁS POPULAR' : 'MOST POPULAR'}
+            </span>
+          </div>
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold text-white mb-1">
+              {es ? 'Escaneo + Corrección' : 'Scan + Auto-Fix'}
+            </h3>
+            <p class="text-sm text-gray-500">
+              {es ? 'Escaneo diario con corrección automática' : 'Daily scanning with auto-fix'}
+            </p>
+          </div>
+          <div class="mb-6">
+            <p class="text-3xl font-bold text-emerald-400">$147</p>
+            <p class="text-sm text-gray-500">{es ? 'por mes' : 'per month'}</p>
+          </div>
+          <ul class="text-sm text-gray-500 space-y-2 mb-8 flex-1">
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>{es ? 'Todo en Escaneo + Informe' : 'Everything in Scan + Report'}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>{es ? 'Corrección automática de divulgaciones' : 'Auto-fix missing disclosures'}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>{es ? 'Inyección de etiqueta de IA' : 'AI label injection'}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>{es ? 'Soporte prioritario' : 'Priority support'}</span>
+            </li>
+          </ul>
+          <a href="https://checkout.cc3po.com/b/PLACEHOLDER_SCAN_FIX" class="block w-full text-center bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-6 py-3 rounded-lg transition">
+            {es ? 'Comprar — $147/mes' : 'Buy Now — $147/mo'}
+          </a>
+        </div>
+
+        <!-- Scan + Fix + Legal -->
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 flex flex-col">
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold text-white mb-1">
+              {es ? 'Escaneo + Corrección + Legal' : 'Scan + Fix + Legal'}
+            </h3>
+            <p class="text-sm text-gray-500">
+              {es ? 'Solución completa de cumplimiento' : 'Full compliance solution'}
+            </p>
+          </div>
+          <div class="mb-6">
+            <p class="text-3xl font-bold text-emerald-400">$297</p>
+            <p class="text-sm text-gray-500">{es ? 'por mes' : 'per month'}</p>
+          </div>
+          <ul class="text-sm text-gray-500 space-y-2 mb-8 flex-1">
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>{es ? 'Todo en Escaneo + Corrección' : 'Everything in Scan + Auto-Fix'}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>{es ? 'Documentos legales de cumplimiento' : 'Compliance legal documents'}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>{es ? 'Auditoría legal personalizada' : 'Custom legal audit'}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>{es ? 'Gerente de cuenta dedicado' : 'Dedicated account manager'}</span>
+            </li>
+          </ul>
+          <a href="https://checkout.cc3po.com/b/PLACEHOLDER_SCAN_LEGAL" class="block w-full text-center bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-6 py-3 rounded-lg transition">
+            {es ? 'Comprar — $297/mes' : 'Buy Now — $297/mo'}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-6">
+        {es ? 'Comparación de Planes' : 'Plan Comparison'}
+      </h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-gray-800">
+              <th class="text-left py-3 pr-4 text-gray-400 font-medium">{es ? 'Característica' : 'Feature'}</th>
+              <th class="text-center py-3 px-4 text-gray-400 font-medium">$67</th>
+              <th class="text-center py-3 px-4 text-emerald-400 font-medium">$147</th>
+              <th class="text-center py-3 pl-4 text-emerald-400 font-medium">$297</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-800/50">
+              <td class="py-3 pr-4 text-gray-400">{es ? 'Escaneo diario de chatbots' : 'Daily chatbot scanning'}</td>
+              <td class="text-center py-3 px-4 text-emerald-400">✓</td>
+              <td class="text-center py-3 px-4 text-emerald-400">✓</td>
+              <td class="text-center py-3 pl-4 text-emerald-400">✓</td>
+            </tr>
+            <tr class="border-b border-gray-800/50">
+              <td class="py-3 pr-4 text-gray-400">{es ? 'Alertas diarias por Telegram' : 'Daily Telegram alerts'}</td>
+              <td class="text-center py-3 px-4 text-emerald-400">✓</td>
+              <td class="text-center py-3 px-4 text-emerald-400">✓</td>
+              <td class="text-center py-3 pl-4 text-emerald-400">✓</td>
+            </tr>
+            <tr class="border-b border-gray-800/50">
+              <td class="py-3 pr-4 text-gray-400">{es ? 'Informe mensual PDF' : 'Monthly PDF report'}</td>
+              <td class="text-center py-3 px-4 text-emerald-400">✓</td>
+              <td class="text-center py-3 px-4 text-emerald-400">✓</td>
+              <td class="text-center py-3 pl-4 text-emerald-400">✓</td>
+            </tr>
+            <tr class="border-b border-gray-800/50">
+              <td class="py-3 pr-4 text-gray-400">{es ? 'Portal de autoservicio' : 'Self-service portal'}</td>
+              <td class="text-center py-3 px-4 text-emerald-400">✓</td>
+              <td class="text-center py-3 px-4 text-emerald-400">✓</td>
+              <td class="text-center py-3 pl-4 text-emerald-400">✓</td>
+            </tr>
+            <tr class="border-b border-gray-800/50">
+              <td class="py-3 pr-4 text-gray-400">{es ? 'Corrección automática' : 'Auto-fix disclosures'}</td>
+              <td class="text-center py-3 px-4 text-gray-600">—</td>
+              <td class="text-center py-3 px-4 text-emerald-400">✓</td>
+              <td class="text-center py-3 pl-4 text-emerald-400">✓</td>
+            </tr>
+            <tr class="border-b border-gray-800/50">
+              <td class="py-3 pr-4 text-gray-400">{es ? 'Documentos legales' : 'Legal compliance docs'}</td>
+              <td class="text-center py-3 px-4 text-gray-600">—</td>
+              <td class="text-center py-3 px-4 text-gray-600">—</td>
+              <td class="text-center py-3 pl-4 text-emerald-400">✓</td>
+            </tr>
+            <tr class="border-b border-gray-800/50">
+              <td class="py-3 pr-4 text-gray-400">{es ? 'Gerente de cuenta dedicado' : 'Dedicated account manager'}</td>
+              <td class="text-center py-3 px-4 text-gray-600">—</td>
+              <td class="text-center py-3 px-4 text-gray-600">—</td>
+              <td class="text-center py-3 pl-4 text-emerald-400">✓</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="bg-gradient-to-br from-emerald-500/10 to-transparent border border-emerald-500/20 rounded-2xl p-8 text-center">
+      <h2 class="text-2xl font-bold text-white mb-4">
+        {es ? 'Protege tu Negocio de Multas de la Ley de IA de la UE' : 'Protect Your Business from EU AI Act Fines'}
+      </h2>
+      <p class="text-gray-400 mb-6 max-w-lg mx-auto">
+        {es
+          ? 'Comienza hoy. Configuración en 5 minutos. Sin compromiso.'
+          : 'Get started today. 5-minute setup. No commitment.'}
+      </p>
+      <a href="#pricing" class="inline-block bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-8 py-3 rounded-lg transition">
+        {es ? 'Ver Planes' : 'View Plans'}
+      </a>
+    </div>
+  </section>
+
+  <script>
+    async function handleFreeScan(event) {
+      event.preventDefault();
+      const url = document.getElementById('scan-url').value;
+      const resultDiv = document.getElementById('scan-result');
+      resultDiv.classList.remove('hidden');
+      resultDiv.innerHTML = '<p class="text-gray-400 text-center">Scanning... <span class="animate-pulse">⏳</span></p>';
+
+      try {
+        const response = await fetch('https://disclose-shield-scanner.cc3po.workers.dev/scan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url })
+        });
+        const data = await response.json();
+
+        if (data.status === 'ok') {
+          const chatbots = data.chatbots || [];
+          const compliant = chatbots.filter(c => c.compliant).length;
+          const total = chatbots.length;
+
+          resultDiv.innerHTML = `
+            <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6">
+              <h3 class="text-lg font-semibold text-white mb-3">Scan Results for ${url}</h3>
+              <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="text-center p-3 bg-gray-800/30 rounded-lg">
+                  <p class="text-2xl font-bold text-white">${total}</p>
+                  <p class="text-xs text-gray-500">Chatbots Found</p>
+                </div>
+                <div class="text-center p-3 bg-gray-800/30 rounded-lg">
+                  <p class="text-2xl font-bold text-emerald-400">${compliant}</p>
+                  <p class="text-xs text-gray-500">Compliant</p>
+                </div>
+              </div>
+              ${chatbots.length > 0 ? `
+                <div class="space-y-2">
+                  ${chatbots.map(c => `
+                    <div class="flex items-center justify-between p-2 bg-gray-800/20 rounded-lg">
+                      <span class="text-sm text-gray-400">${c.type}</span>
+                      <span class="text-xs ${c.compliant ? 'text-emerald-400' : 'text-red-400'}">${c.compliant ? '✓ Compliant' : '✗ Missing disclosure'}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              ` : '<p class="text-sm text-gray-500 text-center">No AI chatbots detected on this page.</p>'}
+              <p class="text-xs text-gray-600 mt-4 text-center">Want daily monitoring? <a href="#pricing" class="text-emerald-400 hover:text-emerald-300">View plans →</a></p>
+            </div>
+          `;
+        } else {
+          resultDiv.innerHTML = `<p class="text-red-400 text-center">Error: ${data.error || 'Scan failed'}</p>`;
+        }
+      } catch (err) {
+        resultDiv.innerHTML = `<p class="text-red-400 text-center">Error: ${err.message}</p>`;
+      }
+
+      return false;
+    }
+  </script>
+</Layout>
