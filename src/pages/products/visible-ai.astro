@@ -1,9 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
-// Spanish toggle support
-const locale = Astro.url.searchParams.get('lang') || 'en';
-
 const translations = {
   en: {
     title: 'VisibleAI — AI Visibility & Share-of-Voice Monitor | CC3PO',
@@ -163,6 +160,8 @@ const translations = {
   }
 };
 
+// Spanish toggle support
+const locale = Astro.url.searchParams.get('lang') || 'en';
 const t = locale === 'es' ? translations.es : translations.en;
 ---
 
@@ -493,3 +492,5 @@ const t = locale === 'es' ? translations.es : translations.en;
     }
   });
 </script>
+
+
