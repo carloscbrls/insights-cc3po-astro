@@ -1,0 +1,195 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="CC3PO Agency — Websites, Domains & Automation">
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <!-- Hero -->
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">Your Business,<br><span class="text-emerald-400">Online & Automated</span></h1>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
+        We build your website, set up your domain, and automate your business — all in one place.
+        No tech skills needed. No multiple vendors.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#pricing" class="bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-8 py-3 rounded-lg transition text-lg">See Plans</a>
+        <a href="#domain" class="border border-gray-600 hover:border-emerald-500 text-white font-bold px-8 py-3 rounded-lg transition text-lg">Find a Domain</a>
+      </div>
+    </div>
+
+    <!-- Domain Search Section -->
+    <div id="domain" class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-8 mb-16">
+      <h2 class="text-2xl font-bold text-white mb-2">Find Your Domain</h2>
+      <p class="text-gray-400 mb-6">Search for available domains. We'll register it for you and set everything up.</p>
+      
+      <div class="flex flex-col sm:flex-row gap-3 mb-6">
+        <input type="text" placeholder="yourbusiness.com" class="flex-1 bg-[#1a1a2e] border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500" />
+        <button class="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-6 py-3 rounded-lg transition whitespace-nowrap">Search Domain</button>
+      </div>
+      
+      <div class="text-sm text-gray-500 space-y-2">
+        <p>💡 <strong>Domain pricing:</strong> We use <a href="https://namecheap.com" class="text-emerald-400 hover:text-emerald-300" target="_blank">Namecheap</a> for domain registration. Domains start at ~$10/year (.com).</p>
+        <p>🔗 <strong>Already have a domain?</strong> No problem — we can use your existing domain and point it to your new site.</p>
+        <p>🏷️ <strong>Prefer to buy your own?</strong> Use our <a href="https://namecheap.com" class="text-emerald-400 hover:text-emerald-300" target="_blank">Namecheap affiliate link</a> and we get a small commission that helps keep our prices low.</p>
+      </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="mb-16">
+      <h2 class="text-2xl font-bold text-white text-center mb-10">How It Works</h2>
+      <div class="grid md:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+            <span class="text-emerald-400 font-bold text-lg">1</span>
+          </div>
+          <h3 class="text-white font-semibold mb-1">Pick a Plan</h3>
+          <p class="text-gray-500 text-sm">Choose Spark, Engine, or Command based on your needs.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+            <span class="text-emerald-400 font-bold text-lg">2</span>
+          </div>
+          <h3 class="text-white font-semibold mb-1">Get Your Domain</h3>
+          <p class="text-gray-500 text-sm">We register it or connect your existing one. Free with any plan.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+            <span class="text-emerald-400 font-bold text-lg">3</span>
+          </div>
+          <h3 class="text-white font-semibold mb-1">We Build It</h3>
+          <p class="text-gray-500 text-sm">AI-powered site built in 24-48 hours. You review, we refine.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+            <span class="text-emerald-400 font-bold text-lg">4</span>
+          </div>
+          <h3 class="text-white font-semibold mb-1">Automate & Grow</h3>
+          <p class="text-gray-500 text-sm">Add compliance monitoring, voice agent, reviews, and more.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing Tiers -->
+    <div id="pricing" class="mb-16">
+      <h2 class="text-2xl font-bold text-white text-center mb-2">Choose Your Plan</h2>
+      <p class="text-gray-400 text-center mb-10">All plans include hosting, SSL, CDN, backups, and domain setup.</p>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Spark -->
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 flex flex-col">
+          <h3 class="text-xl font-bold text-white mb-1">Spark</h3>
+          <p class="text-gray-500 text-sm mb-4">Perfect for getting started</p>
+          <p class="text-3xl font-bold text-white mb-1">$97<span class="text-sm text-gray-500 font-normal">/mo</span></p>
+          <p class="text-xs text-gray-600 mb-6">Domain registration not included (~$10/yr)</p>
+          <ul class="space-y-2 mb-8 flex-1">
+            <li class="text-gray-400 text-sm">✓ 1-page professional website</li>
+            <li class="text-gray-400 text-sm">✓ Free SSL & CDN</li>
+            <li class="text-gray-400 text-sm">✓ Daily backups</li>
+            <li class="text-gray-400 text-sm">✓ Email account setup</li>
+            <li class="text-gray-400 text-sm">✓ 1 monthly edit</li>
+            <li class="text-gray-400 text-sm">✓ Domain setup assistance</li>
+          </ul>
+          <a href="https://checkout.cc3po.com/b/9B600i1ZI3EXelS5C41B61z" class="block text-center bg-emerald-500 hover:bg-emerald-400 text-black font-semibold py-3 rounded-lg transition">Get Spark</a>
+        </div>
+
+        <!-- Engine -->
+        <div class="bg-[#0f0f1a] border-2 border-emerald-500/30 rounded-xl p-6 flex flex-col relative">
+          <div class="absolute top-0 right-0">
+            <span class="block bg-emerald-500 text-black text-xs font-bold px-3 py-1 rounded-bl-lg">POPULAR</span>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-1">Engine</h3>
+          <p class="text-gray-500 text-sm mb-4">For growing businesses</p>
+          <p class="text-3xl font-bold text-white mb-1">$297<span class="text-sm text-gray-500 font-normal">/mo</span></p>
+          <p class="text-xs text-gray-600 mb-6">Domain registration not included (~$10/yr)</p>
+          <ul class="space-y-2 mb-8 flex-1">
+            <li class="text-gray-400 text-sm">✓ Multi-page website (up to 5 pages)</li>
+            <li class="text-gray-400 text-sm">✓ Blog setup</li>
+            <li class="text-gray-400 text-sm">✓ SEO optimization</li>
+            <li class="text-gray-400 text-sm">✓ Free SSL & CDN</li>
+            <li class="text-gray-400 text-sm">✓ Daily backups</li>
+            <li class="text-gray-400 text-sm">✓ 3 monthly edits</li>
+            <li class="text-gray-400 text-sm">✓ Domain setup + migration</li>
+            <li class="text-gray-400 text-sm">✓ Contact form + analytics</li>
+          </ul>
+          <a href="https://checkout.cc3po.com/b/00w14mgUC1wPa5Ce8A1B61A" class="block text-center bg-emerald-500 hover:bg-emerald-400 text-black font-semibold py-3 rounded-lg transition">Get Engine</a>
+        </div>
+
+        <!-- Command -->
+        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 flex flex-col">
+          <h3 class="text-xl font-bold text-white mb-1">Command</h3>
+          <p class="text-gray-500 text-sm mb-4">Full power for serious businesses</p>
+          <p class="text-3xl font-bold text-white mb-1">$497<span class="text-sm text-gray-500 font-normal">/mo</span></p>
+          <p class="text-xs text-gray-600 mb-6">Domain registration not included (~$10/yr)</p>
+          <ul class="space-y-2 mb-8 flex-1">
+            <li class="text-gray-400 text-sm">✓ Full custom website (unlimited pages)</li>
+            <li class="text-gray-400 text-sm">✓ Ecommerce ready</li>
+            <li class="text-gray-400 text-sm">✓ Advanced SEO + analytics</li>
+            <li class="text-gray-400 text-sm">✓ Free SSL & CDN</li>
+            <li class="text-gray-400 text-sm">✓ Daily backups</li>
+            <li class="text-gray-400 text-sm">✓ Priority support</li>
+            <li class="text-gray-400 text-sm">✓ Unlimited edits</li>
+            <li class="text-gray-400 text-sm">✓ Domain setup + migration</li>
+            <li class="text-gray-400 text-sm">✓ Add-on services at discount</li>
+          </ul>
+          <a href="https://checkout.cc3po.com/b/28E9AS9sa0sLgu08Og1B61B" class="block text-center bg-emerald-500 hover:bg-emerald-400 text-black font-semibold py-3 rounded-lg transition">Get Command</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add-on Services -->
+    <div class="mb-16">
+      <h2 class="text-2xl font-bold text-white text-center mb-2">Add-On Services</h2>
+      <p class="text-gray-400 text-center mb-10">Already have a site? Add these automated services to any plan.</p>
+
+      <div class="grid md:grid-cols-3 gap-4">
+        <a href="/products/shield/" class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-5 hover:border-emerald-500/50 transition group">
+          <h3 class="text-white font-semibold group-hover:text-emerald-400 transition">Compliance Shield</h3>
+          <p class="text-gray-500 text-sm">ADA/WCAG monitoring + auto-fixes. $97/mo</p>
+        </a>
+        <a href="/products/voice-agent/" class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-5 hover:border-emerald-500/50 transition group">
+          <h3 class="text-white font-semibold group-hover:text-emerald-400 transition">AI Voice Agent</h3>
+          <p class="text-gray-500 text-sm">24/7 AI phone answering for your business. $97/mo</p>
+        </a>
+        <a href="/products/resena/" class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-5 hover:border-emerald-500/50 transition group">
+          <h3 class="text-white font-semibold group-hover:text-emerald-400 transition">Reseña</h3>
+          <p class="text-gray-500 text-sm">Automated review generation + reputation management. $97/mo</p>
+        </a>
+        <a href="/products/site-health/" class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-5 hover:border-emerald-500/50 transition group">
+          <h3 class="text-white font-semibold group-hover:text-emerald-400 transition">SiteHealth</h3>
+          <p class="text-gray-500 text-sm">Uptime + Core Web Vitals monitoring. $49/mo</p>
+        </a>
+        <a href="/products/disclose-shield/" class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-5 hover:border-emerald-500/50 transition group">
+          <h3 class="text-white font-semibold group-hover:text-emerald-400 transition">DiscloseShield</h3>
+          <p class="text-gray-500 text-sm">AI Act chatbot disclosure compliance. $67/mo</p>
+        </a>
+        <a href="/products/scan/" class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-5 hover:border-emerald-500/50 transition group">
+          <h3 class="text-white font-semibold group-hover:text-emerald-400 transition">Free Business Scan</h3>
+          <p class="text-gray-500 text-sm">Free compliance + performance scan. No credit card.</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- Domain FAQ -->
+    <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-8">
+      <h2 class="text-xl font-bold text-white mb-6">Domain FAQ</h2>
+      <div class="space-y-4">
+        <div>
+          <h3 class="text-white font-semibold mb-1">Can I use my own domain?</h3>
+          <p class="text-gray-500 text-sm">Yes! If you already own a domain, we'll point it to your new site. No extra cost.</p>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold mb-1">How much does a domain cost?</h3>
+          <p class="text-gray-500 text-sm">Domains are ~$10-15/year for .com through Namecheap. We handle the registration for you, or you can buy it yourself through our affiliate link.</p>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold mb-1">What if I want to buy my own domain?</h3>
+          <p class="text-gray-500 text-sm">Use our <a href="https://namecheap.com" class="text-emerald-400 hover:text-emerald-300" target="_blank">Namecheap affiliate link</a> to register your domain. We earn a small commission (20% of the purchase) that helps keep our service prices low. Then send us the domain name and we'll set everything up.</p>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold mb-1">Can I transfer my existing site?</h3>
+          <p class="text-gray-500 text-sm">Absolutely. We migrate your existing site to our hosting for free. Just pick a plan and we handle the rest.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
