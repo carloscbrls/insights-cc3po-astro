@@ -1,0 +1,571 @@
+/* ============================================
+   CC3PO Insights — Match cc3po.com Exactly
+   Same layout language, same components, same feel
+   ============================================ */
+
+/* --- Reset & Base (matches cc3po.com) --- */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* --- Hero Section — mirrors cc3po.com hero --- */
+.cc-hero {
+  position: relative;
+  padding: 120px 16px 80px;
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(170deg, #08080d 0%, #0a1a33 50%, #0d1f3c 100%);
+}
+
+.cc-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.cc-hero::after {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(ellipse, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cc-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cc-hero-tag {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #10b981;
+  margin-bottom: 24px;
+}
+
+.cc-hero-title {
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+  margin: 0 0 24px;
+  letter-spacing: -0.02em;
+}
+
+.cc-hero-highlight {
+  background: linear-gradient(135deg, #10b981 0%, #00d4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cc-hero-desc {
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 32px;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cc-hero-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.cc-hero-sub {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+}
+
+/* --- Buttons — matches cc3po.com --- */
+.cc-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: #10b981;
+  color: #000;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.cc-btn-primary:hover {
+  background: #34d399;
+  transform: translateY(-1px);
+}
+
+.cc-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.cc-btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+/* --- Trust Bar — matches cc3po.com exactly --- */
+.cc-trust-bar {
+  background: #0a0a12;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 20px 0;
+}
+
+.cc-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.cc-trust-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.cc-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+}
+
+/* --- Section Layout — matches cc3po.com --- */
+.cc-section {
+  padding: 64px 0;
+}
+
+.cc-section-alt {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.cc-section-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #10b981;
+  margin-bottom: 8px;
+}
+
+.cc-section-header {
+  margin-bottom: 32px;
+}
+
+.cc-section-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.cc-section-desc {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 8px;
+  max-width: 600px;
+}
+
+/* --- Featured Card — mirrors cc3po.com morning report --- */
+.cc-featured-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 32px;
+  transition: all 0.2s;
+}
+
+.cc-featured-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.cc-featured-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cc-featured-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.cc-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+
+.cc-featured-date {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.cc-featured-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  margin: 0 0 12px;
+}
+
+.cc-featured-excerpt {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0 0 20px;
+}
+
+.cc-featured-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cc-featured-readtime {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.cc-featured-cta {
+  font-size: 14px;
+  font-weight: 600;
+  color: #10b981;
+  transition: color 0.2s;
+}
+
+.cc-featured-card:hover .cc-featured-cta {
+  color: #34d399;
+}
+
+/* --- Posts Grid — mirrors cc3po.com team grid --- */
+.cc-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+.cc-post-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.2s;
+  height: 100%;
+}
+
+.cc-post-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.cc-post-card:hover .cc-post-readmore {
+  color: #10b981;
+}
+
+.cc-post-tags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.cc-post-date {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.35);
+  margin-left: auto;
+}
+
+.cc-post-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.35;
+  margin: 0 0 8px;
+}
+
+.cc-post-excerpt {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+  flex: 1;
+}
+
+.cc-post-footer {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cc-post-readmore {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 0.2s;
+}
+
+.cc-post-readtime {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* --- Team Grid — matches cc3po.com team section --- */
+.cc-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.cc-team-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 20px 8px;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.cc-team-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.cc-team-emoji {
+  font-size: 32px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.cc-team-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.cc-team-role {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.3;
+}
+
+.cc-team-more {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.cc-team-more a {
+  color: #10b981;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cc-team-more a:hover {
+  text-decoration: underline;
+}
+
+/* --- CTA Section — matches cc3po.com bottom CTA --- */
+.cc-cta-section {
+  position: relative;
+  background: linear-gradient(170deg, #08080d 0%, #0a1a33 100%);
+  border-top: 1px solid rgba(16, 185, 129, 0.1);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+.cc-cta-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(16, 185, 129, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cc-cta-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cc-cta-badge {
+  font-size: 14px;
+  font-weight: 600;
+  color: #10b981;
+  margin-bottom: 16px;
+}
+
+.cc-cta-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+
+.cc-cta-desc {
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0 0 28px;
+}
+
+.cc-cta-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.cc-cta-checks {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* --- Responsive — matches cc3po.com breakpoints --- */
+@media (max-width: 768px) {
+  .cc-hero {
+    padding: 80px 16px 48px;
+  }
+
+  .cc-hero-title {
+    font-size: 2rem;
+  }
+
+  .cc-hero-desc {
+    font-size: 16px;
+  }
+
+  .cc-posts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cc-featured-card {
+    padding: 24px;
+  }
+
+  .cc-featured-title {
+    font-size: 18px;
+  }
+
+  .cc-team-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .cc-team-card {
+    padding: 12px 4px;
+  }
+
+  .cc-team-emoji {
+    font-size: 24px;
+  }
+
+  .cc-trust-items {
+    gap: 16px;
+  }
+
+  .cc-cta-title {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cc-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cc-btn-primary, .cc-btn-ghost {
+    justify-content: center;
+  }
+
+  .cc-team-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .cc-trust-items {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

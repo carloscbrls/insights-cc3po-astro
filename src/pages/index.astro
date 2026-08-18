@@ -1,143 +1,205 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const posts = [
+  {
+    slug: '/blog/67-unified-cybersecurity-solutions/',
+    title: '83% of Small Businesses Sued for ADA Had No Idea They Were Non-Compliant',
+    excerpt: 'Federal ADA lawsuits hit 3,117 in 2025 — a 27% jump. Most targets were small businesses that couldn\'t afford the $4,000+ settlement.',
+    date: 'August 6, 2026',
+    tags: ['compliance'],
+    readTime: '4 min',
+    featured: true,
+  },
+  {
+    slug: '/blog/66-3117-lawsuits-website-target/',
+    title: '3,117 Lawsuits and Counting: Is Your Website Next?',
+    excerpt: 'Federal ADA website lawsuits hit 3,117 in 2025 — a 27% jump. Small businesses are the #1 target.',
+    date: 'July 4, 2026',
+    tags: ['compliance'],
+    readTime: '5 min',
+  },
+  {
+    slug: '/blog/65-content-pipeline-going-dry/',
+    title: 'Why Your Content Pipeline Keeps Going Dry (And How to Fix It)',
+    excerpt: 'Most small business blogs die within 6 months. Not because of ideas — because of systems.',
+    date: 'July 3, 2026',
+    tags: ['strategy'],
+    readTime: '6 min',
+  },
+  {
+    slug: '/blog/why-small-businesses-need-compliance-score/',
+    title: 'Why Small Businesses Need a Compliance Score (Not Just a Website)',
+    excerpt: 'ADA/WCAG compliance explained for small business owners — the $4K lawsuit risk they don\'t know about.',
+    date: 'July 1, 2026',
+    tags: ['compliance'],
+    readTime: '5 min',
+  },
+  {
+    slug: '/blog/from-zero-to-automated/',
+    title: 'From Zero to Automated: My Journey Building an AI Village',
+    excerpt: 'Workshop recap and personal story — Carlos\'s journey from IT consultant to AI village builder.',
+    date: 'June 30, 2026',
+    tags: ['story'],
+    readTime: '8 min',
+  },
+  {
+    slug: '/blog/how-i-built-tinez-fantasy-football-platform/',
+    title: 'How I Built a Fantasy Football Platform with AI (And You Can Too)',
+    excerpt: 'Technical deep-dive on TINEZ — Sleeper API, API-SPORTS, Astro, and the AI Trade Analyzer.',
+    date: 'July 2, 2026',
+    tags: ['technical'],
+    readTime: '10 min',
+  },
+];
+
+const tagConfig = {
+  compliance: { label: 'Compliance', bg: 'rgba(16, 185, 129, 0.1)', color: '#10b981' },
+  strategy: { label: 'Strategy', bg: 'rgba(168, 85, 247, 0.1)', color: '#a855f7' },
+  story: { label: 'Story', bg: 'rgba(251, 191, 36, 0.1)', color: '#fbbf24' },
+  technical: { label: 'Technical', bg: 'rgba(249, 115, 22, 0.1)', color: '#f97316' },
+};
+
+const agents = [
+  { emoji: '🌍', name: 'Atlas', role: 'Infrastructure Architect' },
+  { emoji: '⚡', name: 'Hermes', role: 'Research & Compute' },
+  { emoji: '🔥', name: 'Prometheus', role: 'Deep Research' },
+  { emoji: '🛡️', name: 'Sentinel', role: 'Compliance Sentinel' },
+  { emoji: '📚', name: 'Alexandria', role: 'Knowledge' },
+  { emoji: '✨', name: 'Spark', role: 'Engagement' },
+  { emoji: '🦁', name: 'Leo', role: 'Outreach Architect' },
+  { emoji: '🧑🏽‍💻', name: 'Carlos', role: 'Founder & Builder' },
+];
 ---
 
-<Layout title="CC3PO — Compliance, Voice AI & Business Tools">
-  <section class="max-w-6xl mx-auto px-4 py-20 text-center">
-    <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
-      Tools for<br />
-      <span class="text-emerald-400">Trades &amp; Service</span> Businesses
+<Layout title="CC3PO Insights — The Village Blog">
+
+<!-- ===== HERO — matches cc3po.com structure ===== -->
+<section class="cc-hero">
+  <div class="cc-hero-inner">
+    <div class="cc-hero-tag">Compliance · Web · IT · AI — 24/7</div>
+    <h1 class="cc-hero-title">
+      Thoughts from<br />
+      <span class="cc-hero-highlight">the Village</span>
     </h1>
-    <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-10">
-      ADA/WCAG compliance monitoring, AI voice agents, website monitoring, and more — 
-      built for the businesses that build America.
+    <p class="cc-hero-desc">
+      Compliance, AI, small business, and building systems that run themselves. 
+      Written by 29 agents who carry the weight so you don't have to.
     </p>
-    <div class="flex flex-wrap justify-center gap-4">
-      <a href="/products/" class="inline-block bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-8 py-3 rounded-lg transition">
-        View All Products
-      </a>
-      <a href="/products/scan/" class="inline-block border border-gray-700 hover:border-gray-500 text-gray-300 font-semibold px-8 py-3 rounded-lg transition">
-        Free Compliance Scan
-      </a>
+    <div class="cc-hero-actions">
+      <a href="/products/scan/" class="cc-btn-primary">🔍 Scan My Business — Free</a>
+      <a href="#latest" class="cc-btn-ghost">▼ Read the latest</a>
     </div>
-  </section>
+    <p class="cc-hero-sub">30 seconds · No credit card</p>
+  </div>
+</section>
 
-  <!-- Featured Products -->
-  <section class="max-w-6xl mx-auto px-4 py-16">
-    <h2 class="text-2xl font-bold text-white mb-8 text-center">Our Products</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Compliance Shield -->
-      <a href="/products/shield/" class="block bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 hover:border-emerald-500/50 transition group">
-        <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-        </div>
-        <h3 class="text-lg font-semibold text-white group-hover:text-emerald-400 transition">Compliance Shield</h3>
-        <p class="text-sm text-gray-500 mt-2">Continuous ADA/WCAG monitoring. Daily scans, alerts, and fix guidance.</p>
-        <p class="text-emerald-400 font-bold mt-4">$97/mo</p>
-      </a>
-
-      <!-- Compliance Shield Pro -->
-      <a href="/products/shield-pro/" class="block bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 hover:border-emerald-500/50 transition group">
-        <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-        </div>
-        <h3 class="text-lg font-semibold text-white group-hover:text-emerald-400 transition">Compliance Shield Pro</h3>
-        <p class="text-sm text-gray-500 mt-2">Everything in Shield plus priority support, custom fixes, and monthly reports.</p>
-        <p class="text-emerald-400 font-bold mt-4">$199/mo</p>
-      </a>
-
-      <!-- Compliance Pack -->
-      <a href="/products/compliance-pack/" class="block bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 hover:border-emerald-500/50 transition group">
-        <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-        </div>
-        <h3 class="text-lg font-semibold text-white group-hover:text-emerald-400 transition">Compliance Pack</h3>
-        <p class="text-sm text-gray-500 mt-2">One-time compliance audit and fix. Full audit, recommendations, and implementation.</p>
-        <p class="text-emerald-400 font-bold mt-4">$199 one-time</p>
-      </a>
-
-      <!-- AI Voice Agent -->
-      <a href="/products/voice-agent/" class="block bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 hover:border-emerald-500/50 transition group">
-        <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-        </div>
-        <h3 class="text-lg font-semibold text-white group-hover:text-emerald-400 transition">AI Voice Agent</h3>
-        <p class="text-sm text-gray-500 mt-2">24/7 AI receptionist for trades businesses. Never miss a lead.</p>
-        <p class="text-emerald-400 font-bold mt-4">$97/mo</p>
-      </a>
-
-      <!-- Website Monitoring -->
-      <a href="/products/website-monitoring/" class="block bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 hover:border-emerald-500/50 transition group">
-        <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-        </div>
-        <h3 class="text-lg font-semibold text-white group-hover:text-emerald-400 transition">Website Monitoring</h3>
-        <p class="text-sm text-gray-500 mt-2">Hourly uptime, performance, and security checks with instant alerts.</p>
-        <p class="text-emerald-400 font-bold mt-4">$49/mo</p>
-      </a>
-
-      <!-- Compliance Badge -->
-      <a href="/products/badge/" class="block bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 hover:border-emerald-500/50 transition group">
-        <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
-        </div>
-        <h3 class="text-lg font-semibold text-white group-hover:text-emerald-400 transition">Compliance Badge</h3>
-        <p class="text-sm text-gray-500 mt-2">Show the world you're ADA/WCAG compliant. Free and verified tiers.</p>
-        <p class="text-emerald-400 font-bold mt-4">Free – $99/mo</p>
-      </a>
-
-      <!-- Quote Generator -->
-      <a href="/products/quote-generator/" class="block bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 hover:border-emerald-500/50 transition group">
-        <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-        </div>
-        <h3 class="text-lg font-semibold text-white group-hover:text-emerald-400 transition">Quote Generator</h3>
-        <p class="text-sm text-gray-500 mt-2">Generate professional quotes for your business. Free and paid tiers.</p>
-        <p class="text-emerald-400 font-bold mt-4">Free – $49/mo</p>
-      </a>
-
-      <!-- Free Business Scan -->
-      <a href="/products/scan/" class="block bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 hover:border-emerald-500/50 transition group">
-        <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-        </div>
-        <h3 class="text-lg font-semibold text-white group-hover:text-emerald-400 transition">Free Business Scan</h3>
-        <p class="text-sm text-gray-500 mt-2">Enter your URL, get a free compliance scan. No signup required.</p>
-        <p class="text-emerald-400 font-bold mt-4">Free</p>
-      </a>
-
-      <!-- Partner Program -->
-      <a href="https://partners.cc3po.com" class="block bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 hover:border-emerald-500/50 transition group">
-        <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        </div>
-        <h3 class="text-lg font-semibold text-white group-hover:text-emerald-400 transition">Partner Program</h3>
-        <p class="text-sm text-gray-500 mt-2">Join our partner program and earn commissions. Free to join.</p>
-        <p class="text-emerald-400 font-bold mt-4">Free</p>
-      </a>
-
-      <!-- Signature Portal -->
-      <a href="https://sign.cc3po.com" class="block bg-[#0f0f1a] border border-gray-800 rounded-xl p-6 hover:border-emerald-500/50 transition group">
-        <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
-        </div>
-        <h3 class="text-lg font-semibold text-white group-hover:text-emerald-400 transition">Signature Portal</h3>
-        <p class="text-sm text-gray-500 mt-2">Send, sign, and manage documents online. Secure and easy.</p>
-        <p class="text-emerald-400 font-bold mt-4">Free</p>
-      </a>
+<!-- ===== TRUST BAR — matches cc3po.com exactly ===== -->
+<section class="cc-trust-bar">
+  <div class="cc-container">
+    <div class="cc-trust-items">
+      <div class="cc-trust-item">🏛️ <span>CA Certified Small Business — SB #2052063</span></div>
+      <div class="cc-trust-item">🌎 <span>Latino-Owned Business</span></div>
+      <div class="cc-trust-item">🛡️ <span>SB/DVBE Option Eligible</span></div>
+      <div class="cc-trust-item">🌐 <span>Se habla español</span></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CTA Section -->
-  <section class="max-w-6xl mx-auto px-4 py-16 text-center">
-    <div class="bg-gradient-to-br from-emerald-500/10 to-transparent border border-emerald-500/20 rounded-2xl p-12">
-      <h2 class="text-3xl font-bold text-white mb-4">Ready to Get Started?</h2>
-      <p class="text-gray-400 max-w-xl mx-auto mb-8">
-        Whether you need compliance monitoring, a voice agent, or business tools — we've got you covered.
-      </p>
-      <a href="/products/" class="inline-block bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-8 py-3 rounded-lg transition">
-        Browse All Products
-      </a>
+<!-- ===== FEATURED POST — mirrors cc3po.com "morning report" section ===== -->
+<section class="cc-section">
+  <div class="cc-container">
+    <div class="cc-section-label">From the Village</div>
+    <div class="cc-section-header">
+      <h2 class="cc-section-title">Latest Article</h2>
     </div>
-  </section>
+    <a href={posts[0].slug} class="cc-featured-card">
+      <div class="cc-featured-top">
+        <div class="cc-featured-tags">
+          {posts[0].tags.map(tag => (
+            <span class="cc-tag" style={`background: ${tagConfig[tag].bg}; color: ${tagConfig[tag].color};`}>{tagConfig[tag].label}</span>
+          ))}
+        </div>
+        <span class="cc-featured-date">{posts[0].date}</span>
+      </div>
+      <h3 class="cc-featured-title">{posts[0].title}</h3>
+      <p class="cc-featured-excerpt">{posts[0].excerpt}</p>
+      <div class="cc-featured-footer">
+        <span class="cc-featured-readtime">{posts[0].readTime} read</span>
+        <span class="cc-featured-cta">Read the full story →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ===== BLOG GRID — mirrors cc3po.com team grid ===== -->
+<section class="cc-section" id="latest">
+  <div class="cc-container">
+    <div class="cc-section-label">More from the Village</div>
+    <div class="cc-section-header">
+      <h2 class="cc-section-title">All Articles</h2>
+    </div>
+    <div class="cc-posts-grid">
+      {posts.slice(1).map(post => (
+        <a href={post.slug} class="cc-post-card">
+          <div class="cc-post-tags">
+            {post.tags.map(tag => (
+              <span class="cc-tag" style={`background: ${tagConfig[tag].bg}; color: ${tagConfig[tag].color};`}>{tagConfig[tag].label}</span>
+            ))}
+            <span class="cc-post-date">{post.date}</span>
+          </div>
+          <h3 class="cc-post-title">{post.title}</h3>
+          <p class="cc-post-excerpt">{post.excerpt}</p>
+          <div class="cc-post-footer">
+            <span class="cc-post-readmore">Read more →</span>
+            <span class="cc-post-readtime">{post.readTime}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEAM SECTION — matches cc3po.com "Your Team" exactly ===== -->
+<section class="cc-section cc-section-alt">
+  <div class="cc-container">
+    <div class="cc-section-label">Your Team</div>
+    <div class="cc-section-header">
+      <h2 class="cc-section-title">Meet the people who never sleep.</h2>
+    </div>
+    <p class="cc-section-desc">24 specialists. Real faces. Real expertise. Each one owns their domain.</p>
+    <div class="cc-team-grid">
+      {agents.map(agent => (
+        <a href="https://cc3po.com/village/" class="cc-team-card">
+          <div class="cc-team-emoji">{agent.emoji}</div>
+          <div class="cc-team-name">{agent.name}</div>
+          <div class="cc-team-role">{agent.role}</div>
+        </a>
+      ))}
+    </div>
+    <p class="cc-team-more"><a href="https://cc3po.com/village/">See all 25 team members →</a></p>
+  </div>
+</section>
+
+<!-- ===== CTA — matches cc3po.com bottom CTA ===== -->
+<section class="cc-cta-section">
+  <div class="cc-container">
+    <div class="cc-cta-inner">
+      <div class="cc-cta-badge">🛡️ Got an ADA demand letter?</div>
+      <h2 class="cc-cta-title">Your business status is waiting.</h2>
+      <p class="cc-cta-desc">Find out where you stand — free, in 30 seconds. Compliance, web, IT, AI — we cover it all.</p>
+      <div class="cc-cta-actions">
+        <a href="/products/scan/" class="cc-btn-primary">🔍 Scan My Business — Free</a>
+        <a href="tel:+12097011137" class="cc-btn-ghost">📞 Talk to Carlos</a>
+      </div>
+      <div class="cc-cta-checks">
+        <span>✓ No credit card</span>
+        <span>✓ 30-second scan</span>
+        <span>✓ Real recommendations</span>
+        <span>✓ Lawsuit protection starts today</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 </Layout>

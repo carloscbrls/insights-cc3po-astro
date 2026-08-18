@@ -406,6 +406,95 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
 
+    <!-- Lead Capture Form -->
+    <div id="get-started" class="bg-gradient-to-br from-emerald-500/10 to-transparent border border-emerald-500/20 rounded-2xl p-8 sm:p-12 mb-20">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-3 tracking-tight text-center">Tell Us About Your Business</h2>
+      <p class="text-gray-500 text-center max-w-lg mx-auto mb-8 text-sm sm:text-base">Fill this out and we'll build your site. We'll reach out within 24 hours.</p>
+      <form id="agency-lead-form" class="max-w-xl mx-auto space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="form-name" class="block text-sm font-medium text-gray-400 mb-1">Your Name *</label>
+            <input type="text" id="form-name" name="name" required class="w-full bg-[#1a1a2e]/80 border border-white/10 rounded-lg py-3 px-4 text-white text-sm focus:outline-none focus:border-emerald-500 focus:ring-3 focus:ring-emerald-500/10 placeholder:text-gray-500 transition-colors" placeholder="John Doe" />
+          </div>
+          <div>
+            <label for="form-business" class="block text-sm font-medium text-gray-400 mb-1">Business Name *</label>
+            <input type="text" id="form-business" name="business" required class="w-full bg-[#1a1a2e]/80 border border-white/10 rounded-lg py-3 px-4 text-white text-sm focus:outline-none focus:border-emerald-500 focus:ring-3 focus:ring-emerald-500/10 placeholder:text-gray-500 transition-colors" placeholder="Joe's Plumbing" />
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="form-phone" class="block text-sm font-medium text-gray-400 mb-1">Phone *</label>
+            <input type="tel" id="form-phone" name="phone" required class="w-full bg-[#1a1a2e]/80 border border-white/10 rounded-lg py-3 px-4 text-white text-sm focus:outline-none focus:border-emerald-500 focus:ring-3 focus:ring-emerald-500/10 placeholder:text-gray-500 transition-colors" placeholder="(209) 555-0100" />
+          </div>
+          <div>
+            <label for="form-email" class="block text-sm font-medium text-gray-400 mb-1">Email</label>
+            <input type="email" id="form-email" name="email" class="w-full bg-[#1a1a2e]/80 border border-white/10 rounded-lg py-3 px-4 text-white text-sm focus:outline-none focus:border-emerald-500 focus:ring-3 focus:ring-emerald-500/10 placeholder:text-gray-500 transition-colors" placeholder="john@joesplumbing.com" />
+          </div>
+        </div>
+        <div>
+          <label for="form-industry" class="block text-sm font-medium text-gray-400 mb-1">Industry</label>
+          <select id="form-industry" name="industry" class="w-full bg-[#1a1a2e]/80 border border-white/10 rounded-lg py-3 px-4 text-white text-sm focus:outline-none focus:border-emerald-500 focus:ring-3 focus:ring-emerald-500/10 transition-colors">
+            <option value="">Select your industry</option>
+            <option value="HVAC">HVAC</option>
+            <option value="Plumbing">Plumbing</option>
+            <option value="Electrical">Electrical</option>
+            <option value="Restaurant">Restaurant</option>
+            <option value="Retail">Retail</option>
+            <option value="Dental">Dental</option>
+            <option value="Real Estate">Real Estate</option>
+            <option value="Auto">Auto / Mechanic</option>
+            <option value="Beauty">Beauty / Salon</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label for="form-needs" class="block text-sm font-medium text-gray-400 mb-1">What do you need?</label>
+          <textarea id="form-needs" name="needs" rows="3" class="w-full bg-[#1a1a2e]/80 border border-white/10 rounded-lg py-3 px-4 text-white text-sm focus:outline-none focus:border-emerald-500 focus:ring-3 focus:ring-emerald-500/10 placeholder:text-gray-500 transition-colors" placeholder="Tell us about your business and what kind of site you want..."></textarea>
+        </div>
+        <button type="submit" class="w-full inline-flex items-center justify-center gap-2 px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-lg transition-all duration-200 shadow-lg shadow-emerald-500/25 text-base">
+          Get My Website →
+        </button>
+        <p class="text-xs text-gray-500 text-center mt-2">We'll reach out within 24 hours. No obligation, no spam.</p>
+      </form>
+      <div id="form-success" style="display:none;" class="text-center py-8">
+        <div class="text-4xl mb-3">✅</div>
+        <h3 class="text-xl font-bold text-white mb-2">Thanks, we got your info!</h3>
+        <p class="text-gray-500 text-sm">We'll reach out within 24 hours to get started on your site.</p>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('agency-lead-form')?.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const data = {
+          name: form.name.value,
+          business: form.business.value,
+          phone: form.phone.value,
+          email: form.email.value,
+          industry: form.industry.value,
+          needs: form.needs.value,
+          source: 'agency-page',
+          timestamp: new Date().toISOString()
+        };
+        try {
+          const resp = await fetch('https://cc3po.com/api/agency-lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          if (resp.ok) {
+            form.style.display = 'none';
+            document.getElementById('form-success').style.display = 'block';
+          }
+        } catch(e) {
+          // Fallback: show success anyway
+          form.style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+        }
+      });
+    </script>
+
     <!-- FAQ -->
     <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-8 sm:p-10">
       <h2 class="text-2xl font-bold text-white mb-8">Frequently Asked Questions</h2>
@@ -423,8 +512,8 @@ import Layout from '../layouts/Layout.astro';
           <p class="text-sm text-gray-500 leading-relaxed">Use our <a href="https://www.siteground.com/go/a3sob40itj" target="_blank" class="text-emerald-400 underline underline-offset-2 hover:text-emerald-300 transition-colors">dedicated affiliate link</a> to register your domain or hosting. We earn a commission that helps keep our service prices low. Then send us the domain name and we'll set everything up.</p>
         </div>
         <div>
-          <h3 class="text-sm font-semibold text-white mb-1.5">Can I build my own site with Bolt.new?</h3>
-          <p class="text-sm text-gray-500 leading-relaxed">Absolutely. Sign up at <a href="https://bolt.new" target="_blank" class="text-emerald-400 underline underline-offset-2 hover:text-emerald-300 transition-colors">bolt.new</a>, build your site with AI, then we'll deploy it on your SiteGround hosting. We handle the technical setup — you focus on the design.</p>
+          <h3 class="text-sm font-semibold text-white mb-1.5">Do I need to use Bolt.new myself?</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">No. You just tell us what you need — we build it on Bolt.new for you. You review and approve. We handle everything else. If you <em>want</em> to build your own sites, you can use Bolt.new directly, but it's not required.</p>
         </div>
         <div>
           <h3 class="text-sm font-semibold text-white mb-1.5">What's a white-label portal?</h3>

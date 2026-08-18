@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/blog.css';
 
 const { title = 'CC3PO — Compliance & Business Tools' } = Astro.props;
 ---
@@ -12,91 +13,503 @@ const { title = 'CC3PO — Compliance & Business Tools' } = Astro.props;
     <meta name="description" content="CC3PO — ADA/WCAG compliance monitoring, AI voice agents, and business tools for trades and service businesses." />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+      /* Skip link */
+      .skip-link {
+        position: absolute;
+        top: -100%;
+        left: 0;
+        background: #10b981;
+        color: #000;
+        padding: 8px 16px;
+        z-index: 10000;
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+      }
+      .skip-link:focus {
+        top: 0;
+      }
+
+      /* Navigation */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: rgba(10, 10, 18, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        transition: background 0.3s;
+      }
+      .nav-scrolled {
+        background: rgba(10, 10, 18, 0.95);
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 16px;
+        height: 64px;
+        gap: 8px;
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        color: #fff;
+        font-weight: 700;
+        font-size: 17px;
+        flex-shrink: 0;
+      }
+      .nav-logo-img {
+        border-radius: 8px;
+        object-fit: cover;
+      }
+      .nav-logo-full {
+        width: 36px;
+        height: 36px;
+        display: block;
+      }
+      .nav-logo-icon {
+        display: none;
+      }
+      .nav-links {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 2px;
+        align-items: center;
+      }
+      .nav-links a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 6px 12px;
+        border-radius: 6px;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+      .nav-links a:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .nav-phone {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        white-space: nowrap;
+        flex-shrink: 0;
+        transition: color 0.2s;
+      }
+      .nav-phone:hover {
+        color: #10b981;
+      }
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 18px;
+        background: #10b981;
+        color: #000 !important;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+        flex-shrink: 0;
+        transition: all 0.2s;
+      }
+      .nav-cta:hover {
+        background: #34d399;
+        transform: translateY(-1px);
+      }
+      .mobile-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 6px;
+        flex-shrink: 0;
+      }
+      .mobile-toggle:hover {
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      /* Mobile Drawer */
+      .mobile-drawer-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 2000;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .mobile-drawer-overlay.active {
+        opacity: 1;
+      }
+      .mobile-drawer {
+        position: fixed;
+        top: 0;
+        right: -280px;
+        width: 280px;
+        height: 100%;
+        background: #0f0f1a;
+        border-left: 1px solid rgba(255, 255, 255, 0.06);
+        z-index: 2001;
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 24px;
+        overflow-y: auto;
+      }
+      .mobile-drawer.active {
+        right: 0;
+      }
+      .mobile-drawer-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .mobile-drawer-nav a {
+        display: block;
+        padding: 12px 16px;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        border-radius: 8px;
+        transition: all 0.2s;
+      }
+      .mobile-drawer-nav a:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .mobile-drawer-cta {
+        margin-top: 8px;
+        background: #10b981 !important;
+        color: #000 !important;
+        text-align: center;
+        font-weight: 700 !important;
+      }
+
+      @media (max-width: 900px) {
+        .nav-links { display: none; }
+        .nav-phone { display: none; }
+        .nav-cta { display: none; }
+        .mobile-toggle { display: flex; align-items: center; justify-content: center; }
+        .nav-logo-full { display: none; }
+        .nav-logo-icon { display: block; }
+      }
+
+      /* Footer */
+      .footer {
+        background: #0a0a12;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 48px 0 24px;
+      }
+      .footer .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 32px;
+        margin-bottom: 32px;
+      }
+      .footer-brand p {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+        line-height: 1.6;
+        margin: 0;
+      }
+      .footer-col-title {
+        font-size: 12px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.4);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 12px;
+      }
+      .footer-col-links {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .footer-col-links a {
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.2s;
+      }
+      .footer-col-links a:hover {
+        color: #10b981;
+      }
+      .footer-social {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+      .social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.04);
+        color: rgba(255, 255, 255, 0.5);
+        transition: all 0.2s;
+      }
+      .social-link:hover {
+        background: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+      }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .footer-copy {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .footer-legal {
+        display: flex;
+        gap: 16px;
+      }
+      .footer-legal a {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.4);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-legal a:hover {
+        color: #10b981;
+      }
+
+      @media (max-width: 768px) {
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
   </head>
-  <body class="bg-[#08080d] text-gray-200 font-sans antialiased min-h-screen flex flex-col">
-    <!-- Navigation -->
-    <header class="border-b border-gray-800">
-      <nav class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        <a href="/" class="text-xl font-bold text-white tracking-tight">
-          CC<span class="text-emerald-400">3</span>PO
-        </a>
-        <div class="flex items-center gap-6 text-sm">
-          <a href="/" class="text-gray-400 hover:text-white transition">Home</a>
-          <a href="/agency/" class="text-gray-400 hover:text-white transition">Agency</a>
-          <div class="relative group">
-            <button class="text-gray-400 hover:text-white transition flex items-center gap-1">
-              Products
-              <svg class="w-3 h-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-            </button>
-            <div class="absolute left-0 top-full mt-1 w-56 bg-[#0f0f1a] border border-gray-800 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-              <div class="py-2">
-                <a href="/products/" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-gray-800/50 transition">All Products</a>
-                <div class="border-t border-gray-800 my-1"></div>
-                <a href="/products/shield/" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-gray-800/50 transition">Compliance Shield</a>
-                <a href="/products/shield-pro/" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-gray-800/50 transition">Compliance Shield Pro</a>
-                <a href="/products/compliance-pack/" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-gray-800/50 transition">Compliance Pack</a>
-                <a href="/products/badge/" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-gray-800/50 transition">Compliance Badge</a>
-                <a href="/products/voice-agent/" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-gray-800/50 transition">AI Voice Agent</a>
-                <a href="/products/visible-ai/" class="block px-4 py-2 text-sm text-emerald-400 hover:text-white hover:bg-gray-800/50 transition">VisibleAI 🆕</a>
-                <a href="/products/website-monitoring/" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-gray-800/50 transition">Website Monitoring</a>
-                <a href="/products/quote-generator/" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-gray-800/50 transition">Quote Generator</a>
-                <a href="/products/scan/" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-gray-800/50 transition">Free Business Scan</a>
-                <div class="border-t border-gray-800 my-1"></div>
-                <a href="/products/disclose-shield/" class="block px-4 py-2 text-sm text-amber-400 hover:text-white hover:bg-gray-800/50 transition">DiscloseShield 🆕</a>
-              </div>
-            </div>
-          </div>
-          <a href="/products/scan/" class="text-gray-400 hover:text-white transition">Free Scan</a>
-          <a href="https://partners.cc3po.com" class="text-gray-400 hover:text-white transition">Partners</a>
-          <a href="https://sign.cc3po.com" class="text-gray-400 hover:text-white transition">Sign In</a>
-        </div>
+  <body class="bg-[#08080d] text-gray-200 font-sans antialiased min-h-screen flex flex-col" style="font-family: 'Inter', system-ui, -apple-system, sans-serif; padding-top: 64px;">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="mobile-drawer-overlay" id="drawer-overlay"></div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-label="Mobile navigation">
+      <nav class="mobile-drawer-nav" aria-label="Mobile menu">
+        <a href="/">Blog</a>
+        <a href="/products/">Products</a>
+        <a href="/music-projects/">Music</a>
+        <a href="/agency/">Agency</a>
+        <a href="/products/shield/">Pricing</a>
+        <a href="/about/">About</a>
+        <a href="/products/scan/" class="mobile-drawer-cta">Free Business Scan</a>
       </nav>
-    </header>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <span style="font-size: 20px; font-weight: 800; color: #fff;">CC<span style="color: #10b981;">3</span>PO</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="/">Blog</a></li>
+          <li><a href="/products/">Products</a></li>
+          <li><a href="/music-projects/">Music</a></li>
+          <li><a href="/agency/">Agency</a></li>
+          <li><a href="/products/shield/">Pricing</a></li>
+          <li><a href="/about/">About</a></li>
+        </ul>
+        <a href="tel:+12097011137" class="nav-phone">📞 (209) 701-1137</a>
+        <a href="/products/scan/" class="nav-cta">Free Business Scan</a>
+        <button class="mobile-toggle" aria-label="Menu" aria-expanded="false" id="mobile-menu-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </nav>
+
+    <script>
+      // Mobile drawer toggle
+      (function() {
+        function init() {
+          const btn = document.getElementById('mobile-menu-btn');
+          const drawer = document.getElementById('mobile-drawer');
+          const overlay = document.getElementById('drawer-overlay');
+          if (!btn || !drawer || !overlay) return;
+
+          // Clone to remove old listeners
+          const clone = btn.cloneNode(true);
+          btn.parentNode.replaceChild(clone, btn);
+
+          function open() {
+            drawer.classList.add('active');
+            overlay.style.display = 'block';
+            requestAnimationFrame(function() {
+              overlay.classList.add('active');
+            });
+            clone.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+          }
+          function close() {
+            drawer.classList.remove('active');
+            overlay.classList.remove('active');
+            clone.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+            setTimeout(function() {
+              overlay.style.display = 'none';
+            }, 300);
+          }
+          clone.addEventListener('click', function() {
+            drawer.classList.contains('active') ? close() : open();
+          });
+          overlay.addEventListener('click', close);
+          drawer.querySelectorAll('a').forEach(function(a) {
+            a.addEventListener('click', close);
+          });
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', init);
+        } else {
+          init();
+        }
+        document.addEventListener('astro:page-load', init);
+      })();
+
+      // Scroll effect
+      (function() {
+        function init() {
+          var nav = document.getElementById('nav');
+          if (!nav) return;
+          function update() {
+            nav.classList.toggle('nav-scrolled', window.scrollY > 50);
+          }
+          window.removeEventListener('scroll', update);
+          window.addEventListener('scroll', update, { passive: true });
+          update();
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', init);
+        } else {
+          init();
+        }
+        document.addEventListener('astro:page-load', init);
+      })();
+    </script>
 
     <!-- Main Content -->
-    <main class="flex-1">
+    <main id="main-content" class="flex-1">
       <slot />
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-800 bg-[#0a0a12]">
-      <div class="max-w-6xl mx-auto px-4 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 class="text-lg font-bold text-white mb-4">CC<span class="text-emerald-400">3</span>PO</h3>
-            <p class="text-sm text-gray-500">Compliance, voice AI, and business tools for trades and service businesses.</p>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div style="font-size: 17px; font-weight: 800; margin-bottom: 8px;">CC3PO</div>
+            <p>Your whole business team. One price. 24/7.</p>
+            <p style="margin-top: 12px; font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.85);">Build once. Run forever. Evolve continuously.</p>
+            <div style="margin-top: 16px; font-size: 0.75rem; color: rgba(255,255,255,0.78); line-height: 1.5;">
+              <strong style="color: rgba(255,255,255,0.85);">Certifications:</strong> CA Certified Small Business — SB #2052063 · Latino-Owned Business · Se habla español · SB/DVBE Option · <a href="/certifications" style="color: #10b981; text-decoration: underline; text-underline-offset: 3px;">View All →</a>
+            </div>
           </div>
-          <div>
-            <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Compliance</h4>
-            <ul class="space-y-2 text-sm">
-              <li><a href="/products/shield/" class="text-gray-500 hover:text-emerald-400 transition">Compliance Shield</a></li>
-              <li><a href="/products/shield-pro/" class="text-gray-500 hover:text-emerald-400 transition">Compliance Shield Pro</a></li>
-              <li><a href="/products/compliance-pack/" class="text-gray-500 hover:text-emerald-400 transition">Compliance Pack</a></li>
-              <li><a href="/products/badge/" class="text-gray-500 hover:text-emerald-400 transition">Compliance Badge</a></li>
-              <li><a href="/products/scan/" class="text-gray-500 hover:text-emerald-400 transition">Free Business Scan</a></li>
-            </ul>
+          <div class="footer-col">
+            <div class="footer-col-title">Services</div>
+            <div class="footer-col-links">
+              <a href="/services/">Website Management</a>
+              <a href="/agency/">Agency Services</a>
+              <a href="/services/">Social Media</a>
+              <a href="/services/">Review Management</a>
+              <a href="/products/shield/">Compliance</a>
+              <a href="/pricing/">Pricing →</a>
+            </div>
           </div>
-          <div>
-            <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Business Tools</h4>
-            <ul class="space-y-2 text-sm">
-              <li><a href="/products/voice-agent/" class="text-gray-500 hover:text-emerald-400 transition">AI Voice Agent</a></li>
-              <li><a href="/products/website-monitoring/" class="text-gray-500 hover:text-emerald-400 transition">Website Monitoring</a></li>
-              <li><a href="/products/quote-generator/" class="text-gray-500 hover:text-emerald-400 transition">Quote Generator</a></li>
-              <li><a href="https://partners.cc3po.com" class="text-gray-500 hover:text-emerald-400 transition">Partner Program</a></li>
-              <li><a href="https://sign.cc3po.com" class="text-gray-500 hover:text-emerald-400 transition">Signature Portal</a></li>
-            </ul>
+          <div class="footer-col">
+            <div class="footer-col-title">Company</div>
+            <div class="footer-col-links">
+              <a href="/about/">About</a>
+              <a href="/how-it-works/">How It Works</a>
+              <a href="/privacy/">Privacy Policy</a>
+              <a href="/terms/">Terms of Service</a>
+              <a href="/cookie-policy/">Cookie Policy</a>
+              <a href="/certifications">Certifications</a>
+              <a href="/accessibility">Accessibility</a>
+              <a href="/methodology/">How We Score</a>
+            </div>
           </div>
-          <div>
-            <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Company</h4>
-            <ul class="space-y-2 text-sm">
-              <li><a href="/" class="text-gray-500 hover:text-emerald-400 transition">Home</a></li>
-              <li><a href="/agency/" class="text-gray-500 hover:text-emerald-400 transition">Agency</a></li>
-              <li><a href="/products/" class="text-gray-500 hover:text-emerald-400 transition">All Products</a></li>
-            </ul>
+          <div class="footer-col">
+            <div class="footer-col-title">Products</div>
+            <div class="footer-col-links">
+              <a href="/products/shield/">Compliance Shield</a>
+              <a href="https://badge.cc3po.com" target="_blank" rel="noopener">Compliance Badge</a>
+              <a href="https://quote.cc3po.com" target="_blank" rel="noopener">Quote Generator</a>
+              <a href="https://partners.cc3po.com" target="_blank" rel="noopener">Partner Program</a>
+              <a href="/products/">All Products →</a>
+            </div>
           </div>
         </div>
-        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-600">
-          &copy; 2026 CC3PO. All rights reserved.
+        <div class="footer-social">
+          <a href="https://linkedin.com/company/cc3potechnology" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-link">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://x.com/IiiCabrales" target="_blank" rel="noopener" aria-label="X / Twitter" class="social-link">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://instagram.com/carloscbrls" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61569885474429" target="_blank" rel="noopener" aria-label="Facebook" class="social-link">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@carlos.a.k.ac3" target="_blank" rel="noopener" aria-label="TikTok" class="social-link">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13a8.28 8.28 0 005.58 2.16V11.7a4.79 4.79 0 01-3.77-1.77z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@carloscbrls" target="_blank" rel="noopener" aria-label="YouTube" class="social-link">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">© 2026 CC3PO LLC. All rights reserved. · 16299 Adobe Way, Lathrop, CA 95330</div>
+          <div class="footer-legal">
+            <a href="/privacy/">Privacy</a>
+            <a href="/terms/">Terms</a>
+            <a href="/cookie-policy/">Cookies</a>
+          </div>
         </div>
       </div>
     </footer>
