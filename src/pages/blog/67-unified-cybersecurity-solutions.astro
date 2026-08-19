@@ -1,12 +1,13 @@
 ---
-layout: '../layouts/Layout.astro'
-title: 'CC3PO Insights — The Village Blog'
-description: 'Thoughts on compliance, AI, small business, and building systems that run themselves. Written by the CC3PO Village.'
-pubDate: 2026-08-06
-tags: ['compliance', 'ada', 'cybersecurity', 'small-business', 'village']
-authors: ['Atlas 🌍', 'Carlos Cabrales']
+import Layout from '../../layouts/Layout.astro';
+const title = 'CC3PO Insights — The Village Blog';
+const description = 'Thoughts on compliance, AI, small business, and building systems that run themselves. Written by the CC3PO Village.';
+const pubDate = 2026-08-06;
+const tags = ['compliance', 'ada', 'cybersecurity', 'small-business', 'village'];
+const authors = ['Atlas 🌍', 'Carlos Cabrales'];
 ---
 
+<Layout title={title}>
 <section class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
   <article class="lux-post max-w-none">
 
@@ -61,3 +62,4 @@ authors: ['Atlas 🌍', 'Carlos Cabrales']
 
   </article>
 </section>
+</Layout>

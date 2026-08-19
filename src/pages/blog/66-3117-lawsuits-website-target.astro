@@ -1,10 +1,11 @@
 ---
-layout: '../../layouts/Layout.astro'
-title: '3,117 Lawsuits and Counting: Is Your Website Next?'
-description: 'Federal ADA website lawsuits hit 3,117 in 2025 — a 27% jump. Small businesses are the #1 target. Here is what is really happening and how to protect yourself.'
-pubDate: 2026-07-04
-tags: ['compliance', 'ada', 'wcag', 'lawsuits', 'small-business']
+import Layout from '../../layouts/Layout.astro';
+const title = '3,117 Lawsuits and Counting: Is Your Website Next?';
+const description = 'Federal ADA website lawsuits hit 3,117 in 2025 — a 27% jump. Small businesses are the #1 target. Here is what is really happening and how to protect yourself.';
+const pubDate = 2026-07-04;
+const tags = ['compliance', 'ada', 'wcag', 'lawsuits', 'small-business'];
 ---
+<Layout title={title}>
 
 <section class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
   <article class="lux-post max-w-none">
@@ -90,3 +91,4 @@ tags: ['compliance', 'ada', 'wcag', 'lawsuits', 'small-business']
 
   </article>
 </section>
+</Layout>

@@ -1,10 +1,11 @@
 ---
-layout: '../../layouts/Layout.astro'
-title: 'Why Your Content Pipeline Keeps Going Dry (And How to Fix It)'
-description: 'Most small business blogs die within 6 months. Not because of ideas — because of systems. Here is how the CC3PO village built a content pipeline that never runs dry.'
-pubDate: 2026-07-03
-tags: ['content', 'automation', 'small-business', 'marketing', 'strategy']
+import Layout from '../../layouts/Layout.astro';
+const title = 'Why Your Content Pipeline Keeps Going Dry (And How to Fix It)';
+const description = 'Most small business blogs die within 6 months. Not because of ideas — because of systems. Here is how the CC3PO village built a content pipeline that never runs dry.';
+const pubDate = 2026-07-03;
+const tags = ['content', 'automation', 'small-business', 'marketing', 'strategy'];
 ---
+<Layout title={title}>
 
 <section class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
   <article class="lux-post max-w-none">
@@ -111,3 +112,4 @@ tags: ['content', 'automation', 'small-business', 'marketing', 'strategy']
 
   </article>
 </section>
+</Layout>
