@@ -1,0 +1,625 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NFL Stats - CC3PO Fantasy Football</title>
+    <meta name="description" content="Live NFL player statistics, team stats, and fantasy football analytics powered by BALLDONTLIE API" />
+  </head>
+  <body>
+    <Layout>
+      <main class="nfl-stats-page">
+        <header class="stats-header">
+          <h1>🏈 NFL Statistics</h1>
+          <p class="stats-subtitle">Live player stats, team analytics, and fantasy insights</p>
+          <div class="api-status">
+            <span class="status-indicator active"></span>
+            <span>Data powered by BALLDONTLIE API • Updates every 6 hours</span>
+          </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="stats-nav">
+          <button class="nav-tab active" data-tab="players">👥 Players</button>
+          <button class="nav-tab" data-tab="teams">🏆 Teams</button>
+          <button class="nav-tab" data-tab="standings">📊 Standings</button>
+          <button class="nav-tab" data-tab="injuries">🏥 Injuries</button>
+        </nav>
+
+        <!-- Player Stats Section -->
+        <section id="players-tab" class="stats-section active">
+          <div class="stats-filters">
+            <select id="position-filter">
+              <option value="all">All Positions</option>
+              <option value="QB">Quarterbacks</option>
+              <option value="RB">Running Backs</option>
+              <option value="WR">Wide Receivers</option>
+              <option value="TE">Tight Ends</option>
+              <option value="K">Kickers</option>
+              <option value="DEF">Defense</option>
+            </select>
+            <select id="stat-category">
+              <option value="passing">Passing Stats</option>
+              <option value="rushing">Rushing Stats</option>
+              <option value="receiving">Receiving Stats</option>
+              <option value="fantasy">Fantasy Points</option>
+            </select>
+          </div>
+
+          <div class="stats-leaders">
+            <h2>Season Leaders</h2>
+            <table class="stats-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Player</th>
+                  <th>Team</th>
+                  <th>Position</th>
+                  <th>Games</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody id="players-table-body">
+                <tr>
+                  <td colspan="6" class="loading">Loading player statistics...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Team Stats Section -->
+        <section id="teams-tab" class="stats-section">
+          <div class="stats-filters">
+            <select id="team-stat-category">
+              <option value="offense">Offensive Stats</option>
+              <option value="defense">Defensive Stats</option>
+              <option value="special">Special Teams</option>
+            </select>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <h3>Top Offense</h3>
+              <div id="top-offense-team">Loading...</div>
+            </div>
+            <div class="stat-card">
+              <h3>Top Defense</h3>
+              <div id="top-defense-team">Loading...</div>
+            </div>
+            <div class="stat-card">
+              <h3>Most Points</h3>
+              <div id="top-scoring-team">Loading...</div>
+            </div>
+            <div class="stat-card">
+              <h3>Best Record</h3>
+              <div id="best-record-team">Loading...</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Standings Section -->
+        <section id="standings-tab" class="stats-section">
+          <div class="standings-container">
+            <h2>AFC Standings</h2>
+            <table class="standings-table">
+              <thead>
+                <tr>
+                  <th>Team</th>
+                  <th>W</th>
+                  <th>L</th>
+                  <th>T</th>
+                  <th>PCT</th>
+                  <th>PF</th>
+                  <th>PA</th>
+                  <th>DIFF</th>
+                </tr>
+              </thead>
+              <tbody id="afc-standings-body">
+                <tr>
+                  <td colspan="8" class="loading">Loading standings...</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h2>NFC Standings</h2>
+            <table class="standings-table">
+              <thead>
+                <tr>
+                  <th>Team</th>
+                  <th>W</th>
+                  <th>L</th>
+                  <th>T</th>
+                  <th>PCT</th>
+                  <th>PF</th>
+                  <th>PA</th>
+                  <th>DIFF</th>
+                </tr>
+              </thead>
+              <tbody id="nfc-standings-body">
+                <tr>
+                  <td colspan="8" class="loading">Loading standings...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Injuries Section -->
+        <section id="injuries-tab" class="stats-section">
+          <div class="injury-filters">
+            <select id="injury-team-filter">
+              <option value="all">All Teams</option>
+            </select>
+            <select id="injury-status-filter">
+              <option value="all">All Statuses</option>
+              <option value="Out">Out</option>
+              <option value="Doubtful">Doubtful</option>
+              <option value="Questionable">Questionable</option>
+              <option value="Probable">Probable</option>
+            </select>
+          </div>
+
+          <div class="injury-report">
+            <table class="injury-table">
+              <thead>
+                <tr>
+                  <th>Player</th>
+                  <th>Team</th>
+                  <th>Position</th>
+                  <th>Injury</th>
+                  <th>Status</th>
+                  <th>Updated</th>
+                </tr>
+              </thead>
+              <tbody id="injuries-table-body">
+                <tr>
+                  <td colspan="6" class="loading">Loading injury report...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Fantasy Insights -->
+        <section class="fantasy-insights">
+          <h2>🎯 Fantasy Insights</h2>
+          <div class="insights-grid">
+            <div class="insight-card">
+              <h3>🔥 Hot Picks</h3>
+              <ul id="hot-picks-list">
+                <li>Loading recommendations...</li>
+              </ul>
+            </div>
+            <div class="insight-card">
+              <h3>❄️ Cold Zones</h3>
+              <ul id="cold-zones-list">
+                <li>Loading analysis...</li>
+              </ul>
+            </div>
+            <div class="insight-card">
+              <h3>💤 Sleepers</h3>
+              <ul id="sleepers-list">
+                <li>Loading sleeper picks...</li>
+              </ul>
+            </div>
+            <div class="insight-card">
+              <h3>⚠️ Start/Sit</h3>
+              <ul id="start-sit-list">
+                <li>Loading recommendations...</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <script>
+        // Tab navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+          tab.addEventListener('click', () => {
+            // Remove active class from all tabs and sections
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.stats-section').forEach(s => s.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding section
+            tab.classList.add('active');
+            const tabId = tab.dataset.tab + '-tab';
+            document.getElementById(tabId).classList.add('active');
+            
+            // Load data for the selected tab
+            loadTabData(tab.dataset.tab);
+          });
+        });
+
+        // Load data based on tab
+        async function loadTabData(tabName) {
+          try {
+            const response = await fetch(`/api/nfl/${tabName}`);
+            const data = await response.json();
+            
+            if (tabName === 'players') {
+              renderPlayers(data);
+            } else if (tabName === 'teams') {
+              renderTeams(data);
+            } else if (tabName === 'standings') {
+              renderStandings(data);
+            } else if (tabName === 'injuries') {
+              renderInjuries(data);
+            }
+          } catch (error) {
+            console.error('Error loading data:', error);
+          }
+        }
+
+        // Render player statistics
+        function renderPlayers(players) {
+          const tbody = document.getElementById('players-table-body');
+          if (!players || players.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6">No player data available</td></tr>';
+            return;
+          }
+
+          tbody.innerHTML = players.slice(0, 50).map((player, index) => `
+            <tr>
+              <td>${index + 1}</td>
+              <td>${player.first_name} ${player.last_name}</td>
+              <td>${player.team?.abbreviation || 'FA'}</td>
+              <td>${player.position}</td>
+              <td>${player.games_played || 0}</td>
+              <td>${formatPlayerStat(player)}</td>
+            </tr>
+          `).join('');
+        }
+
+        // Format player stat based on category
+        function formatPlayerStat(player) {
+          const category = document.getElementById('stat-category').value;
+          const stats = player.stats?.[0] || {};
+          
+          switch(category) {
+            case 'passing':
+              return `${stats.passing_yards || 0} yds, ${stats.passing_tds || 0} TD`;
+            case 'rushing':
+              return `${stats.rushing_yards || 0} yds, ${stats.rushing_tds || 0} TD`;
+            case 'receiving':
+              return `${stats.receptions || 0} rec, ${stats.receiving_yards || 0} yds`;
+            case 'fantasy':
+              return `${stats.fantasy_points || 0} pts`;
+            default:
+              return 'N/A';
+          }
+        }
+
+        // Render team statistics
+        function renderTeams(teams) {
+          document.getElementById('top-offense-team').textContent = teams?.offense?.[0]?.name || 'N/A';
+          document.getElementById('top-defense-team').textContent = teams?.defense?.[0]?.name || 'N/A';
+          document.getElementById('top-scoring-team').textContent = teams?.scoring?.[0]?.name || 'N/A';
+          document.getElementById('best-record-team').textContent = teams?.record?.[0]?.name || 'N/A';
+        }
+
+        // Render standings
+        function renderStandings(standings) {
+          const afcBody = document.getElementById('afc-standings-body');
+          const nfcBody = document.getElementById('nfc-standings-body');
+          
+          if (!standings) {
+            afcBody.innerHTML = '<tr><td colspan="8">No standings data available</td></tr>';
+            nfcBody.innerHTML = '<tr><td colspan="8">No standings data available</td></tr>';
+            return;
+          }
+
+          const afc = standings.filter(s => s.conference === 'AFC');
+          const nfc = standings.filter(s => s.conference === 'NFC');
+
+          afcBody.innerHTML = afc.map(team => `
+            <tr>
+              <td>${team.name}</td>
+              <td>${team.wins}</td>
+              <td>${team.losses}</td>
+              <td>${team.ties}</td>
+              <td>${team.win_percentage}</td>
+              <td>${team.points_for}</td>
+              <td>${team.points_against}</td>
+              <td>${team.point_differential}</td>
+            </tr>
+          `).join('');
+
+          nfcBody.innerHTML = nfc.map(team => `
+            <tr>
+              <td>${team.name}</td>
+              <td>${team.wins}</td>
+              <td>${team.losses}</td>
+              <td>${team.ties}</td>
+              <td>${team.win_percentage}</td>
+              <td>${team.points_for}</td>
+              <td>${team.points_against}</td>
+              <td>${team.point_differential}</td>
+            </tr>
+          `).join('');
+        }
+
+        // Render injuries
+        function renderInjuries(injuries) {
+          const tbody = document.getElementById('injuries-table-body');
+          if (!injuries || injuries.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6">No injury reports available</td></tr>';
+            return;
+          }
+
+          tbody.innerHTML = injuries.slice(0, 30).map(injury => `
+            <tr>
+              <td>${injury.player.first_name} ${injury.player.last_name}</td>
+              <td>${injury.team.abbreviation}</td>
+              <td>${injury.player.position}</td>
+              <td>${injury.injury_type}</td>
+              <td>${injury.status}</td>
+              <td>${new Date(injury.updated_at).toLocaleDateString()}</td>
+            </tr>
+          `).join('');
+        }
+
+        // Filter event listeners
+        document.getElementById('position-filter')?.addEventListener('change', () => {
+          loadTabData('players');
+        });
+
+        document.getElementById('stat-category')?.addEventListener('change', () => {
+          loadTabData('players');
+        });
+
+        // Initial load
+        loadTabData('players');
+      </script>
+
+      <style>
+        .nfl-stats-page {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 2rem;
+        }
+
+        .stats-header {
+          text-align: center;
+          margin-bottom: 2rem;
+        }
+
+        .stats-header h1 {
+          font-size: 2.5rem;
+          color: #1a1a1a;
+          margin-bottom: 0.5rem;
+        }
+
+        .stats-subtitle {
+          font-size: 1.2rem;
+          color: #666;
+          margin-bottom: 1rem;
+        }
+
+        .api-status {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          font-size: 0.9rem;
+          color: #888;
+        }
+
+        .status-indicator {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: #ccc;
+        }
+
+        .status-indicator.active {
+          background-color: #4CAF50;
+          animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+
+        .stats-nav {
+          display: flex;
+          gap: 1rem;
+          margin-bottom: 2rem;
+          border-bottom: 2px solid #e0e0e0;
+          padding-bottom: 1rem;
+        }
+
+        .nav-tab {
+          padding: 0.75rem 1.5rem;
+          border: none;
+          background: #f5f5f5;
+          border-radius: 8px;
+          cursor: pointer;
+          font-size: 1rem;
+          transition: all 0.3s;
+        }
+
+        .nav-tab:hover {
+          background: #e0e0e0;
+        }
+
+        .nav-tab.active {
+          background: #1a73e8;
+          color: white;
+        }
+
+        .stats-section {
+          display: none;
+        }
+
+        .stats-section.active {
+          display: block;
+        }
+
+        .stats-filters {
+          display: flex;
+          gap: 1rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .stats-filters select {
+          padding: 0.5rem 1rem;
+          border: 1px solid #ddd;
+          border-radius: 6px;
+          font-size: 1rem;
+          background: white;
+          cursor: pointer;
+        }
+
+        .stats-table {
+          width: 100%;
+          border-collapse: collapse;
+          background: white;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .stats-table th,
+        .stats-table td {
+          padding: 1rem;
+          text-align: left;
+          border-bottom: 1px solid #f0f0f0;
+        }
+
+        .stats-table th {
+          background: #f8f9fa;
+          font-weight: 600;
+          color: #333;
+        }
+
+        .stats-table tr:hover {
+          background: #f8f9fa;
+        }
+
+        .loading {
+          text-align: center;
+          color: #888;
+          padding: 2rem !important;
+        }
+
+        .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 1.5rem;
+          margin-bottom: 2rem;
+        }
+
+        .stat-card {
+          background: white;
+          padding: 1.5rem;
+          border-radius: 12px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .stat-card h3 {
+          margin-bottom: 1rem;
+          color: #1a1a1a;
+        }
+
+        .standings-container {
+          display: grid;
+          gap: 2rem;
+        }
+
+        .standings-table {
+          width: 100%;
+          border-collapse: collapse;
+          background: white;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .standings-table th,
+        .standings-table td {
+          padding: 0.75rem;
+          text-align: center;
+          border-bottom: 1px solid #f0f0f0;
+        }
+
+        .standings-table th:first-child,
+        .standings-table td:first-child {
+          text-align: left;
+        }
+
+        .injury-filters {
+          display: flex;
+          gap: 1rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .injury-table {
+          width: 100%;
+          border-collapse: collapse;
+          background: white;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .injury-table th,
+        .injury-table td {
+          padding: 1rem;
+          text-align: left;
+          border-bottom: 1px solid #f0f0f0;
+        }
+
+        .fantasy-insights {
+          margin-top: 3rem;
+          padding: 2rem;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          border-radius: 16px;
+          color: white;
+        }
+
+        .fantasy-insights h2 {
+          margin-bottom: 1.5rem;
+          text-align: center;
+        }
+
+        .insights-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 1.5rem;
+        }
+
+        .insight-card {
+          background: rgba(255,255,255,0.1);
+          backdrop-filter: blur(10px);
+          padding: 1.5rem;
+          border-radius: 12px;
+          border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .insight-card h3 {
+          margin-bottom: 1rem;
+          font-size: 1.2rem;
+        }
+
+        .insight-card ul {
+          list-style: none;
+          padding: 0;
+        }
+
+        .insight-card li {
+          padding: 0.5rem 0;
+          border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .insight-card li:last-child {
+          border-bottom: none;
+        }
+      </style>
+    </Layout>
+  </body>
+</html>
