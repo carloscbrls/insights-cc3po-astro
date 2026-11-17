@@ -1,0 +1,14 @@
+---
+// agents: [["Atlas 🌍", "orchestrates"], ["Taylor", "writes"]]
+interface Props { tag: string; agents?: [string, string][]; br?: boolean }
+const { tag, agents = [], br = true } = Astro.props;
+---
+<div class="lux-village">
+  <span class="lux-village-tag">{tag}</span>{br && <br />}
+  <slot />
+  {agents.length > 0 && (
+    <div class="lux-village-agents">
+      {agents.map(([name, verb], i) => (<Fragment>{i > 0 && ' · '}<span>{name}</span> {verb}</Fragment>))}
+    </div>
+  )}
+</div>

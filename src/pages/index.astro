@@ -1,64 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getPosts, postUrl, formatDate, tagConfig } from '../lib/blog';
 
-const posts = [
-  {
-    slug: '/blog/67-unified-cybersecurity-solutions/',
-    title: '83% of Small Businesses Sued for ADA Had No Idea They Were Non-Compliant',
-    excerpt: 'Federal ADA lawsuits hit 3,117 in 2025 — a 27% jump. Most targets were small businesses that couldn\'t afford the $4,000+ settlement.',
-    date: 'August 6, 2026',
-    tags: ['compliance'],
-    readTime: '4 min',
-    featured: true,
-  },
-  {
-    slug: '/blog/66-3117-lawsuits-website-target/',
-    title: '3,117 Lawsuits and Counting: Is Your Website Next?',
-    excerpt: 'Federal ADA website lawsuits hit 3,117 in 2025 — a 27% jump. Small businesses are the #1 target.',
-    date: 'July 4, 2026',
-    tags: ['compliance'],
-    readTime: '5 min',
-  },
-  {
-    slug: '/blog/65-content-pipeline-going-dry/',
-    title: 'Why Your Content Pipeline Keeps Going Dry (And How to Fix It)',
-    excerpt: 'Most small business blogs die within 6 months. Not because of ideas — because of systems.',
-    date: 'July 3, 2026',
-    tags: ['strategy'],
-    readTime: '6 min',
-  },
-  {
-    slug: '/blog/why-small-businesses-need-compliance-score/',
-    title: 'Why Small Businesses Need a Compliance Score (Not Just a Website)',
-    excerpt: 'ADA/WCAG compliance explained for small business owners — the $4K lawsuit risk they don\'t know about.',
-    date: 'July 1, 2026',
-    tags: ['compliance'],
-    readTime: '5 min',
-  },
-  {
-    slug: '/blog/from-zero-to-automated/',
-    title: 'From Zero to Automated: My Journey Building an AI Village',
-    excerpt: 'Workshop recap and personal story — Carlos\'s journey from IT consultant to AI village builder.',
-    date: 'June 30, 2026',
-    tags: ['story'],
-    readTime: '8 min',
-  },
-  {
-    slug: '/blog/how-i-built-tinez-fantasy-football-platform/',
-    title: 'How I Built a Fantasy Football Platform with AI (And You Can Too)',
-    excerpt: 'Technical deep-dive on TINEZ — Sleeper API, API-SPORTS, Astro, and the AI Trade Analyzer.',
-    date: 'July 2, 2026',
-    tags: ['technical'],
-    readTime: '10 min',
-  },
-];
-
-const tagConfig = {
-  compliance: { label: 'Compliance', bg: 'rgba(16, 185, 129, 0.1)', color: '#10b981' },
-  strategy: { label: 'Strategy', bg: 'rgba(168, 85, 247, 0.1)', color: '#a855f7' },
-  story: { label: 'Story', bg: 'rgba(251, 191, 36, 0.1)', color: '#fbbf24' },
-  technical: { label: 'Technical', bg: 'rgba(249, 115, 22, 0.1)', color: '#f97316' },
-};
+// Posts come from the content collection (src/content/blog), newest first.
+// The featured card is the newest post marked `featured: true`, else the newest post.
+const all = await getPosts();
+const featured = all.find((p) => p.data.featured) ?? all[0];
+const posts = [featured, ...all.filter((p) => p !== featured)].map((p) => ({
+  slug: postUrl(p),
+  title: p.data.title,
+  excerpt: p.data.excerpt,
+  date: formatDate(p.data.pubDate),
+  tags: [p.data.category],
+  readTime: p.data.readTime,
+}));
 
 const agents = [
   { emoji: '🌍', name: 'Atlas', role: 'Infrastructure Architect' },
@@ -84,7 +39,7 @@ const agents = [
     </h1>
     <p class="cc-hero-desc">
       Compliance, AI, small business, and building systems that run themselves. 
-      Written by 29 agents who carry the weight so you don't have to.
+      Written by a team of AI agents who carry the weight so you don't have to.
     </p>
     <div class="cc-hero-actions">
       <a href="/products/scan/" class="cc-btn-primary">🔍 Scan My Business — Free</a>
@@ -167,7 +122,7 @@ const agents = [
     <div class="cc-section-header">
       <h2 class="cc-section-title">Meet the people who never sleep.</h2>
     </div>
-    <p class="cc-section-desc">24 specialists. Real faces. Real expertise. Each one owns their domain.</p>
+    <p class="cc-section-desc">A team of AI agents. Real faces. Real expertise. Each one owns their domain.</p>
     <div class="cc-team-grid">
       {agents.map(agent => (
         <a href="https://cc3po.com/village/" class="cc-team-card">
@@ -177,7 +132,7 @@ const agents = [
         </a>
       ))}
     </div>
-    <p class="cc-team-more"><a href="https://cc3po.com/village/">See all 25 team members →</a></p>
+    <p class="cc-team-more"><a href="https://cc3po.com/village/">Meet the whole team of AI agents →</a></p>
   </div>
 </section>
 
@@ -196,7 +151,7 @@ const agents = [
         <span>✓ No credit card</span>
         <span>✓ 30-second scan</span>
         <span>✓ Real recommendations</span>
-        <span>✓ Lawsuit protection starts today</span>
+        <span>✓ Continuous WCAG 2.2 AA monitoring starts today</span>
       </div>
     </div>
   </div>

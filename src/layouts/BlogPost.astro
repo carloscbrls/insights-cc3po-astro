@@ -1,0 +1,40 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import Layout from './Layout.astro';
+import { formatDate, type Post } from '../lib/blog';
+
+interface Props { post: Post }
+const { post } = Astro.props;
+const { title, description, pubDate, authors, role, eyebrow, heroImage, heroAlt } = post.data;
+
+// Only render the hero if the file actually exists in /public (keeps a missing image from shipping a broken <img>).
+const heroExists = heroImage ? fs.existsSync(path.join(process.cwd(), 'public', heroImage)) : false;
+---
+<Layout title={title} description={description} image={heroExists ? heroImage : undefined} type="article">
+
+<section class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+  <article class="lux-post max-w-none">
+
+    <header class="lux-hero">
+      <p class="lux-eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      <p class="lux-meta">By {authors.map((a, i) => (<Fragment>{i > 0 && ' & '}<strong>{a}</strong></Fragment>))}{role ? ` — ${role}` : ''} · {formatDate(pubDate)}</p>
+    </header>
+
+    {heroExists && (
+      <img
+        src={heroImage}
+        alt={heroAlt ?? ''}
+        width="1280"
+        height="720"
+        loading="eager"
+        style="width:100%;height:auto;border-radius:18px;border:1px solid rgba(201,162,76,0.18);margin:0 0 2.5rem;"
+      />
+    )}
+
+    <slot />
+
+  </article>
+</section>
+</Layout>

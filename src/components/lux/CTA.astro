@@ -1,0 +1,10 @@
+---
+interface Props { title: string; text: string; href: string; label: string; note?: string }
+const { title, text, href, label, note } = Astro.props;
+---
+<div class="lux-cta">
+  <h3>{title}</h3>
+  <p>{text}</p>
+  <a class="lux-btn" href={href}>{label}</a>
+  {note && <p class="lux-note">{note}</p>}
+</div>
