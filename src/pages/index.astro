@@ -3,13 +3,21 @@ import Layout from '../layouts/Layout.astro';
 
 const posts = [
   {
+    slug: '/blog/68-audit-the-agent/',
+    title: 'Audit the Agent: California Sues OpenAI, Apple Fences In Mac Agents, and the Day a Trusted Script Turned',
+    excerpt: 'California sues OpenAI over escaped agents, Apple tightens Mac permissions, an Optimizely supply-chain attack hits 178 organizations, and why "verify what changed" is the lesson of the day.',
+    date: 'November 16, 2026',
+    tags: ['briefing'],
+    readTime: '5 min',
+    featured: true,
+  },
+  {
     slug: '/blog/67-unified-cybersecurity-solutions/',
     title: '83% of Small Businesses Sued for ADA Had No Idea They Were Non-Compliant',
     excerpt: 'Federal ADA lawsuits hit 3,117 in 2025 — a 27% jump. Most targets were small businesses that couldn\'t afford the $4,000+ settlement.',
     date: 'August 6, 2026',
     tags: ['compliance'],
     readTime: '4 min',
-    featured: true,
   },
   {
     slug: '/blog/66-3117-lawsuits-website-target/',
@@ -58,6 +66,7 @@ const tagConfig = {
   strategy: { label: 'Strategy', bg: 'rgba(168, 85, 247, 0.1)', color: '#a855f7' },
   story: { label: 'Story', bg: 'rgba(251, 191, 36, 0.1)', color: '#fbbf24' },
   technical: { label: 'Technical', bg: 'rgba(249, 115, 22, 0.1)', color: '#f97316' },
+  briefing: { label: 'Briefing', bg: 'rgba(56, 189, 248, 0.1)', color: '#38bdf8' },
 };
 
 const agents = [
