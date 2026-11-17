@@ -1,0 +1,8 @@
+---
+interface Props { title: string }
+const { title } = Astro.props;
+---
+<div class="lux-callout">
+  <h3>{title}</h3>
+  <p><slot /></p>
+</div>

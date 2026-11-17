@@ -1,0 +1,5 @@
+---
+interface Props { name: string; role: string }
+const { name, role } = Astro.props;
+---
+<p class="lux-meta" style="margin-top:2.5rem;">— <strong>{name}</strong>, {role}</p>
