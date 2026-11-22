@@ -4,7 +4,7 @@ import { z } from 'astro/zod';
 
 // Categories shown as the colored pill on the homepage cards.
 // Keep in sync with `tagConfig` in src/lib/blog.ts.
-export const CATEGORIES = ['compliance', 'strategy', 'story', 'technical', 'briefing'] as const;
+export const CATEGORIES = ['compliance', 'strategy', 'story', 'technical', 'briefing', 'building-in-public'] as const;
 
 const blog = defineCollection({
   // One file per post: src/content/blog/<slug>.mdx -> /blog/<slug>/
@@ -31,3 +31,4 @@ const blog = defineCollection({
 });
 
 export const collections = { blog };
+
