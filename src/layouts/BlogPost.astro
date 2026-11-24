@@ -2,16 +2,45 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import Layout from './Layout.astro';
-import { formatDate, type Post } from '../lib/blog';
+import SubscribeCapture from '../components/SubscribeCapture.astro';
+import { formatDate, postUrl, type Post } from '../lib/blog';
 
 interface Props { post: Post }
 const { post } = Astro.props;
-const { title, description, pubDate, authors, role, eyebrow, heroImage, heroAlt } = post.data;
+const { title, description, pubDate, updatedDate, authors, role, eyebrow, heroImage, heroAlt, category } = post.data;
 
 // Only render the hero if the file actually exists in /public (keeps a missing image from shipping a broken <img>).
 const heroExists = heroImage ? fs.existsSync(path.join(process.cwd(), 'public', heroImage)) : false;
+
+// Cap the meta description at ~160 chars so it doesn't truncate in SERPs
+// (the full description still shows in the article header excerpt).
+const metaDescription = description.length > 160
+  ? description.slice(0, 157).trimEnd() + '…'
+  : description;
+
+const canonicalURL = new URL(postUrl(post), Astro.site).href;
+const ogImage = new URL(heroExists && heroImage ? heroImage : '/images/agency-hero.jpg', Astro.site).href;
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description: metaDescription,
+  image: ogImage,
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  author: authors.map((a: string) => ({ '@type': 'Person', name: a.replace(/\s*[^\w\s&'-].*$/u, '').trim() || a })),
+  publisher: {
+    '@type': 'Organization',
+    name: 'CC3PO',
+    url: 'https://cc3po.com',
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalURL },
+  articleSection: category,
+  isPartOf: { '@type': 'Blog', name: 'CC3PO Insights', url: 'https://insights.cc3po.com/' },
+};
 ---
-<Layout title={title} description={description} image={heroExists ? heroImage : undefined} type="article">
+<Layout title={title} description={metaDescription} image={heroExists ? heroImage : undefined} type="article" jsonLd={articleJsonLd}>
 
 <section class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
   <article class="lux-post max-w-none">
@@ -35,6 +64,28 @@ const heroExists = heroImage ? fs.existsSync(path.join(process.cwd(), 'public', 
 
     <slot />
 
+    <div data-subscribe-inline>
+      <SubscribeCapture source="insights-article-inline" heading="Finding this useful?" />
+    </div>
+
   </article>
+
+  <SubscribeCapture source="insights-article-end" />
+
 </section>
 </Layout>
+
+<script>
+  // Move the inline subscribe capture to just after the article's 2nd H2.
+  // With fewer than two H2s it is removed — the post-end capture still shows.
+  const article = document.querySelector('.lux-post');
+  const inlineBox = document.querySelector('[data-subscribe-inline]');
+  if (article && inlineBox) {
+    const directH2s = [...article.querySelectorAll('h2')].filter((h) => !inlineBox.contains(h));
+    if (directH2s.length >= 2) {
+      directH2s[1].after(inlineBox);
+    } else {
+      inlineBox.remove();
+    }
+  }
+</script>
