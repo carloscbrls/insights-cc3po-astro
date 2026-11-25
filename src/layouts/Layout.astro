@@ -41,8 +41,8 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
         position: absolute;
         top: -100%;
         left: 0;
-        background: #10b981;
-        color: #000;
+        background: var(--semantic-success);
+        color: var(--brand-ink);
         padding: 8px 16px;
         z-index: 10000;
         font-weight: 600;
@@ -60,15 +60,15 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
         left: 0;
         right: 0;
         z-index: 1000;
-        background: rgba(10, 10, 18, 0.85);
+        background: color-mix(in srgb, var(--brand-night) 85%, transparent);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        border-bottom: 1px solid color-mix(in srgb, var(--brand-paper) 6%, transparent);
         transition: background 0.3s;
       }
       .nav-scrolled {
-        background: rgba(10, 10, 18, 0.95);
-        border-bottom-color: rgba(255, 255, 255, 0.1);
+        background: color-mix(in srgb, var(--brand-night) 95%, transparent);
+        border-bottom-color: color-mix(in srgb, var(--brand-paper) 10%, transparent);
       }
       .nav-inner {
         display: flex;
@@ -85,7 +85,7 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
         align-items: center;
         gap: 8px;
         text-decoration: none;
-        color: #fff;
+        color: var(--brand-paper);
         font-weight: 700;
         font-size: 17px;
         flex-shrink: 0;
@@ -111,7 +111,7 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
         align-items: center;
       }
       .nav-links a {
-        color: rgba(255, 255, 255, 0.7);
+        color: color-mix(in srgb, var(--brand-paper) 70%, transparent);
         text-decoration: none;
         font-size: 14px;
         font-weight: 500;
@@ -121,11 +121,11 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
         white-space: nowrap;
       }
       .nav-links a:hover {
-        color: #fff;
-        background: rgba(255, 255, 255, 0.06);
+        color: var(--brand-paper);
+        background: color-mix(in srgb, var(--brand-paper) 6%, transparent);
       }
       .nav-phone {
-        color: rgba(255, 255, 255, 0.7);
+        color: color-mix(in srgb, var(--brand-paper) 70%, transparent);
         text-decoration: none;
         font-size: 14px;
         font-weight: 500;
@@ -134,15 +134,15 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
         transition: color 0.2s;
       }
       .nav-phone:hover {
-        color: #10b981;
+        color: var(--semantic-success);
       }
       .nav-cta {
         display: inline-flex;
         align-items: center;
         gap: 6px;
         padding: 8px 18px;
-        background: #10b981;
-        color: #000 !important;
+        background: var(--semantic-success);
+        color: var(--brand-ink) !important;
         border-radius: 8px;
         font-size: 13px;
         font-weight: 600;
@@ -152,21 +152,21 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
         transition: all 0.2s;
       }
       .nav-cta:hover {
-        background: #34d399;
+        background: color-mix(in srgb, var(--semantic-success) 75%, var(--brand-paper));
         transform: translateY(-1px);
       }
       .mobile-toggle {
         display: none;
         background: none;
         border: none;
-        color: #fff;
+        color: var(--brand-paper);
         cursor: pointer;
         padding: 8px;
         border-radius: 6px;
         flex-shrink: 0;
       }
       .mobile-toggle:hover {
-        background: rgba(255, 255, 255, 0.06);
+        background: color-mix(in srgb, var(--brand-paper) 6%, transparent);
       }
 
       /* Mobile Drawer */
@@ -177,7 +177,7 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.6);
+        background: color-mix(in srgb, var(--brand-ink) 60%, transparent);
         z-index: 2000;
         opacity: 0;
         transition: opacity 0.3s;
@@ -191,8 +191,8 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
         right: -280px;
         width: 280px;
         height: 100%;
-        background: #0f0f1a;
-        border-left: 1px solid rgba(255, 255, 255, 0.06);
+        background: var(--brand-surface-dark);
+        border-left: 1px solid color-mix(in srgb, var(--brand-paper) 6%, transparent);
         z-index: 2001;
         transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         padding: 24px;
@@ -209,7 +209,7 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
       .mobile-drawer-nav a {
         display: block;
         padding: 12px 16px;
-        color: rgba(255, 255, 255, 0.7);
+        color: color-mix(in srgb, var(--brand-paper) 70%, transparent);
         text-decoration: none;
         font-size: 15px;
         font-weight: 500;
@@ -217,13 +217,13 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
         transition: all 0.2s;
       }
       .mobile-drawer-nav a:hover {
-        color: #fff;
-        background: rgba(255, 255, 255, 0.06);
+        color: var(--brand-paper);
+        background: color-mix(in srgb, var(--brand-paper) 6%, transparent);
       }
       .mobile-drawer-cta {
         margin-top: 8px;
-        background: #10b981 !important;
-        color: #000 !important;
+        background: var(--semantic-success) !important;
+        color: var(--brand-ink) !important;
         text-align: center;
         font-weight: 700 !important;
       }
@@ -239,8 +239,8 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
 
       /* Footer */
       .footer {
-        background: #0a0a12;
-        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        background: var(--brand-night);
+        border-top: 1px solid color-mix(in srgb, var(--brand-paper) 6%, transparent);
         padding: 48px 0 24px;
       }
       .footer .container {
@@ -255,7 +255,7 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
         margin-bottom: 32px;
       }
       .footer-brand p {
-        color: rgba(255, 255, 255, 0.5);
+        color: color-mix(in srgb, var(--brand-paper) 50%, transparent);
         font-size: 14px;
         line-height: 1.6;
         margin: 0;
@@ -263,7 +263,7 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
       .footer-col-title {
         font-size: 12px;
         font-weight: 700;
-        color: rgba(255, 255, 255, 0.4);
+        color: var(--semantic-muted);
         text-transform: uppercase;
         letter-spacing: 1.5px;
         margin-bottom: 12px;
@@ -274,13 +274,13 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
         gap: 8px;
       }
       .footer-col-links a {
-        color: rgba(255, 255, 255, 0.6);
+        color: color-mix(in srgb, var(--brand-paper) 60%, transparent);
         text-decoration: none;
         font-size: 14px;
         transition: color 0.2s;
       }
       .footer-col-links a:hover {
-        color: #10b981;
+        color: var(--semantic-success);
       }
       .footer-social {
         display: flex;
@@ -294,26 +294,26 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
         width: 36px;
         height: 36px;
         border-radius: 8px;
-        background: rgba(255, 255, 255, 0.04);
-        color: rgba(255, 255, 255, 0.5);
+        background: color-mix(in srgb, var(--brand-paper) 4%, transparent);
+        color: color-mix(in srgb, var(--brand-paper) 50%, transparent);
         transition: all 0.2s;
       }
       .social-link:hover {
-        background: rgba(16, 185, 129, 0.1);
-        color: #10b981;
+        background: color-mix(in srgb, var(--semantic-success) 10%, transparent);
+        color: var(--semantic-success);
       }
       .footer-bottom {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding-top: 24px;
-        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        border-top: 1px solid color-mix(in srgb, var(--brand-paper) 6%, transparent);
         flex-wrap: wrap;
         gap: 8px;
       }
       .footer-copy {
         font-size: 13px;
-        color: rgba(255, 255, 255, 0.4);
+        color: var(--semantic-muted);
       }
       .footer-legal {
         display: flex;
@@ -321,12 +321,12 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
       }
       .footer-legal a {
         font-size: 13px;
-        color: rgba(255, 255, 255, 0.4);
+        color: var(--semantic-muted);
         text-decoration: none;
         transition: color 0.2s;
       }
       .footer-legal a:hover {
-        color: #10b981;
+        color: var(--semantic-success);
       }
 
       @media (max-width: 768px) {
@@ -341,7 +341,7 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
       }
     </style>
   </head>
-  <body class="bg-[#08080d] text-gray-200 font-sans antialiased min-h-screen flex flex-col" style="font-family: 'Inter', system-ui, -apple-system, sans-serif; padding-top: 64px;">
+  <body class="bg-[var(--brand-night)] text-gray-200 font-sans antialiased min-h-screen flex flex-col" style="font-family: 'Inter', system-ui, -apple-system, sans-serif; padding-top: 64px;">
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Mobile Drawer Overlay -->
@@ -364,7 +364,7 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
     <nav class="nav" id="nav">
       <div class="nav-inner">
         <a href="/" class="nav-logo">
-          <span style="font-size: 20px; font-weight: 800; color: #fff;">CC<span style="color: #10b981;">3</span>PO</span>
+          <span style="font-size: 20px; font-weight: 800; color: var(--brand-paper);">CC<span style="color: var(--semantic-success);">3</span>PO</span>
         </a>
         <ul class="nav-links">
           <li><a href="/">Blog</a></li>
@@ -462,9 +462,9 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
           <div class="footer-brand">
             <div style="font-size: 17px; font-weight: 800; margin-bottom: 8px;">CC3PO</div>
             <p>Your whole business team. One price. 24/7.</p>
-            <p style="margin-top: 12px; font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.85);">Build once. Run forever. Evolve continuously.</p>
-            <div style="margin-top: 16px; font-size: 0.75rem; color: rgba(255,255,255,0.78); line-height: 1.5;">
-              <strong style="color: rgba(255,255,255,0.85);">Certifications:</strong> CA Certified Small Business — SB #2052063 · Latino-Owned Business · Se habla español · SB/DVBE Option · <a href="/certifications" style="color: #10b981; text-decoration: underline; text-underline-offset: 3px;">View All →</a>
+            <p style="margin-top: 12px; font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: color-mix(in srgb, var(--brand-paper) 85%, transparent);">Build once. Run forever. Evolve continuously.</p>
+            <div style="margin-top: 16px; font-size: 0.75rem; color: color-mix(in srgb, var(--brand-paper) 78%, transparent); line-height: 1.5;">
+              <strong style="color: color-mix(in srgb, var(--brand-paper) 85%, transparent);">Certifications:</strong> CA Certified Small Business — SB #2052063 · Latino-Owned Business · Se habla español · SB/DVBE Option · <a href="/certifications" style="color: var(--semantic-success); text-decoration: underline; text-underline-offset: 3px;">View All →</a>
             </div>
           </div>
           <div class="footer-col">
@@ -523,11 +523,13 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
           </a>
         </div>
         <div class="footer-bottom">
-          <div class="footer-copy">© 2026 CC3PO LLC. All rights reserved. · 16299 Adobe Way, Lathrop, CA 95330<br />CC3PO Insights is a publication of <a href="https://cc3po.com" style="color:#10b981;">CC3PO</a> — <a href="https://offers.cc3po.com" style="color:#10b981;">see what CC3PO can build for your business →</a></div>
+          <div class="footer-copy">© 2026 CC3PO LLC. All rights reserved. · 16299 Adobe Way, Lathrop, CA 95330<br />CC3PO Insights is a publication of <a href="https://cc3po.com" style="color:var(--semantic-success);">CC3PO</a> — <a href="https://offers.cc3po.com" style="color:var(--semantic-success);">see what CC3PO can build for your business →</a></div>
           <div class="footer-legal">
             <a href="/privacy/">Privacy</a>
             <a href="/terms/">Terms</a>
             <a href="/cookie-policy/">Cookies</a>
+            <a href="/rss.xml">RSS</a>
+            <a href="/archive/">Archive</a>
           </div>
         </div>
       </div>

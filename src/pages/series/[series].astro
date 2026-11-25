@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPosts, SERIES_DEFS, seriesPosts } from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const all = await getPosts();
+  return Object.values(SERIES_DEFS)
+    .map((def) => ({ params: { series: def.slug }, props: { def, posts: seriesPosts(all, def.slug) } }))
+    .filter((r) => r.props.posts.length > 0);
+}
+
+const { def, posts } = Astro.props;
+// Page lists newest first; Audit the Agent posts carry episode numbers.
+const listed = [...posts].reverse();
+const numberOf = (id: string) => posts.findIndex((p) => p.id === id) + 1;
+---
+
+<Layout title={`${def.name} — CC3PO Insights`} description={def.description}>
+<section class="cc-section">
+  <div class="cc-container">
+    <div class="cc-section-label">Series</div>
+    <div class="cc-section-header">
+      <h1 class="cc-section-title">{def.name}</h1>
+      <p class="cc-section-desc">{def.description}{def.cadence ? ` ${def.cadence}` : ''}</p>
+    </div>
+    <div class="cc-posts-grid">
+      {listed.map((post) => (
+        <div>
+          {def.slug === 'audit-the-agent' && <p class="cc-section-label" style="margin-bottom: 8px;">No. {numberOf(post.id)}</p>}
+          <PostCard post={post} />
+        </div>
+      ))}
+    </div>
+    <p class="cc-team-more"><a href="/archive/">Browse the full archive →</a> · <a href="/">Back to the homepage →</a></p>
+  </div>
+</section>
+</Layout>

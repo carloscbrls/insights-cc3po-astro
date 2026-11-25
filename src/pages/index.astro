@@ -1,19 +1,32 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getPosts, postUrl, formatDate, tagConfig } from '../lib/blog';
+import SubscribeDoor from '../components/SubscribeDoor.astro';
+import { getPosts, postUrl, formatDate, tagConfig, topicLine, SERIES_DEFS, seriesPosts, type Post } from '../lib/blog';
 
-// Posts come from the content collection (src/content/blog), newest first.
-// The featured card is the newest post marked `featured: true`, else the newest post.
+// Magazine homepage (Insights Shift Change, 2026-11-25, pattern 1):
+// lead story -> editor's picks -> series shelves -> latest grid ->
+// subscribe door. Hero, trust bar, team, and CTA sections are unchanged.
 const all = await getPosts();
-const featured = all.find((p) => p.data.featured) ?? all[0];
-const posts = [featured, ...all.filter((p) => p !== featured)].map((p) => ({
+const lead = all.find((p) => p.data.leadStory) ?? all[0];
+const picks = all.filter((p) => p.data.editorsPick);
+const shelves = Object.values(SERIES_DEFS)
+  .map((def) => ({ def, posts: seriesPosts(all, def.slug).slice(-3).reverse() }))
+  .filter((s) => s.posts.length > 0);
+const grid = all.filter((p) => p !== lead);
+
+const card = (p: Post) => ({
   slug: postUrl(p),
   title: p.data.title,
   excerpt: p.data.excerpt,
   date: formatDate(p.data.pubDate),
-  tags: [p.data.category],
+  category: p.data.category,
+  audience: p.data.audience,
   readTime: p.data.readTime,
-}));
+  heroImage: p.data.heroImage,
+  heroAlt: p.data.heroAlt,
+  byline: p.data.authors.join(' & '),
+});
+const leadCard = card(lead);
 
 const agents = [
   { emoji: '🌍', name: 'Atlas', role: 'Infrastructure Architect' },
@@ -61,57 +74,122 @@ const agents = [
   </div>
 </section>
 
-<!-- ===== FEATURED POST — mirrors cc3po.com "morning report" section ===== -->
+<!-- ===== LEAD STORY ===== -->
 <section class="cc-section">
   <div class="cc-container">
-    <div class="cc-section-label">From the Village</div>
+    <div class="cc-section-label">Lead Story</div>
     <div class="cc-section-header">
-      <h2 class="cc-section-title">Latest Article</h2>
+      <h2 class="cc-section-title">From the Village</h2>
     </div>
-    <a href={posts[0].slug} class="cc-featured-card">
+    <a href={leadCard.slug} class="cc-featured-card">
       <div class="cc-featured-top">
         <div class="cc-featured-tags">
-          {posts[0].tags.map(tag => (
-            <span class="cc-tag" style={`background: ${tagConfig[tag].bg}; color: ${tagConfig[tag].color};`}>{tagConfig[tag].label}</span>
-          ))}
+          <span class="cc-tag" style={`background: ${tagConfig[leadCard.category].bg}; color: ${tagConfig[leadCard.category].color};`}>{tagConfig[leadCard.category].label}</span>
+          {leadCard.audience && <span class="cc-featured-date">{leadCard.audience}</span>}
         </div>
-        <span class="cc-featured-date">{posts[0].date}</span>
+        <span class="cc-featured-date">{leadCard.date}</span>
       </div>
-      <h3 class="cc-featured-title">{posts[0].title}</h3>
-      <p class="cc-featured-excerpt">{posts[0].excerpt}</p>
+      {leadCard.heroImage && <img src={leadCard.heroImage} alt={leadCard.heroAlt ?? ''} width="1280" height="720" loading="eager" style="width:100%;height:auto;border-radius:12px;margin:0 0 20px;" />}
+      <h3 class="cc-featured-title">{leadCard.title}</h3>
+      <p class="cc-featured-excerpt">{lead.data.description}</p>
       <div class="cc-featured-footer">
-        <span class="cc-featured-readtime">{posts[0].readTime} read</span>
+        <span class="cc-featured-readtime">By {leadCard.byline} · {leadCard.readTime} read</span>
         <span class="cc-featured-cta">Read the full story →</span>
       </div>
     </a>
   </div>
 </section>
 
-<!-- ===== BLOG GRID — mirrors cc3po.com team grid ===== -->
-<section class="cc-section" id="latest">
+<!-- ===== EDITOR'S PICKS ===== -->
+{picks.length > 0 && (
+<section class="cc-section" style="padding-top: 0;">
+  <div class="cc-container">
+    <div class="cc-section-label">Editor&rsquo;s Picks</div>
+    <div class="cc-section-header">
+      <h2 class="cc-section-title">Start with these</h2>
+    </div>
+    <div class="cc-posts-grid">
+      {picks.map((p) => { const c = card(p); return (
+        <a href={c.slug} class="cc-post-card">
+          <div class="cc-post-tags">
+            <span class="cc-tag" style={`background: ${tagConfig[c.category].bg}; color: ${tagConfig[c.category].color};`}>{tagConfig[c.category].label}</span>
+            <span class="cc-post-date">{c.date}</span>
+          </div>
+          <h3 class="cc-post-title">{c.title}</h3>
+          <p class="cc-post-excerpt">{c.excerpt}</p>
+          <div class="cc-post-footer">
+            <span class="cc-post-readmore">Read more →</span>
+            <span class="cc-post-readtime">{c.readTime}</span>
+          </div>
+        </a>
+      ); })}
+    </div>
+  </div>
+</section>
+)}
+
+<!-- ===== SERIES SHELVES ===== -->
+{shelves.map(({ def, posts }) => (
+<section class="cc-section" style="padding-top: 0;">
+  <div class="cc-container">
+    <div class="cc-section-label">Series</div>
+    <div class="cc-section-header">
+      <h2 class="cc-section-title">{def.name}</h2>
+      <p class="cc-section-desc">{def.description}{def.cadence ? ` ${def.cadence}` : ''}</p>
+    </div>
+    <div class="cc-posts-grid">
+      {posts.map((p) => { const c = card(p); return (
+        <a href={c.slug} class="cc-post-card">
+          <div class="cc-post-tags">
+            <span class="cc-tag" style={`background: ${tagConfig[c.category].bg}; color: ${tagConfig[c.category].color};`}>{tagConfig[c.category].label}</span>
+            <span class="cc-post-date">{c.date}</span>
+          </div>
+          <h3 class="cc-post-title">{c.title}</h3>
+          <p class="cc-post-excerpt">{c.excerpt}</p>
+          <div class="cc-post-footer">
+            <span class="cc-post-readmore">Read more →</span>
+            <span class="cc-post-readtime">{c.readTime}</span>
+          </div>
+        </a>
+      ); })}
+    </div>
+    <p class="cc-team-more"><a href={`/series/${def.slug}/`}>Every post in {def.name} →</a></p>
+  </div>
+</section>
+))}
+
+<!-- ===== LATEST GRID ===== -->
+<section class="cc-section" id="latest" style="padding-top: 0;">
   <div class="cc-container">
     <div class="cc-section-label">More from the Village</div>
     <div class="cc-section-header">
       <h2 class="cc-section-title">All Articles</h2>
     </div>
     <div class="cc-posts-grid">
-      {posts.slice(1).map(post => (
-        <a href={post.slug} class="cc-post-card">
+      {grid.map((p) => { const c = card(p); return (
+        <a href={c.slug} class="cc-post-card">
           <div class="cc-post-tags">
-            {post.tags.map(tag => (
-              <span class="cc-tag" style={`background: ${tagConfig[tag].bg}; color: ${tagConfig[tag].color};`}>{tagConfig[tag].label}</span>
-            ))}
-            <span class="cc-post-date">{post.date}</span>
+            <span class="cc-tag" style={`background: ${tagConfig[c.category].bg}; color: ${tagConfig[c.category].color};`}>{tagConfig[c.category].label}</span>
+            {c.audience && <span class="cc-post-date" style="margin-left: 0;">{c.audience}</span>}
+            <span class="cc-post-date">{c.date}</span>
           </div>
-          <h3 class="cc-post-title">{post.title}</h3>
-          <p class="cc-post-excerpt">{post.excerpt}</p>
+          <h3 class="cc-post-title">{c.title}</h3>
+          <p class="cc-post-excerpt">{c.excerpt}</p>
           <div class="cc-post-footer">
             <span class="cc-post-readmore">Read more →</span>
-            <span class="cc-post-readtime">{post.readTime}</span>
+            <span class="cc-post-readtime">{c.readTime}</span>
           </div>
         </a>
-      ))}
+      ); })}
     </div>
+    <p class="cc-team-more"><a href="/archive/">Browse the full archive →</a></p>
+  </div>
+</section>
+
+<!-- ===== SUBSCRIBE DOOR (homepage placement) ===== -->
+<section class="cc-section" style="padding-top: 0;">
+  <div class="cc-container">
+    <SubscribeDoor source="insights-home" />
   </div>
 </section>
 

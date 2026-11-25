@@ -1,0 +1,166 @@
+---
+/**
+ * SubscribeDoor — the ONE native subscribe door for CC3PO Insights
+ * (Insights Shift Change, 2026-11-25). Used in two placements only:
+ * the homepage band and the article-end block. No pop-ups, no exit
+ * intent, no third placement.
+ *
+ * Posts to the spine (insights_subscribers, anon INSERT-only) with an
+ * explicit consent checkbox — the table's RLS policy rejects anything
+ * with consent != true. The hourly sync (insights-mailerlite-sync)
+ * carries consented rows to the MailerLite "Insights Readers" group.
+ *
+ * Copy is honest by design: it says exactly what a subscriber gets.
+ */
+interface Props {
+  source: string; // 'insights-home' | 'insights-article'
+  heading?: string;
+}
+const { source, heading = 'Get new posts by email' } = Astro.props;
+---
+
+<div class="subscribe-door" data-subscribe-door data-source={source}>
+  <h2 class="subscribe-door-heading">{heading}</h2>
+  <p class="subscribe-door-copy">
+    One email when a new post lands. No spam, no selling the list, unsubscribe
+    anytime — the same promise we make on the music side.
+  </p>
+  <form class="subscribe-door-form" novalidate>
+    <div class="subscribe-door-row">
+      <label class="subscribe-door-field">
+        <span class="subscribe-door-label">First name <span class="subscribe-door-optional">(optional)</span></span>
+        <input type="text" name="first_name" autocomplete="given-name" maxlength="100" />
+      </label>
+      <label class="subscribe-door-field">
+        <span class="subscribe-door-label">Email</span>
+        <input type="email" name="email" autocomplete="email" required maxlength="254" placeholder="you@example.com" />
+      </label>
+    </div>
+    <label class="subscribe-door-consent">
+      <input type="checkbox" name="consent" required />
+      <span>Email me new CC3PO Insights posts. I can unsubscribe anytime.</span>
+    </label>
+    <button type="submit" class="subscribe-door-button">Subscribe</button>
+    <p class="subscribe-door-status" role="status" aria-live="polite"></p>
+  </form>
+</div>
+
+<style>
+  .subscribe-door {
+    background: var(--brand-surface-dark, #11111f);
+    border: 1px solid var(--brand-surface-dark, #11111f);
+    border-radius: var(--radius-md, 16px);
+    padding: 2rem 1.5rem;
+    max-width: 720px;
+    margin: 2.5rem auto;
+  }
+  .subscribe-door-heading {
+    color: var(--brand-paper, #ffffff);
+    font-size: var(--type-2xl, 24px);
+    margin: 0 0 0.5rem;
+  }
+  .subscribe-door-copy {
+    color: var(--semantic-muted, rgba(255, 255, 255, 0.78));
+    margin: 0 0 1.25rem;
+    line-height: 1.55;
+  }
+  .subscribe-door-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 560px) {
+    .subscribe-door-row { grid-template-columns: 1fr; }
+  }
+  .subscribe-door-field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .subscribe-door-label { color: var(--brand-paper, #ffffff); font-weight: 600; font-size: 0.95rem; }
+  .subscribe-door-optional { font-weight: 400; color: var(--semantic-muted, rgba(255, 255, 255, 0.78)); }
+  .subscribe-door input[type='text'],
+  .subscribe-door input[type='email'] {
+    font-size: 16px; /* >=16px stops iOS zoom-on-focus (fleet mobile QA) */
+    padding: 0.8rem 1rem;
+    min-height: 48px;
+    border-radius: var(--radius-sm, 8px);
+    border: 1px solid var(--brand-silver, #98a6b3);
+    background: var(--brand-night, #0a0a12);
+    color: var(--brand-paper, #ffffff);
+  }
+  .subscribe-door-consent {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    margin-top: 1rem;
+    color: var(--brand-paper, #ffffff);
+    line-height: 1.45;
+    cursor: pointer;
+  }
+  .subscribe-door-consent input {
+    width: 22px;
+    height: 22px;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+    accent-color: var(--semantic-danger, #cf2e4f);
+  }
+  .subscribe-door-button {
+    margin-top: 1.25rem;
+    min-height: 48px;
+    padding: 0.8rem 2rem;
+    border: 0;
+    border-radius: var(--radius-sm, 8px);
+    background: var(--semantic-danger, #cf2e4f); /* 5.05:1 with white text (fleet gate 6) */
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .subscribe-door-button:hover { background: var(--brand-accent-strong, #b82d45); }
+  .subscribe-door-button:disabled { opacity: 0.6; cursor: wait; }
+  .subscribe-door-status { min-height: 1.4em; margin: 0.9rem 0 0; line-height: 1.45; }
+  .subscribe-door-status.is-error { color: var(--semantic-danger-tint, #ef6a87); }
+  .subscribe-door-status.is-ok { color: var(--semantic-success, #00e676); }
+</style>
+
+<script>
+  import { postBlogSubscriber } from '../lib/spine-insights';
+
+  document.querySelectorAll('[data-subscribe-door]').forEach((door) => {
+    const form = door.querySelector('form');
+    const status = door.querySelector('.subscribe-door-status');
+    const button = door.querySelector('button[type="submit"]');
+    if (!form || !status || !button) return;
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      status.textContent = '';
+      status.className = 'subscribe-door-status';
+      const data = new FormData(form);
+      const email = String(data.get('email') || '').trim();
+      const firstName = String(data.get('first_name') || '').trim();
+      const consent = data.get('consent') === 'on';
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+        status.textContent = 'That email doesn\u2019t look complete — check it and try again.';
+        status.classList.add('is-error');
+        return;
+      }
+      if (!consent) {
+        status.textContent = 'Please tick the consent box so we know you actually want the emails.';
+        status.classList.add('is-error');
+        return;
+      }
+      button.disabled = true;
+      const ok = await postBlogSubscriber({
+        email,
+        firstName: firstName || undefined,
+        source: door.getAttribute('data-source') || 'insights-site',
+      });
+      button.disabled = false;
+      if (ok) {
+        form.reset();
+        status.textContent = 'You\u2019re in. The next post that lands will land in your inbox too.';
+        status.classList.add('is-ok');
+      } else {
+        status.textContent = 'Something went wrong on our side — please try again in a minute.';
+        status.classList.add('is-error');
+      }
+    });
+  });
+</script>

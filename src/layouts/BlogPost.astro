@@ -2,12 +2,18 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import Layout from './Layout.astro';
-import SubscribeCapture from '../components/SubscribeCapture.astro';
-import { formatDate, postUrl, type Post } from '../lib/blog';
+import SubscribeDoor from '../components/SubscribeDoor.astro';
+import ResponseDoor from '../components/ResponseDoor.astro';
+import PostCard from '../components/PostCard.astro';
+import {
+  formatDate, postUrl, getPosts, tagConfig, topicLine, readingTime,
+  seriesNeighbors, seriesNumber, relatedPosts, archiveNeighbors, SERIES_DEFS,
+  type Post,
+} from '../lib/blog';
 
 interface Props { post: Post }
 const { post } = Astro.props;
-const { title, description, pubDate, updatedDate, authors, role, eyebrow, heroImage, heroAlt, category } = post.data;
+const { title, description, pubDate, updatedDate, authors, role, eyebrow, heroImage, heroAlt, category, audience, series, responsePrompt } = post.data;
 
 // Only render the hero if the file actually exists in /public (keeps a missing image from shipping a broken <img>).
 const heroExists = heroImage ? fs.existsSync(path.join(process.cwd(), 'public', heroImage)) : false;
@@ -36,19 +42,46 @@ const articleJsonLd = {
     url: 'https://cc3po.com',
   },
   mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalURL },
-  articleSection: category,
+  articleSection: tagConfig[category]?.label ?? category,
   isPartOf: { '@type': 'Blog', name: 'CC3PO Insights', url: 'https://insights.cc3po.com/' },
 };
+
+// --- Onward path (Insights Shift Change, pattern 5) ---
+const all = await getPosts();
+const { minutes, words } = readingTime(post);
+const showProgress = words > 1200;
+const sNum = seriesNumber(all, post);
+const sNeighbors = seriesNeighbors(all, post);
+const related = relatedPosts(all, post);
+const { newer, older } = archiveNeighbors(all, post);
+const seriesDef = series ? SERIES_DEFS[series] : undefined;
+// When the eyebrow is exactly the old header tag, the Topic · Audience
+// line renders from the taxonomy fields instead (one source, both surfaces).
+const showTopicLine = Boolean(audience) && eyebrow === topicLine(post);
+
+const shareText = encodeURIComponent(title);
+const shareUrl = encodeURIComponent(canonicalURL);
+const shareLinks = [
+  { name: 'X', href: `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}` },
+  { name: 'Facebook', href: `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}` },
+  { name: 'LinkedIn', href: `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}` },
+];
 ---
 <Layout title={title} description={metaDescription} image={heroExists ? heroImage : undefined} type="article" jsonLd={articleJsonLd}>
+
+{showProgress && <div class="reading-progress" aria-hidden="true"><div class="reading-progress-bar"></div></div>}
 
 <section class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
   <article class="lux-post max-w-none">
 
     <header class="lux-hero">
-      <p class="lux-eyebrow">{eyebrow}</p>
+      <p class="lux-eyebrow">{showTopicLine ? topicLine(post) : eyebrow}</p>
       <h1>{title}</h1>
-      <p class="lux-meta">By {authors.map((a, i) => (<Fragment>{i > 0 && ' & '}<strong>{a}</strong></Fragment>))}{role ? ` — ${role}` : ''} · {formatDate(pubDate)}</p>
+      <p class="lux-meta">By {authors.map((a, i) => (<Fragment>{i > 0 && ' & '}<strong>{a}</strong></Fragment>))}{role ? ` — ${role}` : ''} · {formatDate(pubDate)} · {minutes} min read</p>
+      <div class="lux-village" style="margin: 1.5rem 0 0;">
+        <span class="lux-village-tag">Built by the Village</span><br />
+        The village researched and fact-checked this post. Every claim links to a source below.
+      </div>
     </header>
 
     {heroExists && (
@@ -58,34 +91,140 @@ const articleJsonLd = {
         width="1280"
         height="720"
         loading="eager"
-        style="width:100%;height:auto;border-radius:18px;border:1px solid rgba(201,162,76,0.18);margin:0 0 2.5rem;"
+        style="width:100%;height:auto;border-radius:18px;border:1px solid color-mix(in srgb, var(--brand-gold) 18%, transparent);margin:0 0 2.5rem;"
       />
     )}
 
     <slot />
 
-    <div data-subscribe-inline>
-      <SubscribeCapture source="insights-article-inline" heading="Finding this useful?" />
+    {seriesDef && (
+      <nav class="onward-block" aria-label="Series">
+        <p class="onward-label">{seriesDef.name}{sNum ? ` · No. ${sNum}` : ''}</p>
+        <div class="onward-row">
+          {sNeighbors.prev
+            ? <a class="onward-link" href={postUrl(sNeighbors.prev)}>← Previous in series: {sNeighbors.prev.data.title}</a>
+            : <span></span>}
+          {sNeighbors.next
+            ? <a class="onward-link" href={postUrl(sNeighbors.next)}>Next in series: {sNeighbors.next.data.title} →</a>
+            : <a class="onward-link" href={`/series/${seriesDef.slug}/`}>Every post in {seriesDef.name} →</a>}
+        </div>
+      </nav>
+    )}
+
+    {related.length > 0 && (
+      <div class="onward-block">
+        <p class="onward-label">Related posts</p>
+        <div class="cc-posts-grid">
+          {related.map((p) => <PostCard post={p} />)}
+        </div>
+      </div>
+    )}
+
+    {(newer || older) && (
+      <nav class="onward-block" aria-label="More posts">
+        <div class="onward-row">
+          {newer ? <a class="onward-link" href={postUrl(newer)}>← Newer: {newer.data.title}</a> : <span></span>}
+          {older ? <a class="onward-link" href={postUrl(older)}>Older: {older.data.title} →</a> : <span></span>}
+        </div>
+      </nav>
+    )}
+
+    <div class="onward-block share-row">
+      <p class="onward-label">Share this post</p>
+      <div class="onward-row" style="justify-content: flex-start;">
+        {shareLinks.map((l) => <a class="onward-link" href={l.href} target="_blank" rel="noopener">{l.name}</a>)}
+        <button type="button" class="onward-link share-copy" data-share-copy={canonicalURL}>Copy link</button>
+        <span class="share-copied" role="status" aria-live="polite"></span>
+      </div>
     </div>
 
   </article>
 
-  <SubscribeCapture source="insights-article-end" />
+  <SubscribeDoor source="insights-article" />
+  <ResponseDoor postSlug={post.id} prompt={responsePrompt} />
 
 </section>
 </Layout>
 
-<script>
-  // Move the inline subscribe capture to just after the article's 2nd H2.
-  // With fewer than two H2s it is removed — the post-end capture still shows.
-  const article = document.querySelector('.lux-post');
-  const inlineBox = document.querySelector('[data-subscribe-inline]');
-  if (article && inlineBox) {
-    const directH2s = [...article.querySelectorAll('h2')].filter((h) => !inlineBox.contains(h));
-    if (directH2s.length >= 2) {
-      directH2s[1].after(inlineBox);
-    } else {
-      inlineBox.remove();
-    }
+<style>
+  .reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 1100;
+    background: transparent;
   }
+  .reading-progress-bar {
+    height: 100%;
+    width: 0;
+    background: var(--brand-gold, #e6a50f);
+  }
+  .onward-block {
+    margin: 2.5rem 0 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--brand-paper) 12%, transparent);
+  }
+  .onward-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brand-gold, #e6a50f);
+    margin: 0 0 1rem;
+  }
+  .onward-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .onward-link {
+    color: var(--brand-paper, #ffffff);
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.45;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    background: none;
+    border: 0;
+    padding: 0.4rem 0;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .share-copied { color: var(--semantic-success, #00e676); font-size: 0.9rem; }
+</style>
+
+<script>
+  // Reading progress (long posts only — the bar only renders then).
+  const bar = document.querySelector('.reading-progress-bar');
+  if (bar) {
+    const onScroll = () => {
+      const doc = document.documentElement;
+      const total = doc.scrollHeight - doc.clientHeight;
+      const pct = total > 0 ? Math.min(100, Math.max(0, (window.scrollY / total) * 100)) : 0;
+      (bar as HTMLElement).style.width = `${pct}%`;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+  // Copy-link button.
+  document.querySelectorAll('[data-share-copy]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const url = btn.getAttribute('data-share-copy');
+      const note = btn.parentElement?.querySelector('.share-copied');
+      if (!url) return;
+      try {
+        await navigator.clipboard.writeText(url);
+        if (note) note.textContent = 'Link copied.';
+      } catch {
+        if (note) note.textContent = url;
+      }
+    });
+  });
 </script>

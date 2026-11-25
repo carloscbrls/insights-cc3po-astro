@@ -1,0 +1,52 @@
+/* CC3PO fleet design tokens — generated from Figma "CC3PO Design System"
+   (KHo1hzUoGXIOzyGMJgsEDH) on 2026-11-24. Do not hand-edit; re-pull from Figma. */
+:root {
+  /* Color/Brand */
+  --brand-navy: #0f3460;
+  --brand-gold: #e6a50f;
+  --brand-silver: #98a6b3;
+  --brand-bronze: #c56520;
+  --brand-ink: #171a1f;
+  --brand-paper: #ffffff;
+  --brand-accent: #e8506b;
+  --brand-accent-hover: #f0617a;
+  --brand-accent-strong: #b82d45;
+  --brand-night: #0a0a12;
+  --brand-surface-dark: #11111f;
+  /* Color/Semantic */
+  --semantic-danger: #cf2e4f;
+  --semantic-danger-tint: #ef6a87;
+  --semantic-danger-surface: #271626;
+  --semantic-success: #00e676;
+  --semantic-warning: #ffd700;
+  --semantic-info: #4fc3f7;
+  --semantic-focus: #0d9488;
+  --semantic-muted: rgba(255, 255, 255, 0.78);
+  /* Typography */
+  --type-font-sans: Inter;
+  --type-font-mono: JetBrains Mono;
+  --type-caption: 13px;
+  --type-body: 15px;
+  --type-base: 16px;
+  --type-lg: 18px;
+  --type-xl: 20px;
+  --type-2xl: 24px;
+  --type-3xl: 28px;
+  --type-4xl: 36px;
+  --type-5xl: 48px;
+  --type-6xl: 72px;
+  /* Spacing */
+  --spacing-2xs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-4xl: 96px;
+  /* Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+}

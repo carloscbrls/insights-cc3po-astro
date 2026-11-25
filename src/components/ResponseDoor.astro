@@ -1,0 +1,137 @@
+---
+/**
+ * ResponseDoor — the reader-response surface at the end of every
+ * Insights article (Insights Shift Change, 2026-11-25). The
+ * participation pattern WITHOUT a comments platform: a question per
+ * post + a native form on the spine (insights_responses), read by the
+ * Village on the service role — replies are Vuelta's lane, the same
+ * sweep that covers social replies.
+ *
+ * Each post may set `responsePrompt` in frontmatter; the default below
+ * is the fallback. No comments are published on the page, and the copy
+ * says so honestly.
+ */
+interface Props {
+  postSlug: string;
+  prompt?: string;
+}
+const { postSlug, prompt = 'What did this one get right — or miss? Tell the Village.' } = Astro.props;
+---
+
+<div class="response-door" data-response-door data-post-slug={postSlug}>
+  <h2 class="response-door-heading">Respond to this post</h2>
+  <p class="response-door-copy">{prompt}</p>
+  <p class="response-door-note">
+    Responses go to the Village, not a public comments thread — a human-agent
+    reads every one, and the good questions shape follow-up posts.
+  </p>
+  <form class="response-door-form" novalidate>
+    <div class="response-door-row">
+      <label class="response-door-field">
+        <span class="response-door-label">Name <span class="response-door-optional">(optional)</span></span>
+        <input type="text" name="name" autocomplete="name" maxlength="100" />
+      </label>
+      <label class="response-door-field">
+        <span class="response-door-label">Email</span>
+        <input type="email" name="email" autocomplete="email" required maxlength="254" placeholder="you@example.com" />
+      </label>
+    </div>
+    <label class="response-door-field">
+      <span class="response-door-label">Your response</span>
+      <textarea name="message" required maxlength="4000" rows="4"></textarea>
+    </label>
+    <button type="submit" class="response-door-button">Send response</button>
+    <p class="response-door-status" role="status" aria-live="polite"></p>
+  </form>
+</div>
+
+<style>
+  .response-door {
+    border-top: 1px solid var(--brand-surface-dark, #11111f);
+    padding: 2rem 0 0;
+    max-width: 720px;
+    margin: 2.5rem auto 0;
+  }
+  .response-door-heading { color: var(--brand-paper, #ffffff); font-size: var(--type-xl, 20px); margin: 0 0 0.5rem; }
+  .response-door-copy { color: var(--brand-paper, #ffffff); line-height: 1.55; margin: 0 0 0.4rem; }
+  .response-door-note { color: var(--semantic-muted, rgba(255, 255, 255, 0.78)); line-height: 1.55; margin: 0 0 1.25rem; }
+  .response-door-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 560px) { .response-door-row { grid-template-columns: 1fr; } }
+  .response-door-field { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+  .response-door-label { color: var(--brand-paper, #ffffff); font-weight: 600; font-size: 0.95rem; }
+  .response-door-optional { font-weight: 400; color: var(--semantic-muted, rgba(255, 255, 255, 0.78)); }
+  .response-door input[type='text'],
+  .response-door input[type='email'],
+  .response-door textarea {
+    font-size: 16px;
+    padding: 0.8rem 1rem;
+    min-height: 48px;
+    border-radius: var(--radius-sm, 8px);
+    border: 1px solid var(--brand-silver, #98a6b3);
+    background: var(--brand-night, #0a0a12);
+    color: var(--brand-paper, #ffffff);
+    font-family: inherit;
+  }
+  .response-door-button {
+    min-height: 48px;
+    padding: 0.8rem 2rem;
+    border: 0;
+    border-radius: var(--radius-sm, 8px);
+    background: var(--semantic-danger, #cf2e4f);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .response-door-button:hover { background: var(--brand-accent-strong, #b82d45); }
+  .response-door-button:disabled { opacity: 0.6; cursor: wait; }
+  .response-door-status { min-height: 1.4em; margin: 0.9rem 0 0; line-height: 1.45; }
+  .response-door-status.is-error { color: var(--semantic-danger-tint, #ef6a87); }
+  .response-door-status.is-ok { color: var(--semantic-success, #00e676); }
+</style>
+
+<script>
+  import { postBlogResponse } from '../lib/spine-insights';
+
+  document.querySelectorAll('[data-response-door]').forEach((door) => {
+    const form = door.querySelector('form');
+    const status = door.querySelector('.response-door-status');
+    const button = door.querySelector('button[type="submit"]');
+    if (!form || !status || !button) return;
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      status.textContent = '';
+      status.className = 'response-door-status';
+      const data = new FormData(form);
+      const email = String(data.get('email') || '').trim();
+      const name = String(data.get('name') || '').trim();
+      const message = String(data.get('message') || '').trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+        status.textContent = 'That email doesn\u2019t look complete — check it and try again.';
+        status.classList.add('is-error');
+        return;
+      }
+      if (!message) {
+        status.textContent = 'The response box is empty — write a line or two first.';
+        status.classList.add('is-error');
+        return;
+      }
+      button.disabled = true;
+      const ok = await postBlogResponse({
+        email,
+        name: name || undefined,
+        message,
+        postSlug: door.getAttribute('data-post-slug') || undefined,
+      });
+      button.disabled = false;
+      if (ok) {
+        form.reset();
+        status.textContent = 'Sent. The Village reads every response — thank you.';
+        status.classList.add('is-ok');
+      } else {
+        status.textContent = 'Something went wrong on our side — please try again in a minute.';
+        status.classList.add('is-error');
+      }
+    });
+  });
+</script>

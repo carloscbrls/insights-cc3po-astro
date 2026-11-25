@@ -1,0 +1,22 @@
+---
+import { postUrl, formatDate, tagConfig, type Post } from '../lib/blog';
+
+interface Props { post: Post }
+const { post } = Astro.props;
+const d = post.data;
+const tag = tagConfig[d.category];
+---
+
+<a href={postUrl(post)} class="cc-post-card">
+  <div class="cc-post-tags">
+    {tag && <span class="cc-tag" style={`background: ${tag.bg}; color: ${tag.color};`}>{tag.label}</span>}
+    {d.audience && <span class="cc-post-date" style="margin-left: 0;">{d.audience}</span>}
+    <span class="cc-post-date">{formatDate(d.pubDate)}</span>
+  </div>
+  <h3 class="cc-post-title">{d.title}</h3>
+  <p class="cc-post-excerpt">{d.excerpt}</p>
+  <div class="cc-post-footer">
+    <span class="cc-post-readmore">Read more →</span>
+    <span class="cc-post-readtime">{d.readTime}</span>
+  </div>
+</a>

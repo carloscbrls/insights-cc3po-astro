@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPosts, tagConfig } from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const all = await getPosts();
+  return Object.keys(tagConfig)
+    .map((topic) => ({
+      params: { topic },
+      props: { topic, label: tagConfig[topic].label, posts: all.filter((p) => p.data.category === topic) },
+    }))
+    .filter((r) => r.props.posts.length > 0);
+}
+
+const { topic, label, posts } = Astro.props;
+---
+
+<Layout title={`${label} — CC3PO Insights`} description={`Every CC3PO Insights post on ${label}.`}>
+<section class="cc-section">
+  <div class="cc-container">
+    <div class="cc-section-label">Topic</div>
+    <div class="cc-section-header">
+      <h1 class="cc-section-title">{label}</h1>
+      <p class="cc-section-desc">{posts.length} {posts.length === 1 ? 'post' : 'posts'} in this topic.</p>
+    </div>
+    <div class="cc-posts-grid">
+      {posts.map((post) => <PostCard post={post} />)}
+    </div>
+    <p class="cc-team-more"><a href="/archive/">Browse the full archive →</a> · <a href="/">Back to the homepage →</a></p>
+  </div>
+</section>
+</Layout>
