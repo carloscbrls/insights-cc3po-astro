@@ -19,6 +19,9 @@ const { author } = Astro.props;
       <h1 class="cc-section-title">{author.name}</h1>
       {author.role && <p class="cc-section-desc">{author.role}</p>}
     </div>
+    {author.slug === 'quill' && (
+      <p class="cc-section-desc"><a href="https://dontloseyourway.com/?utm_source=insights&utm_medium=author_page&utm_campaign=dlyw-story">Don't Lose Your Way</a> — A quiet space for reflection. This space exists for people who almost gave up — and stayed.</p>
+    )}
     <div class="cc-posts-grid">
       {author.posts.map((post) => <PostCard post={post} />)}
     </div>
