@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import '../styles/blog.css';
+import VillageRail from '../components/VillageRail.astro';
 
 const DEFAULT_DESCRIPTION = 'CC3PO — ADA/WCAG compliance monitoring, AI voice agents, and business tools for trades and service businesses.';
 const {
@@ -458,6 +459,7 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
     <!-- Footer -->
     <footer class="footer">
       <div class="container">
+        <VillageRail />
         <div class="footer-grid">
           <div class="footer-brand">
             <div style="font-size: 17px; font-weight: 800; margin-bottom: 8px;">CC3PO</div>
