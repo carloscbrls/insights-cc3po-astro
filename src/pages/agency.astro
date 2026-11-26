@@ -4,462 +4,759 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="CC3PO Agency — Websites, Domains & Automation">
   <style>
-    .agency-badge-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #10b981;
+    /* ============================================
+       /agency/ — Folio Line treatment (elevation pass, 2026-11-25)
+       The agency page as a feature in the magazine: folio masthead,
+       gilt rules, medallions, cover plates, Fraunces display type.
+       Nightshift tokens only; copy, prices, links and form logic are
+       the page's own, unchanged — only the treatment moved.
+       ============================================ */
+    .ag-wrap { max-width: 72rem; margin: 0 auto; padding: 0 1rem 4rem; }
+    @media (min-width: 640px) { .ag-wrap { padding: 0 1.5rem 4rem; } }
+
+    /* --- Masthead --- */
+    .ag-masthead {
       position: relative;
-      flex-shrink: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(90% 120% at 50% 0%, color-mix(in srgb, var(--folio-gold) 9%, transparent), transparent 60%),
+        linear-gradient(180deg, #0d0d18 0%, var(--brand-night) 100%);
+      padding: 8rem 1rem 4.5rem;
     }
-    .agency-badge-dot::after {
+    .ag-masthead::before {
       content: '';
-      position: absolute;
-      top: -3px; left: -3px;
-      width: 14px; height: 14px;
-      border-radius: 50%;
-      background: rgba(16, 185, 129, 0.25);
-      animation: pulseRing 2s ease-out infinite;
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(90deg, color-mix(in srgb, var(--folio-gold) 3.5%, transparent) 1px, transparent 1px),
+        linear-gradient(0deg, color-mix(in srgb, var(--folio-gold) 3.5%, transparent) 1px, transparent 1px);
+      background-size: 56px 56px;
+      pointer-events: none;
     }
-    @keyframes pulseRing {
-      0% { transform: scale(0.8); opacity: 1; }
-      100% { transform: scale(2.2); opacity: 0; }
+    .ag-masthead-inner {
+      position: relative;
+      max-width: 72rem; margin: 0 auto;
+      display: grid; grid-template-columns: 1.02fr 0.98fr; gap: 3rem; align-items: center;
     }
-    .agency-step-connector {
-      position: absolute;
-      top: 50%;
-      right: -12px;
-      z-index: 2;
-      width: 24px;
-      height: 2px;
-      background: linear-gradient(90deg, #10b981, transparent);
+    @media (max-width: 900px) { .ag-masthead-inner { grid-template-columns: 1fr; gap: 2.25rem; } }
+    .ag-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid color-mix(in srgb, var(--folio-gold) 40%, transparent);
+      background: color-mix(in srgb, var(--folio-gold) 8%, transparent);
+      border-radius: 999px;
+      font-family: var(--folio-mono); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--folio-gold);
+      margin-bottom: 1.5rem;
     }
-    .agency-step:last-child .agency-step-connector { display: none; }
-    @media (max-width: 768px) {
-      .agency-step-connector { display: none !important; }
+    .ag-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--folio-gold); position: relative; flex-shrink: 0; }
+    .ag-badge-dot::after {
+      content: ''; position: absolute; top: -3px; left: -3px; width: 14px; height: 14px;
+      border-radius: 50%; background: color-mix(in srgb, var(--folio-gold) 25%, transparent);
     }
+    @media (prefers-reduced-motion: no-preference) {
+      .ag-badge-dot::after { animation: ag-pulse 2s ease-out infinite; }
+      @keyframes ag-pulse { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(2.2); opacity: 0; } }
+    }
+    .ag-h1 {
+      font-family: var(--folio-serif); font-weight: 600;
+      font-size: clamp(2.6rem, 5.6vw, 4.4rem);
+      line-height: 1.05; letter-spacing: -0.015em;
+      color: var(--brand-paper); margin: 0 0 1.25rem;
+    }
+    .ag-h1 .ag-gilt {
+      background: linear-gradient(120deg, var(--folio-gold-bright), var(--folio-gold) 65%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .ag-lede { font-size: 1.125rem; line-height: 1.65; color: color-mix(in srgb, var(--brand-paper) 72%, transparent); max-width: 34rem; margin: 0 0 2rem; }
+    .ag-cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .ag-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      min-height: 48px; padding: 0.8rem 2rem;
+      background: var(--folio-gold); color: var(--brand-night);
+      font-weight: 700; font-size: 0.95rem; border-radius: 10px;
+      text-decoration: none; border: 1px solid var(--folio-gold);
+      transition: transform 0.2s, background 0.2s, border-color 0.2s;
+    }
+    .ag-btn:hover { background: var(--folio-gold-bright); border-color: var(--folio-gold-bright); }
+    .ag-btn-ghost {
+      background: color-mix(in srgb, var(--brand-paper) 5%, transparent);
+      color: var(--brand-paper);
+      border: 1px solid color-mix(in srgb, var(--brand-paper) 14%, transparent);
+    }
+    .ag-btn-ghost:hover { background: color-mix(in srgb, var(--brand-paper) 10%, transparent); border-color: color-mix(in srgb, var(--brand-paper) 25%, transparent); }
+    @media (prefers-reduced-motion: no-preference) {
+      .ag-btn:hover { transform: translateY(-2px); }
+    }
+    .ag-btn:focus-visible, .ag-card-link:focus-visible, .ag-addon:focus-visible {
+      outline: 2px solid var(--folio-gold); outline-offset: 3px;
+    }
+    .ag-hero-media {
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid color-mix(in srgb, var(--folio-gold) 25%, transparent);
+      aspect-ratio: 16 / 10;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.45);
+    }
+    .ag-hero-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ag-hero-caption {
+      font-family: var(--folio-mono); font-size: 11.5px; letter-spacing: 0.04em;
+      color: var(--semantic-muted); margin: 0.8rem 0 0; text-align: center;
+    }
+
+    /* --- Section furniture --- */
+    .ag-section-head { text-align: center; max-width: 36rem; margin: 0 auto 3rem; }
+    .ag-section-head .folio-kicker { margin-bottom: 0.6rem; }
+    .ag-h2 {
+      font-family: var(--folio-serif); font-weight: 600; letter-spacing: -0.01em;
+      font-size: clamp(1.7rem, 3.4vw, 2.5rem); line-height: 1.15;
+      color: var(--brand-paper); margin: 0 0 0.6rem;
+    }
+    .ag-h2-left { text-align: left; }
+    .ag-sub { color: color-mix(in srgb, var(--brand-paper) 62%, transparent); font-size: 1rem; line-height: 1.6; margin: 0; }
+    .ag-block { margin-bottom: 5rem; }
+    .ag-panel {
+      background: linear-gradient(180deg, color-mix(in srgb, var(--brand-surface-dark) 82%, transparent), var(--brand-night));
+      border: 1px solid color-mix(in srgb, var(--brand-paper) 9%, transparent);
+      border-radius: 16px; padding: 2.5rem;
+      position: relative; overflow: hidden;
+    }
+    .ag-panel::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--folio-gold), color-mix(in srgb, var(--folio-gold) 0%, transparent));
+    }
+    @media (max-width: 640px) { .ag-panel { padding: 1.6rem; } }
+
+    /* --- Stats strip --- */
+    .ag-stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+      max-width: 44rem; margin: 0 auto 5rem;
+      border-top: 1px solid color-mix(in srgb, var(--brand-paper) 9%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--brand-paper) 9%, transparent);
+      padding: 1.6rem 0;
+    }
+    @media (max-width: 640px) { .ag-stats { grid-template-columns: repeat(2, 1fr); } }
+    .ag-stat { text-align: center; padding: 0 0.5rem; }
+    .ag-stat-num { font-family: var(--folio-serif); font-weight: 700; font-size: clamp(1.9rem, 4vw, 2.6rem); line-height: 1; color: var(--folio-gold); margin-bottom: 0.35rem; }
+    .ag-stat-num .ag-stat-unit { font-size: 0.45em; }
+    .ag-stat-label { font-size: 0.85rem; color: color-mix(in srgb, var(--brand-paper) 62%, transparent); }
+
+    /* --- Steps --- */
+    .ag-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    @media (max-width: 1024px) { .ag-steps { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .ag-steps { grid-template-columns: 1fr; } }
+    .ag-step {
+      background: linear-gradient(180deg, color-mix(in srgb, var(--brand-surface-dark) 82%, transparent), var(--brand-night));
+      border: 1px solid color-mix(in srgb, var(--brand-paper) 9%, transparent);
+      border-radius: 16px; padding: 2rem 1.5rem; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .ag-step::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--folio-gold), color-mix(in srgb, var(--folio-gold) 0%, transparent));
+    }
+    .ag-step .folio-medallion { margin-bottom: 0.9rem; }
+    .ag-step-kicker { font-family: var(--folio-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.24em; color: var(--folio-gold); margin: 0 0 0.5rem; }
+    .ag-step h3 { font-family: var(--folio-serif); font-weight: 600; font-size: 1.1rem; color: var(--brand-paper); margin: 0 0 0.45rem; }
+    .ag-step p { font-size: 0.83rem; line-height: 1.6; color: color-mix(in srgb, var(--brand-paper) 62%, transparent); margin: 0; }
+
+    /* --- Domain panel --- */
+    .ag-domain-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 1.5rem; margin-bottom: 1.5rem; }
+    .ag-price-plate {
+      position: relative; flex-shrink: 0; width: 190px; height: 110px;
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid color-mix(in srgb, var(--folio-gold) 30%, transparent);
+      background:
+        radial-gradient(130% 150% at 18% 0%, color-mix(in srgb, var(--folio-gold) 24%, transparent), transparent 58%),
+        linear-gradient(160deg, #151528, var(--brand-night));
+    }
+    .ag-price-plate::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--folio-gold), color-mix(in srgb, var(--folio-gold) 0%, transparent));
+    }
+    .ag-price-plate .ag-plate-label {
+      position: absolute; top: 14px; left: 16px;
+      font-family: var(--folio-mono); font-size: 10.5px; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--folio-gold);
+    }
+    .ag-price-plate .ag-plate-price {
+      position: absolute; left: 16px; bottom: 10px;
+      font-family: var(--folio-serif); font-weight: 700; font-size: 2.6rem; line-height: 1; color: var(--brand-paper);
+    }
+    .ag-price-plate .ag-plate-price .ag-plate-per { font-size: 1rem; color: color-mix(in srgb, var(--brand-paper) 62%, transparent); }
+    .ag-search-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .ag-search-field { flex: 1; min-width: 200px; position: relative; }
+    .ag-search-field svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: color-mix(in srgb, var(--brand-paper) 45%, transparent); }
+    .ag-input {
+      width: 100%; box-sizing: border-box;
+      background: color-mix(in srgb, var(--brand-paper) 4%, var(--brand-night));
+      border: 1px solid color-mix(in srgb, var(--brand-paper) 12%, transparent);
+      border-radius: 10px; padding: 0.8rem 1rem;
+      color: var(--brand-paper); font-size: 16px; font-family: inherit;
+      transition: border-color 0.2s;
+    }
+    .ag-input::placeholder { color: color-mix(in srgb, var(--brand-paper) 40%, transparent); }
+    .ag-input:focus { outline: none; border-color: var(--folio-gold); box-shadow: 0 0 0 3px color-mix(in srgb, var(--folio-gold) 15%, transparent); }
+    .ag-search-field .ag-input { padding-left: 2.6rem; }
+    .ag-checks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; font-size: 0.875rem; }
+    @media (max-width: 768px) { .ag-checks { grid-template-columns: 1fr; } }
+    .ag-check { display: flex; align-items: flex-start; gap: 0.5rem; color: color-mix(in srgb, var(--brand-paper) 62%, transparent); line-height: 1.55; }
+    .ag-check svg { width: 16px; height: 16px; color: var(--folio-gold); flex-shrink: 0; margin-top: 2px; }
+    .ag-check strong { color: color-mix(in srgb, var(--brand-paper) 85%, transparent); }
+
+    /* --- Path + plan cards with plates --- */
+    .ag-cards-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    @media (max-width: 900px) { .ag-cards-2 { grid-template-columns: 1fr; } }
+    .ag-cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    @media (max-width: 900px) { .ag-cards-3 { grid-template-columns: 1fr; } }
+    .ag-card {
+      display: flex; flex-direction: column;
+      background: linear-gradient(180deg, color-mix(in srgb, var(--brand-surface-dark) 82%, transparent), var(--brand-night));
+      border: 1px solid color-mix(in srgb, var(--brand-paper) 9%, transparent);
+      border-radius: 16px; overflow: hidden; position: relative;
+      transition: border-color 0.2s;
+    }
+    .ag-card:hover { border-color: color-mix(in srgb, var(--folio-gold) 40%, transparent); }
+    .ag-card-featured { border: 1px solid color-mix(in srgb, var(--folio-gold) 45%, transparent); }
+    .ag-card-plate { height: 118px; position: relative; flex-shrink: 0; }
+    .ag-card-plate-sm { height: 92px; }
+    .ag-card-badge {
+      position: absolute; top: 14px; right: 16px; z-index: 2;
+      background: var(--folio-gold); color: var(--brand-night);
+      font-family: var(--folio-mono); font-size: 10.5px; font-weight: 700;
+      letter-spacing: 0.14em; padding: 4px 12px; border-radius: 999px;
+    }
+    .ag-card-body { padding: 1.75rem; display: flex; flex-direction: column; flex: 1; }
+    .ag-card h3 { font-family: var(--folio-serif); font-weight: 600; font-size: 1.4rem; color: var(--brand-paper); margin: 0 0 0.2rem; }
+    .ag-card .ag-card-sub { font-size: 0.8rem; color: color-mix(in srgb, var(--brand-paper) 55%, transparent); margin: 0 0 1rem; }
+    .ag-card p { font-size: 0.9rem; line-height: 1.65; color: color-mix(in srgb, var(--brand-paper) 66%, transparent); }
+    .ag-card-body > p { margin: 0 0 1.25rem; }
+    .ag-price { font-family: var(--folio-serif); font-weight: 700; font-size: 2.5rem; line-height: 1; color: var(--brand-paper); margin: 0 0 0.3rem; }
+    .ag-price .ag-price-per { font-family: var(--folio-serif); font-size: 0.95rem; font-weight: 400; color: color-mix(in srgb, var(--brand-paper) 55%, transparent); }
+    .ag-note { font-size: 0.8rem; color: color-mix(in srgb, var(--brand-paper) 55%, transparent); margin: 0 0 1.5rem; }
+    .ag-list { list-style: none; margin: 0 0 1.5rem; padding: 0; flex: 1; }
+    .ag-list li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.9rem; line-height: 1.55; color: color-mix(in srgb, var(--brand-paper) 66%, transparent); padding: 0.28rem 0; }
+    .ag-list svg { width: 18px; height: 18px; color: var(--folio-gold); flex-shrink: 0; margin-top: 1px; }
+    .ag-list strong { color: var(--brand-paper); }
+    .ag-card .ag-btn { width: 100%; box-sizing: border-box; }
+
+    /* --- Bolt panel --- */
+    .ag-bolt-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
+    .ag-bolt-head .folio-medallion { margin: 0; width: 52px; height: 52px; }
+    .ag-bolt-head .folio-medallion svg { width: 22px; height: 22px; color: var(--folio-gold); }
+    .ag-bolt-head h2 { font-family: var(--folio-serif); font-weight: 600; font-size: 1.7rem; color: var(--brand-paper); margin: 0; }
+    .ag-bolt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2rem; }
+    @media (max-width: 900px) { .ag-bolt-grid { grid-template-columns: 1fr; } }
+    .ag-bolt-card {
+      background: color-mix(in srgb, var(--brand-night) 55%, transparent);
+      border: 1px solid color-mix(in srgb, var(--brand-paper) 8%, transparent);
+      border-radius: 12px; padding: 1.5rem;
+    }
+    .ag-bolt-card .ag-bolt-ico {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(120% 120% at 30% 20%, color-mix(in srgb, var(--folio-gold) 14%, transparent), color-mix(in srgb, var(--brand-surface-dark) 90%, transparent));
+      border: 1px solid color-mix(in srgb, var(--folio-gold) 45%, transparent);
+      margin-bottom: 0.8rem;
+    }
+    .ag-bolt-card .ag-bolt-ico svg { width: 18px; height: 18px; color: var(--folio-gold); }
+    .ag-bolt-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--brand-paper); margin: 0 0 0.4rem; }
+    .ag-bolt-card p { font-size: 0.9rem; line-height: 1.65; color: color-mix(in srgb, var(--brand-paper) 66%, transparent); margin: 0; }
+    .ag-bolt-foot { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid color-mix(in srgb, var(--brand-paper) 8%, transparent); }
+    .ag-bolt-foot p { font-size: 0.9rem; color: color-mix(in srgb, var(--brand-paper) 66%, transparent); margin: 0; }
+    .ag-bolt-foot strong { color: color-mix(in srgb, var(--brand-paper) 85%, transparent); }
+    .ag-link { color: var(--folio-gold); text-decoration: underline; text-underline-offset: 3px; }
+    .ag-link:hover { color: var(--folio-gold-bright); }
+
+    /* --- Add-ons --- */
+    .ag-addons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+    @media (max-width: 900px) { .ag-addons { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .ag-addons { grid-template-columns: 1fr; } }
+    .ag-addon {
+      display: block; padding: 1.25rem; text-decoration: none;
+      background: linear-gradient(180deg, color-mix(in srgb, var(--brand-surface-dark) 82%, transparent), var(--brand-night));
+      border: 1px solid color-mix(in srgb, var(--brand-paper) 9%, transparent);
+      border-radius: 14px; transition: border-color 0.2s;
+    }
+    .ag-addon:hover { border-color: color-mix(in srgb, var(--folio-gold) 45%, transparent); }
+    .ag-addon-top { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.5rem; }
+    .ag-addon .folio-medallion { width: 38px; height: 38px; font-size: 1rem; margin: 0; flex-shrink: 0; }
+    .ag-addon h3 { font-family: var(--folio-serif); font-weight: 600; font-size: 1.02rem; color: var(--brand-paper); margin: 0; }
+    .ag-addon p { font-size: 0.8rem; line-height: 1.55; color: color-mix(in srgb, var(--brand-paper) 62%, transparent); margin: 0; }
+
+    /* --- CTA band --- */
+    .ag-cta {
+      position: relative; overflow: hidden; text-align: center;
+      background:
+        radial-gradient(120% 130% at 12% 0%, color-mix(in srgb, var(--folio-gold) 7%, transparent), transparent 55%),
+        linear-gradient(165deg, color-mix(in srgb, var(--brand-surface-dark) 88%, transparent), var(--brand-night));
+      border: 1px solid color-mix(in srgb, var(--brand-paper) 8%, transparent);
+      border-radius: 20px; padding: 3rem 2rem;
+    }
+    .ag-cta::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--folio-gold), var(--brand-accent, #e8506b), color-mix(in srgb, var(--brand-accent) 0%, transparent));
+    }
+    .ag-cta .ag-cta-row { justify-content: center; }
+
+    /* --- Form --- */
+    .ag-form { max-width: 36rem; margin: 0 auto; }
+    .ag-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 640px) { .ag-form-grid { grid-template-columns: 1fr; } }
+    .ag-field { margin-bottom: 1rem; }
+    .ag-form-grid .ag-field { margin-bottom: 0; }
+    .ag-form-rows { display: flex; flex-direction: column; gap: 1rem; }
+    .ag-label { display: block; font-size: 0.875rem; font-weight: 500; color: color-mix(in srgb, var(--brand-paper) 78%, transparent); margin-bottom: 0.35rem; }
+    .ag-form select.ag-input, .ag-form textarea.ag-input { appearance: auto; }
+    .ag-form textarea.ag-input { resize: vertical; }
+    .ag-form .ag-btn { width: 100%; box-sizing: border-box; font-size: 1rem; }
+    .ag-form-note { font-size: 0.8rem; color: color-mix(in srgb, var(--brand-paper) 55%, transparent); text-align: center; margin: 0.6rem 0 0; }
+    .ag-success { text-align: center; padding: 2rem 0; }
+    .ag-success .ag-success-mark { font-size: 2.5rem; margin-bottom: 0.75rem; }
+    .ag-success h3 { font-family: var(--folio-serif); font-weight: 600; font-size: 1.3rem; color: var(--brand-paper); margin: 0 0 0.5rem; }
+    .ag-success p { font-size: 0.9rem; color: color-mix(in srgb, var(--brand-paper) 66%, transparent); margin: 0; }
+
+    /* --- FAQ --- */
+    .ag-faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 2.5rem; }
+    @media (max-width: 768px) { .ag-faq-grid { grid-template-columns: 1fr; } }
+    .ag-faq h3 { font-size: 0.92rem; font-weight: 600; color: var(--brand-paper); margin: 0 0 0.45rem; }
+    .ag-faq p { font-size: 0.9rem; line-height: 1.65; color: color-mix(in srgb, var(--brand-paper) 66%, transparent); margin: 0; }
   </style>
 
-  <!-- Hero -->
-  <section class="relative min-h-[80vh] flex items-center justify-center text-center px-4 sm:px-6 pt-24 pb-16 overflow-hidden bg-[#0a0a12]">
-    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 0%, rgba(16,185,129,0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 100%, rgba(16,185,129,0.04) 0%, transparent 50%);"></div>
-    <div class="relative z-10 max-w-3xl">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/25 rounded-full text-xs font-bold text-emerald-400 tracking-wide mb-6">
-        <span class="agency-badge-dot"></span>
-        Built with AI — Delivered in 48 hours
+  <!-- Masthead -->
+  <section class="ag-masthead">
+    <div class="ag-masthead-inner">
+      <div>
+        <div class="ag-badge">
+          <span class="ag-badge-dot"></span>
+          Built with AI — Delivered in 48 hours
+        </div>
+        <h1 class="ag-h1">
+          Your Website,<br>
+          <span class="ag-gilt">Your Way</span>
+        </h1>
+        <p class="ag-lede">
+          One place to buy your domain, build your site, and manage everything.
+          No tech skills needed. No multiple vendors. No hidden fees.
+        </p>
+        <div class="ag-cta-row">
+          <a href="#pricing" class="ag-btn">See Plans</a>
+          <a href="#domain" class="ag-btn ag-btn-ghost">Buy a Domain</a>
+        </div>
+        <hr class="folio-rule">
       </div>
-      <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-[1.1] tracking-tighter text-white mb-5">
-        Your Website,<br>
-        <span class="bg-gradient-to-r from-white via-emerald-400 to-emerald-300 bg-clip-text text-transparent">Your Way</span>
-      </h1>
-      <p class="text-base sm:text-lg text-white/80 leading-relaxed max-w-xl mx-auto mb-8">
-        One place to buy your domain, build your site, and manage everything.
-        No tech skills needed. No multiple vendors. No hidden fees.
-      </p>
-      <div class="flex flex-wrap justify-center gap-3">
-        <a href="#pricing" class="inline-flex items-center gap-2 px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.02] shadow-lg shadow-emerald-500/25">See Plans</a>
-        <a href="#domain" class="inline-flex items-center gap-2 px-8 py-3 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-lg font-semibold transition-all duration-200">Buy a Domain</a>
-      </div>
+      <figure style="margin: 0;">
+        <div class="ag-hero-media">
+          <img src="/images/agency-feature.jpg" alt="A laptop on a craftsman's workbench at night, its screen showing a glowing gold-and-rose website wireframe, with paper wireframe sketches and a brass lamp beside it. AI-generated." loading="eager">
+        </div>
+        <figcaption class="ag-hero-caption">Every site starts as a sketch on the workbench.</figcaption>
+      </figure>
     </div>
   </section>
 
-  <section class="max-w-6xl mx-auto px-4 pb-16">
+  <section class="ag-wrap" style="padding-top: 3.5rem;">
     <!-- Stats -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-20">
-      <div class="text-center p-6 bg-[#0f0f1a] border border-gray-800 rounded-xl hover:border-emerald-500/25 transition-colors duration-300">
-        <div class="text-2xl sm:text-4xl font-extrabold text-emerald-400 leading-none mb-1">48<span class="text-base">hr</span></div>
-        <div class="text-xs sm:text-sm text-gray-500">Average build time</div>
+    <div class="ag-stats">
+      <div class="ag-stat">
+        <div class="ag-stat-num">48<span class="ag-stat-unit">hr</span></div>
+        <div class="ag-stat-label">Average build time</div>
       </div>
-      <div class="text-center p-6 bg-[#0f0f1a] border border-gray-800 rounded-xl hover:border-emerald-500/25 transition-colors duration-300">
-        <div class="text-2xl sm:text-4xl font-extrabold text-emerald-400 leading-none mb-1">12+</div>
-        <div class="text-xs sm:text-sm text-gray-500">Sites hosted</div>
+      <div class="ag-stat">
+        <div class="ag-stat-num">12+</div>
+        <div class="ag-stat-label">Sites hosted</div>
       </div>
-      <div class="text-center p-6 bg-[#0f0f1a] border border-gray-800 rounded-xl hover:border-emerald-500/25 transition-colors duration-300">
-        <div class="text-2xl sm:text-4xl font-extrabold text-emerald-400 leading-none mb-1">9</div>
-        <div class="text-xs sm:text-sm text-gray-500">Active clients</div>
+      <div class="ag-stat">
+        <div class="ag-stat-num">9</div>
+        <div class="ag-stat-label">Active clients</div>
       </div>
-      <div class="text-center p-6 bg-[#0f0f1a] border border-gray-800 rounded-xl hover:border-emerald-500/25 transition-colors duration-300">
-        <div class="text-2xl sm:text-4xl font-extrabold text-emerald-400 leading-none mb-1">100<span class="text-base">%</span></div>
-        <div class="text-xs sm:text-sm text-gray-500">White-label delivery</div>
+      <div class="ag-stat">
+        <div class="ag-stat-num">100<span class="ag-stat-unit">%</span></div>
+        <div class="ag-stat-label">White-label delivery</div>
       </div>
     </div>
 
     <!-- How It Works -->
-    <div class="mb-20">
-      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white text-center mb-2 tracking-tight">How It Works</h2>
-      <p class="text-gray-500 text-center max-w-lg mx-auto mb-12 text-sm sm:text-base">Four simple steps from idea to live website.</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-        <div class="relative p-8 bg-[#0f0f1a] border border-gray-800 text-center hover:border-emerald-500/25 transition-colors duration-300 [&:not(:last-child)]:border-r-0 lg:[&:not(:last-child)]:border-r-0">
-          <div class="agency-step-connector"></div>
-          <div class="w-10 h-10 mx-auto mb-2 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-center">
-            <svg class="w-[18px] h-[18px] text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
-          </div>
-          <div class="text-[11px] font-extrabold tracking-widest text-emerald-400 mb-2 font-mono">STEP 1</div>
-          <h3 class="text-sm font-bold text-white mb-1.5">Buy Your Domain</h3>
-          <p class="text-xs text-gray-500 leading-relaxed">Search and register your domain through our link. Or bring your own.</p>
+    <div class="ag-block">
+      <div class="ag-section-head">
+        <p class="folio-kicker">The Process</p>
+        <h2 class="ag-h2">How It Works</h2>
+        <p class="ag-sub">Four simple steps from idea to live website.</p>
+      </div>
+      <div class="ag-steps">
+        <div class="ag-step">
+          <div class="folio-medallion" aria-hidden="true">1</div>
+          <p class="ag-step-kicker">STEP 1</p>
+          <h3>Buy Your Domain</h3>
+          <p>Search and register your domain through our link. Or bring your own.</p>
         </div>
-        <div class="relative p-8 bg-[#0f0f1a] border border-gray-800 text-center hover:border-emerald-500/25 transition-colors duration-300">
-          <div class="agency-step-connector"></div>
-          <div class="w-10 h-10 mx-auto mb-2 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-center">
-            <svg class="w-[18px] h-[18px] text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-          </div>
-          <div class="text-[11px] font-extrabold tracking-widest text-emerald-400 mb-2 font-mono">STEP 2</div>
-          <h3 class="text-sm font-bold text-white mb-1.5">Choose Your Path</h3>
-          <p class="text-xs text-gray-500 leading-relaxed">We build it for you, or use Bolt.new to build it yourself with AI.</p>
+        <div class="ag-step">
+          <div class="folio-medallion" aria-hidden="true">2</div>
+          <p class="ag-step-kicker">STEP 2</p>
+          <h3>Choose Your Path</h3>
+          <p>We build it for you, or use Bolt.new to build it yourself with AI.</p>
         </div>
-        <div class="relative p-8 bg-[#0f0f1a] border border-gray-800 text-center hover:border-emerald-500/25 transition-colors duration-300">
-          <div class="agency-step-connector"></div>
-          <div class="w-10 h-10 mx-auto mb-2 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-center">
-            <svg class="w-[18px] h-[18px] text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/></svg>
-          </div>
-          <div class="text-[11px] font-extrabold tracking-widest text-emerald-400 mb-2 font-mono">STEP 3</div>
-          <h3 class="text-sm font-bold text-white mb-1.5">Get Your Portal</h3>
-          <p class="text-xs text-gray-500 leading-relaxed">White-label dashboard to manage your site, email, and billing.</p>
+        <div class="ag-step">
+          <div class="folio-medallion" aria-hidden="true">3</div>
+          <p class="ag-step-kicker">STEP 3</p>
+          <h3>Get Your Portal</h3>
+          <p>White-label dashboard to manage your site, email, and billing.</p>
         </div>
-        <div class="relative p-8 bg-[#0f0f1a] border border-gray-800 text-center hover:border-emerald-500/25 transition-colors duration-300">
-          <div class="w-10 h-10 mx-auto mb-2 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-center">
-            <svg class="w-[18px] h-[18px] text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"/></svg>
-          </div>
-          <div class="text-[11px] font-extrabold tracking-widest text-emerald-400 mb-2 font-mono">STEP 4</div>
-          <h3 class="text-sm font-bold text-white mb-1.5">Go Live</h3>
-          <p class="text-xs text-gray-500 leading-relaxed">Site deployed on SiteGround with SSL, CDN, backups, and monitoring.</p>
+        <div class="ag-step">
+          <div class="folio-medallion" aria-hidden="true">4</div>
+          <p class="ag-step-kicker">STEP 4</p>
+          <h3>Go Live</h3>
+          <p>Site deployed on SiteGround with SSL, CDN, backups, and monitoring.</p>
         </div>
       </div>
     </div>
 
     <!-- Domain Search -->
-    <div id="domain" class="bg-gradient-to-br from-white/[0.04] to-[#0a0a12]/50 border border-gray-800 rounded-xl p-8 sm:p-10 mb-20">
-      <div class="flex flex-wrap items-start justify-between gap-4 mb-6">
-        <div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white text-left mb-1.5 tracking-tight">Step 1: Get Your Domain</h2>
-          <p class="text-gray-500 text-sm sm:text-base">Search for available domains. We use SiteGround for registration — you get a great price, we get a small commission.</p>
+    <div id="domain" class="ag-panel ag-block">
+      <div class="ag-domain-head">
+        <div style="max-width: 34rem;">
+          <p class="folio-kicker">Step 01 — The Domain</p>
+          <h2 class="ag-h2 ag-h2-left" style="margin-top: 0.6rem;">Step 1: Get Your Domain</h2>
+          <p class="ag-sub">Search for available domains. We use SiteGround for registration — you get a great price, we get a small commission.</p>
         </div>
-        <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-4 py-2 text-center flex-shrink-0">
-          <p class="text-xs text-gray-500 m-0">Domains starting at</p>
-          <p class="text-2xl font-bold text-emerald-400 m-0">$10<span class="text-sm text-gray-500 font-normal">/yr</span></p>
+        <div class="ag-price-plate" aria-hidden="true">
+          <span class="ag-plate-label">Domains starting at</span>
+          <span class="ag-plate-price">$10<span class="ag-plate-per">/yr</span></span>
         </div>
       </div>
-      <div class="flex gap-3 mb-5 flex-wrap">
-        <div class="flex-1 relative min-w-[200px]">
-          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-          <input type="text" placeholder="yourbusiness.com" class="w-full bg-[#1a1a2e]/80 border border-white/10 rounded-lg py-3 pl-10 pr-4 text-white text-sm focus:outline-none focus:border-emerald-500 focus:ring-3 focus:ring-emerald-500/10 placeholder:text-gray-500 transition-colors" />
+      <div class="ag-search-row">
+        <div class="ag-search-field">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input type="text" placeholder="yourbusiness.com" class="ag-input" aria-label="Domain name to search">
         </div>
-        <a href="https://www.siteground.com/go/a3sob40itj" target="_blank" class="inline-flex items-center gap-2 px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-lg transition-all duration-200 whitespace-nowrap shadow-lg shadow-emerald-500/25">Search on SiteGround →</a>
+        <a href="https://www.siteground.com/go/a3sob40itj" target="_blank" class="ag-btn">Search on SiteGround →</a>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
-        <div class="flex items-start gap-2 text-gray-500">
-          <svg class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          <span><strong class="text-gray-400">$10-15/year</strong> for .com through SiteGround. No markup.</span>
+      <div class="ag-checks">
+        <div class="ag-check">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span><strong>$10-15/year</strong> for .com through SiteGround. No markup.</span>
         </div>
-        <div class="flex items-start gap-2 text-gray-500">
-          <svg class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          <span><strong class="text-gray-400">Already have a domain?</strong> We'll point it to your new site.</span>
+        <div class="ag-check">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span><strong>Already have a domain?</strong> We'll point it to your new site.</span>
         </div>
-        <div class="flex items-start gap-2 text-gray-500">
-          <svg class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          <span><strong class="text-gray-400">Buy through our link</strong> and we earn a commission that keeps prices low.</span>
+        <div class="ag-check">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span><strong>Buy through our link</strong> and we earn a commission that keeps prices low.</span>
         </div>
       </div>
     </div>
 
     <!-- Step 2: Choose Your Path -->
-    <div class="mb-20">
-      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white text-center mb-2 tracking-tight">Step 2: Choose Your Path</h2>
-      <p class="text-gray-500 text-center max-w-lg mx-auto mb-12 text-sm sm:text-base">Two ways to get your site built. Pick the one that fits you best.</p>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+    <div class="ag-block">
+      <div class="ag-section-head">
+        <p class="folio-kicker">Step 02 — The Build</p>
+        <h2 class="ag-h2">Step 2: Choose Your Path</h2>
+        <p class="ag-sub">Two ways to get your site built. Pick the one that fits you best.</p>
+      </div>
+      <div class="ag-cards-2">
         <!-- We Build -->
-        <div class="relative bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 border-2 border-emerald-500/30 rounded-xl p-8 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-emerald-500/10">
-          <div class="absolute -top-3 left-6 bg-emerald-500 text-white text-[11px] font-bold px-3.5 py-1 rounded-full">MOST POPULAR</div>
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 bg-emerald-500/15 border border-emerald-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        <div class="ag-card ag-card-featured">
+          <div class="ag-card-plate">
+            <div class="folio-plate" style="--plate-tint: #e6a50f;">
+              <img class="folio-plate-mark" src="/images/c07-mark-small.svg" alt="">
+              <span class="folio-plate-initial" aria-hidden="true">W</span>
+              <span class="folio-plate-label">Path One — Done For You</span>
             </div>
-            <div>
-              <h3 class="text-xl font-bold text-white m-0">We Build It For You</h3>
-              <p class="text-xs text-gray-500 m-0">Sit back, we handle everything</p>
-            </div>
+            <span class="ag-card-badge">MOST POPULAR</span>
           </div>
-          <p class="text-sm text-gray-500 leading-relaxed mb-5">Tell us what you need. We use AI to build your site fast. You review, we refine, you go live.</p>
-          <ul class="mb-6 space-y-2">
-            <li class="flex items-start gap-2.5 text-sm text-gray-500">
-              <svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <span>Built in <strong class="text-white">24-48 hours</strong></span>
-            </li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500">
-              <svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <span>You review and request changes</span>
-            </li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500">
-              <svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <span>We handle domain setup, SSL, everything</span>
-            </li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500">
-              <svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <span>Ongoing support and edits</span>
-            </li>
-          </ul>
-          <a href="#pricing" class="block text-center w-full inline-flex items-center justify-center gap-2 px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-lg transition-all duration-200 shadow-lg shadow-emerald-500/25">See Plans →</a>
+          <div class="ag-card-body">
+            <h3>We Build It For You</h3>
+            <p class="ag-card-sub">Sit back, we handle everything</p>
+            <p>Tell us what you need. We use AI to build your site fast. You review, we refine, you go live.</p>
+            <ul class="ag-list">
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Built in <strong>24-48 hours</strong></span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>You review and request changes</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>We handle domain setup, SSL, everything</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Ongoing support and edits</span></li>
+            </ul>
+            <a href="#pricing" class="ag-btn">See Plans →</a>
+          </div>
         </div>
         <!-- Build Yourself -->
-        <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-8 hover:border-emerald-500/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            </div>
-            <div>
-              <h3 class="text-xl font-bold text-white m-0">Build It Yourself</h3>
-              <p class="text-xs text-gray-500 m-0">Powered by Bolt.new AI</p>
+        <div class="ag-card">
+          <div class="ag-card-plate">
+            <div class="folio-plate" style="--plate-tint: #e8506b;">
+              <img class="folio-plate-mark" src="/images/c07-mark-small.svg" alt="">
+              <span class="folio-plate-initial" aria-hidden="true">B</span>
+              <span class="folio-plate-label">Path Two — Do It Yourself</span>
             </div>
           </div>
-          <p class="text-sm text-gray-500 leading-relaxed mb-5">Use Bolt.new — the AI-powered web builder — to create your own site. Describe what you want, and AI builds it. We host it on SiteGround.</p>
-          <ul class="mb-6 space-y-2">
-            <li class="flex items-start gap-2.5 text-sm text-gray-500">
-              <svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <span>Describe your site in <strong class="text-white">plain English</strong></span>
-            </li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500">
-              <svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <span>Bolt.new builds it with AI in <strong class="text-white">minutes</strong></span>
-            </li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500">
-              <svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <span>Export and deploy to your SiteGround hosting</span>
-            </li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500">
-              <svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <span>We handle the <strong class="text-white">technical setup</strong></span>
-            </li>
-          </ul>
-          <a href="https://bolt.new" target="_blank" class="block text-center w-full inline-flex items-center justify-center gap-2 px-8 py-3 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-lg font-semibold transition-all duration-200">Try Bolt.new →</a>
+          <div class="ag-card-body">
+            <h3>Build It Yourself</h3>
+            <p class="ag-card-sub">Powered by Bolt.new AI</p>
+            <p>Use Bolt.new — the AI-powered web builder — to create your own site. Describe what you want, and AI builds it. We host it on SiteGround.</p>
+            <ul class="ag-list">
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Describe your site in <strong>plain English</strong></span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Bolt.new builds it with AI in <strong>minutes</strong></span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Export and deploy to your SiteGround hosting</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>We handle the <strong>technical setup</strong></span></li>
+            </ul>
+            <a href="https://bolt.new" target="_blank" class="ag-btn ag-btn-ghost">Try Bolt.new →</a>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Pricing -->
-    <div id="pricing" class="mb-20">
-      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white text-center mb-2 tracking-tight">Step 3: Pick a Plan</h2>
-      <p class="text-gray-500 text-center max-w-xl mx-auto mb-12 text-sm sm:text-base">All plans include hosting on SiteGround, free SSL, CDN, daily backups, and your own white-label client portal.</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div id="pricing" class="ag-block">
+      <div class="ag-section-head" style="max-width: 42rem;">
+        <p class="folio-kicker">Step 03 — The Plans</p>
+        <h2 class="ag-h2">Step 3: Pick a Plan</h2>
+        <p class="ag-sub">All plans include hosting on SiteGround, free SSL, CDN, daily backups, and your own white-label client portal.</p>
+      </div>
+      <div class="ag-cards-3">
         <!-- Spark -->
-        <div class="flex flex-col p-8 bg-[#0f0f1a] border border-gray-800 rounded-xl hover:border-emerald-500/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300">
-          <h3 class="text-xl font-bold text-white mb-1">Spark</h3>
-          <p class="text-xs text-gray-500 mb-4">Perfect for getting started</p>
-          <div class="text-4xl font-extrabold text-white mb-0.5">$97<span class="text-sm text-gray-500 font-normal">/mo</span></div>
-          <p class="text-xs text-gray-500 mb-6">Domain not included (~$10-15/yr)</p>
-          <ul class="flex-1 mb-6 space-y-2">
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>1-page professional website</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Free SSL &amp; CDN</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Daily backups</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Email account setup</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>1 monthly edit</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>White-label client portal</li>
-          </ul>
-          <a href="https://checkout.cc3po.com/b/9B600i1ZI3EXelS5C41B61z" class="block text-center w-full inline-flex items-center justify-center gap-2 px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-lg transition-all duration-200 shadow-lg shadow-emerald-500/25">Get Spark</a>
+        <div class="ag-card">
+          <div class="ag-card-plate ag-card-plate-sm">
+            <div class="folio-plate" style="--plate-tint: #e6a50f;">
+              <img class="folio-plate-mark" src="/images/c07-mark-small.svg" alt="">
+              <span class="folio-plate-initial" aria-hidden="true">S</span>
+              <span class="folio-plate-label">Plan Nº 1</span>
+            </div>
+          </div>
+          <div class="ag-card-body">
+            <h3>Spark</h3>
+            <p class="ag-card-sub">Perfect for getting started</p>
+            <div class="ag-price">$97<span class="ag-price-per">/mo</span></div>
+            <p class="ag-note">Domain not included (~$10-15/yr)</p>
+            <ul class="ag-list">
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>1-page professional website</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Free SSL &amp; CDN</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Daily backups</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Email account setup</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>1 monthly edit</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>White-label client portal</span></li>
+            </ul>
+            <a href="https://checkout.cc3po.com/b/9B600i1ZI3EXelS5C41B61z" class="ag-btn">Get Spark</a>
+          </div>
         </div>
         <!-- Engine (Popular) -->
-        <div class="relative flex flex-col p-8 bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 border-2 border-emerald-500/30 rounded-xl hover:border-emerald-500/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300">
-          <div class="absolute -top-3 left-6 bg-emerald-500 text-white text-[11px] font-bold px-3.5 py-1 rounded-full">POPULAR</div>
-          <h3 class="text-xl font-bold text-white mb-1">Engine</h3>
-          <p class="text-xs text-gray-500 mb-4">For growing businesses</p>
-          <div class="text-4xl font-extrabold text-white mb-0.5">$297<span class="text-sm text-gray-500 font-normal">/mo</span></div>
-          <p class="text-xs text-gray-500 mb-6">Domain not included (~$10-15/yr)</p>
-          <ul class="flex-1 mb-6 space-y-2">
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Multi-page website (up to 5 pages)</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Blog setup</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>SEO optimization</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Free SSL &amp; CDN</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Daily backups</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>3 monthly edits</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Domain setup + migration</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>White-label client portal</li>
-          </ul>
-          <a href="https://checkout.cc3po.com/b/00w14mgUC1wPa5Ce8A1B61A" class="block text-center w-full inline-flex items-center justify-center gap-2 px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-lg transition-all duration-200 shadow-lg shadow-emerald-500/25">Get Engine</a>
+        <div class="ag-card ag-card-featured">
+          <div class="ag-card-plate ag-card-plate-sm">
+            <div class="folio-plate" style="--plate-tint: #e8506b;">
+              <img class="folio-plate-mark" src="/images/c07-mark-small.svg" alt="">
+              <span class="folio-plate-initial" aria-hidden="true">E</span>
+              <span class="folio-plate-label">Plan Nº 2</span>
+            </div>
+            <span class="ag-card-badge">POPULAR</span>
+          </div>
+          <div class="ag-card-body">
+            <h3>Engine</h3>
+            <p class="ag-card-sub">For growing businesses</p>
+            <div class="ag-price">$297<span class="ag-price-per">/mo</span></div>
+            <p class="ag-note">Domain not included (~$10-15/yr)</p>
+            <ul class="ag-list">
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Multi-page website (up to 5 pages)</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Blog setup</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>SEO optimization</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Free SSL &amp; CDN</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Daily backups</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>3 monthly edits</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Domain setup + migration</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>White-label client portal</span></li>
+            </ul>
+            <a href="https://checkout.cc3po.com/b/00w14mgUC1wPa5Ce8A1B61A" class="ag-btn">Get Engine</a>
+          </div>
         </div>
         <!-- Command -->
-        <div class="flex flex-col p-8 bg-[#0f0f1a] border border-gray-800 rounded-xl hover:border-emerald-500/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300">
-          <h3 class="text-xl font-bold text-white mb-1">Command</h3>
-          <p class="text-xs text-gray-500 mb-4">Full power for serious businesses</p>
-          <div class="text-4xl font-extrabold text-white mb-0.5">$497<span class="text-sm text-gray-500 font-normal">/mo</span></div>
-          <p class="text-xs text-gray-500 mb-6">Domain not included (~$10-15/yr)</p>
-          <ul class="flex-1 mb-6 space-y-2">
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Full custom website (unlimited pages)</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Ecommerce ready</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Advanced SEO + analytics</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Free SSL &amp; CDN</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Daily backups</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Priority support</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Unlimited edits</li>
-            <li class="flex items-start gap-2.5 text-sm text-gray-500"><svg class="w-[18px] h-[18px] text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>White-label client portal</li>
-          </ul>
-          <a href="https://checkout.cc3po.com/b/28E9AS9sa0sLgu08Og1B61B" class="block text-center w-full inline-flex items-center justify-center gap-2 px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-lg transition-all duration-200 shadow-lg shadow-emerald-500/25">Get Command</a>
+        <div class="ag-card">
+          <div class="ag-card-plate ag-card-plate-sm">
+            <div class="folio-plate" style="--plate-tint: #c56520;">
+              <img class="folio-plate-mark" src="/images/c07-mark-small.svg" alt="">
+              <span class="folio-plate-initial" aria-hidden="true">C</span>
+              <span class="folio-plate-label">Plan Nº 3</span>
+            </div>
+          </div>
+          <div class="ag-card-body">
+            <h3>Command</h3>
+            <p class="ag-card-sub">Full power for serious businesses</p>
+            <div class="ag-price">$497<span class="ag-price-per">/mo</span></div>
+            <p class="ag-note">Domain not included (~$10-15/yr)</p>
+            <ul class="ag-list">
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Full custom website (unlimited pages)</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Ecommerce ready</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Advanced SEO + analytics</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Free SSL &amp; CDN</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Daily backups</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Priority support</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Unlimited edits</span></li>
+              <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>White-label client portal</span></li>
+            </ul>
+            <a href="https://checkout.cc3po.com/b/28E9AS9sa0sLgu08Og1B61B" class="ag-btn">Get Command</a>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Powered by Bolt.new -->
-    <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-8 sm:p-10 mb-20 hover:border-emerald-500/30 transition-all duration-300">
-      <div class="flex items-center gap-3 mb-5">
-        <div class="w-10 h-10 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-          <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+    <div class="ag-panel ag-block">
+      <div class="ag-bolt-head">
+        <div class="folio-medallion" aria-hidden="true">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
         </div>
-        <h2 class="text-2xl font-bold text-white m-0">Powered by Bolt.new</h2>
-      </div>
-      <p class="text-sm sm:text-base text-gray-500 mb-8">Every site we build is powered by <a href="https://bolt.new" class="text-emerald-400 underline underline-offset-2 hover:text-emerald-300 transition-colors" target="_blank">Bolt.new</a> — the AI-powered web builder by StackBlitz. Here's why that matters for your business:</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="bg-black/30 border border-gray-800 rounded-xl p-6">
-          <div class="w-9 h-9 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-3">
-            <svg class="w-[18px] h-[18px] text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-          </div>
-          <h3 class="text-sm font-semibold text-white mb-1.5">Built in Hours, Not Weeks</h3>
-          <p class="text-sm text-gray-500 leading-relaxed">Traditional agencies take 4-6 weeks. Bolt.new lets us build in 24-48 hours. You get your site faster, and we pass the speed on to you.</p>
-        </div>
-        <div class="bg-black/30 border border-gray-800 rounded-xl p-6">
-          <div class="w-9 h-9 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-3">
-            <svg class="w-[18px] h-[18px] text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-          </div>
-          <h3 class="text-sm font-semibold text-white mb-1.5">Easy Updates</h3>
-          <p class="text-sm text-gray-500 leading-relaxed">Need a change? Just tell us. We update your site in Bolt.new and deploy instantly. No waiting, no complex CMS training.</p>
-        </div>
-        <div class="bg-black/30 border border-gray-800 rounded-xl p-6">
-          <div class="w-9 h-9 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-3">
-            <svg class="w-[18px] h-[18px] text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-          </div>
-          <h3 class="text-sm font-semibold text-white mb-1.5">Full Customization</h3>
-          <p class="text-sm text-gray-500 leading-relaxed">Unlike drag-and-drop builders, Bolt.new generates real code. Your site isn't locked into a template — it's fully customizable and can grow with your business.</p>
+        <div>
+          <p class="folio-kicker">The Engine Room</p>
+          <h2 style="margin-top: 0.4rem;">Powered by Bolt.new</h2>
         </div>
       </div>
-      <div class="mt-6 pt-5 border-t border-gray-800">
-        <p class="text-sm text-gray-500">💡 <strong class="text-gray-400">Want to build your own sites?</strong> Sign up for Bolt.new and get 200K free tokens to start building. <a href="https://bolt.new" class="text-emerald-400 underline underline-offset-2 hover:text-emerald-300 transition-colors" target="_blank">Try Bolt.new →</a></p>
+      <p style="font-size: 1rem; line-height: 1.65; color: color-mix(in srgb, var(--brand-paper) 66%, transparent); margin: 0;">Every site we build is powered by <a href="https://bolt.new" class="ag-link" target="_blank">Bolt.new</a> — the AI-powered web builder by StackBlitz. Here's why that matters for your business:</p>
+      <div class="ag-bolt-grid">
+        <div class="ag-bolt-card">
+          <div class="ag-bolt-ico">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3>Built in Hours, Not Weeks</h3>
+          <p>Traditional agencies take 4-6 weeks. Bolt.new lets us build in 24-48 hours. You get your site faster, and we pass the speed on to you.</p>
+        </div>
+        <div class="ag-bolt-card">
+          <div class="ag-bolt-ico">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </div>
+          <h3>Easy Updates</h3>
+          <p>Need a change? Just tell us. We update your site in Bolt.new and deploy instantly. No waiting, no complex CMS training.</p>
+        </div>
+        <div class="ag-bolt-card">
+          <div class="ag-bolt-ico">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h3>Full Customization</h3>
+          <p>Unlike drag-and-drop builders, Bolt.new generates real code. Your site isn't locked into a template — it's fully customizable and can grow with your business.</p>
+        </div>
+      </div>
+      <div class="ag-bolt-foot">
+        <p>💡 <strong>Want to build your own sites?</strong> Sign up for Bolt.new and get 200K free tokens to start building. <a href="https://bolt.new" class="ag-link" target="_blank">Try Bolt.new →</a></p>
       </div>
     </div>
 
     <!-- Add-on Services -->
-    <div class="mb-20">
-      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white text-center mb-2 tracking-tight">Add-On Services</h2>
-      <p class="text-gray-500 text-center max-w-lg mx-auto mb-12 text-sm sm:text-base">Already have a site? Add these automated services to any plan.</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        <a href="/products/shield/" class="block p-5 bg-[#0f0f1a] border border-gray-800 rounded-xl hover:border-emerald-500/40 hover:-translate-y-0.5 transition-all duration-200">
-          <div class="flex items-center gap-2.5 mb-1.5">
-            <div class="w-8 h-8 bg-emerald-500/10 rounded-lg flex items-center justify-center">
-              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-            </div>
-            <h3 class="text-sm font-semibold text-white group-hover:text-emerald-400 transition-colors">Shield</h3>
+    <div class="ag-block">
+      <div class="ag-section-head">
+        <p class="folio-kicker">The Add-On Shelf</p>
+        <h2 class="ag-h2">Add-On Services</h2>
+        <p class="ag-sub">Already have a site? Add these automated services to any plan.</p>
+      </div>
+      <div class="ag-addons">
+        <a href="/products/shield/" class="ag-addon">
+          <div class="ag-addon-top">
+            <span class="folio-medallion" aria-hidden="true">S</span>
+            <h3>Shield</h3>
           </div>
-          <p class="text-xs text-gray-500">ADA/WCAG 2.2 AA monitoring + alerts. $97/mo</p>
+          <p>ADA/WCAG 2.2 AA monitoring + alerts. $97/mo</p>
         </a>
-        <a href="/products/voice-agent/" class="block p-5 bg-[#0f0f1a] border border-gray-800 rounded-xl hover:border-emerald-500/40 hover:-translate-y-0.5 transition-all duration-200">
-          <div class="flex items-center gap-2.5 mb-1.5">
-            <div class="w-8 h-8 bg-emerald-500/10 rounded-lg flex items-center justify-center">
-              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-            </div>
-            <h3 class="text-sm font-semibold text-white">AI Voice Agent</h3>
+        <a href="/products/voice-agent/" class="ag-addon">
+          <div class="ag-addon-top">
+            <span class="folio-medallion" aria-hidden="true">A</span>
+            <h3>AI Voice Agent</h3>
           </div>
-          <p class="text-xs text-gray-500">24/7 AI phone answering for your business. $97/mo</p>
+          <p>24/7 AI phone answering for your business. $97/mo</p>
         </a>
-        <a href="/products/resena/" class="block p-5 bg-[#0f0f1a] border border-gray-800 rounded-xl hover:border-emerald-500/40 hover:-translate-y-0.5 transition-all duration-200">
-          <div class="flex items-center gap-2.5 mb-1.5">
-            <div class="w-8 h-8 bg-emerald-500/10 rounded-lg flex items-center justify-center">
-              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
-            </div>
-            <h3 class="text-sm font-semibold text-white">Reseña</h3>
+        <a href="/products/resena/" class="ag-addon">
+          <div class="ag-addon-top">
+            <span class="folio-medallion" aria-hidden="true">R</span>
+            <h3>Reseña</h3>
           </div>
-          <p class="text-xs text-gray-500">Automated review generation + reputation management. $97/mo</p>
+          <p>Automated review generation + reputation management. $97/mo</p>
         </a>
-        <a href="/products/site-health/" class="block p-5 bg-[#0f0f1a] border border-gray-800 rounded-xl hover:border-emerald-500/40 hover:-translate-y-0.5 transition-all duration-200">
-          <div class="flex items-center gap-2.5 mb-1.5">
-            <div class="w-8 h-8 bg-emerald-500/10 rounded-lg flex items-center justify-center">
-              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-            </div>
-            <h3 class="text-sm font-semibold text-white">SiteHealth</h3>
+        <a href="/products/site-health/" class="ag-addon">
+          <div class="ag-addon-top">
+            <span class="folio-medallion" aria-hidden="true">S</span>
+            <h3>SiteHealth</h3>
           </div>
-          <p class="text-xs text-gray-500">Uptime + Core Web Vitals monitoring. $49/mo</p>
+          <p>Uptime + Core Web Vitals monitoring. $49/mo</p>
         </a>
-        <a href="/products/disclose-shield/" class="block p-5 bg-[#0f0f1a] border border-gray-800 rounded-xl hover:border-emerald-500/40 hover:-translate-y-0.5 transition-all duration-200">
-          <div class="flex items-center gap-2.5 mb-1.5">
-            <div class="w-8 h-8 bg-amber-500/10 rounded-lg flex items-center justify-center">
-              <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-            </div>
-            <h3 class="text-sm font-semibold text-white">DiscloseShield</h3>
+        <a href="/products/disclose-shield/" class="ag-addon">
+          <div class="ag-addon-top">
+            <span class="folio-medallion" aria-hidden="true">D</span>
+            <h3>DiscloseShield</h3>
           </div>
-          <p class="text-xs text-gray-500">AI Act chatbot disclosure compliance. $67/mo</p>
+          <p>AI Act chatbot disclosure compliance. $67/mo</p>
         </a>
-        <a href="/products/scan/" class="block p-5 bg-[#0f0f1a] border border-gray-800 rounded-xl hover:border-emerald-500/40 hover:-translate-y-0.5 transition-all duration-200">
-          <div class="flex items-center gap-2.5 mb-1.5">
-            <div class="w-8 h-8 bg-emerald-500/10 rounded-lg flex items-center justify-center">
-              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
-            </div>
-            <h3 class="text-sm font-semibold text-white">Free Business Scan</h3>
+        <a href="/products/scan/" class="ag-addon">
+          <div class="ag-addon-top">
+            <span class="folio-medallion" aria-hidden="true">F</span>
+            <h3>Free Business Scan</h3>
           </div>
-          <p class="text-xs text-gray-500">Free compliance + performance scan. No credit card.</p>
+          <p>Free compliance + performance scan. No credit card.</p>
         </a>
       </div>
     </div>
 
     <!-- CTA -->
-    <div class="bg-gradient-to-br from-emerald-500/10 to-transparent border border-emerald-500/20 rounded-2xl p-8 sm:p-12 text-center mb-20">
-      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-3 tracking-tight">Ready to Get Started?</h2>
-      <p class="text-gray-500 max-w-lg mx-auto mb-8 text-sm sm:text-base">Pick a plan, buy your domain, and we'll have your site live in 48 hours. No risk, no long-term commitment.</p>
-      <div class="flex flex-wrap justify-center gap-3">
-        <a href="#pricing" class="inline-flex items-center gap-2 px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-lg transition-all duration-200 shadow-lg shadow-emerald-500/25">Choose a Plan</a>
-        <a href="https://scheduler.zoom.us/carlos-cabrales-iii/agency-consultation" class="inline-flex items-center gap-2 px-8 py-3 bg-white/5 hover:bg-white/10 text-white border border-white/20 rounded-lg font-semibold transition-all duration-200">Book a Free Call</a>
-        <a href="#domain" class="inline-flex items-center gap-2 px-8 py-3 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-lg font-semibold transition-all duration-200">Buy a Domain First</a>
+    <div class="ag-cta ag-block">
+      <p class="folio-kicker" style="margin-bottom: 0.6rem;">The Door Is Open</p>
+      <h2 class="ag-h2">Ready to Get Started?</h2>
+      <p class="ag-sub" style="max-width: 32rem; margin: 0 auto 2rem;">Pick a plan, buy your domain, and we'll have your site live in 48 hours. No risk, no long-term commitment.</p>
+      <div class="ag-cta-row ag-cta-row-center" style="display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center;">
+        <a href="#pricing" class="ag-btn">Choose a Plan</a>
+        <a href="https://scheduler.zoom.us/carlos-cabrales-iii/agency-consultation" class="ag-btn ag-btn-ghost">Book a Free Call</a>
+        <a href="https://cc3po.com/audit?utm_source=insights.cc3po.com&amp;utm_medium=agency&amp;utm_campaign=estate-scan" class="ag-btn ag-btn-ghost">Run the Free Scan →</a>
+        <a href="#domain" class="ag-btn ag-btn-ghost">Buy a Domain First</a>
       </div>
     </div>
 
     <!-- Lead Capture Form -->
-    <div id="get-started" class="bg-gradient-to-br from-emerald-500/10 to-transparent border border-emerald-500/20 rounded-2xl p-8 sm:p-12 mb-20">
-      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-3 tracking-tight text-center">Tell Us About Your Business</h2>
-      <p class="text-gray-500 text-center max-w-lg mx-auto mb-8 text-sm sm:text-base">Fill this out and we'll build your site. We'll reach out within 24 hours.</p>
-      <form id="agency-lead-form" class="max-w-xl mx-auto space-y-4">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label for="form-name" class="block text-sm font-medium text-gray-400 mb-1">Your Name *</label>
-            <input type="text" id="form-name" name="name" required class="w-full bg-[#1a1a2e]/80 border border-white/10 rounded-lg py-3 px-4 text-white text-sm focus:outline-none focus:border-emerald-500 focus:ring-3 focus:ring-emerald-500/10 placeholder:text-gray-500 transition-colors" placeholder="John Doe" />
+    <div id="get-started" class="ag-panel ag-block">
+      <div class="ag-section-head" style="margin-bottom: 2rem;">
+        <p class="folio-kicker">Get Started</p>
+        <h2 class="ag-h2">Tell Us About Your Business</h2>
+        <p class="ag-sub">Fill this out and we'll build your site. We'll reach out within 24 hours.</p>
+      </div>
+      <form id="agency-lead-form" class="ag-form">
+        <div class="ag-form-rows">
+          <div class="ag-form-grid">
+            <div class="ag-field">
+              <label for="form-name" class="ag-label">Your Name *</label>
+              <input type="text" id="form-name" name="name" required class="ag-input" placeholder="John Doe" />
+            </div>
+            <div class="ag-field">
+              <label for="form-business" class="ag-label">Business Name *</label>
+              <input type="text" id="form-business" name="business" required class="ag-input" placeholder="Joe's Plumbing" />
+            </div>
           </div>
-          <div>
-            <label for="form-business" class="block text-sm font-medium text-gray-400 mb-1">Business Name *</label>
-            <input type="text" id="form-business" name="business" required class="w-full bg-[#1a1a2e]/80 border border-white/10 rounded-lg py-3 px-4 text-white text-sm focus:outline-none focus:border-emerald-500 focus:ring-3 focus:ring-emerald-500/10 placeholder:text-gray-500 transition-colors" placeholder="Joe's Plumbing" />
+          <div class="ag-form-grid">
+            <div class="ag-field">
+              <label for="form-phone" class="ag-label">Phone *</label>
+              <input type="tel" id="form-phone" name="phone" required class="ag-input" placeholder="(209) 555-0100" />
+            </div>
+            <div class="ag-field">
+              <label for="form-email" class="ag-label">Email</label>
+              <input type="email" id="form-email" name="email" class="ag-input" placeholder="john@joesplumbing.com" />
+            </div>
           </div>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label for="form-phone" class="block text-sm font-medium text-gray-400 mb-1">Phone *</label>
-            <input type="tel" id="form-phone" name="phone" required class="w-full bg-[#1a1a2e]/80 border border-white/10 rounded-lg py-3 px-4 text-white text-sm focus:outline-none focus:border-emerald-500 focus:ring-3 focus:ring-emerald-500/10 placeholder:text-gray-500 transition-colors" placeholder="(209) 555-0100" />
+          <div class="ag-field">
+            <label for="form-industry" class="ag-label">Industry</label>
+            <select id="form-industry" name="industry" class="ag-input">
+              <option value="">Select your industry</option>
+              <option value="HVAC">HVAC</option>
+              <option value="Plumbing">Plumbing</option>
+              <option value="Electrical">Electrical</option>
+              <option value="Restaurant">Restaurant</option>
+              <option value="Retail">Retail</option>
+              <option value="Dental">Dental</option>
+              <option value="Real Estate">Real Estate</option>
+              <option value="Auto">Auto / Mechanic</option>
+              <option value="Beauty">Beauty / Salon</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
-          <div>
-            <label for="form-email" class="block text-sm font-medium text-gray-400 mb-1">Email</label>
-            <input type="email" id="form-email" name="email" class="w-full bg-[#1a1a2e]/80 border border-white/10 rounded-lg py-3 px-4 text-white text-sm focus:outline-none focus:border-emerald-500 focus:ring-3 focus:ring-emerald-500/10 placeholder:text-gray-500 transition-colors" placeholder="john@joesplumbing.com" />
+          <div class="ag-field">
+            <label for="form-needs" class="ag-label">What do you need?</label>
+            <textarea id="form-needs" name="needs" rows="3" class="ag-input" placeholder="Tell us about your business and what kind of site you want..."></textarea>
           </div>
+          <button type="submit" class="ag-btn">
+            Get My Website →
+          </button>
+          <p class="ag-form-note">We'll reach out within 24 hours. No obligation, no spam.</p>
         </div>
-        <div>
-          <label for="form-industry" class="block text-sm font-medium text-gray-400 mb-1">Industry</label>
-          <select id="form-industry" name="industry" class="w-full bg-[#1a1a2e]/80 border border-white/10 rounded-lg py-3 px-4 text-white text-sm focus:outline-none focus:border-emerald-500 focus:ring-3 focus:ring-emerald-500/10 transition-colors">
-            <option value="">Select your industry</option>
-            <option value="HVAC">HVAC</option>
-            <option value="Plumbing">Plumbing</option>
-            <option value="Electrical">Electrical</option>
-            <option value="Restaurant">Restaurant</option>
-            <option value="Retail">Retail</option>
-            <option value="Dental">Dental</option>
-            <option value="Real Estate">Real Estate</option>
-            <option value="Auto">Auto / Mechanic</option>
-            <option value="Beauty">Beauty / Salon</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <div>
-          <label for="form-needs" class="block text-sm font-medium text-gray-400 mb-1">What do you need?</label>
-          <textarea id="form-needs" name="needs" rows="3" class="w-full bg-[#1a1a2e]/80 border border-white/10 rounded-lg py-3 px-4 text-white text-sm focus:outline-none focus:border-emerald-500 focus:ring-3 focus:ring-emerald-500/10 placeholder:text-gray-500 transition-colors" placeholder="Tell us about your business and what kind of site you want..."></textarea>
-        </div>
-        <button type="submit" class="w-full inline-flex items-center justify-center gap-2 px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-lg transition-all duration-200 shadow-lg shadow-emerald-500/25 text-base">
-          Get My Website →
-        </button>
-        <p class="text-xs text-gray-500 text-center mt-2">We'll reach out within 24 hours. No obligation, no spam.</p>
       </form>
-      <div id="form-success" style="display:none;" class="text-center py-8">
-        <div class="text-4xl mb-3">✅</div>
-        <h3 class="text-xl font-bold text-white mb-2">Thanks, we got your info!</h3>
-        <p class="text-gray-500 text-sm">We'll reach out within 24 hours to get started on your site.</p>
+      <div id="form-success" style="display:none;" class="ag-success">
+        <div class="ag-success-mark">✅</div>
+        <h3>Thanks, we got your info!</h3>
+        <p>We'll reach out within 24 hours to get started on your site.</p>
       </div>
     </div>
 
@@ -496,35 +793,35 @@ import Layout from '../layouts/Layout.astro';
     </script>
 
     <!-- FAQ -->
-    <div class="bg-[#0f0f1a] border border-gray-800 rounded-xl p-8 sm:p-10">
-      <h2 class="text-2xl font-bold text-white mb-8">Frequently Asked Questions</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <h3 class="text-sm font-semibold text-white mb-1.5">Can I use my own domain?</h3>
-          <p class="text-sm text-gray-500 leading-relaxed">Yes! If you already own a domain, we'll point it to your new site. No extra cost. We handle the DNS configuration for you.</p>
+    <div class="ag-panel">
+      <p class="folio-kicker" style="margin-bottom: 0.6rem;">Questions</p>
+      <h2 class="ag-h2 ag-h2-left" style="font-size: 1.6rem; margin-bottom: 2rem;">Frequently Asked Questions</h2>
+      <div class="ag-faq-grid">
+        <div class="ag-faq">
+          <h3>Can I use my own domain?</h3>
+          <p>Yes! If you already own a domain, we'll point it to your new site. No extra cost. We handle the DNS configuration for you.</p>
         </div>
-        <div>
-          <h3 class="text-sm font-semibold text-white mb-1.5">How much does a domain cost?</h3>
-          <p class="text-sm text-gray-500 leading-relaxed">Domains are ~$10-15/year for .com through <a href="https://www.siteground.com/go/a3sob40itj" target="_blank" class="text-emerald-400 underline underline-offset-2 hover:text-emerald-300 transition-colors">SiteGround</a>. We handle the registration for you, or you can buy it yourself through our affiliate link.</p>
+        <div class="ag-faq">
+          <h3>How much does a domain cost?</h3>
+          <p>Domains are ~$10-15/year for .com through <a href="https://www.siteground.com/go/a3sob40itj" target="_blank" class="ag-link">SiteGround</a>. We handle the registration for you, or you can buy it yourself through our affiliate link.</p>
         </div>
-        <div>
-          <h3 class="text-sm font-semibold text-white mb-1.5">What if I want to buy my own domain?</h3>
-          <p class="text-sm text-gray-500 leading-relaxed">Use our <a href="https://www.siteground.com/go/a3sob40itj" target="_blank" class="text-emerald-400 underline underline-offset-2 hover:text-emerald-300 transition-colors">dedicated affiliate link</a> to register your domain or hosting. We earn a commission that helps keep our service prices low. Then send us the domain name and we'll set everything up.</p>
+        <div class="ag-faq">
+          <h3>What if I want to buy my own domain?</h3>
+          <p>Use our <a href="https://www.siteground.com/go/a3sob40itj" target="_blank" class="ag-link">dedicated affiliate link</a> to register your domain or hosting. We earn a commission that helps keep our service prices low. Then send us the domain name and we'll set everything up.</p>
         </div>
-        <div>
-          <h3 class="text-sm font-semibold text-white mb-1.5">Do I need to use Bolt.new myself?</h3>
-          <p class="text-sm text-gray-500 leading-relaxed">No. You just tell us what you need — we build it on Bolt.new for you. You review and approve. We handle everything else. If you <em>want</em> to build your own sites, you can use Bolt.new directly, but it's not required.</p>
+        <div class="ag-faq">
+          <h3>Do I need to use Bolt.new myself?</h3>
+          <p>No. You just tell us what you need — we build it on Bolt.new for you. You review and approve. We handle everything else. If you <em>want</em> to build your own sites, you can use Bolt.new directly, but it's not required.</p>
         </div>
-        <div>
-          <h3 class="text-sm font-semibold text-white mb-1.5">What's a white-label portal?</h3>
-          <p class="text-sm text-gray-500 leading-relaxed">When you sign up, you get access to your own dashboard where you can manage your site, email accounts, and billing. It's branded as "CC3PO" — no SiteGround or third-party branding. You log in at your own URL.</p>
+        <div class="ag-faq">
+          <h3>What's a white-label portal?</h3>
+          <p>When you sign up, you get access to your own dashboard where you can manage your site, email accounts, and billing. It's branded as "CC3PO" — no SiteGround or third-party branding. You log in at your own URL.</p>
         </div>
-        <div>
-          <h3 class="text-sm font-semibold text-white mb-1.5">Can I transfer my existing site?</h3>
-          <p class="text-sm text-gray-500 leading-relaxed">Yes. We migrate your existing site to our hosting for free. Just pick a plan and we handle the rest. We support WordPress, static sites, and most custom builds.</p>
+        <div class="ag-faq">
+          <h3>Can I transfer my existing site?</h3>
+          <p>Yes. We migrate your existing site to our hosting for free. Just pick a plan and we handle the rest. We support WordPress, static sites, and most custom builds.</p>
         </div>
       </div>
     </div>
   </section>
 </Layout>
-<!-- cache-buster: 1782754798 -->
