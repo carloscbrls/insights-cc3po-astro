@@ -19,10 +19,11 @@ const { topic, label, posts } = Astro.props;
 <Layout title={`${label} — CC3PO Insights`} description={`Every CC3PO Insights post on ${label}.`}>
 <section class="cc-section">
   <div class="cc-container">
-    <div class="cc-section-label">Topic</div>
-    <div class="cc-section-header">
-      <h1 class="cc-section-title">{label}</h1>
-      <p class="cc-section-desc">{posts.length} {posts.length === 1 ? 'post' : 'posts'} in this topic.</p>
+    <div class="folio-header" style="margin-bottom: 36px;">
+      <p class="folio-kicker">Topic</p>
+      <h1>{label}</h1>
+      <p class="folio-lede">{posts.length} {posts.length === 1 ? 'post' : 'posts'} in this topic.</p>
+      <hr class="folio-rule" />
     </div>
     <div class="cc-posts-grid">
       {posts.map((post) => <PostCard post={post} />)}

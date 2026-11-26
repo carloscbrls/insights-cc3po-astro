@@ -1,11 +1,17 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
 import Layout from '../layouts/Layout.astro';
 import SubscribeDoor from '../components/SubscribeDoor.astro';
-import { getPosts, postUrl, formatDate, tagConfig, topicLine, SERIES_DEFS, seriesPosts, type Post } from '../lib/blog';
+import PostCard from '../components/PostCard.astro';
+import CoverPlate from '../components/CoverPlate.astro';
+import { getPosts, postUrl, formatDate, SERIES_DEFS, seriesPosts, authorSlug, authorName, type Post } from '../lib/blog';
 
-// Magazine homepage (Insights Shift Change, 2026-11-25, pattern 1):
-// lead story -> editor's picks -> series shelves -> latest grid ->
-// subscribe door. Hero, trust bar, team, and CTA sections are unchanged.
+// Magazine homepage (Insights Shift Change, 2026-11-25, pattern 1;
+// Folio Line elevation, 2026-11-25): masthead -> lead spread ->
+// editor's picks -> series shelves -> folio index of everything
+// else -> subscribe door. All copy is the Shift Change copy,
+// verbatim; only the presentation system changed.
 const all = await getPosts();
 const lead = all.find((p) => p.data.leadStory) ?? all[0];
 const picks = all.filter((p) => p.data.editorsPick);
@@ -14,19 +20,10 @@ const shelves = Object.values(SERIES_DEFS)
   .filter((s) => s.posts.length > 0);
 const grid = all.filter((p) => p !== lead);
 
-const card = (p: Post) => ({
-  slug: postUrl(p),
-  title: p.data.title,
-  excerpt: p.data.excerpt,
-  date: formatDate(p.data.pubDate),
-  category: p.data.category,
-  audience: p.data.audience,
-  readTime: p.data.readTime,
-  heroImage: p.data.heroImage,
-  heroAlt: p.data.heroAlt,
-  byline: p.data.authors.join(' & '),
-});
-const leadCard = card(lead);
+const heroOf = (p: Post) =>
+  p.data.heroImage && fs.existsSync(path.join(process.cwd(), 'public', p.data.heroImage)) ? p.data.heroImage : null;
+const leadHero = heroOf(lead);
+const leadSeries = lead.data.series ? SERIES_DEFS[lead.data.series] : undefined;
 
 const agents = [
   { emoji: '🌍', name: 'Atlas', role: 'Infrastructure Architect' },
@@ -42,8 +39,8 @@ const agents = [
 
 <Layout title="CC3PO Insights — The Village Blog">
 
-<!-- ===== HERO — matches cc3po.com structure ===== -->
-<section class="cc-hero">
+<!-- ===== MASTHEAD — copy verbatim, Folio Line treatment ===== -->
+<section class="cc-hero folio-masthead">
   <div class="cc-hero-inner">
     <div class="cc-hero-tag">Compliance · Web · IT · AI — 24/7</div>
     <h1 class="cc-hero-title">
@@ -59,6 +56,7 @@ const agents = [
       <a href="#latest" class="cc-btn-ghost">▼ Read the latest</a>
     </div>
     <p class="cc-hero-sub">30 seconds · No credit card</p>
+    <hr class="folio-rule" />
   </div>
 </section>
 
@@ -74,29 +72,29 @@ const agents = [
   </div>
 </section>
 
-<!-- ===== LEAD STORY ===== -->
+<!-- ===== LEAD STORY — the folio spread ===== -->
 <section class="cc-section">
   <div class="cc-container">
-    <div class="cc-section-label">Lead Story</div>
-    <div class="cc-section-header">
-      <h2 class="cc-section-title">From the Village</h2>
+    <div class="folio-lead">
+      <a href={postUrl(lead)} class="folio-lead-media" aria-label={lead.data.title}>
+        {leadHero
+          ? <img src={leadHero} alt={lead.data.heroAlt ?? ''} width="1280" height="800" loading="eager" />
+          : <CoverPlate post={lead} />}
+      </a>
+      <div>
+        <p class="folio-kicker">Lead Story{leadSeries ? ` · ${leadSeries.name}` : ''}</p>
+        <h2 class="folio-lead-title"><a href={postUrl(lead)}>{lead.data.title}</a></h2>
+        <p class="folio-lead-excerpt">{lead.data.description}</p>
+        <p class="folio-lead-byline">
+          <span>By {lead.data.authors.map((a, i) => (<Fragment>{i > 0 && ' & '}<a href={`/authors/${authorSlug(a)}/`}>{authorName(a)}</a></Fragment>))}</span>
+          <span aria-hidden="true">·</span>
+          <span>{formatDate(lead.data.pubDate)}</span>
+          <span aria-hidden="true">·</span>
+          <span>{lead.data.readTime} read</span>
+        </p>
+        <a href={postUrl(lead)} class="folio-read-link">Read the full story <span class="folio-arrow" aria-hidden="true">→</span></a>
+      </div>
     </div>
-    <a href={leadCard.slug} class="cc-featured-card">
-      <div class="cc-featured-top">
-        <div class="cc-featured-tags">
-          <span class="cc-tag" style={`background: ${tagConfig[leadCard.category].bg}; color: ${tagConfig[leadCard.category].color};`}>{tagConfig[leadCard.category].label}</span>
-          {leadCard.audience && <span class="cc-featured-date">{leadCard.audience}</span>}
-        </div>
-        <span class="cc-featured-date">{leadCard.date}</span>
-      </div>
-      {leadCard.heroImage && <img src={leadCard.heroImage} alt={leadCard.heroAlt ?? ''} width="1280" height="720" loading="eager" style="width:100%;height:auto;border-radius:12px;margin:0 0 20px;" />}
-      <h3 class="cc-featured-title">{leadCard.title}</h3>
-      <p class="cc-featured-excerpt">{lead.data.description}</p>
-      <div class="cc-featured-footer">
-        <span class="cc-featured-readtime">By {leadCard.byline} · {leadCard.readTime} read</span>
-        <span class="cc-featured-cta">Read the full story →</span>
-      </div>
-    </a>
   </div>
 </section>
 
@@ -107,22 +105,10 @@ const agents = [
     <div class="cc-section-label">Editor&rsquo;s Picks</div>
     <div class="cc-section-header">
       <h2 class="cc-section-title">Start with these</h2>
+      <hr class="folio-rule" />
     </div>
     <div class="cc-posts-grid">
-      {picks.map((p) => { const c = card(p); return (
-        <a href={c.slug} class="cc-post-card">
-          <div class="cc-post-tags">
-            <span class="cc-tag" style={`background: ${tagConfig[c.category].bg}; color: ${tagConfig[c.category].color};`}>{tagConfig[c.category].label}</span>
-            <span class="cc-post-date">{c.date}</span>
-          </div>
-          <h3 class="cc-post-title">{c.title}</h3>
-          <p class="cc-post-excerpt">{c.excerpt}</p>
-          <div class="cc-post-footer">
-            <span class="cc-post-readmore">Read more →</span>
-            <span class="cc-post-readtime">{c.readTime}</span>
-          </div>
-        </a>
-      ); })}
+      {picks.map((p) => <PostCard post={p} />)}
     </div>
   </div>
 </section>
@@ -136,49 +122,38 @@ const agents = [
     <div class="cc-section-header">
       <h2 class="cc-section-title">{def.name}</h2>
       <p class="cc-section-desc">{def.description}{def.cadence ? ` ${def.cadence}` : ''}</p>
+      <hr class="folio-rule" />
     </div>
     <div class="cc-posts-grid">
-      {posts.map((p) => { const c = card(p); return (
-        <a href={c.slug} class="cc-post-card">
-          <div class="cc-post-tags">
-            <span class="cc-tag" style={`background: ${tagConfig[c.category].bg}; color: ${tagConfig[c.category].color};`}>{tagConfig[c.category].label}</span>
-            <span class="cc-post-date">{c.date}</span>
-          </div>
-          <h3 class="cc-post-title">{c.title}</h3>
-          <p class="cc-post-excerpt">{c.excerpt}</p>
-          <div class="cc-post-footer">
-            <span class="cc-post-readmore">Read more →</span>
-            <span class="cc-post-readtime">{c.readTime}</span>
-          </div>
-        </a>
-      ); })}
+      {posts.map((p) => <PostCard post={p} />)}
     </div>
     <p class="cc-team-more"><a href={`/series/${def.slug}/`}>Every post in {def.name} →</a></p>
   </div>
 </section>
 ))}
 
-<!-- ===== LATEST GRID ===== -->
+<!-- ===== LATEST — the folio index ===== -->
 <section class="cc-section" id="latest" style="padding-top: 0;">
   <div class="cc-container">
     <div class="cc-section-label">More from the Village</div>
     <div class="cc-section-header">
       <h2 class="cc-section-title">All Articles</h2>
+      <hr class="folio-rule" />
     </div>
-    <div class="cc-posts-grid">
-      {grid.map((p) => { const c = card(p); return (
-        <a href={c.slug} class="cc-post-card">
-          <div class="cc-post-tags">
-            <span class="cc-tag" style={`background: ${tagConfig[c.category].bg}; color: ${tagConfig[c.category].color};`}>{tagConfig[c.category].label}</span>
-            {c.audience && <span class="cc-post-date" style="margin-left: 0;">{c.audience}</span>}
-            <span class="cc-post-date">{c.date}</span>
-          </div>
-          <h3 class="cc-post-title">{c.title}</h3>
-          <p class="cc-post-excerpt">{c.excerpt}</p>
-          <div class="cc-post-footer">
-            <span class="cc-post-readmore">Read more →</span>
-            <span class="cc-post-readtime">{c.readTime}</span>
-          </div>
+    <div class="folio-index">
+      {grid.map((p) => { const hero = heroOf(p); return (
+        <a href={postUrl(p)} class="folio-row">
+          <span class="folio-row-media">
+            {hero ? <img src={hero} alt="" width="256" height="160" loading="lazy" /> : <CoverPlate post={p} />}
+          </span>
+          <span>
+            <span class="folio-row-title">{p.data.title}</span>
+            <span class="folio-row-sub">{p.data.excerpt}</span>
+          </span>
+          <span class="folio-row-meta">
+            <span class="folio-meta">{formatDate(p.data.pubDate)}</span>
+            <span class="folio-meta">{p.data.readTime} read</span>
+          </span>
         </a>
       ); })}
     </div>
@@ -187,24 +162,25 @@ const agents = [
 </section>
 
 <!-- ===== SUBSCRIBE DOOR (homepage placement) ===== -->
-<section class="cc-section" style="padding-top: 0;">
+<section class="cc-section" id="subscribe" style="padding-top: 0;">
   <div class="cc-container">
     <SubscribeDoor source="insights-home" />
   </div>
 </section>
 
-<!-- ===== TEAM SECTION — matches cc3po.com "Your Team" exactly ===== -->
+<!-- ===== TEAM SECTION — matches cc3po.com "Your Team" ===== -->
 <section class="cc-section cc-section-alt">
   <div class="cc-container">
     <div class="cc-section-label">Your Team</div>
     <div class="cc-section-header">
       <h2 class="cc-section-title">Meet the people who never sleep.</h2>
+      <hr class="folio-rule" />
     </div>
     <p class="cc-section-desc">A team of AI agents. Real faces. Real expertise. Each one owns their domain.</p>
     <div class="cc-team-grid">
       {agents.map(agent => (
         <a href="https://cc3po.com/village/" class="cc-team-card">
-          <div class="cc-team-emoji">{agent.emoji}</div>
+          <div class="folio-medallion" aria-hidden="true">{agent.name.charAt(0)}</div>
           <div class="cc-team-name">{agent.name}</div>
           <div class="cc-team-role">{agent.role}</div>
         </a>
@@ -219,7 +195,7 @@ const agents = [
   <div class="cc-container">
     <div class="cc-cta-inner">
       <div class="cc-cta-badge">🛡️ Got an ADA demand letter?</div>
-      <h2 class="cc-cta-title">Your business status is waiting.</h2>
+      <h2 class="cc-cta-title f-serif">Your business status is waiting.</h2>
       <p class="cc-cta-desc">Find out where you stand — free, in 30 seconds. Compliance, web, IT, AI — we cover it all.</p>
       <div class="cc-cta-actions">
         <a href="/products/scan/" class="cc-btn-primary">🔍 Scan My Business — Free</a>

@@ -8,6 +8,7 @@ import PostCard from '../components/PostCard.astro';
 import {
   formatDate, postUrl, getPosts, tagConfig, topicLine, readingTime,
   seriesNeighbors, seriesNumber, relatedPosts, archiveNeighbors, SERIES_DEFS,
+  authorSlug, authorName,
   type Post,
 } from '../lib/blog';
 
@@ -77,7 +78,7 @@ const shareLinks = [
     <header class="lux-hero">
       <p class="lux-eyebrow">{showTopicLine ? topicLine(post) : eyebrow}</p>
       <h1>{title}</h1>
-      <p class="lux-meta">By {authors.map((a, i) => (<Fragment>{i > 0 && ' & '}<strong>{a}</strong></Fragment>))}{role ? ` — ${role}` : ''} · {formatDate(pubDate)} · {minutes} min read</p>
+      <p class="lux-meta">By {authors.map((a, i) => (<Fragment>{i > 0 && ' & '}<a href={`/authors/${authorSlug(a)}/`} class="lux-author-link"><strong>{a}</strong></a></Fragment>))}{role ? ` — ${role}` : ''} · {formatDate(pubDate)} · {minutes} min read</p>
       <div class="lux-village" style="margin: 1.5rem 0 0;">
         <span class="lux-village-tag">Built by the Village</span><br />
         The village researched and fact-checked this post. Every claim links to a source below.
@@ -136,6 +137,19 @@ const shareLinks = [
         <button type="button" class="onward-link share-copy" data-share-copy={canonicalURL}>Copy link</button>
         <span class="share-copied" role="status" aria-live="polite"></span>
       </div>
+    </div>
+
+    <div class="onward-block author-box">
+      <p class="onward-label">Written by</p>
+      {authors.map((a) => (
+        <div class="author-box-row">
+          <span class="folio-medallion author-box-medallion" aria-hidden="true">{authorName(a).charAt(0)}</span>
+          <span class="author-box-text">
+            <strong>{a}</strong>{role ? ` — ${role}` : ''}
+            <a class="author-box-link" href={`/authors/${authorSlug(a)}/`}>More from {authorName(a)} →</a>
+          </span>
+        </div>
+      ))}
     </div>
 
   </article>
@@ -198,6 +212,23 @@ const shareLinks = [
     font-family: inherit;
   }
   .share-copied { color: var(--semantic-success, #00e676); font-size: 0.9rem; }
+  .lux-author-link { color: inherit; text-decoration: none; }
+  .lux-author-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .author-box-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 0;
+  }
+  .author-box-medallion { margin: 0; flex-shrink: 0; width: 52px; height: 52px; font-size: 1.3rem; }
+  .author-box-text { display: flex; flex-direction: column; gap: 2px; font-size: 0.98rem; }
+  .author-box-link {
+    font-size: 0.92rem;
+    font-weight: 600;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
 </style>
 
 <script>

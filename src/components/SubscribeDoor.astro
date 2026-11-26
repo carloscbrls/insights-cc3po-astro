@@ -47,16 +47,30 @@ const { source, heading = 'Get new posts by email' } = Astro.props;
 
 <style>
   .subscribe-door {
-    background: var(--brand-surface-dark, #11111f);
-    border: 1px solid var(--brand-surface-dark, #11111f);
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(120% 130% at 12% 0%, color-mix(in srgb, var(--brand-gold, #e6a50f) 7%, transparent), transparent 55%),
+      var(--brand-surface-dark, #11111f);
+    border: 1px solid color-mix(in srgb, var(--brand-gold, #e6a50f) 24%, transparent);
     border-radius: var(--radius-md, 16px);
     padding: 2rem 1.5rem;
     max-width: 720px;
     margin: 2.5rem auto;
   }
+  .subscribe-door::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--brand-gold, #e6a50f), color-mix(in srgb, var(--brand-gold, #e6a50f) 0%, transparent));
+  }
   .subscribe-door-heading {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
     color: var(--brand-paper, #ffffff);
-    font-size: var(--type-2xl, 24px);
+    font-size: 1.7rem;
     margin: 0 0 0.5rem;
   }
   .subscribe-door-copy {

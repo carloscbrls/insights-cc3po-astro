@@ -14,13 +14,15 @@ const { author } = Astro.props;
 <Layout title={`${author.name} — CC3PO Insights`} description={`Posts by ${author.name} on CC3PO Insights.`}>
 <section class="cc-section">
   <div class="cc-container">
-    <div class="cc-section-label">Author</div>
-    <div class="cc-section-header">
-      <h1 class="cc-section-title">{author.name}</h1>
-      {author.role && <p class="cc-section-desc">{author.role}</p>}
+    <div class="folio-header" style="margin-bottom: 36px;">
+      <div class="folio-medallion folio-medallion-lg" aria-hidden="true">{author.name.charAt(0)}</div>
+      <p class="folio-kicker">Author · {author.posts.length} {author.posts.length === 1 ? 'post' : 'posts'}</p>
+      <h1>{author.name}</h1>
+      {author.role && <p class="folio-lede">{author.role}</p>}
+      <hr class="folio-rule" />
     </div>
     {author.slug === 'quill' && (
-      <p class="cc-section-desc"><a href="https://dontloseyourway.com/?utm_source=insights&utm_medium=author_page&utm_campaign=dlyw-story">Don't Lose Your Way</a> — A quiet space for reflection. This space exists for people who almost gave up — and stayed.</p>
+      <p class="cc-section-desc" style="margin-bottom: 28px;"><a href="https://dontloseyourway.com/?utm_source=insights&utm_medium=author_page&utm_campaign=dlyw-story">Don't Lose Your Way</a> — A quiet space for reflection. This space exists for people who almost gave up — and stayed.</p>
     )}
     <div class="cc-posts-grid">
       {author.posts.map((post) => <PostCard post={post} />)}

@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import '../styles/blog.css';
+import '../styles/folio.css';
 import VillageRail from '../components/VillageRail.astro';
 
 const DEFAULT_DESCRIPTION = 'CC3PO — ADA/WCAG compliance monitoring, AI voice agents, and business tools for trades and service businesses.';
@@ -35,7 +36,7 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
       /* Skip link */
       .skip-link {
@@ -94,6 +95,24 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
       .nav-logo-img {
         border-radius: 8px;
         object-fit: cover;
+      }
+      .nav-logo-mark {
+        display: block;
+        width: 30px;
+        height: 30px;
+      }
+      .nav-pub {
+        font-family: 'Fraunces', Georgia, serif;
+        font-style: italic;
+        font-weight: 600;
+        font-size: 17px;
+        color: var(--brand-gold);
+        border-left: 1px solid color-mix(in srgb, var(--brand-paper) 18%, transparent);
+        padding-left: 10px;
+        margin-left: 2px;
+      }
+      @media (max-width: 480px) {
+        .nav-pub { display: none; }
       }
       .nav-logo-full {
         width: 36px;
@@ -365,7 +384,9 @@ const imageURL = image && Astro.site ? new URL(image, Astro.site).href : undefin
     <nav class="nav" id="nav">
       <div class="nav-inner">
         <a href="/" class="nav-logo">
+          <img src="/images/c07-mark-small.svg" alt="" width="30" height="30" class="nav-logo-mark" />
           <span style="font-size: 20px; font-weight: 800; color: var(--brand-paper);">CC<span style="color: var(--semantic-success);">3</span>PO</span>
+          <span class="nav-pub" aria-hidden="true">Insights</span>
         </a>
         <ul class="nav-links">
           <li><a href="/">Blog</a></li>

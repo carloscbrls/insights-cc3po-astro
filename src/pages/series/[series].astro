@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PostCard from '../../components/PostCard.astro';
-import { getPosts, SERIES_DEFS, seriesPosts } from '../../lib/blog';
+import { getPosts, SERIES_DEFS, seriesPosts, postUrl } from '../../lib/blog';
 
 export async function getStaticPaths() {
   const all = await getPosts();
@@ -14,20 +14,27 @@ const { def, posts } = Astro.props;
 // Page lists newest first; Audit the Agent posts carry episode numbers.
 const listed = [...posts].reverse();
 const numberOf = (id: string) => posts.findIndex((p) => p.id === id) + 1;
+const first = posts[0];
 ---
 
 <Layout title={`${def.name} — CC3PO Insights`} description={def.description}>
 <section class="cc-section">
   <div class="cc-container">
-    <div class="cc-section-label">Series</div>
-    <div class="cc-section-header">
-      <h1 class="cc-section-title">{def.name}</h1>
-      <p class="cc-section-desc">{def.description}{def.cadence ? ` ${def.cadence}` : ''}</p>
+    <div class="folio-header" style="margin-bottom: 36px;">
+      <p class="folio-kicker">Series · {posts.length} {posts.length === 1 ? 'post' : 'posts'}</p>
+      <h1>{def.name}</h1>
+      <p class="folio-lede">{def.description}{def.cadence ? ` ${def.cadence}` : ''}</p>
+      <hr class="folio-rule" />
+      {posts.length > 1 && (
+        <p style="margin: 20px 0 0;">
+          <a href={postUrl(first)} class="folio-read-link">Start from the beginning <span class="folio-arrow" aria-hidden="true">→</span></a>
+        </p>
+      )}
     </div>
     <div class="cc-posts-grid">
       {listed.map((post) => (
         <div>
-          {def.slug === 'audit-the-agent' && <p class="cc-section-label" style="margin-bottom: 8px;">No. {numberOf(post.id)}</p>}
+          {def.slug === 'audit-the-agent' && <p class="folio-kicker" style="margin-bottom: 10px;">No. {numberOf(post.id)}</p>}
           <PostCard post={post} />
         </div>
       ))}

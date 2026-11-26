@@ -1,4 +1,15 @@
 ---
+// The Music of CC3PO — the catalog's editorial shelf.
+// Folio Line elevation (2026-11-25): the albums' real SoundCloud
+// artwork replaces the emoji covers and off-palette rainbow
+// gradients; a featured strip doors into the music site's release
+// pages. ALL copy — descriptions, stories, key tracks with play
+// counts, the Healing Arc, the Writing DNA, stats — is the page's
+// own, verbatim. Listen URLs are the SoundCloud account's
+// API-canonical permalinks (verified 2026-11-25; "When Everything's
+// Out of Control" corrected from the page's old
+// /when-everythings-out-of-control to the canonical
+// /when-everythings-out-of) and carry Insights UTMs.
 import Layout from '../layouts/Layout.astro';
 
 const artist = {
@@ -6,7 +17,7 @@ const artist = {
   realName: 'Carlos Cabrales III',
   location: 'Lathrop, California',
   bio: 'Independent storyteller. Bilingual code-switcher. Every lyric, edit, and emotional heartbeat is mine.',
-  soundcloud: 'https://soundcloud.com/carlos-cabrales-iii',
+  soundcloud: 'https://soundcloud.com/carlos-cabrales-iii?utm_source=insights&utm_medium=music-projects&utm_campaign=profile',
   followers: '1,591',
   totalPlays: '20,000+',
   totalTracks: 113,
@@ -28,6 +39,41 @@ const arc = [
   { step: 'The Rebirth', album: 'YO (I AM CC3PO)' },
 ];
 
+const featured = [
+  {
+    title: 'More Than Myself: A Christmas Journey',
+    cover: '/images/albums/more-than-myself.jpg',
+    coverAlt: 'More Than Myself: A Christmas Journey — album cover artwork',
+    meta: '16 tracks · Christmas / Vocal Jazz',
+    line: 'A Christmas record about carrying more than yourself. It is live on SoundCloud now and arrives on Spotify and everywhere else December 3, 2026.',
+    href: 'https://music.cc3po.com/release/more-than-myself-a-christmas-journey?utm_source=insights&utm_medium=music-projects&utm_campaign=catalog-strip',
+  },
+  {
+    title: 'The Human Interface',
+    cover: '/images/albums/the-human-interface.jpg',
+    coverAlt: 'The Human Interface — album cover artwork',
+    meta: '16 tracks · Latin synthwave / cyber-soul',
+    line: '16 tracks of Latin synthwave and cyber-soul about staying human inside the machine. Live on Spotify since October 22, 2026.',
+    href: 'https://music.cc3po.com/release/the-human-interface?utm_source=insights&utm_medium=music-projects&utm_campaign=catalog-strip',
+  },
+  {
+    title: 'My Unspoken Journey',
+    cover: '/images/albums/my-unspoken-journey.jpg',
+    coverAlt: 'My Unspoken Journey — album cover artwork',
+    meta: '13 tracks · Released September 13, 2026',
+    line: 'My Unspoken Journey is the story of everything I spent years not saying out loud.',
+    href: 'https://music.cc3po.com/release/my-unspoken-journey?utm_source=insights&utm_medium=music-projects&utm_campaign=catalog-strip',
+  },
+  {
+    title: 'Whole Even Broken',
+    cover: '/images/albums/whole-even-broken.jpg',
+    coverAlt: 'Whole Even Broken — album cover artwork',
+    meta: '12 tracks · Out now on SoundCloud',
+    line: 'Twelve stripped-down acoustic ballads — fingerpicked guitar, felt piano, vulnerable vocals — a confessional found-family narrative.',
+    href: 'https://music.cc3po.com/release/whole-even-broken?utm_source=insights&utm_medium=music-projects&utm_campaign=catalog-strip',
+  },
+];
+
 const albums = [
   {
     title: 'Todavía Aquí',
@@ -35,15 +81,12 @@ const albums = [
     year: '2026',
     tracks: 11,
     duration: '36:40',
-    likes: 1,
-    cover: '🎵',
-    accent: 'from-amber-500 to-red-600',
-    border: 'border-amber-500/30',
+    coverImg: '/images/albums/todavia-aqui.jpg',
+    coverAlt: 'Todavía Aquí — album cover artwork',
     tag: 'Latin',
-    tagColor: 'bg-amber-500/20 text-amber-400',
     description: 'Still here. A Latin album that refuses to disappear — reggaetón oscuro, corrido tumbado, and bilingual anthems about survival, heritage, and the weight of staying when leaving was easier.',
     story: '"Todavía Aquí" translates to "Still Here." That\'s the whole thesis. This is the immigrant story, told in Spanish because that\'s the only language it lands in — growing up in poverty after migrating from Latin America. "Así Era" (2,935 plays) is the #2 track in the entire catalog. The album is dedicated to those who learned to resist early, carried more than their share, and are still here.',
-    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/todavia-aqui',
+    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/todavia-aqui?utm_source=insights&utm_medium=music-projects&utm_campaign=todavia-aqui',
     topTracks: [
       { name: 'Así Era', plays: 2935 },
       { name: 'Lo Que Nunca Dije', plays: 2552 },
@@ -57,35 +100,29 @@ const albums = [
     year: '2025',
     tracks: 12,
     duration: '42:30',
-    likes: 4,
-    cover: '⚡',
-    accent: 'from-yellow-400 to-orange-600',
-    border: 'border-yellow-500/30',
+    coverImg: '/images/albums/no-more-guilt.jpg',
+    coverAlt: 'No More Guilt — album cover artwork',
     tag: 'Hip-Hop',
-    tagColor: 'bg-yellow-500/20 text-yellow-400',
     description: 'The confession they didn\'t want to hear. Defiant hip-hop about refusing guilt that was never yours to carry — fatherhood, survival, and the audacity to stop apologizing.',
     story: 'Guilt is the quietest prison. This album is the key. "No More Guilt" doesn\'t deny mistakes — it denies owning someone else\'s narrative about them. Every bar is a boundary drawn in permanent ink. This is where the catalog begins — and it\'s the rawest. "I\'ve Been the Villain in Your Story Too Long" is the #1 track in the entire catalog at 4,909 plays: the anti-hero owning the label and rejecting it at the same time.',
-    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/no-more-guilt',
+    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/no-more-guilt?utm_source=insights&utm_medium=music-projects&utm_campaign=no-more-guilt',
     topTracks: [
       { name: 'I\'ve Been the Villain in Your Story Too Long', plays: 4909 },
       { name: 'No More Guilt', plays: 774 },
     ],
   },
   {
-    title: 'When Everything\'s Out of Control',
+    title: "When Everything's Out of Control",
     genre: 'Hip-Hop & Rap · Confessional',
     year: '2026',
     tracks: 10,
     duration: null,
-    likes: null,
-    cover: '🔥',
-    accent: 'from-orange-500 to-red-600',
-    border: 'border-orange-500/30',
+    coverImg: '/images/albums/when-everythings-out-of-control.jpg',
+    coverAlt: "When Everything's Out of Control — album cover artwork",
     tag: 'Hip-Hop',
-    tagColor: 'bg-orange-500/20 text-orange-400',
     description: 'When the world stops making sense, you make your own. Confessional bars about fatherhood, hustle, and refusing to be defined by chaos.',
     story: 'This album was born in the moments between crises — when the phone stops ringing, when the kids are asleep, when you finally get to think. "Hallway Dad" alone has 2,584 plays because every parent who\'s ever paced a hallway at 3am knows that feeling.',
-    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/when-everythings-out-of-control',
+    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/when-everythings-out-of?utm_source=insights&utm_medium=music-projects&utm_campaign=when-everythings-out-of-control',
     topTracks: [
       { name: 'Hallway Dad', plays: 2584 },
       { name: 'I\'ve Been the Villain in Your Story Too Long', plays: 4909 },
@@ -98,15 +135,12 @@ const albums = [
     year: '2026',
     tracks: 11,
     duration: '38:58',
-    likes: 1,
-    cover: '🧱',
-    accent: 'from-emerald-400 to-teal-600',
-    border: 'border-emerald-500/30',
+    coverImg: '/images/albums/built-in-the-quiet.jpg',
+    coverAlt: 'Built in the Quiet — album cover artwork',
     tag: 'Pop',
-    tagColor: 'bg-emerald-500/20 text-emerald-400',
     description: 'Building something from nothing — pop anthems about quiet persistence and the architecture of a life under construction.',
     story: 'The loudest thing CC3PO ever made is about silence. "Built in the Quiet" maps the unseen hours — the 5am grind, the silent sacrifice, the foundation nobody praises because it\'s underground. But nothing stands without it. Released for Valentine\'s Day, this is the counterpoint to No More Guilt: where that album was about release, this one is about commitment. "Love is not loud. Love is intentional. Love is chosen. Still choosing you."',
-    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/built-in-the-quiet',
+    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/built-in-the-quiet?utm_source=insights&utm_medium=music-projects&utm_campaign=built-in-the-quiet',
     topTracks: [
       { name: 'Build With Me', plays: 2323 },
       { name: 'Every Day I Choose You', plays: 1427 },
@@ -119,15 +153,12 @@ const albums = [
     year: '2026',
     tracks: 3,
     duration: '10:38',
-    likes: 1,
-    cover: '💻',
-    accent: 'from-blue-400 to-cyan-600',
-    border: 'border-blue-500/30',
+    coverImg: '/images/albums/light-from-a-small-screen.jpg',
+    coverAlt: 'Light From a Small Screen — album cover artwork',
     tag: 'Indie',
-    tagColor: 'bg-blue-500/20 text-blue-400',
     description: 'Intimate indie folk — the glow of a phone screen in a dark room, the quiet weight of staying, the light that comes from paying attention.',
     story: 'Three tracks, ten minutes, one truth: the smallest light matters. This EP was recorded in the glow of a phone screen — the same screen that divides us, but also the one that connects a father working late to his kids\' goodnight texts. "Five More Minutes" (2,500 plays) is the catalog\'s most-played track alongside "Así Era" — the universal plea for just a little more time. This is the most-reposted album in the catalog.',
-    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/light-from-a-small-screen',
+    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/light-from-a-small-screen?utm_source=insights&utm_medium=music-projects&utm_campaign=light-from-a-small-screen',
     topTracks: [
       { name: 'Five More Minutes', plays: 2500 },
       { name: 'The Room Looked the Same', plays: 2395 },
@@ -140,15 +171,12 @@ const albums = [
     year: '2026',
     tracks: 9,
     duration: '38:24',
-    likes: null,
-    cover: '⚔️',
-    accent: 'from-purple-500 to-pink-600',
-    border: 'border-purple-500/30',
+    coverImg: '/images/albums/dos-duelos.jpg',
+    coverAlt: 'Dos Duelos — album cover artwork',
     tag: 'Latin',
-    tagColor: 'bg-purple-500/20 text-purple-400',
     description: 'Two griefs, two languages, one truth — reggaetón oscuro meets bilingual heartbreak and ancestral weight.',
     story: '"Dos Duelos" means "Two Griefs." One for what was lost, one for what was never given. This album holds both — in Spanish when the pain is too sharp for English, and in English when the clarity cuts too deep for Spanish. "No es un álbum sobre infidelidad. Es un álbum sobre silencio." (It\'s not an album about infidelity. It\'s an album about silence.) Dark, intimate, minimalist reggaetón. Fractured masculinity. Truth without theater. "Aquí no hay moraleja. Solo consecuencias." (No moral here. Only consequences.)',
-    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/dos-duelos',
+    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/dos-duelos?utm_source=insights&utm_medium=music-projects&utm_campaign=dos-duelos',
     topTracks: [
       { name: 'Por Dentro Muerto', plays: 2151 },
       { name: 'Se Cayó El Teatro', plays: 1510 },
@@ -161,15 +189,12 @@ const albums = [
     year: '2026',
     tracks: 10,
     duration: null,
-    likes: null,
-    cover: '🌫️',
-    accent: 'from-gray-400 to-slate-600',
-    border: 'border-gray-500/30',
+    coverImg: '/images/albums/survival-quiet-erosion.jpg',
+    coverAlt: 'Survival: Quiet Erosion — album cover artwork',
     tag: 'Pop',
-    tagColor: 'bg-gray-500/20 text-gray-400',
     description: 'The slow fade that no one names — lo-fi pop about erosion, endurance, and the tiny adjustments that keep you alive.',
     story: 'Survival isn\'t always dramatic. Sometimes it\'s the thousand small surrenders that add up to still being here. "Quiet Erosion" is the soundtrack to the moments nobody posts about — the slow, unglamorous persistence of staying. A concept album about emotional survival: the slow, often invisible loss of self in psychologically controlling environments — not through violence, but through small adjustments, quiet apologies, and learned silence. "This is not an album about winning. It\'s about staying."',
-    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/survival-quiet-erosion',
+    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/survival-quiet-erosion?utm_source=insights&utm_medium=music-projects&utm_campaign=survival-quiet-erosion',
     topTracks: [
       { name: 'The Moment You Notice', plays: 2438 },
       { name: 'Quiet Adjustments', plays: 2026 },
@@ -181,15 +206,12 @@ const albums = [
     year: '2026',
     tracks: 9,
     duration: null,
-    likes: null,
-    cover: '🪞',
-    accent: 'from-red-500 to-rose-700',
-    border: 'border-red-500/30',
+    coverImg: '/images/albums/yo-i-am-cc3po.jpg',
+    coverAlt: 'YO (I AM CC3PO) — album cover artwork',
     tag: 'Reggaetón',
-    tagColor: 'bg-red-500/20 text-red-400',
     description: 'The declaration album. I AM — not I was, not I might be. A bilingual manifesto of identity, self-definition, and the refusal to be categorized.',
     story: '"YO" — "I" in Spanish, the most powerful word in any language. This is the album where CC3PO stops explaining and starts declaring. Every track is an "I am" statement. Bilingual, unapologetic, permanent. Released Aug 8, 2026, this is the newest and most personal album — the story of transformation from childhood trauma, mental health struggles, and physical/emotional weight, to rebirth 3 months after a life-changing bariatric surgery. "New Body, Same Soul" is the thesis. "Si tú también estás transformando tu vida, este álbum es contigo." (If you\'re also transforming your life, this album is with you.)',
-    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/yo-i-am-cc3po',
+    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/yo-i-am-cc3po?utm_source=insights&utm_medium=music-projects&utm_campaign=yo-i-am-cc3po',
     topTracks: [
       { name: 'Paso a Paso', plays: 264 },
       { name: 'Hábitos Viejos', plays: 257 },
@@ -203,15 +225,12 @@ const albums = [
     year: '2026',
     tracks: 9,
     duration: null,
-    likes: 3,
-    cover: '🌿',
-    accent: 'from-green-500 to-lime-600',
-    border: 'border-green-500/30',
+    coverImg: '/images/albums/raices-del-ritmo.jpg',
+    coverAlt: 'Raíces Del Ritmo — album cover artwork',
     tag: 'Latin',
-    tagColor: 'bg-green-500/20 text-green-400',
     description: 'Roots of rhythm — spiritual Latin hip-hop connecting ancestry, migration, and the pulse that survives everything.',
     story: 'Before the beat, there was the heartbeat. "Raíces Del Ritmo" traces the rhythm back — through migration, through sacrifice, through the songs your grandmother hummed that you didn\'t understand until you were old enough to need them. "This isn\'t just music. It\'s documentation." — of faith, mentorship, and purpose through lived experience. Part of the ongoing work through Raíces Digitales (raicesdigitales.cc3po.com).',
-    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/raices-del-ritmo',
+    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/raices-del-ritmo?utm_source=insights&utm_medium=music-projects&utm_campaign=raices-del-ritmo',
     topTracks: [
       { name: 'Cuando Te Toque', plays: 274 },
       { name: 'Rosas en Ruinas', plays: 222 },
@@ -224,15 +243,12 @@ const albums = [
     year: '2026',
     tracks: 9,
     duration: null,
-    likes: 1,
-    cover: '👁️',
-    accent: 'from-indigo-400 to-violet-600',
-    border: 'border-indigo-500/30',
+    coverImg: '/images/albums/life-in-awareness.jpg',
+    coverAlt: 'Life in Awareness — album cover artwork',
     tag: 'Pop',
-    tagColor: 'bg-indigo-500/20 text-indigo-400',
     description: 'Waking up is the hardest part — reflective pop and spoken word about choosing awareness over comfort.',
     story: 'Awareness is expensive. It costs you your illusions. "Life in Awareness" is about paying that price willingly — seeing the room clearly, even when what you see hurts. Because the alternative is worse. "This album is about living inside the truth once you can\'t unsee it. Not coming out. Not breaking down. Not healing yet. Just existing with clarity."',
-    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/life-in-awareness',
+    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/life-in-awareness?utm_source=insights&utm_medium=music-projects&utm_campaign=life-in-awareness',
     topTracks: [
       { name: 'Not Leaving, Not Staying', plays: 2247 },
       { name: 'Acceptance Without Relief', plays: 1391 },
@@ -245,15 +261,12 @@ const albums = [
     year: '2026',
     tracks: 3,
     duration: null,
-    likes: 2,
-    cover: '👻',
-    accent: 'from-slate-400 to-zinc-600',
-    border: 'border-slate-500/30',
+    coverImg: '/images/albums/echoes-they-left-behind.jpg',
+    coverAlt: 'Echoes They Left Behind — album cover artwork',
     tag: 'Indie',
-    tagColor: 'bg-slate-500/20 text-slate-400',
     description: 'The ghosts of what was — atmospheric indie about the echoes people leave when they go.',
     story: 'People leave. But they don\'t leave nothing. They leave echoes — in the way you hold your coffee, in the phrase you catch yourself saying, in the silence where their laugh used to be. This album lives in those echoes. The companion to Light From a Small Screen: where that album was the stillness, this one is the aftermath — the moment everything broke, the empty rooms, and the echoes that remain. It\'s the sound of absence made audible.',
-    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/echoes-they-left-behind',
+    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/echoes-they-left-behind?utm_source=insights&utm_medium=music-projects&utm_campaign=echoes-they-left-behind',
     topTracks: [
       { name: 'Empty Rooms', plays: 358 },
       { name: 'Echoes They Left Behind', plays: 319 },
@@ -266,15 +279,12 @@ const albums = [
     year: '2026',
     tracks: 9,
     duration: null,
-    likes: 2,
-    cover: '📚',
-    accent: 'from-cyan-400 to-blue-600',
-    border: 'border-cyan-500/30',
+    coverImg: '/images/albums/seven-layers-deep.jpg',
+    coverAlt: 'Seven Layers Deep — album cover artwork',
     tag: 'Educational',
-    tagColor: 'bg-cyan-500/20 text-cyan-400',
     description: 'The OSI model, turned into music — 7 layers, 7 songs, one unforgettable way to learn networking.',
     story: 'CC3PO works in IT by day. This is what happens when a network engineer makes music about the network. Seven layers, seven tracks, and suddenly you understand the OSI model because it\'s stuck in your head. Education was never supposed to slap this hard. "Strong systems thinking isn\'t about having every answer, but about knowing where to start and how to move forward." The closing track is designed to be replayed under pressure as a reminder that when things break, the answer isn\'t guessing — it\'s structure. This is CC3PO\'s philosophy in musical form: clarity replaces panic.',
-    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/seven-layers-deep',
+    soundcloud: 'https://soundcloud.com/carlos-cabrales-iii/sets/seven-layers-deep?utm_source=insights&utm_medium=music-projects&utm_campaign=seven-layers-deep',
     topTracks: [
       { name: 'OSI Speed Run (Seven Layers in One Breath)', plays: 1406 },
       { name: 'Presentation (Encryption, Format)', plays: 224 },
@@ -293,170 +303,204 @@ const totalPlays = '20,000+';
   <!-- Hero -->
   <section class="max-w-6xl mx-auto px-4 pt-28 pb-16">
     <div class="text-center mb-12">
-      <div class="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 text-orange-400 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+      <div class="album-tag" style="margin-bottom: 24px;">
         🎵 {totalAlbums} Albums · {totalTracks} Tracks · {totalPlays} Plays
       </div>
-      <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4" style="-webkit-text-fill-color: white;">
+      <h1 class="f-serif" style="font-size: clamp(2.4rem, 6vw, 3.6rem); font-weight: 600; letter-spacing: -0.01em; line-height: 1.1; color: var(--brand-paper); margin: 0 0 20px;">
         The Music of CC3PO
       </h1>
-      <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto" style="-webkit-text-fill-color: #94a3b8;">
+      <p style="font-size: 1.125rem; line-height: 1.7; color: rgba(255,255,255,0.65); max-width: 42rem; margin: 0 auto;">
         {artist.realName}. {artist.location}. Bilingual storyteller who code-switches between Spanish and English because some truths only land in one language.
-        <br/>Every lyric, every edit, every emotional heartbeat — <span class="text-white font-semibold">mine</span>.
+        <br/>Every lyric, every edit, every emotional heartbeat — <span style="color: var(--brand-paper); font-weight: 600;">mine</span>.
       </p>
       <div class="flex flex-wrap gap-3 justify-center mt-8">
-        <a href={artist.soundcloud} target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-400 text-white font-semibold px-6 py-3 rounded-lg transition">
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.06-.05-.1-.1-.1zm-.899.828l-.199 1.425.2 1.364c.008.05.044.09.09.09.049 0 .085-.04.094-.09l.226-1.364-.226-1.425c-.009-.05-.045-.09-.094-.09-.046 0-.082.04-.09.09zm1.83-1.227c-.063 0-.115.05-.12.114l-.216 2.538.216 2.463c.005.06.057.108.12.108.061 0 .11-.048.117-.108l.242-2.463-.242-2.538c-.008-.064-.056-.114-.117-.114zm1.812-.432c-.076 0-.137.06-.142.138l-.2 2.97.2 2.89c.005.075.066.133.142.133.075 0 .136-.058.142-.133l.225-2.89-.225-2.97c-.006-.078-.067-.138-.142-.138zm1.8-.252c-.088 0-.16.07-.166.16l-.185 3.222.185 3.107c.006.088.078.156.166.156.087 0 .158-.068.165-.156l.208-3.107-.208-3.222c-.007-.09-.078-.16-.165-.16zm1.81-.096c-.1 0-.18.08-.186.182l-.17 3.318.17 3.22c.006.1.087.18.187.18.098 0 .178-.08.185-.18l.19-3.22-.19-3.318c-.007-.102-.087-.182-.185-.182zm1.818.078c-.11 0-.198.09-.204.2l-.155 3.24.155 3.19c.006.11.094.198.204.198.108 0 .196-.088.203-.198l.172-3.19-.172-3.24c-.007-.11-.095-.2-.203-.2zm1.808-.345c-.12 0-.217.097-.223.218l-.14 3.585.14 3.472c.006.12.103.215.223.215.118 0 .215-.095.222-.215l.155-3.472-.155-3.585c-.007-.12-.104-.218-.222-.218zm1.812-.156c-.13 0-.236.106-.242.236l-.125 3.741.125 3.727c.006.13.112.236.242.236.128 0 .233-.106.24-.236l.14-3.727-.14-3.741c-.007-.13-.112-.236-.24-.236zm1.803.052c-.14 0-.253.114-.258.254l-.11 3.69.11 3.716c.005.14.118.253.258.253.14 0 .25-.113.257-.253l.122-3.716-.122-3.69c-.007-.14-.117-.254-.257-.254zm1.808.3c-.15 0-.27.12-.277.27l-.095 3.39.095 3.442c.007.15.127.27.277.27.148 0 .267-.12.276-.27l.105-3.442-.105-3.39c-.009-.15-.128-.27-.276-.27zm1.804-.378c-.16 0-.287.127-.294.288l-.08 3.768.08 3.854c.007.16.134.287.294.287.158 0 .283-.127.292-.287l.088-3.854-.088-3.768c-.009-.16-.134-.288-.292-.288zm1.815.044c-.17 0-.303.137-.31.307l-.064 3.724.064 3.907c.007.17.14.303.31.303.168 0 .3-.133.308-.303l.07-3.907-.07-3.724c-.008-.17-.14-.307-.308-.307zm3.695 1.003c-.24 0-.433.19-.438.432l-.037 2.628.037 2.716c.005.24.198.432.438.432.24 0 .432-.192.437-.432l.04-2.716-.04-2.628c-.005-.242-.197-.432-.437-.432z"/></svg>
+        <a href={artist.soundcloud} target="_blank" rel="noopener" class="cc-btn-primary" style="text-decoration: none;">
           Listen on SoundCloud
         </a>
       </div>
     </div>
 
     <!-- Stats Bar -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-      <div class="bg-[#0f0f1a] border border-white/10 rounded-xl p-6 text-center">
-        <div class="text-3xl md:text-4xl font-extrabold text-white" style="-webkit-text-fill-color: white;">{totalAlbums}</div>
-        <div class="text-sm text-gray-400 mt-1">Albums</div>
-      </div>
-      <div class="bg-[#0f0f1a] border border-white/10 rounded-xl p-6 text-center">
-        <div class="text-3xl md:text-4xl font-extrabold text-white" style="-webkit-text-fill-color: white;">{totalTracks}</div>
-        <div class="text-sm text-gray-400 mt-1">Tracks</div>
-      </div>
-      <div class="bg-[#0f0f1a] border border-white/10 rounded-xl p-6 text-center">
-        <div class="text-3xl md:text-4xl font-extrabold text-white" style="-webkit-text-fill-color: white;">{totalPlays}</div>
-        <div class="text-sm text-gray-400 mt-1">Plays</div>
-      </div>
-      <div class="bg-[#0f0f1a] border border-white/10 rounded-xl p-6 text-center">
-        <div class="text-3xl md:text-4xl font-extrabold text-white" style="-webkit-text-fill-color: white;">{artist.followers}</div>
-        <div class="text-sm text-gray-400 mt-1">Followers</div>
-      </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+      {[
+        { num: totalAlbums, label: 'Albums' },
+        { num: totalTracks, label: 'Tracks' },
+        { num: totalPlays, label: 'Plays' },
+        { num: artist.followers, label: 'Followers' },
+      ].map((s) => (
+        <div style="background: var(--brand-surface-dark); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 22px 16px; text-align: center;">
+          <div class="f-serif" style="font-size: 2rem; font-weight: 600; color: var(--brand-gold); line-height: 1.1;">{s.num}</div>
+          <div style="font-size: 13.5px; color: rgba(255,255,255,0.55); margin-top: 4px;">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Featured releases — doors to the music site -->
+  <section class="max-w-6xl mx-auto px-4 pb-16">
+    <div class="cc-section-label">Start Listening</div>
+    <div class="cc-section-header">
+      <h2 class="cc-section-title">The latest from the catalog</h2>
+      <hr class="folio-rule" />
+    </div>
+    <div class="release-grid">
+      {featured.map((r) => (
+        <a class="release-card" href={r.href} target="_blank" rel="noopener">
+          <span class="release-cover"><img src={r.cover} alt={r.coverAlt} width="500" height="500" loading="lazy" /></span>
+          <span class="release-body">
+            <span class="release-title">{r.title}</span>
+            <span class="folio-meta">{r.meta}</span>
+            <span class="release-line">{r.line}</span>
+            <span class="release-door">Listen on the music site <span class="folio-arrow" aria-hidden="true">→</span></span>
+          </span>
+        </a>
+      ))}
     </div>
   </section>
 
   <!-- Album Grid -->
   <section class="max-w-6xl mx-auto px-4 pb-20">
+    <div class="cc-section-label">The Shelf</div>
+    <div class="cc-section-header">
+      <h2 class="cc-section-title">The 12 albums</h2>
+      <hr class="folio-rule" />
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {albums.map((album) => (
-        <div class={`bg-[#0f0f1a] border ${album.border} rounded-xl overflow-hidden hover:border-emerald-500/50 transition group`}>
-          <!-- Album Header -->
-          <div class={`bg-gradient-to-br ${album.accent} p-6 relative`}>
-            <div class="text-5xl mb-2">{album.cover}</div>
-            <span class={`inline-block ${album.tagColor} text-xs font-bold px-2 py-1 rounded-full`}>{album.tag}</span>
-            <div class="absolute top-4 right-4 text-white/70 text-sm font-mono">{album.year}</div>
+        <article class="album-card">
+          <div class="album-cover">
+            <img src={album.coverImg} alt={album.coverAlt} width="500" height="500" loading="lazy" />
           </div>
-          <!-- Album Info -->
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-white mb-1" style="-webkit-text-fill-color: white;">{album.title}</h3>
-            <p class="text-sm text-gray-500 mb-3">{album.genre}</p>
-            <p class="text-sm text-gray-400 mb-4">{album.description}</p>
-
+          <div class="album-body">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+              <span class="album-tag">{album.tag}</span>
+              <span class="album-year">{album.year}</span>
+            </div>
+            <h3 class="album-title">{album.title}</h3>
+            <p class="album-genre">{album.genre}</p>
+            <p class="album-desc">{album.description}</p>
             {album.story && (
-              <div class="mb-4 p-3 bg-white/5 border border-white/10 rounded-lg">
-                <div class="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-1">The Story</div>
-                <p class="text-sm text-gray-300">{album.story}</p>
+              <div class="album-story">
+                <p class="album-story-label">The Story</p>
+                <p>{album.story}</p>
               </div>
             )}
-
             {album.topTracks.length > 0 && (
-              <div class="mb-4">
-                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Key Tracks</div>
-                <ul class="space-y-1">
+              <div class="album-tracks">
+                <p class="album-tracks-label">Key Tracks</p>
+                <ul>
                   {album.topTracks.map((track) => (
-                    <li class="text-sm text-gray-300 flex items-center gap-2">
-                      <span class="text-emerald-400">♪</span> {track.name}
-                      {track.plays && <span class="text-xs text-gray-500 ml-auto">{track.plays.toLocaleString()} plays</span>}
+                    <li>
+                      <span class="note" aria-hidden="true">♪</span> {track.name}
+                      {track.plays && <span class="plays">{track.plays.toLocaleString()} plays</span>}
                     </li>
                   ))}
                 </ul>
               </div>
             )}
-
-            <div class="flex items-center justify-between">
-              <div class="text-xs text-gray-500">{album.tracks ? album.tracks + ' tracks' : 'Album'}{album.duration ? ' · ' + album.duration : ''}</div>
-              <a href={album.soundcloud} target="_blank" rel="noopener" class="text-sm text-orange-400 hover:text-orange-300 font-medium transition">
-                Listen →
-              </a>
+            <div class="album-foot">
+              <span class="album-meta">{album.tracks ? album.tracks + ' tracks' : 'Album'}{album.duration ? ' · ' + album.duration : ''}</span>
+              <a href={album.soundcloud} target="_blank" rel="noopener" class="album-listen">Listen <span class="folio-arrow" aria-hidden="true">→</span></a>
             </div>
           </div>
-        </div>
+        </article>
       ))}
     </div>
 
     <!-- The Healing Arc -->
-    <div class="mt-20 bg-[#0f0f1a] border border-white/10 rounded-xl p-8 md:p-12">
-      <div class="text-center mb-8">
-        <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+    <div style="background: var(--brand-surface-dark); border: 1px solid rgba(255,255,255,0.09); border-radius: 18px; padding: clamp(26px, 5vw, 48px); margin-top: 72px;">
+      <div class="text-center" style="margin-bottom: 32px;">
+        <div class="album-tag" style="margin-bottom: 16px;">
           🧬 The Healing Arc
         </div>
-        <h2 class="text-2xl md:text-3xl font-bold text-white mb-3" style="-webkit-text-fill-color: white;">
+        <h2 class="f-serif" style="font-size: clamp(1.6rem, 4vw, 2.1rem); font-weight: 600; color: var(--brand-paper); margin: 0 0 12px;">
           Twelve Albums. One Documented Life.
         </h2>
-        <p class="text-gray-400 max-w-2xl mx-auto">
+        <p style="color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 42rem; margin: 0 auto;">
           Read in order, the catalog isn't a collection of songs — it's a healing process made audible. From the confession to the rebirth, each album is a chapter in the same story.
         </p>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {arc.map((chapter, i) => (
-          <div class="flex items-start gap-3 p-4 bg-white/5 border border-white/10 rounded-lg hover:border-emerald-500/40 transition">
-            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-sm font-bold">
+          <div style="display: flex; align-items: flex-start; gap: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 12px; padding: 16px;">
+            <div class="folio-medallion" style="margin: 0; width: 38px; height: 38px; font-size: 1rem; flex-shrink: 0;" aria-hidden="true">
               {i + 1}
             </div>
             <div>
-              <div class="text-xs font-semibold text-emerald-400 uppercase tracking-wider">{chapter.step}</div>
-              <div class="text-sm text-gray-300 mt-0.5">{chapter.album}</div>
+              <div class="album-story-label" style="margin-bottom: 2px;">{chapter.step}</div>
+              <div style="font-size: 0.9rem; color: rgba(255,255,255,0.75);">{chapter.album}</div>
             </div>
           </div>
         ))}
       </div>
-      <div class="mt-8 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-center">
-        <p class="text-sm text-emerald-300">
-          <strong>The most-played songs</strong> are the ones about being the villain, the immigrant's "I can't fail," the plea for more time, the moment you notice, the things never said, the hallway dad, and steady love. <span class="text-white">The confession. The roots. The quiet.</span>
+      <div style="margin-top: 28px; background: rgba(230,165,15,0.07); border: 1px solid rgba(230,165,15,0.26); border-radius: 12px; padding: 16px 20px; text-align: center;">
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.65; color: rgba(255,255,255,0.78);">
+          <strong>The most-played songs</strong> are the ones about being the villain, the immigrant's "I can't fail," the plea for more time, the moment you notice, the things never said, the hallway dad, and steady love. <span style="color: var(--brand-paper);">The confession. The roots. The quiet.</span>
         </p>
       </div>
     </div>
 
     <!-- Writing DNA Section -->
-    <div class="mt-20 bg-[#0f0f1a] border border-white/10 rounded-xl p-8 md:p-12">
-      <h2 class="text-2xl md:text-3xl font-bold text-white mb-6" style="-webkit-text-fill-color: white;">
+    <div style="background: var(--brand-surface-dark); border: 1px solid rgba(255,255,255,0.09); border-radius: 18px; padding: clamp(26px, 5vw, 48px); margin-top: 40px;">
+      <h2 class="f-serif" style="font-size: clamp(1.6rem, 4vw, 2.1rem); font-weight: 600; color: var(--brand-paper); margin: 0 0 24px;">
         The CC3PO Writing DNA
       </h2>
       <div class="grid md:grid-cols-2 gap-8">
         <div>
-          <h3 class="text-lg font-semibold text-emerald-400 mb-3">Voice & Delivery</h3>
-          <ul class="space-y-2 text-sm text-gray-400">
-            <li>✦ Half-spoken, half-sung — conversational, not melodic</li>
-            <li>✦ Confessional tone — like reading a private journal</li>
-            <li>✦ Vulnerable but not weak — raw honesty, never pity-seeking</li>
-            <li>✦ Bilingual code-switching — Spanish for emotional weight</li>
+          <h3 class="f-gold" style="font-size: 1.05rem; font-weight: 600; margin: 0 0 12px;">Voice & Delivery</h3>
+          <ul style="list-style: none; margin: 0; padding: 0;">
+            <li class="dna-item">Half-spoken, half-sung — conversational, not melodic</li>
+            <li class="dna-item">Confessional tone — like reading a private journal</li>
+            <li class="dna-item">Vulnerable but not weak — raw honesty, never pity-seeking</li>
+            <li class="dna-item">Bilingual code-switching — Spanish for emotional weight</li>
           </ul>
         </div>
         <div>
-          <h3 class="text-lg font-semibold text-emerald-400 mb-3">Lyrical Patterns</h3>
-          <ul class="space-y-2 text-sm text-gray-400">
-            <li>✦ Specific detail over abstract emotion</li>
-            <li>✦ Self-correction mid-thought</li>
-            <li>✦ Admission of contradiction</li>
-            <li>✦ Bilingual gut-punch refrains</li>
-            <li>✦ Anti-hero narration — owning labels, rejecting narratives</li>
-            <li>✦ Everyday imagery — phone, scrolling, driving</li>
+          <h3 class="f-gold" style="font-size: 1.05rem; font-weight: 600; margin: 0 0 12px;">Lyrical Patterns</h3>
+          <ul style="list-style: none; margin: 0; padding: 0;">
+            <li class="dna-item">Specific detail over abstract emotion</li>
+            <li class="dna-item">Self-correction mid-thought</li>
+            <li class="dna-item">Admission of contradiction</li>
+            <li class="dna-item">Bilingual gut-punch refrains</li>
+            <li class="dna-item">Anti-hero narration — owning labels, rejecting narratives</li>
+            <li class="dna-item">Everyday imagery — phone, scrolling, driving</li>
           </ul>
         </div>
       </div>
-      <div class="mt-8 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-lg">
-        <p class="text-sm text-emerald-300">
+      <div style="margin-top: 28px; background: rgba(230,165,15,0.07); border: 1px solid rgba(230,165,15,0.26); border-radius: 12px; padding: 16px 20px;">
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.65; color: rgba(255,255,255,0.78);">
           <strong>Production:</strong> AI-assisted tools co-create some instrumentals. <strong>Every lyric, edit, and emotional heartbeat is mine.</strong> Real voice. Real stories.
         </p>
       </div>
     </div>
 
+  <style>
+    .dna-item {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.62);
+      padding: 4px 0 4px 24px;
+      position: relative;
+    }
+    .dna-item::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      font-size: 12px;
+      color: var(--brand-gold);
+    }
+  </style>
+
     <!-- CTA -->
     <div class="mt-16 text-center">
-      <h2 class="text-2xl md:text-3xl font-bold text-white mb-4" style="-webkit-text-fill-color: white;">
+      <h2 class="f-serif" style="font-size: clamp(1.6rem, 4vw, 2.1rem); font-weight: 600; color: var(--brand-paper); margin: 0 0 12px;">
         Hear the Story
       </h2>
-      <p class="text-gray-400 mb-8">
+      <p style="color: rgba(255,255,255,0.6); margin: 0 0 28px;">
         {totalAlbums} albums. {totalTracks} tracks. One voice that refused to stay quiet.
       </p>
-      <a href={artist.soundcloud} target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-400 text-white font-semibold px-8 py-3 rounded-lg transition">
+      <a href={artist.soundcloud} target="_blank" rel="noopener" class="cc-btn-primary" style="text-decoration: none;">
         Listen on SoundCloud
       </a>
     </div>

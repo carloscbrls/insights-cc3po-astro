@@ -1,22 +1,112 @@
 ---
-import { postUrl, formatDate, tagConfig, type Post } from '../lib/blog';
+/**
+ * PostCard — the Folio Line card (Insights elevation pass, 2026-11-25).
+ * Every card carries art: the post's hero image when one exists,
+ * otherwise a designed CoverPlate. Used on the homepage shelves,
+ * series / author / topic pages, the archive, and article-end
+ * related posts — one card, every surface.
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+import CoverPlate from './CoverPlate.astro';
+import { postUrl, formatDate, tagConfig, authorName, type Post } from '../lib/blog';
 
 interface Props { post: Post }
 const { post } = Astro.props;
 const d = post.data;
 const tag = tagConfig[d.category];
+const heroExists = d.heroImage ? fs.existsSync(path.join(process.cwd(), 'public', d.heroImage)) : false;
+const byline = d.authors.map(authorName).join(' & ');
 ---
 
-<a href={postUrl(post)} class="cc-post-card">
-  <div class="cc-post-tags">
-    {tag && <span class="cc-tag" style={`background: ${tag.bg}; color: ${tag.color};`}>{tag.label}</span>}
-    {d.audience && <span class="cc-post-date" style="margin-left: 0;">{d.audience}</span>}
-    <span class="cc-post-date">{formatDate(d.pubDate)}</span>
-  </div>
-  <h3 class="cc-post-title">{d.title}</h3>
-  <p class="cc-post-excerpt">{d.excerpt}</p>
-  <div class="cc-post-footer">
-    <span class="cc-post-readmore">Read more →</span>
-    <span class="cc-post-readtime">{d.readTime}</span>
-  </div>
+<a href={postUrl(post)} class="folio-card">
+  <span class="folio-card-media">
+    {heroExists
+      ? <img src={d.heroImage} alt="" width="640" height="360" loading="lazy" />
+      : <CoverPlate post={post} />}
+  </span>
+  <span class="folio-card-body">
+    <span class="folio-card-top">
+      {tag && <span class="cc-tag" style={`background: ${tag.bg}; color: ${tag.color};`}>{tag.label}</span>}
+      <span class="folio-meta">{formatDate(d.pubDate)}</span>
+    </span>
+    <span class="folio-card-title">{d.title}</span>
+    <span class="folio-card-excerpt">{d.excerpt}</span>
+    <span class="folio-card-foot">
+      <span class="folio-card-more">Read more <span class="folio-arrow" aria-hidden="true">→</span></span>
+      <span class="folio-meta">By {byline} · {d.readTime}</span>
+    </span>
+  </span>
 </a>
+
+<style>
+  .folio-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--brand-surface-dark) 82%, transparent), var(--brand-night));
+    border: 1px solid color-mix(in srgb, var(--brand-paper) 9%, transparent);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .folio-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    z-index: 2;
+    background: linear-gradient(90deg, var(--brand-gold, #e6a50f), color-mix(in srgb, var(--brand-gold, #e6a50f) 0%, transparent));
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  .folio-card:hover { border-color: color-mix(in srgb, var(--brand-gold, #e6a50f) 42%, transparent); }
+  .folio-card:focus-visible { outline: 2px solid var(--brand-gold, #e6a50f); outline-offset: 3px; }
+  .folio-card-media {
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-bottom: 1px solid color-mix(in srgb, var(--brand-paper) 7%, transparent);
+  }
+  .folio-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .folio-card-body { display: flex; flex-direction: column; flex: 1; padding: 20px 22px 22px; }
+  .folio-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+  .folio-card-title {
+    display: block;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.27rem;
+    line-height: 1.28;
+    letter-spacing: -0.01em;
+    color: var(--brand-paper);
+    margin: 0 0 9px;
+  }
+  .folio-card-excerpt {
+    display: block;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--brand-paper) 58%, transparent);
+    margin: 0 0 18px;
+    flex: 1;
+  }
+  .folio-card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .folio-card-more { font-size: 13.5px; font-weight: 700; color: var(--brand-paper); }
+  .folio-card-more .folio-arrow { color: var(--brand-gold, #e6a50f); }
+  .folio-card:hover .folio-card-more { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--brand-gold, #e6a50f); }
+  @media (prefers-reduced-motion: no-preference) {
+    .folio-card { transition: border-color 0.2s, transform 0.25s ease; }
+    .folio-card:hover { transform: translateY(-3px); }
+    .folio-card::before { transition: transform 0.35s ease; }
+    .folio-card:hover::before { transform: scaleX(1); }
+    .folio-card-media img { transition: transform 0.5s ease; }
+    .folio-card:hover .folio-card-media img { transform: scale(1.03); }
+  }
+</style>

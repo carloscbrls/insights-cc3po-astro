@@ -1,0 +1,24 @@
+---
+/**
+ * CoverPlate — the designed cover for a post with no photography
+ * (Insights elevation pass, 2026-11-25). Part of the Folio Line
+ * system: a category-tinted field, the Folio Line across the top,
+ * a giant Fraunces initial from the post's title, the C07 mark,
+ * and a mono folio label (series name, else topic). Decorative —
+ * the card's heading carries the accessible name.
+ */
+import { tagConfig, SERIES_DEFS, type Post } from '../lib/blog';
+
+interface Props { post: Post }
+const { post } = Astro.props;
+const d = post.data;
+const tint = tagConfig[d.category]?.color ?? '#e6a50f';
+const label = d.series ? SERIES_DEFS[d.series].name : (tagConfig[d.category]?.label ?? d.category);
+const initial = (d.title.replace(/^[^A-Za-z0-9]+/, '').charAt(0) || 'C').toUpperCase();
+---
+
+<div class="folio-plate" style={`--plate-tint: ${tint};`} aria-hidden="true">
+  <img class="folio-plate-mark" src="/images/c07-mark-small.svg" alt="" width="22" height="22" loading="lazy" />
+  <span class="folio-plate-initial">{initial}</span>
+  <span class="folio-plate-label">{label}</span>
+</div>

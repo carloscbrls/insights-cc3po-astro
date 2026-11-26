@@ -1,9 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getPosts, postUrl, formatDate, tagConfig, SERIES_DEFS } from '../lib/blog';
+import PostCard from '../components/PostCard.astro';
+import { getPosts } from '../lib/blog';
 
 // Full archive (Insights Shift Change, pattern 6): every post grouped
-// by month, newest first, with topic + series labels.
+// by month, newest first. Folio Line cards (elevation pass, 2026-11-25).
 const all = await getPosts();
 const groups = new Map<string, typeof all>();
 for (const post of all) {
@@ -16,30 +17,18 @@ for (const post of all) {
 <Layout title="Archive — CC3PO Insights" description="Every CC3PO Insights post, grouped by month.">
 <section class="cc-section">
   <div class="cc-container">
-    <div class="cc-section-label">Archive</div>
-    <div class="cc-section-header">
-      <h1 class="cc-section-title">Every post, by month</h1>
-      <p class="cc-section-desc">{all.length} posts and counting. Subscribe on the <a href="/" style="color: var(--semantic-success); text-decoration: underline; text-underline-offset: 3px;">homepage</a> to get new ones by email.</p>
+    <div class="folio-header" style="margin-bottom: 40px;">
+      <p class="folio-kicker">Archive</p>
+      <h1>Every post, by month</h1>
+      <p class="folio-lede">{all.length} posts and counting. Subscribe on the <a href="/#subscribe" style="color: var(--semantic-success); text-decoration: underline; text-underline-offset: 3px;">homepage</a> to get new ones by email.</p>
+      <hr class="folio-rule" />
     </div>
     {[...groups.entries()].map(([month, posts]) => (
-      <div style="margin-bottom: 40px;">
-        <h2 class="cc-section-title" style="font-size: 20px; margin-bottom: 16px;">{month}</h2>
+      <div style="margin-bottom: 44px;">
+        <h2 class="f-serif" style="font-size: 22px; font-weight: 600; color: var(--brand-paper); margin: 0 0 6px;">{month}</h2>
+        <hr class="folio-rule" style="margin: 0 0 20px; width: 72px;" />
         <div class="cc-posts-grid">
-          {posts.map((post) => (
-            <a href={postUrl(post)} class="cc-post-card">
-              <div class="cc-post-tags">
-                <span class="cc-tag" style={`background: ${tagConfig[post.data.category].bg}; color: ${tagConfig[post.data.category].color};`}>{tagConfig[post.data.category].label}</span>
-                {post.data.series && <span class="cc-post-date" style="margin-left: 0;">{SERIES_DEFS[post.data.series].name}</span>}
-                <span class="cc-post-date">{formatDate(post.data.pubDate)}</span>
-              </div>
-              <h3 class="cc-post-title">{post.data.title}</h3>
-              <p class="cc-post-excerpt">{post.data.excerpt}</p>
-              <div class="cc-post-footer">
-                <span class="cc-post-readmore">Read more →</span>
-                <span class="cc-post-readtime">{post.data.readTime}</span>
-              </div>
-            </a>
-          ))}
+          {posts.map((post) => <PostCard post={post} />)}
         </div>
       </div>
     ))}
